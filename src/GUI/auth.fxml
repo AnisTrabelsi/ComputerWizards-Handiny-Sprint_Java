@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Scene?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.stage.Stage?>
+
+<Stage xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+    <scene>
+        <Scene>
+            <AnchorPane prefHeight="374.0" prefWidth="363.0">
+            <children>
+               <TitledPane animated="false" layoutX="-36.0" layoutY="-51.0" text="untitled" />
+               <TitledPane alignment="CENTER" animated="false" layoutX="1.0" text="Authentification">
+                 <content>
+                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="362.0" prefWidth="530.0">
+                        <children>
+                           <PasswordField layoutX="333.0" layoutY="107.0" promptText="Password" />
+                           <TextField layoutX="64.0" layoutY="107.0" promptText="Field" />
+                           <Label layoutX="139.0" layoutY="216.0" text="Si vous n'avez pas de compte , Vous pouvez le faire maintenant !" />
+                           <Button layoutX="224.0" layoutY="157.0" mnemonicParsing="false" text="S'authentifier" />
+                           <Button layoutX="214.0" layoutY="284.0" mnemonicParsing="false" text="S'inscrire maintenant !" />
+                        </children>
+                     </AnchorPane>
+                 </content>
+                  <font>
+                     <Font size="14.0" />
+                  </font>
+               </TitledPane>
+            </children></AnchorPane>
+        </Scene>
+    </scene>
+</Stage>

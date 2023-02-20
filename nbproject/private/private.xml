@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/Chayma/Documents/NetBeansProjects/handiny/src/Controllers/authController.java</file>
+            <file>file:/C:/Users/Chayma/Documents/NetBeansProjects/handiny/src/Controllers/signupController.java</file>
+            <file>file:/C:/Users/Chayma/Documents/NetBeansProjects/handiny/src/Services/ServiceUtilisateur.java</file>
+            <file>file:/C:/Users/Chayma/Documents/NetBeansProjects/handiny/src/Entite/Utilisateur.java</file>
+            <file>file:/C:/Users/Chayma/Documents/NetBeansProjects/handiny/src/GUI/auth.css</file>
+            <file>file:/C:/Users/Chayma/Documents/NetBeansProjects/handiny/src/handiny/Handiny.java</file>
+            <file>file:/C:/Users/Chayma/Documents/NetBeansProjects/handiny/src/Controllers/LogedinController.java</file>
+            <file>file:/C:/Users/Chayma/Documents/NetBeansProjects/handiny/src/GUI/logedin.css</file>
+            <file>file:/C:/Users/Chayma/Documents/NetBeansProjects/handiny/src/Services/ServiceReclamation.java</file>
+            <file>file:/C:/Users/Chayma/Documents/NetBeansProjects/handiny/src/GUI/auth.fxml</file>
+            <file>file:/C:/Users/Chayma/Documents/NetBeansProjects/handiny/src/GUI/Logedin.fxml</file>
+            <file>file:/C:/Users/Chayma/Documents/NetBeansProjects/handiny/src/Entite/Reclamation.java</file>
+            <file>file:/C:/Users/Chayma/Documents/NetBeansProjects/handiny/src/GUI/NewFXMain.java</file>
+            <file>file:/C:/Users/Chayma/Documents/NetBeansProjects/handiny/src/GUI/FXMLController.java</file>
+            <file>file:/C:/Users/Chayma/Documents/NetBeansProjects/handiny/src/GUI/signup.css</file>
+        </group>
+    </open-files>
+</project-private>
