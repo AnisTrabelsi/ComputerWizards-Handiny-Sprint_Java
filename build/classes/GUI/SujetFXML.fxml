@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="587.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="Controllers.SujetFXMLController">
+    <stylesheets>
+        <URL value="@sujetfxml.css" />
+    </stylesheets>
+   <children>
+      <Label layoutX="94.0" layoutY="67.0" text="Titre de sujet" />
+      <TextField fx:id="sujet" layoutX="94.0" layoutY="100.0" prefHeight="26.0" prefWidth="212.0" />
+      <Label layoutX="94.0" layoutY="153.0" text="Séléctionner la catégorie" />
+      <ChoiceBox fx:id="categoriesujet" layoutX="94.0" layoutY="187.0" prefWidth="150.0" />
+      <Label layoutX="94.0" layoutY="237.0" text="Description" />
+      <TextField fx:id="contenusujet" layoutX="95.0" layoutY="264.0" prefHeight="78.0" prefWidth="439.0" />
+      <Label layoutX="95.0" layoutY="366.0" text="État" />
+      <RadioButton fx:id="ouvert" layoutX="111.0" layoutY="396.0" mnemonicParsing="false" text="Ouvert" />
+      <RadioButton fx:id="ferme" layoutX="213.0" layoutY="396.0" mnemonicParsing="false" text="Fermé" />
+      <RadioButton fx:id="bloque" layoutX="306.0" layoutY="396.0" mnemonicParsing="false" text="Bloqué" />
+      <Label layoutX="89.0" layoutY="498.0" text="Partager" />
+      <CheckBox layoutX="175.0" layoutY="498.0" mnemonicParsing="false" text="Facebook" />
+      <CheckBox layoutX="297.0" layoutY="498.0" mnemonicParsing="false" text="LinkedIn" />
+      <CheckBox layoutX="415.0" layoutY="498.0" mnemonicParsing="false" text="Gmail" />
+      <Button fx:id="cancelsujet" layoutX="482.0" layoutY="538.0" mnemonicParsing="false" text="Annuler" />
+      <Button fx:id="submitsujet" layoutX="372.0" layoutY="538.0" mnemonicParsing="false" text="Créer le sujet" />
+      <Label layoutX="91.0" layoutY="455.0" text="Tags" />
+      <TextField layoutX="138.0" layoutY="451.0" prefHeight="26.0" prefWidth="392.0" />
+   </children>
+</AnchorPane>
