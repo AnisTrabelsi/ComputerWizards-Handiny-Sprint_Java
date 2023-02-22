@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CategorieUpdateFXMLController">
+    <stylesheets>
+        <URL value="@categorieupdatefxml.css" />
+    </stylesheets>
+   <children>
+      <Label layoutX="253.0" layoutY="39.0" text="Modif d'une catégorie" />
+      <Label layoutX="27.0" layoutY="135.0" prefHeight="18.0" prefWidth="220.0" text="Nouveau titre de catégorie" />
+      <TextField fx:id="nom_categorie" layoutX="265.0" layoutY="131.0" prefHeight="26.0" prefWidth="246.0" />
+      <Button fx:id="ModifCategorieBtn" layoutX="310.0" layoutY="222.0" mnemonicParsing="false" onAction="#ModifCategorie" text="Modifier catégorie" textAlignment="CENTER" textFill="#303631" />
+      <Button fx:id="AnnulerBtn" layoutX="454.0" layoutY="222.0" mnemonicParsing="false" onAction="#Annuler" text="Annuler" />
+   </children>
+</AnchorPane>

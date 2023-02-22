@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="Controllers.SujetListFXMLController">
+    <stylesheets>
+        <URL value="@sujetlistfxml.css" />
+    </stylesheets>
+   <children>
+      <BorderPane prefHeight="414.0" prefWidth="609.0">
+         <top>
+            <HBox prefHeight="46.0" prefWidth="610.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ComboBox fx:id="id_categorie" prefWidth="150.0" promptText="Catégories">
+                     <HBox.margin>
+                        <Insets left="20.0" right="20.0" top="10.0" />
+                     </HBox.margin>
+                  </ComboBox>
+                  <ComboBox fx:id="tags" prefWidth="150.0" promptText="Tags">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <HBox.margin>
+                        <Insets top="10.0" />
+                     </HBox.margin>
+                  </ComboBox>
+               </children>
+            </HBox>
+         </top>
+         <center>
+            <SplitPane prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+              <items>
+                  <SplitPane prefHeight="160.0" prefWidth="200.0">
+                     <items>
+                        <GridPane fx:id="gridpane" prefHeight="318.0" prefWidth="524.0">
+                          <columnConstraints>
+                            <ColumnConstraints fx:id="titre_sujet" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints fx:id="date_creation_sujet" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints fx:id="contenu_sujet" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints fx:id="nb_commentaires" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints fx:id="etat" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Button fx:id="updateBtn" mnemonicParsing="false" onAction="#update" text="Modifier" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="20.0" top="-250.0" />
+                                 </GridPane.margin>
+                              </Button>
+                              <Label alignment="CENTER" prefHeight="48.0" prefWidth="102.0" text="Titre sujet" />
+                              <Label alignment="CENTER" text="Date creation sujet" GridPane.columnIndex="1" />
+                              <Label alignment="CENTER" prefHeight="45.0" prefWidth="100.0" text="Nombre Commentaires" GridPane.columnIndex="3">
+                                 <font>
+                                    <Font size="9.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="49.0" prefWidth="107.0" text="Etat" GridPane.columnIndex="4" />
+                              <Label alignment="CENTER" prefHeight="52.0" prefWidth="98.0" text="Edit" GridPane.columnIndex="5" />
+                              <Label alignment="CENTER" prefHeight="34.0" prefWidth="106.0" text="Contenu sujet" GridPane.columnIndex="2" />
+                           </children>
+                        </GridPane>
+                     </items>
+                  </SplitPane>
+              </items>
+            </SplitPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

@@ -17,9 +17,8 @@ public class Categorie {
     private Date date_creation_categorie;
     private int nb_sujets;
 
-    public Categorie(String nom_categorie, Date date_creation_categorie, int nb_sujets) {
+    public Categorie(String nom_categorie, int nb_sujets) {
         this.nom_categorie = nom_categorie;
-        this.date_creation_categorie = date_creation_categorie;
         this.nb_sujets = nb_sujets;
     }
 
@@ -28,6 +27,15 @@ public class Categorie {
         this.nom_categorie = nom_categorie;
         this.date_creation_categorie = date_creation_categorie;
         this.nb_sujets = nb_sujets;
+    }
+
+    public Categorie(int id_categorie, String nom_categorie) {
+        this.id_categorie = id_categorie;
+        this.nom_categorie = nom_categorie;
+    }
+
+    public Categorie(String nom_categorie) {
+        this.nom_categorie = nom_categorie;
     }
 
     public Categorie() {
@@ -67,7 +75,7 @@ public class Categorie {
 
     @Override
     public String toString() {
-        return "Categorie{" + "id_categorie=" + id_categorie + ", nom_categorie=" + nom_categorie + ", date_creation_categorie=" + date_creation_categorie + ", nb_sujets=" + nb_sujets + '}';
+        return nom_categorie + "         " + date_creation_categorie + "         " + nb_sujets;
     }
 
 }

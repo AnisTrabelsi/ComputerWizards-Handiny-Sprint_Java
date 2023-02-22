@@ -31,20 +31,20 @@ public class ServiceCategorie implements IService<Categorie> {
 
     @Override
     public void ajouter(Categorie t) throws SQLException {
-        String req = "INSERT INTO `Categorie` ( `nom_categorie`, `date_creation_categorie`, `nb_sujets`) VALUES "
-                + "( '" + t.getNom_categorie() + "', '" + t.getDate_creation_categorie() + "', '" + t.getNb_sujets() + "');";
+        String req = "INSERT INTO `Categorie` (`nom_categorie`, `date_creation_categorie`, `nb_sujets`) VALUES (?, CURDATE(), 0);";
+        PreparedStatement pre = con.prepareStatement(req);
+        pre.setString(1, t.getNom_categorie());
+        pre.executeUpdate();
 
-        ste.executeUpdate(req);
     }
 
     @Override
     public void update(Categorie t) throws SQLException {
-        String req = " UPDATE Categorie SET nom_categorie= ?, date_creation_categorie = ? , nb_sujets  = ? WHERE id_categorie= ?;";
+        String req = " UPDATE Categorie SET nom_categorie= ?, date_creation_categorie = CURDATE() , nb_sujets  = ? WHERE id_categorie= ?;";
         PreparedStatement pre = con.prepareStatement(req);
-        pre.setInt(4, t.getId_categorie());
         pre.setString(1, t.getNom_categorie());
-        pre.setDate(2, t.getDate_creation_categorie());
-        pre.setInt(3, t.getNb_sujets());
+        pre.setInt(2, t.getNb_sujets());
+        pre.setInt(3, t.getId_categorie());
         pre.executeUpdate();
         System.out.println("Catégorie modifiée !");
     }
@@ -81,11 +81,25 @@ public class ServiceCategorie implements IService<Categorie> {
         return listcat;
     }
 
+    public List<String> readNoms() throws SQLException {
+        ArrayList<String> listcat = new ArrayList<>();
+        String req = "select nom_categorie from Categorie";
+        try {
+            ResultSet res = ste.executeQuery(req);
+            while (res.next()) {
+                listcat.add(res.getString("nom_categorie"));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return listcat;
+    }
+
     @Override
     public Categorie findById(int id) throws SQLException {
         Categorie categorie = null;
-        String req = "SELECT * FROM `Categorie` WHERE `id_categorie` = " + id + ";";
-        try ( ResultSet rs = ste.executeQuery(req)) {
+        String req = "SELECT * FROM `categorie` WHERE `id_categorie` = " + id + ";";
+        try (ResultSet rs = ste.executeQuery(req)) {
             if (rs.next()) {
                 categorie = new Categorie(
                         rs.getInt("id_categorie"),
@@ -95,9 +109,21 @@ public class ServiceCategorie implements IService<Categorie> {
                 );
             }
         } catch (SQLException ex) {
-            System.out.println("Un Categorie avec cet id " + id + " est non trouvé !" + ex.getMessage());
+            System.out.println("Une Categorie avec cet id " + id + " est non trouvé !" + ex.getMessage());
         }
         return categorie;
+    }
+
+    public int getIdByName(String nom_categorie) throws SQLException {
+        String req = "SELECT id_categorie FROM categorie WHERE nom_categorie = ?";
+        PreparedStatement stmt = con.prepareStatement(req);
+        stmt.setString(1, nom_categorie);
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            return rs.getInt("id_categorie");
+        } else {
+            return -1; // or throw an exception to indicate that no matching row was found
+        }
     }
 
 }

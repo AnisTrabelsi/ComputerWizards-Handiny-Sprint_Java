@@ -5,9 +5,11 @@
 package handiny;
 
 import Entite.Categorie;
+import Entite.Commentaire;
 import Entite.Sujet;
 import Entite.Utilisateur;
 import Services.ServiceCategorie;
+import Services.ServiceCommentaire;
 import Services.ServiceSujet;
 import java.sql.*;
 import java.text.DateFormat;
@@ -17,6 +19,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.sql.Date;
 
 /**
  *
@@ -34,64 +37,67 @@ public class Handiny {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        ServiceCategorie sercat = new ServiceCategorie();
+//        ServiceSujet sersuj = new ServiceSujet();
 
-        java.util.Date dateCreation = null;
+        Categorie cat = new Categorie("mmmm");
         try {
-            dateCreation = new SimpleDateFormat("dd-MM-yyyy").parse("10-11-2023");
-        } catch (ParseException ex) {
-            System.out.println(ex);
+            sercat.update(cat);
+        } catch (SQLException ex) {
+            Logger.getLogger(Handiny.class.getName()).log(Level.SEVERE, null, ex);
         }
-        java.sql.Date sqlDateCreation = new java.sql.Date(dateCreation.getTime());
-        Categorie c1 = new Categorie(20,"Adoption", sqlDateCreation, 5);
-        ServiceCategorie ser = new ServiceCategorie();
+        Utilisateur u = new Utilisateur();
+//        Sujet suj = new Sujet("ee", "eeee", 4, "rr", "ttt", cat, u);
+
+//        suj.setId_sujet(1);
+//        u.setId_utilisateur(1);
+//        cat.setId_categorie(78);
+//        try {
+//            sercat.ajouter(cat);
+//        } catch (SQLException ex) {
+//            System.out.println(ex);
+//        }        try {
+//            sersuj.ajouter(suj);
+//        } catch (SQLException ex) {
+//            System.out.println(ex);
+//        }
+
+//
+//        List<Categorie> l1 = null;
 //
 //        try {
-//            ser.ajouter(c1);
+//            l1 = sercat.readAll();
 //        } catch (SQLException ex) {
 //            System.out.println(ex);
 //        }
-        Categorie c2 = new Categorie(2, "Adoption", sqlDateCreation, 6);
+//        l1.forEach(e -> System.out.println(e));
+//        
 //        try {
-//            ser.update(c2);
+//            sersuj.ajouter(suj);
+//        } catch (SQLException ex1) {
+//            System.out.println(ex1);
+//        }
+//        List<Sujet> l2 = null;
+//
+//        try {
+//            l2 = sersuj.readAll();
 //        } catch (SQLException ex) {
 //            System.out.println(ex);
 //        }
-
-        try {
-            ser.supprime(c1);
+//        l2.forEach(e -> System.out.println(e));
+//        ServiceSujet cc = new ServiceSujet();
+//        try {
+//            Sujet s= cc.findById(66);
+//            System.out.println(s.getId_sujet());
+//        } catch (SQLException ex2) {
+//            System.out.println(ex2);
+//        }
+         try {
+            Categorie cat1 = sercat.findById(34);
+            System.out.println(cat1.getId_categorie());
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-        List<Categorie> l1 = null;
-
-        try {
-            l1 = ser.readAll();
-        } catch (SQLException ex) {
-            System.out.println(ex);
         }
-        l1.forEach(e -> System.out.println(e));
-        System.out.println("****************************************************************************************");
-        Utilisateur u1 = new Utilisateur("gg", "ff", "12345678", "kflfe", "45877777", "fffff", "rrrr", sqlDateCreation, "eee", "rrrr", 1002, "Locataire");
-        Sujet s1 = new Sujet("Bonjour",sqlDateCreation, sqlDateCreation, "eeeeee", 3, "ouvert", "hashtag", c1, u1);
-        
-        ServiceSujet ser1 = new ServiceSujet();
 
-        try {
-            ser1.ajouter(s1);
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-        List<Sujet> ls = null;
-
-        try {
-            ls = ser1.readAll();
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-        ls.forEach(e -> System.out.println(e));
-        
-        
     }
-
-}

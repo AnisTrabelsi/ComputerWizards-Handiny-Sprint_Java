@@ -6,6 +6,7 @@ package Services;
 
 import Entite.Categorie;
 import Entite.Sujet;
+import Entite.Utilisateur;
 import Utils.DataSource;
 import java.sql.SQLException;
 import java.util.List;
@@ -31,38 +32,60 @@ public class ServiceSujet implements IService<Sujet> {
         }
     }
 
-    @Override
     public void ajouter(Sujet t) throws SQLException {
-        String req = "INSERT INTO `Sujet` ( `titre_sujet`, `date_creation_sujet`, `date_derniere_maj`, `contenu_sujet`, `nb_commentaires`, `etat`, `tags`, `id_categorie`, `id_utilisateur`) VALUES "
-                + "( '" + t.getTitre_sujet() 
-                + "', '" + t.getDate_creation_sujet() 
-                + "', '" + t.getDate_derniere_maj() 
-                + "', '" + t.getContenu_sujet() 
-                + "', '" + t.getNb_commentaires() 
-                + "', '" + t.getEtat() 
-                + "', '" + t.getTags()
-                + "', '" + t.getCat().getId_categorie()
-                + "', '" + t.getUser().getId_utilisateur()
-                + "');";
 
-        ste.executeUpdate(req);
+//        Categorie categorie = new Categorie();
+        String req = "INSERT INTO `Sujet` ( `titre_sujet`, `date_creation_sujet`, `contenu_sujet`, `nb_commentaires`, `etat`, `tags`, `id_categorie`, `id_utilisateur`) VALUES (?, CURDATE(), ?, 0, ?, ?, ?, 1);";
+        PreparedStatement pre = con.prepareStatement(req);
+        pre.setString(1, t.getTitre_sujet());
+        pre.setString(2, t.getContenu_sujet());
+        pre.setString(3, t.getEtat());
+        pre.setString(4, t.getTags());
+        pre.setInt(5, t.getCat().getId_categorie());
+        pre.executeUpdate();
+
+        // mettre à jour le nombre de sujets de la catégorie correspondante
+        String countReq = "SELECT COUNT(*) as nb_sujets FROM Sujet WHERE id_categorie = ?";
+        PreparedStatement countStmt = con.prepareStatement(countReq);
+        countStmt.setInt(1, t.getCat().getId_categorie());
+        ResultSet rs = countStmt.executeQuery();
+        int nbSujets = 0;
+        if (rs.next()) {
+            nbSujets = rs.getInt("nb_sujets");
+        }
+        countStmt.close();
+        rs.close();
+
+        String updateReq = "UPDATE `Categorie` SET `nb_sujets` = ? WHERE `id_categorie` = ?";
+        PreparedStatement updateStmt = con.prepareStatement(updateReq);
+        updateStmt.setInt(1, nbSujets);
+        updateStmt.setInt(2, t.getCat().getId_categorie());
+        updateStmt.executeUpdate();
+
+        updateStmt.close();
+
     }
 
     @Override
     public void update(Sujet t) throws SQLException {
-        String req = "UPDATE `Sujet` SET "
-                + "`titre_sujet` = '" + t.getTitre_sujet() + "', "
-                + "`date_creation_sujet` = '" + t.getDate_creation_sujet() + "', "
-                + "`date_derniere_maj` = '" + t.getDate_derniere_maj() + "', "
-                + "`contenu_sujet` = '" + t.getContenu_sujet() + "', "
-                + "`nb_commentaires` = '" + t.getNb_commentaires() + "', "
-                + "`etat` = '" + t.getEtat() + "', "
-                + "`epingle` = '" + t.getTags() + "' "
-                +"`id_categorie` = '" + t.getCat().getId_categorie()
-                +"`id_utilisateur` = '" + t.getUser().getId_utilisateur()
-                + "WHERE `id_sujet` = " + t.getId_sujet() + ";";
-
-        ste.executeUpdate(req);
+//        String req = "UPDATE `Sujet` SET "
+//                + "`titre_sujet` = '" + t.getTitre_sujet() + "', "
+//                + "`contenu_sujet` = '" + t.getContenu_sujet() + "', "
+//                + "`etat` = '" + t.getEtat() + "', "
+//                + "`id_categorie` = '" + t.getCat().getId_categorie()
+//                + "WHERE `id_sujet` = " + t.getId_sujet() + ";";
+//
+//        ste.executeUpdate(req);
+//        
+        String req = " UPDATE Sujet SET titre_sujet= ?, contenu_sujet = ? , etat  = ? , tags = ?  WHERE id_sujet= ?;";
+        PreparedStatement pre = con.prepareStatement(req);
+        pre.setString(1, t.getTitre_sujet());
+        pre.setString(2, t.getContenu_sujet());
+        pre.setString(3, t.getEtat());
+        pre.setString(4, t.getTags());
+        pre.setInt(5, t.getId_sujet());
+        pre.executeUpdate();
+        System.out.println("Sujet modifiée !");
     }
 
     @Override
@@ -81,7 +104,7 @@ public class ServiceSujet implements IService<Sujet> {
     public List<Sujet> readAll() throws SQLException {
         ArrayList<Sujet> listsuj = new ArrayList<>();
 
-        String req = "select * from Sujet s INNER JOIN Categorie c ON s.id_categorie=c.id_categorie";
+        String req = "select * from Sujet s";
 
         ResultSet res = ste.executeQuery(req);
 
@@ -92,45 +115,81 @@ public class ServiceSujet implements IService<Sujet> {
 //                categorie.setDate_creation_categorie(res.getDate("date_creation_categorie"));
 //                categorie.setNb_sujets(res.getInt("nb_sujets"));
             Sujet sujet = new Sujet();
-                sujet.setId_sujet(res.getInt("id_sujet"));
-                sujet.setTitre_sujet(res.getString("titre_sujet"));
-                sujet.setDate_creation_sujet(res.getDate("date_creation_sujet"));
-                sujet.setDate_derniere_maj(res.getDate("date_derniere_maj"));
-                sujet.setContenu_sujet(res.getString("contenu_sujet"));
-                sujet.setNb_commentaires(res.getInt("nb_commentaires"));
-                sujet.setEtat(res.getString("etat"));
-                sujet.setTags(res.getString("tags"));
+            sujet.setId_sujet(res.getInt("id_sujet"));
+            sujet.setTitre_sujet(res.getString("titre_sujet"));
+            sujet.setDate_creation_sujet(res.getDate("date_creation_sujet"));
+            sujet.setContenu_sujet(res.getString("contenu_sujet"));
+            sujet.setNb_commentaires(res.getInt("nb_commentaires"));
+            sujet.setEtat(res.getString("etat"));
+            sujet.setTags(res.getString("tags"));
             listsuj.add(sujet);
         }
         return listsuj;
     }
 
     @Override
-    public Sujet findById(int id) throws SQLException {
+    public Sujet findById(int id_sujet) throws SQLException {
         Sujet sujet = null;
-        String req = "select * from Sujet s INNER JOIN Categorie c ON s.id_categorie=c.id_categorie where s.id_categorie=c.id_categorie";
-        try ( ResultSet res = ste.executeQuery(req)) {
-            if (res.next()) {
-//                Categorie categorie = new Categorie();
-//                categorie.setId_categorie(res.getInt("id_categorie"));
-//                categorie.setNom_categorie(res.getString("nom_categorie"));
-//                categorie.setDate_creation_categorie(res.getDate("date_creation_categorie"));
-//                categorie.setNb_sujets(res.getInt("nb_sujets"));
-                sujet.setId_sujet(res.getInt("id_sujet"));
-                sujet.setTitre_sujet(res.getString("titre_sujet"));
-                sujet.setDate_creation_sujet(res.getDate("date_creation_sujet"));
-                sujet.setDate_derniere_maj(res.getDate("date_derniere_maj"));
-                sujet.setContenu_sujet(res.getString("contenu_sujet"));
-                sujet.setNb_commentaires(res.getInt("nb_commentaires"));
-                sujet.setEtat(res.getString("etat"));
-                sujet.setTags(res.getString("tags"));
-            }
-            else{
-                return null;
+        String req = "SELECT * FROM `sujet` WHERE `id_sujet` = " + id_sujet + ";";
+        try (ResultSet rs = ste.executeQuery(req)) {
+            if (rs.next()) {
+                sujet = new Sujet(
+                        rs.getInt("id_sujet"),
+                        rs.getString("titre_sujet"),
+                        rs.getString("contenu_sujet"),
+                        rs.getString("etat"),
+                        rs.getString("tags")
+                );
             }
         } catch (SQLException ex) {
-            System.out.println("Un sujet avec cet id "+ id +  " est non trouvé !" + ex.getMessage());
+            System.out.println("Un sujet avec cet id " + id_sujet + " est non trouvé !" + ex.getMessage());
         }
         return sujet;
+//        Sujet sujet = new Sujet();
+//        Categorie cat = new Categorie();
+//        Utilisateur user = new Utilisateur();
+//        String req = "select * from Sujet WHERE  id_sujet =" + id_sujet;
+//        Statement ste = con.createStatement();
+//        ResultSet res = ste.executeQuery(req);
+//        while (res.next()) {
+//            String titre_sujet = res.getString("titre_sujet");
+//            String contenu_sujet = res.getString("contenu_sujet");
+//            int nb_commentaires = res.getInt("nb_commentaires");
+//            String etat = res.getString("etat");
+//            String tags = res.getString("tags");
+//
+//            // System.out.println(r);
+//            Sujet s1 = new Sujet(titre_sujet, contenu_sujet, nb_commentaires, etat, tags, cat, user);
+//            sujet = s1;
+//        }
+//        return sujet;
     }
+
+    public List<String> readNoms() throws SQLException {
+        ArrayList<String> listSuj = new ArrayList<>();
+        String req = "select titre_sujet from Sujet";
+        try {
+            ResultSet res = ste.executeQuery(req);
+            while (res.next()) {
+                listSuj.add(res.getString("titre_sujet"));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return listSuj;
+    }
+    public List<String> getAllTags() throws SQLException {
+        ArrayList<String> listSuj = new ArrayList<>();
+        String req = "select tags from Sujet";
+        try {
+            ResultSet res = ste.executeQuery(req);
+            while (res.next()) {
+                listSuj.add(res.getString("tags"));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return listSuj;
+    }
+
 }

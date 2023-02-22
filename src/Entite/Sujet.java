@@ -5,6 +5,8 @@
 package Entite;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import Entite.Commentaire;
 
 /**
  *
@@ -15,7 +17,6 @@ public class Sujet {
     private int id_sujet;
     private String titre_sujet;
     private Date date_creation_sujet;
-    private Date date_derniere_maj;
     private String contenu_sujet;
     private int nb_commentaires;
     private String etat;
@@ -23,10 +24,8 @@ public class Sujet {
     private Categorie cat;
     private Utilisateur user;
 
-    public Sujet(String titre_sujet, Date date_creation_sujet, Date date_derniere_maj, String contenu_sujet, int nb_commentaires, String etat, String tags, Categorie cat, Utilisateur user) {
+    public Sujet(String titre_sujet, String contenu_sujet, int nb_commentaires, String etat, String tags, Categorie cat, Utilisateur user) {
         this.titre_sujet = titre_sujet;
-        this.date_creation_sujet = date_creation_sujet;
-        this.date_derniere_maj = date_derniere_maj;
         this.contenu_sujet = contenu_sujet;
         this.nb_commentaires = nb_commentaires;
         this.etat = etat;
@@ -35,11 +34,26 @@ public class Sujet {
         this.user = user;
     }
 
-    public Sujet(int id_sujet, String titre_sujet, Date date_creation_sujet, Date date_derniere_maj, String contenu_sujet, int nb_commentaires, String etat, String tags, Categorie cat, Utilisateur user) {
+    public Sujet(String titre_sujet, String contenu_sujet, String etat, String tags, Categorie cat) {
+        this.titre_sujet = titre_sujet;
+        this.contenu_sujet = contenu_sujet;
+        this.etat = etat;
+        this.tags = tags;
+        this.cat = cat;
+    }
+
+    public Sujet(int id_sujet, String titre_sujet, String contenu_sujet, String etat, String tags) {
+        this.id_sujet = id_sujet;
+        this.titre_sujet = titre_sujet;
+        this.contenu_sujet = contenu_sujet;
+        this.etat = etat;
+        this.tags = tags;
+    }
+
+    public Sujet(int id_sujet, String titre_sujet, Date date_creation_sujet, String contenu_sujet, int nb_commentaires, String etat, String tags, Categorie cat, Utilisateur user) {
         this.id_sujet = id_sujet;
         this.titre_sujet = titre_sujet;
         this.date_creation_sujet = date_creation_sujet;
-        this.date_derniere_maj = date_derniere_maj;
         this.contenu_sujet = contenu_sujet;
         this.nb_commentaires = nb_commentaires;
         this.etat = etat;
@@ -61,10 +75,6 @@ public class Sujet {
 
     public Date getDate_creation_sujet() {
         return date_creation_sujet;
-    }
-
-    public Date getDate_derniere_maj() {
-        return date_derniere_maj;
     }
 
     public String getContenu_sujet() {
@@ -99,10 +109,6 @@ public class Sujet {
         this.date_creation_sujet = date_creation_sujet;
     }
 
-    public void setDate_derniere_maj(Date date_derniere_maj) {
-        this.date_derniere_maj = date_derniere_maj;
-    }
-
     public void setContenu_sujet(String contenu_sujet) {
         this.contenu_sujet = contenu_sujet;
     }
@@ -114,7 +120,6 @@ public class Sujet {
     public void setEtat(String etat) {
         this.etat = etat;
     }
-
 
     public Categorie getCat() {
         return cat;
@@ -134,7 +139,7 @@ public class Sujet {
 
     @Override
     public String toString() {
-        return "Sujet{" + "id_sujet=" + id_sujet + ", titre_sujet=" + titre_sujet + ", date_creation_sujet=" + date_creation_sujet + ", date_derniere_maj=" + date_derniere_maj + ", contenu_sujet=" + contenu_sujet + ", nb_commentaires=" + nb_commentaires + ", etat=" + etat + ", tags=" + tags + '}';
+        return titre_sujet + "         " + date_creation_sujet + "         " +contenu_sujet + "         " +nb_commentaires + "         " + etat + "         " + tags;
     }
 
 }

@@ -32,15 +32,33 @@ public class ServiceCommentaire implements IService<Commentaire> {
 
     @Override
     public void ajouter(Commentaire t) throws SQLException {
-        String req = "INSERT INTO `Commentaire` ( `contenu_commentaire`, `date_publication`, `nb_mentions`, `id_sujet`, `id_utilisateur`) VALUES "
-                + "( '" + t.getContenu_commentaire() 
-                + "', '" + t.getDate_publication() 
-                + "', '" + t.getNb_mentions() 
-                + "', '" + t.getSujet().getId_sujet()
-                + "', '" + t.getUser().getId_utilisateur()
-                + "');";
+        String req = "INSERT INTO `Commentaire` (`contenu_commentaire`, `date_publication`, `nb_mentions`,`piecejointe`, `id_sujet`, `id_utilisateur`) VALUES (?, CURDATE(), 0, ?, ?, 1);";
+        PreparedStatement pre = con.prepareStatement(req);
+        pre.setString(1, t.getContenu_commentaire());
+        pre.setString(2, t.getPiecejointe());
+        pre.setInt(3, t.getSujet().getId_sujet());
+        pre.executeUpdate();
 
-        ste.executeUpdate(req);
+        // mettre à jour le nombre de sujets de la catégorie correspondante
+        String countReq = "SELECT COUNT(*) as nb_commentaires FROM Commentaire WHERE id_sujet = ?";
+        PreparedStatement countStmt = con.prepareStatement(countReq);
+        countStmt.setInt(1, t.getSujet().getId_sujet());
+        ResultSet rs = countStmt.executeQuery();
+        int nbComments = 0;
+        if (rs.next()) {
+            nbComments = rs.getInt("nb_commentaires");
+        }
+        countStmt.close();
+        rs.close();
+
+        String updateReq = "UPDATE `Sujet` SET `nb_commentaires` = ? WHERE `id_sujet` = ?";
+        PreparedStatement updateStmt = con.prepareStatement(updateReq);
+        updateStmt.setInt(1, nbComments);
+        updateStmt.setInt(2, t.getSujet().getId_sujet());
+        updateStmt.executeUpdate();
+
+        updateStmt.close();
+
     }
 
     @Override
@@ -48,7 +66,8 @@ public class ServiceCommentaire implements IService<Commentaire> {
         String req = "UPDATE `Commentaire` SET"
                 + "`contenu_commentaire` = '" + t.getContenu_commentaire() + "', "
                 + "`date_publication` = '" + t.getDate_publication() + "', "
-                + "`nb_mentions` = '" + t.getNb_mentions() 
+                + "`nb_mentions` = '" + t.getNb_mentions()
+                + "`piecejointe` = '" + t.getPiecejointe()
                 + "`id_sujet` = '" + t.getSujet().getId_sujet()
                 + "`id_utilisateur` = '" + t.getUser().getId_utilisateur()
                 + "WHERE `id_commentaire` = " + t.getId_commentaire() + ";";
@@ -87,10 +106,11 @@ public class ServiceCommentaire implements IService<Commentaire> {
 //                sujet.setEtat(res.getString("etat"));
 //                sujet.setEpingle(res.getBoolean("Epingle"));
             Commentaire commentaire = new Commentaire();
-                commentaire.setId_commentaire(res.getInt("id_commentaire"));
-                commentaire.setContenu_commentaire(res.getString("contenu_commentaire"));
-                commentaire.setDate_publication(res.getDate("date_publication"));
-                commentaire.setNb_mentions(res.getInt("nb_mentions"));
+            commentaire.setId_commentaire(res.getInt("id_commentaire"));
+            commentaire.setContenu_commentaire(res.getString("contenu_commentaire"));
+            commentaire.setDate_publication(res.getDate("date_publication"));
+            commentaire.setNb_mentions(res.getInt("nb_mentions"));
+            commentaire.setNb_mentions(res.getInt("piecejointe"));
             listcomm.add(commentaire);
         }
         return listcomm;
@@ -98,22 +118,19 @@ public class ServiceCommentaire implements IService<Commentaire> {
 
     @Override
     public Commentaire findById(int id) throws SQLException {
-        Commentaire commentaire = null;
-        String req = "SELECT * FROM `Commentaire` WHERE `id_commentaire` = " + id + ";";
-        try ( ResultSet res = ste.executeQuery(req)) {
-            if (res.next()) {
-                commentaire.setId_commentaire(res.getInt("id_commentaire"));
-                commentaire.setContenu_commentaire(res.getString("contenu_commentaire"));
-                commentaire.setDate_publication(res.getDate("date_publication"));
-                commentaire.setNb_mentions(res.getInt("nb_mentions"));
-            }
-            else{
-                return null;
-            }
-        } catch (SQLException ex) {
-            System.out.println("Un Commentaire avec cet id " + id + " est non trouvé !" + ex.getMessage());
+        Commentaire comment = new Commentaire();
+        Sujet suj = null;
+        String req = "select * from Commentaire WHERE  id_commentaire =" + id;
+        Statement ste = con.createStatement();
+        ResultSet res = ste.executeQuery(req);
+        while (res.next()) {
+            String contenu_commentaire = res.getString("contenu_commentaire");
+            String piecejointe = res.getString("piecejointe");
+
+            Commentaire c1 = new Commentaire(contenu_commentaire, piecejointe, suj);
+            comment = c1;
         }
-        return commentaire;
+        return comment;
     }
 
 }

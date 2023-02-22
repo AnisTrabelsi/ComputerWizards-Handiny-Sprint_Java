@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="594.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="Controllers.SujetUpdateFXMLController">
+    <stylesheets>
+        <URL value="@sujetupdatefxml.css" />
+    </stylesheets>
+   <children>
+      <TextField fx:id="titre_sujet" layoutX="104.0" layoutY="110.0" prefHeight="26.0" prefWidth="212.0" />
+      <Label layoutX="104.0" layoutY="163.0" text="Séléctionner la catégorie" />
+      <ChoiceBox fx:id="id_categorie" layoutX="104.0" layoutY="197.0" prefWidth="150.0" />
+      <Label layoutX="104.0" layoutY="247.0" text="Description" />
+      <TextField fx:id="contenu_sujet" layoutX="105.0" layoutY="274.0" prefHeight="78.0" prefWidth="439.0" />
+      <Label layoutX="105.0" layoutY="376.0" text="État" />
+      <RadioButton fx:id="ouvert" layoutX="121.0" layoutY="406.0" mnemonicParsing="false" onAction="#getRbEtat" text="Ouvert" />
+      <RadioButton fx:id="ferme" layoutX="223.0" layoutY="406.0" mnemonicParsing="false" onAction="#getRbEtat" text="Fermé" />
+      <RadioButton fx:id="bloque" layoutX="316.0" layoutY="406.0" mnemonicParsing="false" onAction="#getRbEtat" text="Bloqué" />
+      <Button fx:id="cancelBtn" layoutX="492.0" layoutY="548.0" mnemonicParsing="false" onAction="#cancelsujet" text="Annuler" />
+      <Button fx:id="ModifiersujetBtn" layoutX="369.0" layoutY="548.0" mnemonicParsing="false" onAction="#Modifiersujet" text="Modifier le sujet" />
+      <Label layoutX="101.0" layoutY="465.0" text="Tags" />
+      <TextField fx:id="tags" layoutX="148.0" layoutY="461.0" prefHeight="26.0" prefWidth="392.0" />
+      <Label layoutX="244.0" layoutY="45.0" text="Modification de sujet" />
+      <Label layoutX="100.0" layoutY="76.0" text="Titre de sujet" />
+   </children>
+</AnchorPane>
