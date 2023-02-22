@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Ajout_demande_don_adminController">
+   <children>
+      <ImageView fitHeight="531.0" fitWidth="861.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../admin.png" />
+         </image></ImageView>
+      <Button layoutX="121.0" layoutY="234.0" mnemonicParsing="false" onAction="#AddImage" prefHeight="34.0" prefWidth="140.0" stylesheets="@admin.css" text="ajouter image" />
+      <TextField fx:id="URLImage" layoutX="110.0" layoutY="186.0" promptText="Image" stylesheets="@admin.css" />
+      <TextField fx:id="remarque" layoutX="112.0" layoutY="286.0" prefHeight="38.0" prefWidth="202.0" stylesheets="@admin.css" />
+      <Label layoutX="15.0" layoutY="280.0" stylesheets="@admin.css" text="Remarques;" />
+      <Button layoutX="36.0" layoutY="401.0" mnemonicParsing="false" onAction="#ajouter" stylesheets="@admin.css" text="Passer la demande" />
+      <Button layoutX="78.0" layoutY="14.0" mnemonicParsing="false" onAction="#mdd" stylesheets="@admin.css" text="Modifier DD" />
+      <Button layoutX="241.0" layoutY="14.0" mnemonicParsing="false" onAction="#add" stylesheets="@admin.css" text="Afficher DD" />
+      <Button layoutX="388.0" layoutY="14.0" mnemonicParsing="false" onAction="#sdd" stylesheets="@admin.css" text="Supprimer DD" />
+      <Button layoutX="564.0" layoutY="14.0" mnemonicParsing="false" onAction="#don" stylesheets="@admin.css" text="Dons" />
+      <Label layoutX="528.0" layoutY="86.0" stylesheets="@admin.css" text="La liste des dons a demander" />
+      <Label layoutX="29.0" layoutY="160.0" stylesheets="@admin.css" text="Justificatif  handicapé:" />
+      <ImageView fx:id="Image" fitHeight="93.0" fitWidth="114.0" layoutX="213.0" layoutY="371.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="45.0" layoutY="342.0" stylesheets="@admin.css" text="état:" />
+      <ComboBox fx:id="etat" layoutX="115.0" layoutY="342.0" prefWidth="150.0" stylesheets="@admin.css" />
+      <Label layoutX="11.0" layoutY="119.0" stylesheets="@admin.css" text="id utilisateur:" />
+      <TextField fx:id="id_user" layoutX="110.0" layoutY="113.0" prefHeight="38.0" prefWidth="206.0" stylesheets="@admin.css" />
+      <ScrollPane layoutX="342.0" layoutY="116.0" prefHeight="334.0" prefWidth="510.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="332.0" prefWidth="508.0">
+               <children>
+                  <VBox fx:id="vb" prefHeight="334.0" prefWidth="510.0" />
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+      <Label layoutX="89.0" layoutY="65.0" prefHeight="34.0" prefWidth="285.0" text="Ajouter demandes dons" textFill="#52a9df">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Ajout_don_adminController">
+   <children>
+      <ImageView fitHeight="531.0" fitWidth="896.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../admin.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="85.0" layoutY="175.0" prefHeight="35.0" prefWidth="134.0" stylesheets="@admin.css" text="Type : " />
+      <Label layoutX="38.0" layoutY="333.0" prefHeight="35.0" prefWidth="134.0" stylesheets="@admin.css" text="Image de don :" />
+      <Label layoutX="50.0" layoutY="228.0" prefHeight="42.0" prefWidth="110.0" stylesheets="@admin.css" text="Description : " />
+      <Button layoutX="162.0" layoutY="417.0" mnemonicParsing="false" onAction="#ajouterdon" prefHeight="42.0" prefWidth="101.0" stylesheets="@admin.css" text="ajouter" />
+      <TextField fx:id="tfdescription" layoutX="173.0" layoutY="228.0" prefHeight="88.0" prefWidth="206.0" stylesheets="@admin.css" />
+      <Button layoutX="406.0" layoutY="334.0" mnemonicParsing="false" onAction="#AddImage" stylesheets="@admin.css" text="ajouter photo" />
+      <TextField fx:id="URLImage" layoutX="173.0" layoutY="332.0" promptText="Image" stylesheets="@admin.css" />
+      <ImageView fx:id="Image" fitHeight="216.0" fitWidth="304.0" layoutX="571.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
+      <ComboBox fx:id="tfype" layoutX="174.0" layoutY="176.0" onAction="#tfype" prefHeight="34.0" prefWidth="198.0" promptText="Type" stylesheets="@admin.css" />
+      <Button layoutX="92.0" layoutY="18.0" mnemonicParsing="false" onAction="#aff" stylesheets="@admin.css" text="Affichage don" />
+      <Button layoutX="249.0" layoutY="17.0" mnemonicParsing="false" onAction="#suppr" stylesheets="@admin.css" text="Suppression don" />
+      <Button layoutX="422.0" layoutY="16.0" mnemonicParsing="false" onAction="#md" stylesheets="@admin.css" text="Modification don " />
+      <Button layoutX="599.0" layoutY="15.0" mnemonicParsing="false" onAction="#dd" stylesheets="@admin.css" text="Demande don" />
+      <Label layoutX="30.0" layoutY="123.0" prefHeight="26.0" prefWidth="110.0" stylesheets="@admin.css" text="Id Utilisateur :" />
+      <TextField fx:id="id_user" layoutX="173.0" layoutY="117.0" stylesheets="@admin.css" />
+      <Label layoutX="196.0" layoutY="71.0" prefHeight="34.0" prefWidth="160.0" text="Ajouter don" textFill="#52a9df">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

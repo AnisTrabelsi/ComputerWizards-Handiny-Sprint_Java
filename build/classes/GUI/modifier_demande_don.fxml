@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="538.0" prefWidth="843.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Modifier_demande_donController">
+   <children>
+      <ImageView fitHeight="531.0" fitWidth="896.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../back_1.png" />
+         </image></ImageView>
+      <Label layoutX="22.0" layoutY="119.0" prefHeight="35.0" prefWidth="175.0" stylesheets="@list.css" text="justificatif handicap :" />
+      <Button fx:id="btnupdate" layoutX="233.0" layoutY="371.0" mnemonicParsing="false" onAction="#modifierdemandedon" prefHeight="42.0" prefWidth="106.0" stylesheets="@list.css" text="modifier" />
+      <Button layoutX="234.0" layoutY="170.0" mnemonicParsing="false" onAction="#modImage" prefHeight="35.0" prefWidth="106.0" stylesheets="@list.css" text="image" />
+      <TextField fx:id="mod_URLImage" layoutX="22.0" layoutY="169.0" promptText="Image" stylesheets="@list.css" />
+      <Button layoutX="30.0" layoutY="25.0" mnemonicParsing="false" onAction="#ajd" stylesheets="@list.css" text="Ajouter DD" />
+      <Button layoutX="179.0" layoutY="25.0" mnemonicParsing="false" onAction="#add" stylesheets="@list.css" text="Afficher DD" />
+      <Button layoutX="364.0" layoutY="25.0" mnemonicParsing="false" onAction="#sdd" stylesheets="@list.css" text="Supprimer DD" />
+      <Button layoutX="552.0" layoutY="25.0" mnemonicParsing="false" onAction="#dons" stylesheets="@list.css" text="Dons" />
+      <Label layoutX="484.0" layoutY="76.0" stylesheets="@list.css" text="Liste des demandes don" />
+      <Label layoutX="38.0" layoutY="223.0" stylesheets="@list.css" text="Description:" />
+      <TextField fx:id="mod_desc" layoutX="26.0" layoutY="260.0" prefHeight="94.0" prefWidth="282.0" promptText="Remarques ...." stylesheets="@list.css" />
+      <ImageView fx:id="Image" fitHeight="150.0" fitWidth="200.0" layoutX="18.0" layoutY="371.0" pickOnBounds="true" preserveRatio="true" />
+      <ScrollPane layoutX="353.0" layoutY="112.0" prefHeight="359.0" prefWidth="488.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="358.0" prefWidth="482.0">
+               <children>
+                  <VBox fx:id="vb" layoutY="4.0" prefHeight="351.0" prefWidth="471.0" />
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+      <Label layoutX="55.0" layoutY="84.0" prefHeight="34.0" prefWidth="285.0" text="Modifier demandes dons" textFill="#52a9df">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

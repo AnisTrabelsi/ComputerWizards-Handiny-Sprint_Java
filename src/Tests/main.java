@@ -24,16 +24,17 @@ import java.util.*;
 public class main {
 
     public static void main(String[] args) {
-        don p1 = new don(1, "test", "test", "test");
+    
+        don p1 = new don(1, "t", "t", "t");
 
         Service_don ser = new Service_don();
-        
+      /*  
         try {
             ser.ajouter_don(p1);
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-
+*/
          
         /////////////////////////////////////////////
         List<don> l1 = null;
@@ -46,14 +47,14 @@ public class main {
         l1.forEach(e -> System.out.println((e.toString())));
 //////////////////////////////////////////////////////////////////
         try {
-            ser.supprimer_don(14);
+            ser.supprimer_don(43);
         } catch (SQLException exx) {
             System.out.println(exx);
             System.out.println("supp no");
         }
 
 ////////////////////////////////////////////////////////////////
-        don p3 = new don(15, 1, "xxx", "xxxx", "xxxxxx");
+        don p3 = new don(43, 1, "xxx", "xxxx", "xxxxxx");
         try {
             ser.modifier_don(p3);
         } catch (SQLException exx) {
@@ -63,12 +64,12 @@ public class main {
 ////////////////////////////////////////////////////////////
         don d2 = new don();
         try {
-            d2 = ser.findById_don(15);
+            d2 = ser.findById_don(43);
         } catch (SQLException exx) {
             System.out.println(exx);
         }
         System.out.println("don de id 5 :" + "description :" + d2.getDescription());
-        
+       
         /*****************************************************************************************/
          
       

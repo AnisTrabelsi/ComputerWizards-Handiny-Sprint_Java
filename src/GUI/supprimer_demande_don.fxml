@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Supprimer_demande_donController">
+   <children>
+      <ImageView fitHeight="531.0" fitWidth="896.0" layoutX="6.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../back_1.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="54.0" layoutY="14.0" mnemonicParsing="false" onAction="#mdd" stylesheets="@list.css" text="Modifier DD" />
+      <Button layoutX="206.0" layoutY="14.0" mnemonicParsing="false" onAction="#add" stylesheets="@list.css" text="Afficher DD" />
+      <Button layoutX="368.0" layoutY="14.0" mnemonicParsing="false" onAction="#ajdd" stylesheets="@list.css" text="Ajouter DD" />
+      <Button layoutX="536.0" layoutY="14.0" mnemonicParsing="false" onAction="#don" stylesheets="@list.css" text="Dons" />
+      <ScrollPane layoutX="21.0" layoutY="138.0" prefHeight="382.0" prefWidth="805.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="377.0" prefWidth="801.0">
+               <children>
+                  <VBox fx:id="vb" layoutX="2.0" layoutY="4.0" prefHeight="370.0" prefWidth="793.0" />
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+      <Label layoutX="260.0" layoutY="74.0" prefHeight="34.0" prefWidth="285.0" text="Suppression demandes dons" textFill="#52a9df">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
