@@ -29,6 +29,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
@@ -97,9 +98,9 @@ public class Win1Controller implements Initializable {
       List<Voiture> voitures= sv.readAll();
       ObservableList ObList = FXCollections.observableList(voitures);
       tableVoitures.setItems(ObList);
-      immat.setCellValueFactory(new PropertyValueFactory<Voiture, String>("immatriculation"));
+     
        modele.setCellValueFactory(new PropertyValueFactory<Voiture, String>("marque"));
-       marque.setCellValueFactory(new PropertyValueFactory<Voiture, String>("marque"));
+       marque.setCellValueFactory(new PropertyValueFactory<Voiture, String>("modele"));
        boiteV.setCellValueFactory(new PropertyValueFactory<Voiture, String>("boite_vitesse"));
        dateV.setCellValueFactory(new PropertyValueFactory<Voiture, String>("date_validation_technique"));
        kilomet.setCellValueFactory(new PropertyValueFactory<Voiture, String>("kilometrage"));
@@ -107,80 +108,70 @@ public class Win1Controller implements Initializable {
        prixLoc.setCellValueFactory(new PropertyValueFactory<Voiture, Double>("prix_location"));
        desc.setCellValueFactory(new PropertyValueFactory<Voiture, String>("description"));
         tableVoitures.setItems(ObList);
-        //add cell of button edit 
-         Callback<TableColumn<Voiture, String>, TableCell<Voiture, String>> cellFoctory = (TableColumn<Voiture, String> param) -> {
-            // make cell containing buttons
-            final TableCell<Voiture, String> cell = new TableCell<Voiture, String>() {
-                @Override
-                public void updateItem(String item, boolean empty) {
-                    super.updateItem(item, empty);
-                    //that cell created only on non-empty rows
-                    if (empty) {
-                        setGraphic(null);
-                        setText(null);
+        TableColumn<Voiture, Void> actionsColumn = new TableColumn<>("Actions");
+        tableVoitures.getColumns().add(actionsColumn);
+        actionsColumn.setMinWidth(100);
+        actionsColumn.setCellFactory(new Callback<TableColumn<Voiture, Void>, TableCell<Voiture, Void>>() {
+    @Override
+    public TableCell<Voiture, Void> call(TableColumn<Voiture, Void> column) {
+        final TableCell<Voiture, Void> cell = new TableCell<Voiture, Void>() {
+            private final Button editButton = new Button("Editer");
+            private final Button deleteButton = new Button("Supprimer");
 
-                    } else {
+            {
+                editButton.setOnAction((ActionEvent event) -> {
+                    Voiture car = getTableView().getItems().get(getIndex());
+                    openEditWindow(car);
+                });
 
-                        Button deleteIcon = new Button();
-                        Button editIcon = new Button();
+                deleteButton.setOnAction((ActionEvent event) -> {
+                    Voiture car = getTableView().getItems().get(getIndex());
+                    deleteCar(car);
+                });
+            }
 
-                        
-                        deleteIcon.setOnMouseClicked((MouseEvent event) -> {
-                            
-                            Voiture v = tableVoitures.getSelectionModel().getSelectedItem();
-                            ServiceVoiture sc= new ServiceVoiture();
-                            try {
-                                sv.supprime(v);
-                            } catch (SQLException ex) {
-                                Logger.getLogger(Win1Controller.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                            
-                           
-
-                          
-
-                        });
-                        editIcon.setOnMouseClicked((MouseEvent event) -> {
-                            
-                            Voiture student = tableVoitures.getSelectionModel().getSelectedItem();
-                            FXMLLoader loader = new FXMLLoader ();
-                            loader.setLocation(getClass().getResource("/gui/InsertVoitures.fxml"));
-                            try {
-                                loader.load();
-                            } catch (IOException ex) {
-                                System.out.println(ex);
-                            }
-                            
-                            /*InsertVoituresController addStudentController = loader.getController();
-                            InsertVoituresController.setUpdate(true);
-                           InsertVoituresController.setTextField(student.getId(), student.getName(), 
-                                    student.getBirth().toLocalDate(),student.getAdress(), student.getEmail());*/
-                            Parent parent = loader.getRoot();
-                            Stage stage = new Stage();
-                            stage.setScene(new Scene(parent));
-                            stage.initStyle(StageStyle.UTILITY);
-                            stage.show();
-                            
-
-                           
-
-                        });
-
-                      
-
-                    }
+            @Override
+            public void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    HBox hbox = new HBox();
+                    hbox.getChildren().addAll(editButton, deleteButton);
+                    hbox.setSpacing(5);
+                    setGraphic(hbox);
                 }
+            }
 
-            };
-
-            return cell;
+            private void openEditWindow(Voiture car) {
+                
+                try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/InsertVoitures.fxml"));
+        Parent root = (Parent) loader.load();
+        InsertVoituresController controller = loader.getController();
+        controller.initData(car);
+        Stage stage = new Stage();
+        stage.setTitle("Editer une voiture");
+        stage.setScene(new Scene(root));
+        stage.show();
+    } catch (IOException ex) {
+        Logger.getLogger(Win1Controller.class.getName()).log(Level.SEVERE, null, ex);
+    }
+            }
+            private void deleteCar(Voiture car) {
+                
+                
+                           
+            }
         };
-         editCol.setCellFactory(cellFoctory);
-         //tableVoitures.setItems(obList);
-         
-         
+        return cell;
+        
+    }
+});
+        
+
+        
     }}
-       
        
         
    

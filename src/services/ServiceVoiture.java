@@ -151,6 +151,7 @@ Connection con=DataSource.getInstance().getConnection();
             ResultSet rs = ste.executeQuery(req);
             while (rs.next()) {
                Voiture v = new Voiture(rs.getString("immatriculation"), rs.getString("marque"), rs.getString("modele"),rs.getString("boite_vitesse"),rs.getString("kilometrage"),rs.getString("carburant"),rs.getString("description"),rs.getDouble("prix_location"),rs.getDate("date_validation_technique"));
+               //Voiture v = new Voiture(rs.getString("immatriculation"), rs.getString("marque"),rs.getString("boite_vitesse"),rs.getDouble("prix_location"),rs.getDate("date_validation_technique"));
                 list.add(v);
             }
         } catch (SQLException ex) {

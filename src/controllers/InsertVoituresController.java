@@ -81,7 +81,7 @@ public class InsertVoituresController implements Initializable {
 
     @FXML
     private void insert(ActionEvent event) {
-       
+       //gridpane
         String immat=idImmatriculation.getText();
         
         String marque=idMarque.getText();
@@ -94,7 +94,7 @@ public class InsertVoituresController implements Initializable {
         Double prixLocation=Double.parseDouble(idPrixLocation.getText());
         
              
-            Voiture v= new Voiture(immat,marque,modele,idBoiteV.getValue(),kilometrage,carburant,img,desc,prixLocation,java.sql.Date.valueOf(date),1);
+            Voiture v= new Voiture(immat,marque,modele,idBoiteV.getValue(),kilometrage,carburant,img,desc,prixLocation,java.sql.Date.valueOf(date),5);
             ServiceVoiture sv=new ServiceVoiture();
             try { 
             if (sv.ajouter(v)){
@@ -147,5 +147,21 @@ public class InsertVoituresController implements Initializable {
     imgtest.clear();
     idBoiteV.setValue(null);
     }
+
+    void initData(Voiture car) {
+    idImmatriculation.setText(car.getImmatriculation());
+    idMarque.setText(car.getMarque());
+    idModele.setText(car.getModele());
+    idDate.setValue(new java.sql.Date(car.getDate_validation_technique().getTime()).toLocalDate());
+
+    idKilometrage.setText(car.getKilometrage());
+    idCarburant.setText(car.getCarburant());
+    idDesc.setText(car.getDescription());
+    idPrixLocation.setText(Double.toString(car.getPrix_location()));
+    idBoiteV.setValue(car.getBoite_vitesse());
+    imgtest.setText(car.getImage_voiture());
+}
+
+
     
 }

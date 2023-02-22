@@ -18,7 +18,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
 import services.ServiceVoiture;
 
@@ -63,6 +67,39 @@ public class Win2Controller implements Initializable {
       
       
       listv.setItems(ObList);
-    }
-    
-}
+      // Ajout des boutons "Supprimer" et "Editer" pour chaque élément de la ListView
+      listv.setCellFactory(param -> new ListCell<Voiture>() {
+        private final HBox cellBox = new HBox();
+        private final Label label = new Label();
+        private final Button editButton = new Button("Editer");
+        private final Button deleteButton = new Button("Supprimer");
+
+        {
+          cellBox.getChildren().addAll(label, editButton, deleteButton);
+          HBox.setHgrow(label, Priority.ALWAYS);
+          editButton.setOnAction(event -> {
+            // Logique pour éditer la voiture ici
+            Voiture voiture = getItem();
+            System.out.println("Editer: " + voiture);
+          });
+          deleteButton.setOnAction(event -> {
+            // Logique pour supprimer la voiture ici
+           
+          });
+        }
+
+        @Override
+        protected void updateItem(Voiture voiture, boolean empty) {
+          super.updateItem(voiture, empty);
+          if (empty || voiture == null) {
+            setText(null);
+            setGraphic(null);
+          } else {
+            label.setText(voiture.getMarque() + " " + voiture.getModele());
+            setGraphic(cellBox);
+          }
+        }
+      });
+    }}
+      
+      

@@ -4,7 +4,10 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -13,17 +16,33 @@
         <URL value="@chi.css" />
     </stylesheets>
    <children>
-      <MenuBar layoutY="79.0" prefHeight="26.0" prefWidth="603.0" style="-fx-background-color: #44AE64;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <Pane prefHeight="80.0" prefWidth="966.0" style="-fx-background-color: #e5e8e9;">
+         <children>
+            <ImageView fitHeight="86.0" fitWidth="78.0" layoutX="257.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/logo%20pidevfinal-03.png" />
+               </image>
+            </ImageView>
+            <Text layoutX="348.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Handiny" wrappingWidth="194.0550537109375">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="48.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <MenuBar layoutY="80.0" prefHeight="26.0" prefWidth="966.0" style="-fx-background-color: #44AE64;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <menus>
           <Menu mnemonicParsing="false" text="Mes voitures">
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#lancerwin1" text="win1" />
                   <MenuItem mnemonicParsing="false" onAction="#lancerwin2" text="win2" />
-               </items></Menu>
+               </items>
+            </Menu>
           <Menu mnemonicParsing="false" text="Mes Locations">
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#chichi" text="inserer" />
-               </items></Menu>
+               </items>
+            </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#informationAlert" text="About" />
@@ -31,11 +50,28 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Text fill="WHITE" layoutX="291.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Handiny" wrappingWidth="153.25506591796875">
-         <font>
-            <Font name="Arial Narrow Bold Italic" size="36.0" />
-         </font>
-      </Text>
-      <AnchorPane id="mesVoitures" fx:id="mesVoitures" layoutX="-90.0" layoutY="108.0" prefHeight="493.0" prefWidth="826.0" style="-fx-background-color: #4A124559A5;" AnchorPane.bottomAnchor="-37.0" AnchorPane.leftAnchor="-90.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="108.0" />
+      <AnchorPane id="mesVoitures" fx:id="mesVoitures" layoutX="-90.0" layoutY="108.0" prefHeight="493.0" prefWidth="826.0" style="-fx-background-color: #4A124559A5;" AnchorPane.bottomAnchor="-37.0" AnchorPane.leftAnchor="-90.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="108.0">
+         <children>
+            <ImageView fitHeight="347.0" fitWidth="536.0" layoutX="267.0" layoutY="133.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="267.0">
+               <image>
+                  <Image url="@images/background.jpg" />
+               </image>
+            </ImageView>
+            <Text fill="WHITE" layoutX="111.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Louez une voiture adaptée">
+               <font>
+                  <Font name="System Bold Italic" size="24.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="105.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="à un particulier ou un professionnel près de chez vous au meilleur prix">
+               <font>
+                  <Font name="System Bold Italic" size="24.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="32.0" fitWidth="30.0" layoutX="414.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: #ffffff;">
+               <image>
+                  <Image url="@images/disability.png" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
    </children>
 </AnchorPane>

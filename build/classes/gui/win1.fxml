@@ -15,7 +15,6 @@
       <Button alignment="CENTER" layoutX="649.0" layoutY="92.0" mnemonicParsing="false" onAction="#afficherVoitures" prefHeight="38.0" prefWidth="182.0" style="-fx-background-color: #44ae64;" text="afficher la liste des voitures" textFill="WHITE" AnchorPane.leftAnchor="649.0" />
       <TableView fx:id="tableVoitures" layoutX="25.0" layoutY="175.0" prefHeight="234.0" prefWidth="1080.0" style="-fx-background-color: #4;" styleClass="4">
         <columns>
-          <TableColumn fx:id="immat" prefWidth="142.4000244140625" text="Immatriculation" />
             <TableColumn fx:id="modele" prefWidth="74.39999389648438" text="Modèle" />
             <TableColumn fx:id="marque" prefWidth="66.39999389648438" text="Marque" />
             <TableColumn fx:id="boiteV" prefWidth="122.4000244140625" text="Boite de vitesse" />

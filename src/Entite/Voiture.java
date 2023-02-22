@@ -20,9 +20,9 @@ public class Voiture {
     private double prix_location;
     private Date date_validation_technique;
     private Utilisateur user;
-public Voiture(){} 
+public Voiture(String string, String string1, String string2, double aDouble, Date date){} 
     
-  public Voiture(String immatriculation, String marque, String modele, String boite_vitesse, String kilometrage, String carburant, String image_voiture, String description, double prix_location,Date date_validation_technique,Utilisateur user) {
+  public Voiture(String immatriculation, String marque, String modele, String boite_vitesse, String kilometrage, String carburant, String image_voiture, String description, Double prix_location, Date date_validation_technique, int user) {
        
         this.immatriculation = immatriculation;
         this.marque = marque;
@@ -34,7 +34,7 @@ public Voiture(){}
         this.description = description;
         this.prix_location = prix_location;
         this.date_validation_technique=date_validation_technique;
-        this.user = user;
+       // this.user = user;
         
     }
     public Voiture(int id_voiture) {
@@ -55,20 +55,17 @@ public Voiture(){}
         this.date_validation_technique = date_validation_technique;
         this.user = user;
     }
-    
-        
-
-
-public Voiture( String immatriculation, String marque, String modele, String boite_vitesse, String kilometrage, String carburant, String image_voiture, String description, double prix_location, Date date_validation_technique,int id_voiture) {
-        this.id_voiture = id_voiture;
+  
+public Voiture( String immatriculation, String marque, String boite_vitesse,double prix_location, Date date_validation_technique,int id_voiture) {
+        //this.id_voiture = id_v
         this.immatriculation = immatriculation;
         this.marque = marque;
-        this.modele = modele;
+        //this.modele = modele;
         this.boite_vitesse = boite_vitesse;
-        this.kilometrage = kilometrage;
-        this.carburant = carburant;
-        this.image_voiture = image_voiture;
-        this.description = description;
+       // this.kilometrage = kilometrage;
+        //this.carburant = carburant;
+        //this.image_voiture = image_voiture;
+       // this.description = description;
         this.prix_location = prix_location;
         this.date_validation_technique = date_validation_technique;
        
@@ -193,8 +190,11 @@ public Voiture( String immatriculation, String marque, String modele, String boi
 
     @Override
     public String toString() {
-        return "Voiture{" + "immatriculation=" + immatriculation + ", marque=" + marque + ", modele=" + modele + ", boite_vitesse=" + boite_vitesse + ", kilometrage=" + kilometrage + ", carburant=" + carburant + ", image_voiture=" + image_voiture + ", description=" + description + ", prix_location=" + prix_location + ", date_validation_technique=" + date_validation_technique + '}';
+        return "immatriculation  "+ "  marque=" +  " boite_vitesse=" + " prix_location=" +  "  date_validation_technique \n " +immatriculation + marque  + boite_vitesse + prix_location + date_validation_technique;
+
     }
+
+    
 
     @Override
     public int hashCode() {
