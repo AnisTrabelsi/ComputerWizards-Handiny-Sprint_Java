@@ -17,6 +17,8 @@ import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -28,6 +30,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
@@ -61,13 +64,16 @@ public class InsertVoituresController implements Initializable {
     @FXML
     private TextField idPrixLocation;
     @FXML
-    private TextField imgtest;
-    @FXML
     private Button idImage;
     private FileChooser filechooser;
     private File file;
     private Stage stage;
     @FXML private ComboBox<String> idBoiteV;
+    String img;
+    @FXML
+    private TextField idV;
+    @FXML
+    private ImageView imageV;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -77,8 +83,49 @@ public class InsertVoituresController implements Initializable {
         filechooser.getExtensionFilters().addAll(new ExtensionFilter[]{new ExtensionFilter("Image Files", new String[]{"*.png", "*.jpg", "*.jpeg", "*.gif", "*.bmp"}), new ExtensionFilter("JPG", new String[]{"*.jpg"}), new ExtensionFilter("JPEG", new String[]{"*.jpeg"}), new ExtensionFilter("BMP", new String[]{"*.bmp"}), new ExtensionFilter("PNG", new String[]{"*.png"}), new ExtensionFilter("GIF", new String[]{"*.gif"})});
     }
 
-       
-
+    private boolean checkFields() {
+    // Vérifier que chaque champ ne contient pas de caractères spéciaux
+    Pattern pattern = Pattern.compile("[^a-zA-Z0-9 ]");
+    Matcher matcher;
+    if (pattern.matcher(idImmatriculation.getText()).find()) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setContentText("L'immatriculation ne doit pas contenir de caractères spéciaux");
+        return false;
+    }
+    if (pattern.matcher(idMarque.getText()).find()) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setContentText("La marque ne doit pas contenir de caractères spéciaux");
+        return false;
+    }
+    if (pattern.matcher(idModele.getText()).find()) {
+       Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setContentText("Le modèle ne doit pas contenir de caractères spéciaux");
+        return false;
+    }
+    if (pattern.matcher(idKilometrage.getText()).find()) {
+       Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setContentText("Le kilométrage ne doit pas contenir de caractères spéciaux");
+        return false;
+    }
+    if (pattern.matcher(idCarburant.getText()).find()) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setContentText("Le carburant ne doit pas contenir de caractères spéciaux");
+        return false;
+    }
+    if (pattern.matcher(idDesc.getText()).find()) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setContentText("La description ne doit pas contenir de caractères spéciaux");
+        return false;
+    }
+    
+    return true;
+}   
     @FXML
     private void insert(ActionEvent event) {
        //gridpane
@@ -90,9 +137,55 @@ public class InsertVoituresController implements Initializable {
         String kilometrage=idKilometrage.getText();
         String carburant=idCarburant.getText();
         String desc=idDesc.getText();
-        String img=imgtest.getText();
-        Double prixLocation=Double.parseDouble(idPrixLocation.getText());
-        
+       String prixLocationStr=idPrixLocation.getText();
+        Double prixLocation;
+        // Vérifier si tous les champs sont remplis
+    if (immat.isEmpty() || marque.isEmpty() || modele.isEmpty() || date == null || 
+        kilometrage.isEmpty() || carburant.isEmpty() || desc.isEmpty() || prixLocationStr.isEmpty()||img.isEmpty()) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setHeaderText("Champ(s) vide(s)");
+        alert.setContentText("Veuillez remplir tous les champs");
+        alert.showAndWait();
+        return;
+    }
+    if (!immat.matches("^[a-zA-Z0-9]+$") || !marque.matches("^[a-zA-Z]+$")
+                || !modele.matches("^[a-zA-Z0-9]+$")
+                || !kilometrage.matches("^[0-9]+$") || !carburant.matches("^[a-zA-Z]+$")
+                || !desc.matches("^[a-zA-Z0-9\\s]+$")) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur de saisie");
+            alert.setContentText("Certains champs contiennent des caractères spéciaux.");
+            alert.showAndWait();
+            return;
+        }
+     
+
+    // Vérification de la date
+    
+    LocalDate today = LocalDate.now();
+    if (date.isAfter(today)) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setHeaderText("Date invalide");
+        alert.setContentText("La date saisie doit être inférieure ou égale à la date d'aujourd'hui.");
+        alert.showAndWait();
+        return;
+    }
+    
+    
+    // Vérifier si le champ Prix Location est un nombre valide
+    
+    try {
+        prixLocation = Double.parseDouble(prixLocationStr);
+    } catch (NumberFormatException e) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setHeaderText("Prix Location invalide");
+        alert.setContentText("Veuillez entrer un nombre valide pour le Prix Location");
+        alert.showAndWait();
+        return;
+    }
              
             Voiture v= new Voiture(immat,marque,modele,idBoiteV.getValue(),kilometrage,carburant,img,desc,prixLocation,java.sql.Date.valueOf(date),5);
             ServiceVoiture sv=new ServiceVoiture();
@@ -123,13 +216,14 @@ public class InsertVoituresController implements Initializable {
    
     }@FXML
     public void loadImage(ActionEvent event) {
-       
-        file=filechooser.showOpenDialog(anchlorPaneVoiture.getScene().getWindow());
-        try {
-            deskTop.open(file);
+        file = filechooser.showOpenDialog(stage);
+        if (file != null) {
+            String s = file.getName();
+           img="C:/xampp/htdocs/img/"+s;
+           //img=s;
+
+            System.out.println(img);
             
-        } catch (IOException ex) {
-            Logger.getLogger(InsertVoituresController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -144,7 +238,7 @@ public class InsertVoituresController implements Initializable {
     idCarburant.clear();
     idDesc.clear();
     idPrixLocation.clear();
-    imgtest.clear();
+    
     idBoiteV.setValue(null);
     }
 
@@ -159,8 +253,16 @@ public class InsertVoituresController implements Initializable {
     idDesc.setText(car.getDescription());
     idPrixLocation.setText(Double.toString(car.getPrix_location()));
     idBoiteV.setValue(car.getBoite_vitesse());
-    imgtest.setText(car.getImage_voiture());
+    
 }
+
+    @FXML
+    private void éditer(ActionEvent event) {
+    }
+
+    @FXML
+    private void findID(ActionEvent event) {
+    }
 
 
     

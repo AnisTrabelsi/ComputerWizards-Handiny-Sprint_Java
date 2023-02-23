@@ -35,19 +35,15 @@
           <Menu mnemonicParsing="false" text="Mes voitures">
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#lancerwin1" text="win1" />
-                  <MenuItem mnemonicParsing="false" onAction="#lancerwin2" text="win2" />
+                  <MenuItem mnemonicParsing="false" onAction="#lancerwin2" text="Liste de mes voitures" />
                </items>
             </Menu>
           <Menu mnemonicParsing="false" text="Mes Locations">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#chichi" text="inserer" />
+                  <MenuItem mnemonicParsing="false" onAction="#chichi" text="Liste de mes locations" />
                </items>
             </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" onAction="#informationAlert" text="About" />
-            </items>
-          </Menu>
+          <Menu mnemonicParsing="false" text="Aide" />
         </menus>
       </MenuBar>
       <AnchorPane id="mesVoitures" fx:id="mesVoitures" layoutX="-90.0" layoutY="108.0" prefHeight="493.0" prefWidth="826.0" style="-fx-background-color: #4A124559A5;" AnchorPane.bottomAnchor="-37.0" AnchorPane.leftAnchor="-90.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="108.0">

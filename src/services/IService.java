@@ -15,7 +15,7 @@ public interface IService<T> {
 
     boolean ajouter(T t) throws SQLException;
 
-    void update(T t) throws SQLException;
+    boolean update(T t) throws SQLException;
 
     void supprime(T t) throws SQLException;
 

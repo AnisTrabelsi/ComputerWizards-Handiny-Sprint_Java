@@ -9,6 +9,8 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,6 +19,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -41,7 +44,17 @@ public class Win2Controller implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        try {
+            // TODO
+            ServiceVoiture sv= new ServiceVoiture();
+            List<Voiture> voitures= sv.readAll();
+            ObservableList ObList = FXCollections.observableList(voitures);
+            
+            
+            listv.setItems(ObList);
+        } catch (SQLException ex) {
+            Logger.getLogger(Win2Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }    
 
     @FXML
@@ -61,45 +74,49 @@ public class Win2Controller implements Initializable {
 
     @FXML
     private void afficherVoitures(ActionEvent event) throws SQLException {
-      ServiceVoiture sv= new ServiceVoiture();
-      List<Voiture> voitures= sv.readAll();
-      ObservableList ObList = FXCollections.observableList(voitures);
       
       
-      listv.setItems(ObList);
-      // Ajout des boutons "Supprimer" et "Editer" pour chaque élément de la ListView
-      listv.setCellFactory(param -> new ListCell<Voiture>() {
-        private final HBox cellBox = new HBox();
-        private final Label label = new Label();
-        private final Button editButton = new Button("Editer");
-        private final Button deleteButton = new Button("Supprimer");
+    }
 
-        {
-          cellBox.getChildren().addAll(label, editButton, deleteButton);
-          HBox.setHgrow(label, Priority.ALWAYS);
-          editButton.setOnAction(event -> {
-            // Logique pour éditer la voiture ici
-            Voiture voiture = getItem();
-            System.out.println("Editer: " + voiture);
-          });
-          deleteButton.setOnAction(event -> {
-            // Logique pour supprimer la voiture ici
-           
-          });
+    @FXML
+    private void supprimer(ActionEvent event) {
+    Voiture voiture = listv.getSelectionModel().getSelectedItem();
+    if (voiture != null) {
+        int id = voiture.getId_voiture();
+        ServiceVoiture sv = new ServiceVoiture();
+        try {
+            sv.delete(id);
+            Alert alert=new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information");
+            alert.setHeaderText("");
+            alert.setContentText("Voiture effacée avec succés ! ");
+            alert.showAndWait();
+            listv.getItems().remove(listv.getSelectionModel().getSelectedIndex());
+        } catch (SQLException ex) {
+            System.out.println(ex);
         }
+    } else {
+        Alert alert=new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Attention");
+        alert.setHeaderText("");
+        alert.setContentText("Veuillez sélectionner une voiture à supprimer.");
+        alert.showAndWait();
+    }
+}     
 
-        @Override
-        protected void updateItem(Voiture voiture, boolean empty) {
-          super.updateItem(voiture, empty);
-          if (empty || voiture == null) {
-            setText(null);
-            setGraphic(null);
-          } else {
-            label.setText(voiture.getMarque() + " " + voiture.getModele());
-            setGraphic(cellBox);
-          }
-        }
-      });
-    }}
-      
+    @FXML
+    private void updateVoiture(ActionEvent event) {
+        try{
+       FXMLLoader fxmloader= new FXMLLoader(getClass().getResource("/gui/EditVoitures.fxml"));
+       Parent root1= (Parent) fxmloader.load();
+       Stage stage=new Stage();
+       
+        stage.setTitle("Edit page");
+        stage.setScene(new Scene(root1));
+        stage.show();
+       }catch(Exception e){
+       e.printStackTrace();
+       }
+    }
+}    
       

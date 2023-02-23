@@ -57,7 +57,7 @@ Connection con=DataSource.getInstance().getConnection();
 
      int rowsInserted = pre.executeUpdate();
      if (rowsInserted > 0) {
-         
+         verif=true;
                            }
             
      }catch(SQLException e){
@@ -69,8 +69,8 @@ Connection con=DataSource.getInstance().getConnection();
     
 
     @Override
-    public void update(Voiture t) throws SQLException {
-    
+    public boolean update(Voiture t) throws SQLException {
+     boolean verif=true;
      
         
         try {
@@ -93,12 +93,14 @@ Connection con=DataSource.getInstance().getConnection();
 
         int rowsUpdated = pre.executeUpdate();
         if (rowsUpdated > 0) {
-            System.out.println("An existing car was updated successfully!");
+            verif=true;
         }
             
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+            verif=false;
         }
+        return verif;
         
         
     }
@@ -122,22 +124,23 @@ Connection con=DataSource.getInstance().getConnection();
         }
         
     }
-    public void delete(int id) throws SQLException {
-       
-        try {
-            String req = "DELETE FROM `voiture` WHERE id_voiture = " + id;
-           
+    
+    
+     public boolean delete(int id) throws SQLException {
+    String req = "DELETE FROM `voiture` WHERE id_voiture = " + id + ";";
+    int rowsDeleted = ste.executeUpdate(req);
 
-            int rowsDeleted = ste.executeUpdate(req);
-            if (rowsDeleted > 0) {
-                System.out.println("A car was deleted successfully!");
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-           
-        }
-        
+    if (rowsDeleted == 1) {
+        System.out.println("La voiture avec l'ID " + id + " a été supprimée.");
+        return true;
+    } else if (rowsDeleted == 0) {
+        System.out.println("Aucune voiture n'a été trouvée avec l'ID " + id + ".");
+    } else {
+        System.out.println("Plus d'une voiture a été supprimée - lignes affectées : " + rowsDeleted + ".");
     }
+
+    return false;
+}
     
 
 
@@ -150,8 +153,8 @@ Connection con=DataSource.getInstance().getConnection();
             
             ResultSet rs = ste.executeQuery(req);
             while (rs.next()) {
-               Voiture v = new Voiture(rs.getString("immatriculation"), rs.getString("marque"), rs.getString("modele"),rs.getString("boite_vitesse"),rs.getString("kilometrage"),rs.getString("carburant"),rs.getString("description"),rs.getDouble("prix_location"),rs.getDate("date_validation_technique"));
-               //Voiture v = new Voiture(rs.getString("immatriculation"), rs.getString("marque"),rs.getString("boite_vitesse"),rs.getDouble("prix_location"),rs.getDate("date_validation_technique"));
+              //Voiture v = new Voiture(rs.getInt("id_voiture"),rs.getString("immatriculation"), rs.getString("marque"), rs.getString("modele"),rs.getString("boite_vitesse"),rs.getString("kilometrage"),rs.getString("carburant"),rs.getString("image_voiture"),rs.getString("description")rs.getDouble("prix_location"),rs.getDate("date_validation_technique"));
+               Voiture v = new Voiture(rs.getInt("id_voiture"),rs.getString("marque"), rs.getString("modele"),rs.getString("boite_vitesse"),rs.getString("description"),rs.getDouble("prix_location"),rs.getDate("date_validation_technique"));
                 list.add(v);
             }
         } catch (SQLException ex) {
@@ -165,11 +168,12 @@ Connection con=DataSource.getInstance().getConnection();
     public Voiture findById(int id) throws SQLException {
         Voiture v = null;
         try {
-            String req = "Select * from voiture";
+            String req = "Select * from `voiture` WHERE id_voiture = " + id + ";";
             
             ResultSet rs = ste.executeQuery(req);
             while (rs.next()) {
-                 //v = new Voiture(rs.getString("immatriculation"), rs.getString("marque"), rs.getString("modele"),rs.getString("boite_vitesse"),rs.getString("kilometrage"),rs.getString("carburant"),rs.getString("image_voiture"),rs.getString("description"),rs.getDouble("prix_location"),rs.getDate("date_validation_technique"));
+                 v = new Voiture(rs.getInt("id_voiture"),rs.getString("immatriculation"),rs.getString("marque"), rs.getString("modele"),rs.getString("boite_vitesse"),rs.getString("kilometrage"),rs.getString("carburant"),rs.getString("image_voiture"),rs.getString("description"),rs.getDouble("prix_location"),rs.getDate("date_validation_technique"));
+                              //Voiture v = new Voiture(rs.getInt("id_voiture"),rs.getString("immatriculation"), rs.getString("marque"), rs.getString("modele"),rs.getString("boite_vitesse"),rs.getString("kilometrage"),rs.getString("carburant"),rs.getString("image_voiture"),rs.getString("description")rs.getDouble("prix_location"),rs.getDate("date_validation_technique"));
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());

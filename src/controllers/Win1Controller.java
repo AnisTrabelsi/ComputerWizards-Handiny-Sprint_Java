@@ -11,6 +11,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,7 +23,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -47,8 +51,6 @@ public class Win1Controller implements Initializable {
     @FXML
     private TableView<Voiture> tableVoitures;
     @FXML
-    private TableColumn<Voiture, String> immat;
-    @FXML
     private TableColumn<Voiture, String> modele;
     @FXML
     private TableColumn<Voiture, String> marque;
@@ -64,15 +66,19 @@ public class Win1Controller implements Initializable {
     private TableColumn<Voiture, Double> prixLoc;
     @FXML
     private TableColumn<Voiture, String> desc;
-   //public ObservableList<Voiture> data=FXCollections.observableArrayList();
-    @FXML
-    private TableColumn<Voiture, String> editCol;
+    public ObservableList<Voiture> VoituresList=FXCollections.observableArrayList();
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        try {
+            afficherVoitures();
+        } catch (IOException ex) {
+            Logger.getLogger(Win1Controller.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Win1Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }    
 
     @FXML
@@ -90,14 +96,23 @@ public class Win1Controller implements Initializable {
        e.printStackTrace();
        }
     }
-    @FXML
-    private void afficherVoitures(ActionEvent event) throws IOException, SQLException {
- 
-           
-       ServiceVoiture sv= new ServiceVoiture();
+     @FXML
+    private void refreshTable() throws SQLException {
+         VoituresList.clear();
+      ServiceVoiture sv= new ServiceVoiture();
       List<Voiture> voitures= sv.readAll();
-      ObservableList ObList = FXCollections.observableList(voitures);
-      tableVoitures.setItems(ObList);
+      //ObservableList ObList = FXCollections.observableList(voitures);
+      VoituresList=FXCollections.observableArrayList(voitures);
+      tableVoitures.setItems(VoituresList);   
+    }
+
+    
+   
+
+    private void afficherVoitures() throws IOException, SQLException {
+ 
+      refreshTable();     
+       
      
        modele.setCellValueFactory(new PropertyValueFactory<Voiture, String>("marque"));
        marque.setCellValueFactory(new PropertyValueFactory<Voiture, String>("modele"));
@@ -107,7 +122,7 @@ public class Win1Controller implements Initializable {
        carburant.setCellValueFactory(new PropertyValueFactory<Voiture, String>("carburant"));
        prixLoc.setCellValueFactory(new PropertyValueFactory<Voiture, Double>("prix_location"));
        desc.setCellValueFactory(new PropertyValueFactory<Voiture, String>("description"));
-        tableVoitures.setItems(ObList);
+       
         TableColumn<Voiture, Void> actionsColumn = new TableColumn<>("Actions");
         tableVoitures.getColumns().add(actionsColumn);
         actionsColumn.setMinWidth(100);
@@ -158,20 +173,40 @@ public class Win1Controller implements Initializable {
         Logger.getLogger(Win1Controller.class.getName()).log(Level.SEVERE, null, ex);
     }
             }
-            private void deleteCar(Voiture car) {
-                
-                
-                           
-            }
+            @FXML
+private void deleteCar(Voiture car) {
+    Alert alert = new Alert(AlertType.CONFIRMATION);
+    alert.setTitle("Confirmation");
+    alert.setHeaderText("Voulez-vous vraiment supprimer cette voiture ?");
+    alert.setContentText(car.toString());
+
+    Optional<ButtonType> result = alert.showAndWait();
+    if (result.get() == ButtonType.OK) {
+        ServiceVoiture sv = new ServiceVoiture();
+        try {
+            sv.supprime(car);
+            refreshTable();
+        } catch (SQLException ex) {
+            Logger.getLogger(Win1Controller.class.getName()).log(Level.SEVERE, null, ex);
+            Alert errorAlert = new Alert(AlertType.ERROR);
+            errorAlert.setHeaderText("Erreur lors de la suppression de la voiture.");
+            errorAlert.setContentText(ex.getMessage());
+            errorAlert.showAndWait();
+        }
+    }
+}
         };
         return cell;
         
     }
 });
+         
         
 
         
-    }}
+    }
+
+}
        
         
    
