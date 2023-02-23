@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.UpdatecovController">
+    <stylesheets>
+        <URL value="@updatecov.css" />
+    </stylesheets>
+   <children>
+      <TextField fx:id="tfid" layoutX="238.0" layoutY="32.0" />
+      <TextField fx:id="tfdepart" layoutX="238.0" layoutY="86.0" />
+      <TextField fx:id="tfdest" layoutX="238.0" layoutY="136.0" />
+      <TextField fx:id="tfdate" layoutX="238.0" layoutY="188.0" />
+      <TextField fx:id="tfprix" layoutX="238.0" layoutY="242.0" />
+      <TextField fx:id="tfnbr" layoutX="238.0" layoutY="297.0" />
+      <Label layoutX="50.0" layoutY="36.0" text="id covoiturage" />
+      <Label layoutX="50.0" layoutY="90.0" text="depart" />
+      <Label layoutX="47.0" layoutY="140.0" text="destination" />
+      <Label layoutX="58.0" layoutY="246.0" text="prix" />
+      <Label layoutX="50.0" layoutY="301.0" text="nombre de place" />
+      <Label layoutX="56.0" layoutY="192.0" text="date" />
+      <Button fx:id="tfmodif" layoutX="248.0" layoutY="348.0" mnemonicParsing="false" onAction="#onmodif" text="modifier" />
+   </children>
+</AnchorPane>

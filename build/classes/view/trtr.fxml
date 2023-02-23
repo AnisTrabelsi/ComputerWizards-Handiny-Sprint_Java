@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="530.0" prefWidth="848.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Affichage_CovaController">
+   <children>
+      <ImageView fitHeight="531.0" fitWidth="896.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../back_1.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="button" layoutX="638.0" layoutY="480.0" mnemonicParsing="false" onAction="#trier" prefHeight="39.0" prefWidth="157.0" stylesheets="@list.css" text="trier par date " />
+      <Text layoutX="607.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Button layoutX="504.0" layoutY="478.0" mnemonicParsing="false" onAction="#afficher" prefHeight="39.0" prefWidth="118.0" stylesheets="@list.css" text="Actualiser" />
+      <ScrollPane layoutX="53.0" layoutY="149.0" prefHeight="306.0" prefWidth="753.0">
+         <content>
+            <VBox fx:id="vb" prefHeight="290.0" prefWidth="746.0" style="-fx-background-color: #11dd30;">
+               <effect>
+                  <Blend />
+               </effect></VBox>
+         </content>
+      </ScrollPane>
+      <Label layoutX="53.0" layoutY="125.0" stylesheets="@list.css" text="depart" />
+      <Label layoutX="123.0" layoutY="125.0" stylesheets="@list.css" text="destination" />
+      <Label layoutX="203.0" layoutY="125.0" stylesheets="@list.css" text="nbrplace" />
+      <Label layoutX="342.0" layoutY="125.0" stylesheets="@list.css" text="date" />
+      <Label layoutX="289.0" layoutY="125.0" stylesheets="@list.css" text="prix" />
+   </children>
+</AnchorPane>

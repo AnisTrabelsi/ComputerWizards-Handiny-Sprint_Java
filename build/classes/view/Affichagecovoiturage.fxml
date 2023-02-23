@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.AffichagecovoiturageController">
+    <stylesheets>
+        <URL value="@affichagecovoiturage.css" />
+    </stylesheets>
+   <children>
+      <VBox fx:id="vb" layoutX="28.0" layoutY="79.0" prefHeight="248.0" prefWidth="516.0">
+         <effect>
+            <Glow level="0.45" />
+         </effect>
+         <padding>
+            <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+         </padding>
+      </VBox>
+      <Label layoutX="28.0" layoutY="62.0" text="depart" />
+      <Label layoutX="105.0" layoutY="62.0" text="destination" />
+      <Label layoutX="219.0" layoutY="62.0" text="date" />
+      <Label layoutX="313.0" layoutY="62.0" text="prix" />
+      <Label layoutX="408.0" layoutY="62.0" text="nbrplace" />
+      <Button layoutX="438.0" layoutY="327.0" mnemonicParsing="false" onAction="#ajouter" text="actualiser" />
+   </children>
+</AnchorPane>
