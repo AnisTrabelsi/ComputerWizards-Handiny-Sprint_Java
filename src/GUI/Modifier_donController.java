@@ -26,6 +26,8 @@ import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -96,7 +98,7 @@ public class Modifier_donController implements Initializable {
         vb.setSpacing(20);
         for (don d : l) {
 
-            String path = "C:\\xampp4\\htdocs\\Gestion_don\\" + d.getImage_don();
+            String path = "C:\\xampp4\\htdocs\\Gestion don\\" + d.getImage_don();
             File file = new File(path);
             HBox hbox = new HBox();
             Label label1 = new Label(d.getType());
@@ -155,6 +157,19 @@ mod_tfdate.setValue(localDate);*/
         vb.setStyle("fx-spacing: 10; fx-padding: 10; fx-alignment: center;");
     }
 
+    
+    
+     private boolean descvalide(){
+      Pattern p = Pattern.compile("[a-zA-Z ]+");
+        Matcher m = p.matcher(mod_tfdescription.getText());
+        if(m.find() && m.group().equals(mod_tfdescription.getText())){
+            return true;
+        }else{
+               
+           
+            return false;            
+        }}
+    
     @FXML
     private void modifierdon(ActionEvent event) {
 
@@ -169,7 +184,19 @@ mod_tfdate.setValue(localDate);*/
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("il y a des attributs vides");
             alert.showAndWait();
-        } else {
+        } else if (!descvalide())
+                {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Type validé !");
+                alert.setHeaderText(null);
+                alert.setContentText("Veuillez entrer un type validé !");
+                alert.showAndWait();
+                
+                }
+        else
+        
+        
+        {
             don p = new don(a, b, restype, mod_URLImage.getText(), resdescription);
 
             try {
@@ -250,7 +277,7 @@ mod_tfdate.setValue(localDate);*/
         vb.setSpacing(20);
         for (don d : l) {
 
-            String path = "C:\\xampp4\\htdocs\\Gestion_don\\" + d.getImage_don();
+            String path = "C:\\xampp4\\htdocs\\Gestion don\\" + d.getImage_don();
             File file = new File(path);
             HBox hbox = new HBox();
             Label label1 = new Label(d.getType());

@@ -59,7 +59,7 @@ public class Affichage_demande_donController implements Initializable {
      for (demande_don d : l) {
    
             
-             String path = "C:\\xampp4\\htdocs\\Gestion_don\\"+d.getJustificatif_handicap();
+             String path = "C:\\xampp4\\htdocs\\Gestion don\\"+d.getJustificatif_handicap();
             File file = new File(path);
             HBox hbox = new HBox();        
               Label label1 =new Label(d.getType_produit_demande());
@@ -160,7 +160,7 @@ public class Affichage_demande_donController implements Initializable {
      for (demande_don d : l) {
    
             
-             String path = "C:\\xampp4\\htdocs\\Gestion_don\\"+d.getJustificatif_handicap();
+             String path = "C:\\xampp4\\htdocs\\Gestion don\\"+d.getJustificatif_handicap();
             File file = new File(path);
             HBox hbox = new HBox();        
               Label label1 =new Label(d.getType_produit_demande());
@@ -225,7 +225,7 @@ vb.getChildren().clear();
      for (demande_don d : l) {
    
             
-             String path = "C:\\xampp4\\htdocs\\Gestion_don\\"+d.getJustificatif_handicap();
+             String path = "C:\\xampp4\\htdocs\\Gestion don\\"+d.getJustificatif_handicap();
             File file = new File(path);
             HBox hbox = new HBox();        
               Label label1 =new Label(d.getType_produit_demande());

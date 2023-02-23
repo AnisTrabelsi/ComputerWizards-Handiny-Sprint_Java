@@ -96,7 +96,7 @@ public class Modifier_don_adminController implements Initializable {
         vb.setSpacing(20);
         for (don d : l) {
 
-            String path = "C:\\xampp4\\htdocs\\Gestion_don\\" + d.getImage_don();
+            String path = "C:\\xampp4\\htdocs\\Gestion don\\" + d.getImage_don();
             File file = new File(path);
             HBox hbox = new HBox();
             Label label1 = new Label(d.getType());
@@ -247,7 +247,7 @@ mod_tfdate.setValue(localDate);*/
         vb.setSpacing(20);
         for (don d : l) {
 
-            String path = "C:\\xampp4\\htdocs\\Gestion_don\\" + d.getImage_don();
+            String path = "C:\\xampp4\\htdocs\\Gestion don\\" + d.getImage_don();
             File file = new File(path);
             HBox hbox = new HBox();
             Label label1 = new Label(d.getType());

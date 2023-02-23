@@ -3,37 +3,25 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp4/htdocs/Gestion_don/src/GUI/affichage_demande_don_admin.fxml</file>
-            <file>file:/C:/xampp4/htdocs/Gestion_don/src/Services/Service_don.java</file>
-            <file>file:/C:/xampp4/htdocs/Gestion_don/src/GUI/affichage_demande_don.fxml</file>
-            <file>file:/C:/xampp4/htdocs/Gestion_don/src/GUI/Affichage_donController.java</file>
-            <file>file:/C:/xampp4/htdocs/Gestion_don/src/logo.png</file>
-            <file>file:/C:/xampp4/htdocs/Gestion_don/src/GUI/Modifier_don_adminController.java</file>
-            <file>file:/C:/xampp4/htdocs/Gestion_don/src/GUI/modifier_demande_don.fxml</file>
-            <file>file:/C:/xampp4/htdocs/Gestion_don/src/GUI/modifier_demande_don_admin.fxml</file>
-            <file>file:/C:/xampp4/htdocs/Gestion_don/src/GUI/Ajout_demande_don_adminController.java</file>
-            <file>file:/C:/xampp4/htdocs/Gestion_don/src/GUI/affichage_don.fxml</file>
-            <file>file:/C:/xampp4/htdocs/Gestion_don/src/GUI/Supprimer_don_adminController.java</file>
-            <file>file:/C:/xampp4/htdocs/Gestion_don/src/Services/Service_demande_don.java</file>
-            <file>file:/C:/xampp4/htdocs/Gestion_don/src/GUI/Ajout_donController.java</file>
-            <file>file:/C:/xampp4/htdocs/Gestion_don/src/GUI/Ajout_demande_donController.java</file>
-            <file>file:/C:/xampp4/htdocs/Gestion_don/src/GUI/NewFXMain.java</file>
-            <file>file:/C:/xampp4/htdocs/Gestion_don/src/GUI/supprimer_don_admin.fxml</file>
-            <file>file:/C:/xampp4/htdocs/Gestion_don/src/Entite/don.java</file>
-            <file>file:/C:/xampp4/htdocs/Gestion_don/src/GUI/Affichage_demande_donController.java</file>
-            <file>file:/C:/xampp4/htdocs/Gestion_don/src/GUI/Affichage_demande_don_adminController.java</file>
-            <file>file:/C:/xampp4/htdocs/Gestion_don/src/GUI/Supprimer_demande_donController.java</file>
-            <file>file:/C:/xampp4/htdocs/Gestion_don/src/GUI/Supprimer_demande_don_adminController.java</file>
-            <file>file:/C:/xampp4/htdocs/Gestion_don/src/GUI/Modifier_demande_don_adminController.java</file>
-            <file>file:/C:/xampp4/htdocs/Gestion_don/src/GUI/modifier_don_admin.fxml</file>
-            <file>file:/C:/xampp4/htdocs/Gestion_don/src/GUI/Affichage_don_adminController.java</file>
-            <file>file:/C:/xampp4/htdocs/Gestion_don/src/Services/IService_demande_don.java</file>
-            <file>file:/C:/xampp4/htdocs/Gestion_don/src/Services/IService_don.java</file>
-            <file>file:/C:/xampp4/htdocs/Gestion_don/src/GUI/ajout_don_admin.fxml</file>
-            <file>file:/C:/xampp4/htdocs/Gestion_don/src/GUI/ajout_demande_don_admin.fxml</file>
-            <file>file:/C:/xampp4/htdocs/Gestion_don/src/GUI/affichage_don_admin.fxml</file>
-            <file>file:/C:/xampp4/htdocs/Gestion_don/src/GUI/Ajout_don_adminController.java</file>
-            <file>file:/C:/xampp4/htdocs/Gestion_don/src/GUI/Supprimer_donController.java</file>
+            <file>file:/C:/xampp4/htdocs/Gestion%20don/src/GUI/Supprimer_don_adminController.java</file>
+            <file>file:/C:/xampp4/htdocs/Gestion%20don/src/GUI/Supprimer_demande_donController.java</file>
+            <file>file:/C:/xampp4/htdocs/Gestion%20don/src/GUI/Modifier_donController.java</file>
+            <file>file:/C:/xampp4/htdocs/Gestion%20don/src/GUI/Ajout_demande_don_adminController.java</file>
+            <file>file:/C:/xampp4/htdocs/Gestion%20don/src/Services/Service_don.java</file>
+            <file>file:/C:/xampp4/htdocs/Gestion%20don/src/GUI/Ajout_donController.java</file>
+            <file>file:/C:/xampp4/htdocs/Gestion%20don/src/GUI/affichage_demande_don.fxml</file>
+            <file>file:/C:/xampp4/htdocs/Gestion%20don/src/GUI/NewFXMain.java</file>
+            <file>file:/C:/xampp4/htdocs/Gestion%20don/src/GUI/Affichage_don_adminController.java</file>
+            <file>file:/C:/xampp4/htdocs/Gestion%20don/src/GUI/Ajout_don_adminController.java</file>
+            <file>file:/C:/xampp4/htdocs/Gestion%20don/src/GUI/Affichage_demande_donController.java</file>
+            <file>file:/C:/xampp4/htdocs/Gestion%20don/src/GUI/Affichage_donController.java</file>
+            <file>file:/C:/xampp4/htdocs/Gestion%20don/src/GUI/Modifier_don_adminController.java</file>
+            <file>file:/C:/xampp4/htdocs/Gestion%20don/src/GUI/Ajout_demande_donController.java</file>
+            <file>file:/C:/xampp4/htdocs/Gestion%20don/src/GUI/Modifier_demande_donController.java</file>
+            <file>file:/C:/xampp4/htdocs/Gestion%20don/src/GUI/Affichage_demande_don_adminController.java</file>
+            <file>file:/C:/xampp4/htdocs/Gestion%20don/src/GUI/Modifier_demande_don_adminController.java</file>
+            <file>file:/C:/xampp4/htdocs/Gestion%20don/src/GUI/Supprimer_demande_don_adminController.java</file>
+            <file>file:/C:/xampp4/htdocs/Gestion%20don/src/GUI/Supprimer_donController.java</file>
         </group>
     </open-files>
 </project-private>

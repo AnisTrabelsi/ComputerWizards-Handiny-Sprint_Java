@@ -67,7 +67,7 @@ public class Supprimer_donController implements Initializable {
      for (don d : l) {
    
             
-             String path = "C:\\xampp4\\htdocs\\Gestion_don\\"+d.getImage_don();
+             String path = "C:\\xampp4\\htdocs\\Gestion don\\"+d.getImage_don();
             File file = new File(path);
             HBox hbox = new HBox();        
               Label label1 =new Label(d.getType());
@@ -144,7 +144,7 @@ public class Supprimer_donController implements Initializable {
      for (don d : l) {
    
             
-             String path = "C:\\xampp4\\htdocs\\Gestion_don\\"+d.getImage_don();
+             String path = "C:\\xampp4\\htdocs\\Gestion don\\"+d.getImage_don();
             File file = new File(path);
             HBox hbox = new HBox();        
               Label label1 =new Label(d.getType());

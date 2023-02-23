@@ -61,7 +61,7 @@ public class Affichage_demande_don_adminController implements Initializable {
         vb.setSpacing(20);
      for (demande_don d : l) {
    
-              String path = "C:\\xampp4\\htdocs\\Gestion_don\\"+d.getJustificatif_handicap();
+              String path = "C:\\xampp4\\htdocs\\Gestion don\\"+d.getJustificatif_handicap();
             File file = new File(path);
             HBox hbox = new HBox();       
             Label label0 =new Label(""+d.getId_utilisateur());
@@ -159,7 +159,7 @@ public class Affichage_demande_don_adminController implements Initializable {
         vb.setSpacing(20);
      for (demande_don d : l) {
    
-              String path = "C:\\xampp4\\htdocs\\Gestion_don\\"+d.getJustificatif_handicap();
+              String path = "C:\\xampp4\\htdocs\\Gestion don\\"+d.getJustificatif_handicap();
             File file = new File(path);
             HBox hbox = new HBox();       
             Label label0 =new Label(""+d.getId_utilisateur());
@@ -223,7 +223,7 @@ vb.getChildren().clear();
      for (demande_don d : l) {
    
             
-             String path = "C:\\xampp4\\htdocs\\Gestion_don\\"+d.getJustificatif_handicap();
+             String path = "C:\\xampp4\\htdocs\\Gestion don\\"+d.getJustificatif_handicap();
             File file = new File(path);
             HBox hbox = new HBox();        
             Label label0 =new Label(""+d.getId_utilisateur());
@@ -286,7 +286,7 @@ vb.getChildren().clear();
      for (demande_don d : l) {
    
             
-             String path = "C:\\xampp4\\htdocs\\Gestion_don\\"+d.getJustificatif_handicap();
+             String path = "C:\\xampp4\\htdocs\\Gestion don\\"+d.getJustificatif_handicap();
             File file = new File(path);
             HBox hbox = new HBox();      
             Label label0 =new Label(""+d.getId_utilisateur());
