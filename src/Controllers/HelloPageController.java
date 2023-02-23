@@ -8,33 +8,30 @@ package Controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
 import javafx.scene.control.Button;
- 
-public class LogedinController implements Initializable {
+
+/**
+ * FXML Controller class
+ *
+ * @author Chayma
+ */
+public class HelloPageController implements Initializable {
+
     @FXML
-    private Button logedin_se_deconnecter;
-    @FXML
-    private Label label_bienvenue;
-     @FXML
-    private Label label_logedin;
-    
-    
+    private Button btn_bienvenue;
+
+    /**
+     * Initializes the controller class.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-     logedin_se_deconnecter.setOnAction(new EventHandler<ActionEvent>() {
-         @Override
-         public void handle(ActionEvent event) {
-         }
-     ){
-    
-    
-         
+        // TODO
     }    
+
+    @FXML
+    private void go_home(ActionEvent event) {
+    }
     
 }
-             }
-    

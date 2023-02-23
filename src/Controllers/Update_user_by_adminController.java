@@ -14,7 +14,7 @@ import javafx.fxml.Initializable;
  *
  * @author Chayma
  */
-public class authController implements Initializable {
+public class Update_user_by_adminController implements Initializable {
 
     /**
      * Initializes the controller class.

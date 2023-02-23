@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="582.0" prefWidth="759.0" snapToPixel="false" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Affichage_adminController">
+   <children>
+      <ImageView fitHeight="533.0" fitWidth="779.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/327680433_1635361913582223_6273958701339860656_n.png" />
+         </image>
+      </ImageView>
+      <Accordion layoutY="7.0" />
+      <Label layoutX="233.0" layoutY="113.0" prefHeight="27.0" prefWidth="333.0" text="Qu'est ce que vous souhaiter faire" textFill="#122f5e">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font></Label>
+      <Label alignment="CENTER" layoutX="56.0" layoutY="15.0" text="Adminitrateur" textFill="#104d62">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+      <Button fx:id="admin_delete" alignment="BASELINE_RIGHT" layoutX="262.0" layoutY="199.0" mnemonicParsing="false" onAction="#admin_supprimer_un_utilisateur" prefHeight="53.0" prefWidth="240.0" style="-fx-background-color: #41af64; -fx-background-radius: 30;" text="Supprimer un utilisateur" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Button>
+      <Button fx:id="admin_read" alignment="BASELINE_RIGHT" layoutX="259.0" layoutY="291.0" mnemonicParsing="false" onAction="#admin_afficher_liste_utilisateur" prefHeight="53.0" prefWidth="251.0" style="-fx-background-color: #41af64; -fx-background-radius: 30;" text="Afficher la liste des utilisateurs" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Button>
+      <Button fx:id="admin_update" alignment="BASELINE_RIGHT" layoutX="266.0" layoutY="378.0" mnemonicParsing="false" onAction="#admin_mettre_a_jour_utilisateur" prefHeight="53.0" prefWidth="240.0" style="-fx-background-color: #41af64; -fx-background-radius: 30;" text="Mettre a jour un utilisateur" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Button>
+      <ImageView fitHeight="27.0" fitWidth="31.0" layoutX="51.0" layoutY="391.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="27.0" fitWidth="31.0" layoutX="266.0" layoutY="304.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/binoculars.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="27.0" fitWidth="31.0" layoutX="280.0" layoutY="212.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/remove.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="27.0" fitWidth="31.0" layoutX="281.0" layoutY="391.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/refresh.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="27.0" fitWidth="31.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/manager.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

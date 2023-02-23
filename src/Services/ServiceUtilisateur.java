@@ -31,13 +31,22 @@ public class ServiceUtilisateur implements IService < Utilisateur > {
         }
     }
     
-
+public void setrolelocataire () throws SQLException{
+//Utilisateur u =new Utilisateur ();
+String req ="INSERT INTO `utilisateur`(`role`) VALUES ('locataire') ;" ;
+ste.executeUpdate(req);
+}
+public void setroleproprietaire () throws SQLException{
+//Utilisateur u =new Utilisateur ();
+String req ="INSERT INTO `utilisateur`( `role`) VALUES ('proprietaire') ;" ;
+ste.executeUpdate(req);
+}
     @Override
     public void ajouter(Utilisateur u) throws SQLException {
         
      
-String req = "INSERT INTO `utilisateur`( `nom`, `prenom`, `cin`, `email`, `telephone`, `login`, `mot_de_passe`, `date_de_naissance`, `pays`, `adresse`,`code_postal`, `role`)"
-        +"VALUES ( '"+u.getNom()+"', '"+u.getPrenom()+"', '"+u.getCin()+"', '"+u.getEmail()+"', '"+u.getTelephone()+"', '"+u.getLogin()+"', '"+u.getMot_de_passe()+"', '"+u.getDate_de_naissance()+"', '"+u.getPays()+"', '"+u.getAdresse()+"', '"+u.getCode_postal()+"', '"+u.getRole()+"');";
+String req = "INSERT INTO `utilisateur`( `nom`, `prenom`, `cin`, `email`, `telephone`, `login`, `mot_de_passe`, `date_de_naissance`, `region`, `adresse`,`code_postal`, `role`)"
+        +"VALUES ( '"+u.getNom()+"', '"+u.getPrenom()+"', '"+u.getCin()+"', '"+u.getEmail()+"', '"+u.getTelephone()+"', '"+u.getLogin()+"', '"+u.getMot_de_passe()+"', '"+u.getDate_de_naissance()+"', '"+u.getRegion()+"', '"+u.getAdresse()+"', '"+u.getCode_postal()+"', '"+u.getRole()+"');";
       
         ste.executeUpdate(req);
         System.out.println("Un utilisateur est ajouté ");
@@ -50,7 +59,7 @@ String req = "INSERT INTO `utilisateur`( `nom`, `prenom`, `cin`, `email`, `telep
         try {
             String req = "UPDATE `utilisateur` SET `nom` = '" + u.getNom() + "', `prenom` = '" + u.getPrenom() + "', `cin` = '"+ u.getCin() 
                     + "', `email` = '"+ u.getEmail() + "', `telephone` = '"+ u.getTelephone() + "', `login` = '"+ u.getLogin() 
-                    +"', `mot_de_passe` = '"+ u.getMot_de_passe() +"', `date_de_naissance` = '"+ u.getDate_de_naissance()+"', `pays` = '"+ u.getPays()+"', `adresse` = '"
+                    +"', `mot_de_passe` = '"+ u.getMot_de_passe() +"', `date_de_naissance` = '"+ u.getDate_de_naissance()+"', `region` = '"+ u.getRegion()+"', `adresse` = '"
                     +u.getAdresse()+ "', `code_postal` = '"+u.getCode_postal()+ "', `role` = '"+u.getRole() + "' WHERE `utilisateur`.`id_utilisateur` = " + u.getId_utilisateur();
             Statement st = con.createStatement();
             st.executeUpdate(req);
@@ -95,11 +104,11 @@ String req = "INSERT INTO `utilisateur`( `nom`, `prenom`, `cin`, `email`, `telep
             String login= res.getString(7);
             String mot_de_passe = res.getString(8);
             Date date_de_naissance = res.getDate(9);
-            String Pays= res.getString(10);
+            String region= res.getString(10);
             String Adresse = res.getString(11);
             int code_postal = res.getInt(12);
             String role = res.getString(13);
-            Utilisateur u =new Utilisateur( id_utilisateur, nom, prenom,  cin,  email,telephone, login, mot_de_passe, date_de_naissance,Pays, Adresse, code_postal,  role);
+            Utilisateur u =new Utilisateur( id_utilisateur, nom, prenom,  cin,  email,telephone, login, mot_de_passe, date_de_naissance,region, Adresse, code_postal,  role);
             System.out.println(u);
             listutilisateur.add(u);
         }
@@ -124,12 +133,12 @@ Utilisateur u = new Utilisateur ();
             String login= res.getString(7);
             String mot_de_passe = res.getString(8);
             Date date_de_naissance = res.getDate(9);
-            String Pays= res.getString(10);
+            String region= res.getString(10);
             String Adresse = res.getString(11);
             int code_postal = res.getInt(12);
             String role = res.getString(13);
 
-  Utilisateur u1 =new Utilisateur( nom,prenom,cin,email,telephone,login,mot_de_passe, date_de_naissance,Pays,Adresse,code_postal,role);
+  Utilisateur u1 =new Utilisateur( nom,prenom,cin,email,telephone,login,mot_de_passe, date_de_naissance,region,Adresse,code_postal,role);
       
       u=u1 ;
     }

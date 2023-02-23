@@ -5,6 +5,8 @@
 package Entite;
 
 import java.sql.Date;
+import java.time.LocalDate;
+import javafx.scene.control.TextField;
 
 /**
  *
@@ -20,13 +22,15 @@ public class Utilisateur {
         private String login ;
         private String mot_de_passe ;
         private Date date_de_naissance ;
-        private String pays ;
+        private String region ;
         private String adresse ;
         private int code_postal ;
         private String role ;
-        public Utilisateur(){}
+    
+    public Utilisateur(){
+    }
 
-    public Utilisateur(int id_utilisateur, String nom, String prenom, String cin, String email, String telephone, String login, String mot_de_passe, Date date_de_naissance, String pays, String adresse, int code_postal, String role) {
+    public Utilisateur(int id_utilisateur, String nom, String prenom, String cin, String email, String telephone, String login, String mot_de_passe, Date date_de_naissance, String region, String adresse, int code_postal, String role) {
         this.id_utilisateur = id_utilisateur;
         this.nom = nom;
         this.prenom = prenom;
@@ -36,13 +40,13 @@ public class Utilisateur {
         this.login = login;
         this.mot_de_passe = mot_de_passe;
         this.date_de_naissance = date_de_naissance;
-        this.pays = pays;
+        this.region = region;
         this.adresse = adresse;
         this.code_postal = code_postal;
         this.role = role;
     }
 
-    public Utilisateur(String nom, String prenom, String cin, String email, String telephone, String login, String mot_de_passe, Date date_de_naissance, String pays, String adresse, int code_postal, String role) {
+    public Utilisateur(String nom, String prenom, String cin, String email, String telephone, String login, String mot_de_passe, Date date_de_naissance, String region, String adresse, int code_postal, String role) {
         this.nom = nom;
         this.prenom = prenom;
         this.cin = cin;
@@ -51,12 +55,27 @@ public class Utilisateur {
         this.login = login;
         this.mot_de_passe = mot_de_passe;
         this.date_de_naissance = date_de_naissance;
-        this.pays = pays;
+        this.region = region;
         this.adresse = adresse;
         this.code_postal = code_postal;
         this.role = role;
     }
 
+    public Utilisateur(String nom, String prenom, String cin, String email, String telephone, String login, String mot_de_passe, Date date_de_naissance, String region, String adresse, int code_postal) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.cin = cin;
+        this.email = email;
+        this.telephone = telephone;
+        this.login = login;
+        this.mot_de_passe = mot_de_passe;
+        this.date_de_naissance = date_de_naissance;
+        this.region = region;
+        this.adresse = adresse;
+        this.code_postal = code_postal;
+    }
+
+    
     public int getId_utilisateur() {
         return id_utilisateur;
     }
@@ -129,12 +148,12 @@ public class Utilisateur {
         this.date_de_naissance = date_de_naissance;
     }
 
-    public String getPays() {
-        return pays;
+    public String getRegion() {
+        return region;
     }
 
-    public void setPays(String pays) {
-        this.pays = pays;
+    public void setRegion(String region) {
+        this.region = region;
     }
 
     public String getAdresse() {
@@ -163,9 +182,8 @@ public class Utilisateur {
 
     @Override
     public String toString() {
-        return "Utilisateur{" + "id_utilisateur=" + id_utilisateur + ", nom=" + nom + ", prenom=" + prenom + ", cin=" + cin + ", email=" + email + ", telephone=" + telephone + ", login=" + login + ", mot_de_passe=" + mot_de_passe + ", date_de_naissance=" + date_de_naissance + ", pays=" + pays + ", adresse=" + adresse + ", code_postal=" + code_postal + ", role=" + role + '}';
+        return "Utilisateur{" + "id_utilisateur=" + id_utilisateur + ", nom=" + nom + ", prenom=" + prenom + ", cin=" + cin + ", email=" + email + ", telephone=" + telephone + ", login=" + login + ", mot_de_passe=" + mot_de_passe + ", date_de_naissance=" + date_de_naissance + ", region=" + region + ", adresse=" + adresse + ", code_postal=" + code_postal + ", role=" + role + '}';
     }
-        
      
 
 }

@@ -32,7 +32,8 @@ public class ServiceReclamation implements IService <Reclamation>{
         try {
             ste =con.createStatement();
         } catch (SQLException ex) {
-System.out.println(ex) ;        }
+System.out.println(ex) ;        
+        }
     }
     
 
