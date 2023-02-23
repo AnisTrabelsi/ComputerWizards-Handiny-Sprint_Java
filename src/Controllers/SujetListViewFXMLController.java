@@ -6,6 +6,7 @@
 package Controllers;
 
 import Entite.Sujet;
+import Controllers.SujetUpdateFXMLController;
 import Services.ServiceSujet;
 import java.io.IOException;
 import java.net.URL;
@@ -62,26 +63,20 @@ public class SujetListViewFXMLController implements Initializable {
 
     @FXML
     private void goToModifSujet(MouseEvent event) {
-        try {
-            try {
-                int selectedID = listView.getSelectionModel().getSelectedIndex();
-                Sujet c = listView.getSelectionModel().getSelectedItem();
-                catdao.update(c);
-            } catch (SQLException ex) {
-                System.out.println(ex);
-            }
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/SujetUpdateFXML.fxml"));
-            Parent root = loader.load();
-            SujetUpdateFXMLController controller = loader.getController();
-            controller.initData(listView.getSelectionModel().getSelectedItem());
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Modifier un sujet");
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.showAndWait();
-        } catch (IOException ex) {
-            System.out.println(ex);
+       try {
+                    int selectedID = listView.getSelectionModel().getSelectedIndex();
+                    Sujet c = listView.getSelectionModel().getSelectedItem();
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/SujetUpdateFXML.fxml"));
+                    Parent root = loader.load();
+                    SujetUpdateFXMLController controller = loader.getController();
+                    controller.initData(listView.getSelectionModel().getSelectedItem());
+                    Stage stage = new Stage();
+                    stage.setScene(new Scene(root));
+                    stage.setTitle("Modifier un sujet");
+                    stage.initModality(Modality.APPLICATION_MODAL);
+                    stage.showAndWait();
+                } catch (IOException ex) {
+                    System.out.println(ex);
         }
     }
 

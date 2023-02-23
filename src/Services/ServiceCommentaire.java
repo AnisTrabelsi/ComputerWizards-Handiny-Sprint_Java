@@ -7,9 +7,18 @@ package Services;
 import Entite.Commentaire;
 import Entite.Sujet;
 import Utils.DataSource;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 /**
  *
@@ -91,26 +100,17 @@ public class ServiceCommentaire implements IService<Commentaire> {
     public List<Commentaire> readAll() throws SQLException {
         ArrayList<Commentaire> listcomm = new ArrayList<>();
 
-        String req = "select * from Commentaire c INNER JOIN Sujet s where c.idSujet=s.idSujet";
+        String req = "select * from Commentaire";
 
         ResultSet res = ste.executeQuery(req);
 
         while (res.next()) {
-//            Sujet sujet = new Sujet();
-//                sujet.setId_sujet(res.getInt("id_sujet"));
-//                sujet.setTitre_sujet(res.getString("titre_sujet"));
-//                sujet.setDate_creation_sujet(res.getDate("date_creation_sujet"));
-//                sujet.setDate_derniere_maj(res.getDate("date_derniere_maj"));
-//                sujet.setContenu_sujet(res.getString("contenu_sujet"));
-//                sujet.setNb_commentaires(res.getInt("nb_commentaires"));
-//                sujet.setEtat(res.getString("etat"));
-//                sujet.setEpingle(res.getBoolean("Epingle"));
             Commentaire commentaire = new Commentaire();
             commentaire.setId_commentaire(res.getInt("id_commentaire"));
             commentaire.setContenu_commentaire(res.getString("contenu_commentaire"));
             commentaire.setDate_publication(res.getDate("date_publication"));
             commentaire.setNb_mentions(res.getInt("nb_mentions"));
-            commentaire.setNb_mentions(res.getInt("piecejointe"));
+            commentaire.setPiecejointe(res.getString("piecejointe"));
             listcomm.add(commentaire);
         }
         return listcomm;

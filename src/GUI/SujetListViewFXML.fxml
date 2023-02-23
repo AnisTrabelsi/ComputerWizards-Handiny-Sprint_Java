@@ -4,21 +4,38 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="Controllers.SujetListViewFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SujetListViewFXMLController">
     <stylesheets>
         <URL value="@sujetlistviewfxml.css" />
     </stylesheets>
    <children>
-      <Label fx:id="categoriesLabel" layoutX="272.0" layoutY="26.0" text="Sujets">
+      <ImageView fitHeight="400.0" fitWidth="600.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Assets/327680433_1635361913582223_6273958701339860656_n.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="categoriesLabel" layoutX="271.0" layoutY="48.0" text="Sujets">
          <font>
             <Font name="Agency FB" size="28.0" />
          </font>
       </Label>
-      <Button fx:id="modifSujetBtn" layoutX="114.0" layoutY="360.0" mnemonicParsing="false" onMouseClicked="#goToModifSujet" text="Modifier un sujet" />
-      <Button fx:id="supprimerCategorieBtn" layoutX="363.0" layoutY="360.0" mnemonicParsing="false" onMouseClicked="#supprimerSujet" text="Supprimer le sujet" />
-      <ListView fx:id="listView" layoutX="37.0" layoutY="73.0" prefHeight="274.0" prefWidth="526.0" />
+      <Button fx:id="modifSujetBtn" layoutX="72.0" layoutY="360.0" mnemonicParsing="false" onMouseClicked="#goToModifSujet" prefHeight="26.0" prefWidth="194.0" style="-fx-background-color: #ABB9E1;" text="Modifier un sujet" />
+      <Button fx:id="supprimerCategorieBtn" layoutX="328.0" layoutY="360.0" mnemonicParsing="false" onMouseClicked="#supprimerSujet" prefHeight="26.0" prefWidth="193.0" style="-fx-background-color: #ABB9E1;" text="Supprimer le sujet" />
+      <ListView fx:id="listView" layoutX="36.0" layoutY="90.0" prefHeight="258.0" prefWidth="526.0" />
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="79.0" layoutY="363.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Assets/icons8-rafraîchir-24.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="331.0" layoutY="365.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Assets/icons8-effacer-48.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

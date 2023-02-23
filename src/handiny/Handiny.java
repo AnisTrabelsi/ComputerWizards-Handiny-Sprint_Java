@@ -40,13 +40,14 @@ public class Handiny {
         ServiceCategorie sercat = new ServiceCategorie();
 //        ServiceSujet sersuj = new ServiceSujet();
 
-        Categorie cat = new Categorie("mmmm");
+//        Categorie cat = new Categorie("mmmm");
         try {
-            sercat.update(cat);
+            int id= sercat.getIdByName("zz");
+            System.out.println(id);
         } catch (SQLException ex) {
             Logger.getLogger(Handiny.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Utilisateur u = new Utilisateur();
+//        Utilisateur u = new Utilisateur();
 //        Sujet suj = new Sujet("ee", "eeee", 4, "rr", "ttt", cat, u);
 
 //        suj.setId_sujet(1);

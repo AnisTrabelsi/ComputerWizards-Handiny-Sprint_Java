@@ -51,8 +51,9 @@ public class SujetUpdateFXMLController implements Initializable {
     private Button ModifiersujetBtn;
     @FXML
     private TextField tags;
-    
+    ServiceSujet sujetdao = new ServiceSujet();
     ServiceCategorie ser = new ServiceCategorie();
+    Sujet sujet = new Sujet();
 
     /**
      * Initializes the controller class.
@@ -67,11 +68,10 @@ public class SujetUpdateFXMLController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(SujetFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }    
+    }
 
     @FXML
     private String getRbEtat(ActionEvent event) {
-        ServiceSujet sujetdao = new ServiceSujet();
         Sujet suj = new Sujet();
 
         if (ouvert.isSelected()) {
@@ -95,39 +95,45 @@ public class SujetUpdateFXMLController implements Initializable {
         stage.close();
     }
 
-    @FXML
-    private void Modifiersujet(ActionEvent event) {
-        try {
-            Categorie cat = ser.findById(ser.getIdByName(id_categorie.getValue()));
-            Sujet sujet = new Sujet(titre_sujet.getText(), contenu_sujet.getText(), getRbEtat(event), tags.getText(), cat);
-            ModifiersujetBtn.setOnAction((ActionEvent e) -> {
-                try {
-                    
-                    ServiceSujet pdao = new ServiceSujet();
-                    pdao.update(sujet);
-                    
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    
-                    alert.setTitle("Information Dialog");
-                    
-                    alert.setHeaderText(null);
-                    
-                    alert.setContentText("Sujet modifié avec succés!");
-                    
-                    alert.show();
-                } catch (SQLException ex) {
-                    System.out.println(ex);
-                }
-            }
-            );
-        } catch (SQLException ex) {
-            Logger.getLogger(SujetUpdateFXMLController.class.getName()).log(Level.SEVERE, null, ex);
-        }
- }
     void initData(Sujet selectedItem) {
+        System.out.println(selectedItem.toString());
         titre_sujet.setText(selectedItem.getTitre_sujet());
         contenu_sujet.setText(selectedItem.getContenu_sujet());
         tags.setText(selectedItem.getTags());
+        sujet.setId_sujet(selectedItem.getId_sujet());
+        sujet.setTitre_sujet(selectedItem.getTitre_sujet());
+        sujet.setContenu_sujet(selectedItem.getContenu_sujet());
+        sujet.setTags(selectedItem.getTags());
+        sujet.setCat(selectedItem.getCat());
+        sujet.setEtat(selectedItem.getEtat());
     }
-    
+
+    @FXML
+    private void Modifiersujet(ActionEvent event) {
+        ModifiersujetBtn.setOnAction((ActionEvent e) -> {
+            try {
+                Categorie cat = ser.findById(ser.getIdByName(id_categorie.getValue()));
+                sujet.setTitre_sujet(titre_sujet.getText());
+                sujet.setCat(cat);
+                sujet.setContenu_sujet(contenu_sujet.getText());
+                sujet.setEtat(getRbEtat(event));
+                sujet.setTags(tags.getText());
+                sujetdao.update(sujet);
+                System.out.println(sujet.toString());
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+                alert.setTitle("Information Dialog");
+
+                alert.setHeaderText(null);
+
+                alert.setContentText("Sujet modifié avec succés!");
+
+                alert.show();
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+        }
+        );
+    }
+
 }

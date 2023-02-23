@@ -106,7 +106,7 @@ public class Commentaire {
 
     @Override
     public String toString() {
-        return "Commentaire{" + "contenu_commentaire=" + contenu_commentaire + ", date_publication=" + date_publication + ", nb_mentions=" + nb_mentions + ", piecejointe=" + piecejointe + ", sujet=" + sujet + ", user=" + user + '}';
+        return contenu_commentaire + "   " +date_publication + "   " + nb_mentions + "j'aime"+ "   " + piecejointe ;
     }
 
 }

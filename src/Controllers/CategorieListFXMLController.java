@@ -68,14 +68,9 @@ public class CategorieListFXMLController implements Initializable {
     @FXML
     private void goToModifCategorie(MouseEvent event) {
                 try {
-                    try {
-                        int selectedID = listView.getSelectionModel().getSelectedIndex();
-                        Categorie c = listView.getSelectionModel().getSelectedItem();
-                        catdao.update(c);
-                    } catch (SQLException ex) {
-                        Logger.getLogger(CategorieListFXMLController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    
+                    int selectedID = listView.getSelectionModel().getSelectedIndex();
+                    Categorie c = listView.getSelectionModel().getSelectedItem();
+                    System.out.println(c.getId_categorie());
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/CategorieUpdateFXML.fxml"));
                     Parent root = loader.load();
                     CategorieUpdateFXMLController controller = loader.getController();

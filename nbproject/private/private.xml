@@ -3,14 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/bengh/OneDrive/Documents/NetBeansProjects/Handiny/src/Controllers/CategorieUpdateFXMLController.java</file>
             <file>file:/C:/Users/bengh/OneDrive/Documents/NetBeansProjects/Handiny/src/Entite/Sujet.java</file>
-            <file>file:/C:/Users/bengh/OneDrive/Documents/NetBeansProjects/Handiny/src/Entite/Commentaire.java</file>
+            <file>file:/C:/Users/bengh/OneDrive/Documents/NetBeansProjects/Handiny/src/handiny/Handiny.java</file>
+            <file>file:/C:/Users/bengh/OneDrive/Documents/NetBeansProjects/Handiny/src/Entite/Categorie.java</file>
             <file>file:/C:/Users/bengh/OneDrive/Documents/NetBeansProjects/Handiny/src/GUI/MainFX.java</file>
-            <file>file:/C:/Users/bengh/OneDrive/Documents/NetBeansProjects/Handiny/src/Services/ServiceCommentaire.java</file>
-            <file>file:/C:/Users/bengh/OneDrive/Documents/NetBeansProjects/Handiny/src/Controllers/SujetFXMLController.java</file>
+            <file>file:/C:/Users/bengh/OneDrive/Documents/NetBeansProjects/Handiny/src/Controllers/CategorieListFXMLController.java</file>
             <file>file:/C:/Users/bengh/OneDrive/Documents/NetBeansProjects/Handiny/src/Services/ServiceSujet.java</file>
             <file>file:/C:/Users/bengh/OneDrive/Documents/NetBeansProjects/Handiny/src/Services/ServiceCategorie.java</file>
-            <file>file:/C:/Users/bengh/OneDrive/Documents/NetBeansProjects/Handiny/src/Controllers/CommentaireFXMLController.java</file>
         </group>
     </open-files>
 </project-private>

@@ -46,6 +46,7 @@ public class ServiceCategorie implements IService<Categorie> {
         pre.setInt(2, t.getNb_sujets());
         pre.setInt(3, t.getId_categorie());
         pre.executeUpdate();
+        System.out.println(t.toString());
         System.out.println("Catégorie modifiée !");
     }
 

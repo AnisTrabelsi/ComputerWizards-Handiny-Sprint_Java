@@ -10,12 +10,18 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="587.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SujetFXMLController">
     <stylesheets>
         <URL value="@sujetfxml.css" />
     </stylesheets>
    <children>
+      <ImageView fitHeight="594.0" fitWidth="605.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Assets/327680433_1635361913582223_6273958701339860656_n.png" />
+         </image>
+      </ImageView>
       <TextField fx:id="titre_sujet" layoutX="94.0" layoutY="100.0" prefHeight="26.0" prefWidth="212.0" />
       <Label layoutX="94.0" layoutY="153.0" text="Séléctionner la catégorie" />
       <ChoiceBox fx:id="id_categorie" layoutX="94.0" layoutY="187.0" prefWidth="150.0" />
@@ -29,11 +35,14 @@
       <CheckBox layoutX="175.0" layoutY="498.0" mnemonicParsing="false" />
       <CheckBox layoutX="297.0" layoutY="498.0" mnemonicParsing="false" />
       <CheckBox layoutX="415.0" layoutY="498.0" mnemonicParsing="false" />
-      <Button fx:id="cancelBtn" layoutX="482.0" layoutY="538.0" mnemonicParsing="false" onAction="#cancelsujet" text="Annuler" />
-      <Button fx:id="submitBtn" layoutX="372.0" layoutY="538.0" mnemonicParsing="false" onAction="#submitsujet" text="Créer le sujet" />
+      <Button fx:id="cancelBtn" layoutX="482.0" layoutY="538.0" mnemonicParsing="false" onAction="#cancelsujet" style="-fx-background-color: #ABB9E1;" text="Annuler" />
+      <Button fx:id="submitBtn" layoutX="372.0" layoutY="538.0" mnemonicParsing="false" onAction="#submitsujet" style="-fx-background-color: #ABB9E1;" text="Créer le sujet" />
       <Label layoutX="91.0" layoutY="455.0" text="Tags" />
       <TextField fx:id="tags" layoutX="138.0" layoutY="451.0" prefHeight="26.0" prefWidth="392.0" />
-      <Label layoutX="254.0" layoutY="36.0" text="Création de sujet" />
+      <Label layoutX="186.0" layoutY="4.0" prefHeight="40.0" prefWidth="186.0" text="Création de sujet">
+         <font>
+            <Font name="Agency FB" size="32.0" />
+         </font></Label>
       <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="192.0" layoutY="494.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Assets/icons8-facebook-48.png" />

@@ -10,6 +10,8 @@ import Services.ServiceCategorie;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -31,33 +33,41 @@ public class CategorieUpdateFXMLController implements Initializable {
     private Button ModifCategorieBtn;
     @FXML
     private Button AnnulerBtn;
-    
+    ServiceCategorie pdao = new ServiceCategorie();
+            Categorie cat = new Categorie();
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    }    
+    }
+
+    void initData(Categorie selectedItem) {
+        nom_categorie.setText(selectedItem.getNom_categorie());
+        System.out.println(selectedItem.getNom_categorie());
+        System.out.println(selectedItem.getId_categorie());
+        
+        cat.setId_categorie(selectedItem.getId_categorie());
+        cat.setNom_categorie(selectedItem.getNom_categorie());
+    }
 
     @FXML
     private void ModifCategorie(ActionEvent event) {
-       ServiceCategorie pdao = new ServiceCategorie();
-        Categorie cat = new Categorie(nom_categorie.getText());
-        
         ModifCategorieBtn.setOnAction((ActionEvent e) -> {
             try {
-               
-                
+                System.out.println(cat.toString());
+                cat.setNom_categorie(nom_categorie.getText());
                 pdao.update(cat);
-
+                System.out.println(cat.toString());
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-
+                
                 alert.setTitle("Information Dialog");
-
+                
                 alert.setHeaderText(null);
-
+                
                 alert.setContentText("Catégorie modifiée avec succés!");
-
+                
                 alert.show();
             } catch (SQLException ex) {
                 System.out.println(ex);
@@ -73,8 +83,4 @@ public class CategorieUpdateFXMLController implements Initializable {
         stage.close();
     }
 
-    void initData(Categorie selectedItem) {
-        nom_categorie.setText(selectedItem.getNom_categorie());
-    }
-    
 }

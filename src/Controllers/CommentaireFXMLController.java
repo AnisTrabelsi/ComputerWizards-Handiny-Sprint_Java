@@ -73,6 +73,7 @@ public class CommentaireFXMLController implements Initializable {
         ServiceSujet sers=new ServiceSujet();
         EnvoieCommentBtn.setOnAction((ActionEvent e) -> {
             try {
+                
                 Sujet suj = sers.findById(Integer.parseInt(id_sujet.getText()));
                 Commentaire comment = new Commentaire(commentaire.getText(), messageTextArea.getText(), suj);
                 serc.ajouter(comment);
