@@ -34,16 +34,11 @@ public class HomeController implements Initializable {
     }    
 
     @FXML
-    private void lancerwin1(ActionEvent event)throws IOException {
-           AnchorPane pane = FXMLLoader.load(getClass().getResource("/gui/win1.fxml"));
+    private void locations(ActionEvent event)throws IOException {
+           AnchorPane pane = FXMLLoader.load(getClass().getResource("/gui/AffichageLocation.fxml"));
            mesVoitures.getChildren().setAll(pane);
     }
 
-    @FXML
-       private void lancerwin2(ActionEvent event)throws IOException {
-           AnchorPane pane = FXMLLoader.load(getClass().getResource("/gui/win2.fxml"));
-           mesVoitures.getChildren().setAll(pane);
-    }@FXML
        private void informationAlert(ActionEvent event)throws IOException {
            Alert alert=new Alert(AlertType.INFORMATION);
            alert.setTitle("Information");
@@ -51,14 +46,12 @@ public class HomeController implements Initializable {
            alert.setContentText("Cette application est Handiny");
            alert.showAndWait();
            
-    }@FXML
-        private void chichi(ActionEvent event)throws IOException {
-           Alert alert=new Alert(AlertType.INFORMATION);
-           alert.setTitle("Information");
-           alert.setHeaderText("Alerte");
-           alert.setContentText("Cette application est Handiny");
-           alert.showAndWait();
-           
+    }
+
+    @FXML
+    private void mesVoitures(ActionEvent event) throws IOException {
+         AnchorPane pane = FXMLLoader.load(getClass().getResource("/gui/win2.fxml"));
+           mesVoitures.getChildren().setAll(pane);
     }
        
        

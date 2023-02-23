@@ -36,35 +36,68 @@ Connection con=DataSource.getInstance().getConnection();
 }
 
     @Override
-    public void ajouter(Reservation_voiture t) throws SQLException {
+    public boolean ajouter(Reservation_voiture t) throws SQLException {
+      boolean verif=true;
       
-      
-      String req = "INSERT INTO `reservation_voiture` (`id_utilisateur`,`id_voiture`,`date_debut_reservation`,`date_fin_reservation`prix_location) VALUES ( ?,?,?,?);";
+      try { String req = "INSERT INTO `reservation_voiture` (`id_utilisateur`,`id_voiture`,`date_debut_reservation`,`date_fin_reservation`prix_location) VALUES ( 1,30,?,?);";
         
         PreparedStatement pre=con.prepareStatement(req);
         
      
-     pre.setInt(1,t.getId_utilisateur());
-     pre.setInt(1,t.getId_voiture());
-     pre.setString(2, t.getDate_debut_reservation());
-     pre.setString(2, t.getDate_fin_reservation());
     
+     pre.setDate(10,new java.sql.Date(t.getDate_debut_reservation().getTime()));
+     pre.setDate(10,new java.sql.Date(t.getDate_fin_reservation().getTime()));
+        
      
-     pre.executeUpdate();
+        
+     
+
+     int rowsInserted = pre.executeUpdate();
+     if (rowsInserted > 0) {
+         verif=true;
+                           }
+            
+     }catch(SQLException e){
+            System.out.println(e);
+            verif=false;
+        }
+    return verif;
     }
+    
     
 
     @Override
-    public void update(Reservation_voiture t) throws SQLException {
+    public boolean update(Reservation_voiture t) throws SQLException {
+        boolean verif=true;
+     
+        
         try {
-            String req = "UPDATE `reservation_voiture` SET `date_debut_reservation` = '" + t.getDate_debut_reservation() + "', `marque` = '" + t.getDate_fin_reservation()  "' WHERE `reservation_voiture`.`id_reservation_voiture` = " + t.getId_reservation_voiture()";
             
-            ste.executeUpdate(req);
-            System.out.println("reservation updated !");
+          String req = "UPDATE reservation_voiture SET date_debut_reservation=?, date_fin_reservation=? WHERE id_reservation_voiture=?";
+          PreparedStatement pre = con.prepareStatement(req);
+        
+        pre.setDate(10,new java.sql.Date(t.getDate_debut_reservation().getTime()));
+        pre.setDate(10,new java.sql.Date(t.getDate_fin_reservation().getTime()));
+        
+
+        int rowsUpdated = pre.executeUpdate();
+        if (rowsUpdated > 0) {
+            verif=true;
+        }
+            
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+            verif=false;
         }
+        return verif;
+        
+        
     }
+
+
+            
+        
+    
     @Override
     public void supprime(Reservation_voiture t) throws SQLException {
        
@@ -90,7 +123,7 @@ Connection con=DataSource.getInstance().getConnection();
             
             ResultSet rs = ste.executeQuery(req);
             while (rs.next()) {
-               Reservation_voiture p = new Reservation_voiture(rs.getString("date_debut_reservation"), rs.getString("date_fin_reservation"));
+               Reservation_voiture p = new Reservation_voiture(rs.getInt("id_reservation_voiture"),rs.getDate("date_debut_reservation"), rs.getDate("date_fin_reservation"));
                 list.add(p);
             }
         } catch (SQLException ex) {
@@ -102,6 +135,20 @@ Connection con=DataSource.getInstance().getConnection();
 
     @Override
     public Reservation_voiture findById(int id) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Reservation_voiture v = null;
+        try {
+            String req = "Select * from `reservation_voiture` WHERE id_reservation_voiture = " + id + ";";
+            
+            ResultSet rs = ste.executeQuery(req);
+            while (rs.next()) {
+                 //v = new Reservation_voiture(rs.getInt("id_reservation_voiture")rs.getDate("date_debut_reservation"), rs.getDate("date_fin_reservation"));
+               v = new Reservation_voiture(rs.getInt("id_reservation_voiture"),rs.getDate("date_debut_reservation"), rs.getDate("date_fin_reservation"));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return v;
     }
-}
+
+    }

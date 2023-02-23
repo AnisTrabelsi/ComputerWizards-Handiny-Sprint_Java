@@ -34,13 +34,12 @@
         <menus>
           <Menu mnemonicParsing="false" text="Mes voitures">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#lancerwin1" text="win1" />
-                  <MenuItem mnemonicParsing="false" onAction="#lancerwin2" text="Liste de mes voitures" />
+                  <MenuItem mnemonicParsing="false" onAction="#mesVoitures" text="Liste de mes voitures" />
                </items>
             </Menu>
           <Menu mnemonicParsing="false" text="Mes Locations">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#chichi" text="Liste de mes locations" />
+                  <MenuItem mnemonicParsing="false" onAction="#locations" text="Liste de mes locations" />
                </items>
             </Menu>
           <Menu mnemonicParsing="false" text="Aide" />

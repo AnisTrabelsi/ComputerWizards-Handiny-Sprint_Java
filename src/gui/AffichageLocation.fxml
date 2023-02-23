@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="702.0" prefWidth="901.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AffichageLocationController">
+   <children>
+      <HBox layoutX="107.0" layoutY="104.0" prefHeight="100.0" prefWidth="783.0">
+         <children>
+            <Pane prefHeight="100.0" prefWidth="494.0" style="-fx-background-color: #44ae64;">
+               <children>
+                  <Text fill="WHITE" layoutX="14.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date de début de location" wrappingWidth="178.13670349121094">
+                     <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <Pane prefHeight="100.0" prefWidth="607.0" style="-fx-background-color: #44ae64;">
+               <children>
+                  <Text fill="WHITE" layoutX="22.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date de fin de location" wrappingWidth="178.13670349121094">
+                     <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+         </children>
+      </HBox>
+      <ListView fx:id="listv" layoutX="107.0" layoutY="204.0" prefHeight="310.0" prefWidth="519.0" AnchorPane.bottomAnchor="187.60000000000002" AnchorPane.leftAnchor="107.0" AnchorPane.rightAnchor="11.0" />
+      <Pane layoutX="161.0" layoutY="502.0" prefHeight="46.0" prefWidth="200.0" />
+      <Text layoutX="344.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des voitures">
+         <font>
+            <Font name="System Bold Italic" size="24.0" />
+         </font>
+      </Text>
+      <Button layoutX="439.0" layoutY="66.0" mnemonicParsing="false" onAction="#ajouterLocation" text="Ajouter une location" />
+      <Button layoutX="261.0" layoutY="65.0" mnemonicParsing="false" onAction="#supprimer" prefHeight="26.0" prefWidth="114.0" text="supprimer" />
+      <Button layoutX="661.0" layoutY="66.0" mnemonicParsing="false" onAction="#updateLocation" text="mettre à jour une location" />
+     
+   </children>
+</AnchorPane>

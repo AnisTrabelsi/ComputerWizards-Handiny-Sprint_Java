@@ -56,8 +56,7 @@ public class Win2Controller implements Initializable {
             Logger.getLogger(Win2Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
     }    
-
-    @FXML
+  @FXML
     private void ajouterVoitures(ActionEvent event) {
      try{
        FXMLLoader fxmloader= new FXMLLoader(getClass().getResource("/gui/InsertVoitures.fxml"));
@@ -72,11 +71,6 @@ public class Win2Controller implements Initializable {
        }
     }
 
-    @FXML
-    private void afficherVoitures(ActionEvent event) throws SQLException {
-      
-      
-    }
 
     @FXML
     private void supprimer(ActionEvent event) {
@@ -103,8 +97,7 @@ public class Win2Controller implements Initializable {
         alert.showAndWait();
     }
 }     
-
-    @FXML
+     @FXML
     private void updateVoiture(ActionEvent event) {
         try{
        FXMLLoader fxmloader= new FXMLLoader(getClass().getResource("/gui/EditVoitures.fxml"));
@@ -118,5 +111,7 @@ public class Win2Controller implements Initializable {
        e.printStackTrace();
        }
     }
+
+    
 }    
       
