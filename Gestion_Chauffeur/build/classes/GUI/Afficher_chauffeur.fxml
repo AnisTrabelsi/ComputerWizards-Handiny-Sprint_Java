@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Afficher_chauffeurController">
+   <children>
+      <ImageView fitHeight="540.0" fitWidth="843.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../Downloads/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi%20(1)/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi/src/back_1.png" />
+         </image>
+      </ImageView>
+      <TableView fx:id="Reclamation" layoutX="47.0" layoutY="90.0" prefHeight="358.0" prefWidth="778.0">
+         <columns>
+            <TableColumn fx:id="cin" prefWidth="154.39999389648438" text="CIN" />
+            <TableColumn fx:id="nom" prefWidth="179.20001220703125" text="Nom" />
+            <TableColumn fx:id="adresse" prefWidth="213.60000610351562" text="Adresse" />
+            <TableColumn fx:id="statut" prefWidth="228.79998779296875" text="Statut Disponibilite" />
+         </columns>
+      </TableView>
+      <Label layoutX="328.0" layoutY="56.0" prefHeight="34.0" prefWidth="206.0" text="Affichage Chauffeur" textFill="#52a9df">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Label>
+      <Button layoutX="476.0" layoutY="472.0" mnemonicParsing="false" onAction="#cherch" prefHeight="39.0" prefWidth="117.0" stylesheets="@../../../../../Downloads/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi%20(1)/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi/src/GUI/list.css" text="chercher" />
+      <ComboBox fx:id="types" layoutX="287.0" layoutY="479.0" prefWidth="150.0" promptText="Type" />
+      <Label layoutX="294.0" layoutY="449.0" stylesheets="@../../../../../Downloads/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi%20(1)/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi/src/GUI/admin.css" text="chercher par type :" textFill="#cf0e0e" />
+      <Button layoutX="14.0" layoutY="21.0" mnemonicParsing="false" onAction="#suppr" prefHeight="34.0" prefWidth="144.0" stylesheets="@../../../../../Downloads/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi%20(1)/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi/src/GUI/list.css" text="Supprimer CH" />
+      <Button layoutX="177.0" layoutY="21.0" mnemonicParsing="false" onAction="#md" prefHeight="34.0" prefWidth="136.0" stylesheets="@../../../../../Downloads/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi%20(1)/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi/src/GUI/list.css" text="Modifier CH" />
+      <Button layoutX="328.0" layoutY="21.0" mnemonicParsing="false" onAction="#dd" prefHeight="34.0" prefWidth="136.0" stylesheets="@../../../../../Downloads/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi%20(1)/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi/src/GUI/list.css" text="Demande CH" />
+      <Button layoutX="476.0" layoutY="21.0" mnemonicParsing="false" onAction="#dd" stylesheets="@../../../../../Downloads/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi%20(1)/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi/src/GUI/list.css" text="Demande CH" />
+      <Button layoutX="39.0" layoutY="472.0" mnemonicParsing="false" onAction="#afficher" prefHeight="39.0" prefWidth="118.0" stylesheets="@../../../../../Downloads/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi%20(1)/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi/src/GUI/list.css" text="Actualiser" />
+   </children>
+</AnchorPane>
