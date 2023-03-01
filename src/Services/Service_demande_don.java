@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -221,4 +222,18 @@ pre.setString(6, d.getEtat());
         }
         return listper;
     }
+    
+      public HashMap<String,Integer> stattype() throws SQLException{
+     HashMap<String,Integer> mp = new HashMap<>();
+       String req = "select COUNT(*),`type_produit_demande` from demande_don GROUP BY `type_produit_demande`;";
+
+        ResultSet res = ste.executeQuery(req);
+
+        while (res.next()) {
+     mp.put(res.getString("type_produit_demande"), res.getInt("COUNT(*)"));
+            
+        }
+    
+     return mp;
+     }
 }

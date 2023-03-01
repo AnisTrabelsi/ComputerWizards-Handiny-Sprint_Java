@@ -6,7 +6,9 @@ package Services;
 
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -27,4 +29,7 @@ public interface IService_don<T> {
    
    List<T> findbytype(String s) throws SQLException;
     T findById_don(int id) throws SQLException;
+    
+    HashMap<String,Integer> stattype() throws SQLException;
+    
 }

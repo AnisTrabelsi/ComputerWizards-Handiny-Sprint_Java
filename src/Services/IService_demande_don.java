@@ -5,6 +5,7 @@
 package Services;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -27,4 +28,5 @@ public interface IService_demande_don<T> {
       List<T> find_demande_don_of_user(int id) throws SQLException;
       List<T> sort_date_demande_don_of_users() throws SQLException;
        List<T> sort_date_demande_don_of_user(int id) throws SQLException;
+         HashMap<String,Integer> stattype() throws SQLException;
 }

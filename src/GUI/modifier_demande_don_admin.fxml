@@ -11,34 +11,28 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Modifier_demande_don_adminController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Modifier_demande_don_adminController">
    <children>
-      <ImageView fitHeight="531.0" fitWidth="861.0" layoutX="3.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="558.0" fitWidth="1029.4" layoutX="3.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../admin.png" />
+            <Image url="@../back.png" />
          </image></ImageView>
       <Label layoutX="40.0" layoutY="173.0" prefHeight="35.0" prefWidth="161.0" stylesheets="@admin.css" text="justificatif handicap :" />
-      <Button fx:id="btnupdate" layoutX="86.0" layoutY="440.0" mnemonicParsing="false" onAction="#modifierdemandedon" prefHeight="42.0" prefWidth="121.0" stylesheets="@admin.css" text="modifier" />
-      <Button layoutX="257.0" layoutY="214.0" mnemonicParsing="false" onAction="#modImage" prefHeight="35.0" prefWidth="91.0" stylesheets="@admin.css" text="image" />
-      <TextField fx:id="mod_URLImage" layoutX="44.0" layoutY="213.0" promptText="Image" stylesheets="@admin.css" />
-      <Button layoutX="118.0" layoutY="16.0" mnemonicParsing="false" onAction="#ajd" stylesheets="@admin.css" text="Ajouter DD" />
-      <Button layoutX="269.0" layoutY="17.0" mnemonicParsing="false" onAction="#add" stylesheets="@admin.css" text="Afficher DD" />
-      <Button layoutX="422.0" layoutY="17.0" mnemonicParsing="false" onAction="#sdd" stylesheets="@admin.css" text="Supprimer DD" />
-      <Button layoutX="595.0" layoutY="17.0" mnemonicParsing="false" onAction="#dons" stylesheets="@admin.css" text="Dons" />
-      <Label layoutX="501.0" layoutY="82.0" stylesheets="@admin.css" text="Liste des demandes don" />
+      <Button fx:id="btnupdate" layoutX="86.0" layoutY="468.0" mnemonicParsing="false" onAction="#modifierdemandedon" prefHeight="42.0" prefWidth="121.0" stylesheets="@admin.css" text="modifier" />
+      <Button layoutX="292.0" layoutY="214.0" mnemonicParsing="false" onAction="#modImage" prefHeight="35.0" prefWidth="91.0" stylesheets="@admin.css" text="image" />
+      <TextField fx:id="mod_URLImage" layoutX="44.0" layoutY="213.0" prefHeight="38.0" prefWidth="228.0" promptText="Image" stylesheets="@admin.css" />
+      <Label layoutX="646.0" layoutY="82.0" stylesheets="@admin.css" text="Liste des demandes don" />
       <Label layoutX="44.0" layoutY="262.0" stylesheets="@admin.css" text="Description:" />
       <TextField fx:id="mod_desc" layoutX="38.0" layoutY="289.0" prefHeight="93.0" prefWidth="238.0" promptText="Remarques ...." stylesheets="@admin.css" />
-      <ImageView fx:id="Image" fitHeight="82.0" fitWidth="109.0" layoutX="239.0" layoutY="399.0" pickOnBounds="true" preserveRatio="true" />
-      <Label layoutX="34.0" layoutY="395.0" stylesheets="@admin.css" text="état" />
-      <ComboBox fx:id="etat" layoutX="75.0" layoutY="397.0" prefWidth="150.0" stylesheets="@admin.css" />
-      <Label layoutX="29.0" layoutY="132.0" stylesheets="@admin.css" text="id utilisateur" />
-      <TextField fx:id="id_user" layoutX="136.0" layoutY="126.0" stylesheets="@admin.css" />
-      <Label layoutX="81.0" layoutY="78.0" prefHeight="34.0" prefWidth="285.0" text="Modifier demande dons" textFill="#52a9df">
+      <ImageView fx:id="Image" fitHeight="114.0" fitWidth="162.0" layoutX="257.0" layoutY="443.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="30.0" layoutY="402.0" stylesheets="@admin.css" text="état" />
+      <ComboBox fx:id="etat" layoutX="75.0" layoutY="397.0" prefHeight="35.0" prefWidth="191.0" stylesheets="@admin.css" />
+      <Label layoutX="82.0" layoutY="90.0" prefHeight="34.0" prefWidth="285.0" text="Modifier demande dons" textFill="#031b28">
          <font>
-            <Font name="System Bold" size="21.0" />
+            <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <ScrollPane layoutX="354.0" layoutY="114.0" prefHeight="366.0" prefWidth="502.0">
+      <ScrollPane layoutX="447.0" layoutY="119.0" prefHeight="392.0" prefWidth="549.0">
          <content>
             <VBox fx:id="vb" prefHeight="361.0" prefWidth="500.0" />
          </content>

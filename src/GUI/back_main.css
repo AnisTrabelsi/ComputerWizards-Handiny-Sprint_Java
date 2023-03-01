@@ -1,0 +1,44 @@
+.menu-bar {
+  -fx-background-color: #5185f4;
+  -fx-padding: 7 300;
+}
+
+.menu {
+  -fx-font-size: 14px;
+  -fx-text-fill: #fdf7f7;
+  -fx-font-weight: bold;
+  -fx-padding: 0 0;
+}
+
+.menu .label {
+  -fx-padding: 0 10 0 10;
+ 
+}
+
+.menu .arrow {
+  -fx-background-color: #333333;
+}
+
+.menu .menu-item {
+  -fx-font-size: 14px;
+  -fx-text-fill: #333333;
+  -fx-background-color: transparent;
+  -fx-font-weight: bold;
+}
+
+.menu .menu-item:focused, .menu-item:hover {
+  -fx-background-color: #59d2f4;
+  -fx-text-fill: #333333;
+}
+
+.menu .menu-item:pressed, .menu-item:armed {
+  -fx-background-color: #c0c0c0;
+}
+
+.menu .menu-item:disabled {
+  -fx-opacity: 0.5;
+}
+
+.menu .separator {
+  -fx-background-color: #e0e0e0;
+}

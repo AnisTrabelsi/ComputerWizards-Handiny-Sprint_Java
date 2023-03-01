@@ -11,36 +11,35 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="530.0" prefWidth="848.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Affichage_donController">
+<AnchorPane id="AnchorPane" prefHeight="530.0" prefWidth="848.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Affichage_donController">
    <children>
-      <ImageView fitHeight="531.0" fitWidth="896.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="558.0" fitWidth="1029.4" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../back_1.png" />
+            <Image url="@../background.png" />
          </image>
       </ImageView>
-      <Button fx:id="button" layoutX="638.0" layoutY="480.0" mnemonicParsing="false" onAction="#trier" prefHeight="39.0" prefWidth="157.0" stylesheets="@list.css" text="trier par date " />
+      <Button fx:id="button" layoutX="793.0" layoutY="497.0" mnemonicParsing="false" onAction="#trier" prefHeight="39.0" prefWidth="157.0" stylesheets="@list.css" text="trier par date " />
       <Text layoutX="607.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-      <Button layoutX="25.0" layoutY="13.0" mnemonicParsing="false" onAction="#md" stylesheets="@list.css" text="Modification don" />
-      <Button layoutX="201.0" layoutY="13.0" mnemonicParsing="false" onAction="#suppr" stylesheets="@list.css" text="Suppression don" />
-      <Button layoutX="374.0" layoutY="14.0" mnemonicParsing="false" onAction="#aj" stylesheets="@list.css" text="Ajout don" />
-      <Button layoutX="504.0" layoutY="14.0" mnemonicParsing="false" onAction="#dd" stylesheets="@list.css" text="Demande don" />
-      <Button layoutX="504.0" layoutY="478.0" mnemonicParsing="false" onAction="#afficher" prefHeight="39.0" prefWidth="118.0" stylesheets="@list.css" text="Actualiser" />
-      <Label layoutX="47.0" layoutY="462.0" text="Chercher par type :" textFill="#400505" />
-      <ScrollPane layoutX="53.0" layoutY="149.0" prefHeight="306.0" prefWidth="753.0">
+      <Button layoutX="654.0" layoutY="497.0" mnemonicParsing="false" onAction="#afficher" prefHeight="39.0" prefWidth="118.0" stylesheets="@list.css" text="Actualiser" />
+      <Label layoutX="88.0" layoutY="471.0" stylesheets="@list.css" text="Chercher par type :" textFill="#400505" />
+      <ScrollPane layoutX="139.0" layoutY="122.0" prefHeight="346.0" prefWidth="726.0">
          <content>
-            <VBox fx:id="vb" prefHeight="290.0" prefWidth="746.0" />
+            <VBox fx:id="vb" prefHeight="343.0" prefWidth="894.0" />
          </content>
       </ScrollPane>
-      <ComboBox fx:id="types" layoutX="65.0" layoutY="492.0" prefWidth="150.0" promptText="Type" />
-      <Button layoutX="230.0" layoutY="481.0" mnemonicParsing="false" onAction="#cherch" prefHeight="39.0" prefWidth="117.0" stylesheets="@list.css" text="chercher" />
-      <Label layoutX="139.0" layoutY="114.0" stylesheets="@list.css" text="Type de don" />
-      <Label layoutX="367.0" layoutY="116.0" stylesheets="@list.css" text="Image " />
-      <Label layoutX="495.0" layoutY="116.0" stylesheets="@list.css" text="Description" />
-      <Label layoutX="638.0" layoutY="116.0" stylesheets="@list.css" text="Date d'ajout" />
-      <Label layoutX="338.0" layoutY="67.0" prefHeight="34.0" prefWidth="160.0" text="Affichage dons" textFill="#52a9df">
+      <ComboBox fx:id="types" layoutX="97.0" layoutY="504.0" prefWidth="150.0" promptText="Type" />
+      <Button layoutX="257.0" layoutY="497.0" mnemonicParsing="false" onAction="#cherch" prefHeight="39.0" prefWidth="117.0" stylesheets="@list.css" text="chercher" />
+      <Label layoutX="201.0" layoutY="84.0" stylesheets="@list.css" text="Type de don" />
+      <Label layoutX="424.0" layoutY="84.0" stylesheets="@list.css" text="Image " />
+      <Label layoutX="570.0" layoutY="84.0" stylesheets="@list.css" text="Description" />
+      <Label layoutX="727.0" layoutY="84.0" stylesheets="@list.css" text="Date d'ajout" />
+      <Label layoutX="407.0" layoutY="14.0" prefHeight="52.0" prefWidth="260.0" text="Affichage dons" textFill="#52a9df">
          <font>
-            <Font name="System Bold" size="21.0" />
+            <Font name="System Bold" size="28.0" />
          </font>
       </Label>
+      <Button layoutX="904.0" layoutY="23.0" mnemonicParsing="false" onAction="#p" stylesheets="@list.css" text="pdf" />
+      <Button layoutX="746.0" layoutY="23.0" mnemonicParsing="false" onAction="#Exporter" stylesheets="@list.css" text="Exporter Excel" />
+      <Button layoutX="31.0" layoutY="23.0" mnemonicParsing="false" onAction="#node" stylesheets="@list.css" text="imprimer" />
    </children>
 </AnchorPane>

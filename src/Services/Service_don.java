@@ -13,7 +13,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -205,4 +207,22 @@ don d=new don();
         }
         return listper;
     }
+    
+    
+     public HashMap<String,Integer> stattype() throws SQLException{
+     HashMap<String,Integer> mp = new HashMap<String,Integer>();
+       String req = "select COUNT(*),`type` from don GROUP BY `type`;";
+
+        ResultSet res = ste.executeQuery(req);
+
+        while (res.next()) {
+     mp.put(res.getString("type"), res.getInt("COUNT(*)"));
+            
+        }
+    
+     return mp;
+     }
+    
+    
+    
 }

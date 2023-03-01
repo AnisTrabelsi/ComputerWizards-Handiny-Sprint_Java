@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="519.0" prefWidth="773.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DonStatsController">
+   <children>
+      <ImageView fitHeight="558.0" fitWidth="1029.4" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../background.png" />
+         </image>
+      </ImageView>
+      <PieChart fx:id="don_front" prefHeight="558.0" prefWidth="1029.0" />
+   </children>
+</AnchorPane>

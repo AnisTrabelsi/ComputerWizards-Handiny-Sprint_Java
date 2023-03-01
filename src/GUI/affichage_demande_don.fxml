@@ -9,19 +9,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0"  xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Affichage_demande_donController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Affichage_demande_donController">
    <children>
-      <ImageView fitHeight="531.0" fitWidth="896.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="558.0" fitWidth="1029.4" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../back_1.png" />
+            <Image url="@../background.png" />
          </image></ImageView>
-      <Button layoutX="22.0" layoutY="14.0" mnemonicParsing="false" onAction="#mdd" stylesheets="@list.css" text="modifier DD" />
-      <Button layoutX="181.0" layoutY="14.0" mnemonicParsing="false" onAction="#ajdd" stylesheets="@list.css" text="Ajouter DD" />
-      <Button layoutX="336.0" layoutY="14.0" mnemonicParsing="false" onAction="#sdd" stylesheets="@list.css" text="Supprimer DD" />
-      <Button layoutX="508.0" layoutY="14.0" mnemonicParsing="false" onAction="#don" stylesheets="@list.css" text="Dons" />
-      <Button layoutX="246.0" layoutY="486.0" mnemonicParsing="false" onAction="#afficher" stylesheets="@list.css" text="Actualiser" />
-      <Button layoutX="422.0" layoutY="487.0" mnemonicParsing="false" onAction="#sort" stylesheets="@list.css" text="Trier par date" />
-      <ScrollPane layoutX="19.0" layoutY="147.0" prefHeight="324.0" prefWidth="814.0">
+      <Button layoutX="403.0" layoutY="486.0" mnemonicParsing="false" onAction="#afficher" stylesheets="@list.css" text="Actualiser" />
+      <Button layoutX="550.0" layoutY="486.0" mnemonicParsing="false" onAction="#sort" stylesheets="@list.css" text="Trier par date" />
+      <ScrollPane layoutX="107.0" layoutY="141.0" prefHeight="324.0" prefWidth="814.0">
          <content>
             <VBox fx:id="vb" prefHeight="318.0" prefWidth="812.0">
                <children>
@@ -30,15 +26,18 @@
             </VBox>
          </content>
       </ScrollPane>
-      <Label layoutX="48.0" layoutY="114.0" stylesheets="@list.css" text="Type de don" />
-      <Label layoutX="172.0" layoutY="94.0" prefHeight="66.0" prefWidth="177.0" stylesheets="@list.css" text="justificatif d'handicap " />
-      <Label layoutX="367.0" layoutY="115.0" stylesheets="@list.css" text="Date de demande" />
-      <Label layoutX="710.0" layoutY="115.0" stylesheets="@list.css" text="état" />
-      <Label layoutX="263.0" layoutY="64.0" prefHeight="34.0" prefWidth="285.0" text="Affichage demandes dons" textFill="#52a9df">
+      <Label layoutX="169.0" layoutY="109.0" stylesheets="@list.css" text="Type de don" />
+      <Label layoutX="293.0" layoutY="89.0" prefHeight="66.0" prefWidth="177.0" stylesheets="@list.css" text="justificatif d'handicap " />
+      <Label layoutX="488.0" layoutY="110.0" stylesheets="@list.css" text="Date de demande" />
+      <Label layoutX="831.0" layoutY="110.0" stylesheets="@list.css" text="état" />
+      <Label layoutX="372.0" layoutY="26.0" prefHeight="34.0" prefWidth="285.0" text="Affichage demandes dons" textFill="#52a9df">
          <font>
             <Font name="System Bold" size="21.0" />
          </font>
       </Label>
-      <Label layoutX="566.0" layoutY="115.0" stylesheets="@list.css" text="Remarques" />
+      <Label layoutX="687.0" layoutY="110.0" stylesheets="@list.css" text="Remarques" />
+      <Button layoutX="761.0" layoutY="26.0" mnemonicParsing="false" onAction="#export" stylesheets="@list.css" text="Exporter excel" />
+      <Button layoutX="921.0" layoutY="26.0" mnemonicParsing="false" onAction="#pdf" stylesheets="@list.css" text="PDF" />
+      <Button layoutX="32.0" layoutY="33.0" mnemonicParsing="false" onAction="#imprimer" stylesheets="@list.css" text="imprimer" />
    </children>
 </AnchorPane>
