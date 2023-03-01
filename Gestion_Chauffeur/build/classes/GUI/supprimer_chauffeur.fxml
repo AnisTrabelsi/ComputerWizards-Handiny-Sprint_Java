@@ -22,9 +22,9 @@
             <Font name="System Bold" size="21.0" />
          </font>
       </Label>
-      <Button layoutX="177.0" layoutY="20.0" mnemonicParsing="false" onAction="#aff" stylesheets="@../../../../../Downloads/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi%20(1)/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi/src/GUI/list.css" text="Afficher CH" />
-      <Button layoutX="322.0" layoutY="20.0" mnemonicParsing="false" onAction="#dd" prefHeight="34.0" prefWidth="138.0" stylesheets="@../../../../../Downloads/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi%20(1)/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi/src/GUI/list.css" text="Demande CH" />
-      <Button layoutX="485.0" layoutY="20.0" mnemonicParsing="false" onAction="#dd" stylesheets="@../../../../../Downloads/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi%20(1)/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi/src/GUI/list.css" text="Demande CH" />
+      <Button layoutX="177.0" layoutY="20.0" mnemonicParsing="false" onAction="#aff" prefHeight="34.0" prefWidth="116.0" stylesheets="@../../../../../Downloads/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi%20(1)/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi/src/GUI/list.css" text="Afficher CH" />
+      <Button layoutX="322.0" layoutY="20.0" mnemonicParsing="false" onAction="#aj" prefHeight="34.0" prefWidth="138.0" stylesheets="@../../../../../Downloads/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi%20(1)/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi/src/GUI/list.css" text="Ajouter CH" />
+      <Button layoutX="485.0" layoutY="20.0" mnemonicParsing="false" onAction="#dd" prefHeight="34.0" prefWidth="130.0" stylesheets="@../../../../../Downloads/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi%20(1)/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi/src/GUI/list.css" text="Demande CH" />
       <Button layoutX="356.0" layoutY="495.0" mnemonicParsing="false" onAction="#supprimer" text="supprimer" />
       <TableView fx:id="Reclamation" layoutX="32.0" layoutY="106.0" prefHeight="358.0" prefWidth="778.0">
          <columns>

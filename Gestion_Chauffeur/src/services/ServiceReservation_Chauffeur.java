@@ -8,12 +8,15 @@ package services;
 import entities.Chauffeur;
 import entities.Reservation_Chauffeur;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import utils.DataSource;
 
 /**
@@ -27,25 +30,44 @@ public class ServiceReservation_Chauffeur implements IServices <Reservation_Chau
              cnx = DataSource.getInstance().getCnx();
              }
 
-public void ajouter(Reservation_Chauffeur c) throws SQLException {
-    String query = "INSERT INTO reservation_chauffeur (id_reservation_chauffeur, duree_service, date_prise_en_charge, description_demande) VALUES (?, ?, ?, ?)";
+                    @Override
+     public void ajouter(Reservation_Chauffeur c) throws SQLException {
+    String query = "INSERT INTO reservation_chauffeur (id_chauffeur, duree_service, date_prise_en_charge, description_demande) VALUES (?, ?, ? ,?)";
+    try{
     PreparedStatement statement = cnx.prepareStatement(query);
-    statement.setInt(1, c.getId_reservation_chauffeur());
+    statement.setInt(1, c.getId_chauffeur());
     statement.setInt(2, c.getDuree_service());
-    statement.setString(3, c.getDate_prise_en_charge());
+    statement.setDate(3, c.getDate_prise_en_charge());
     statement.setString(4, c.getDescription_demande());
+    
+   /* String selectReq = "SELECT * FROM chauffeur WHERE id_chauffeur = ?";
+        PreparedStatement selectPs = cnx.prepareStatement(selectReq);
+        selectPs.setInt(1, c.getId_chauffeur());
+        ResultSet rt = selectPs.executeQuery();
+        if (!rt.next()) {
+            // Si le résultat est vide, le troc n'existe pas, afficher une erreur
+            System.err.println("L'expertise correspondant à id_expertise n'existe pas.");
+            return;
+        }*/
+    
     statement.executeUpdate();
+    //System.out.println("Rapport ajouté avec success via prepared Statement!!!");
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceReservation_Chauffeur.class.getName()).log(Level.SEVERE, null, ex);
+        }
 }
 
 
     
+                    @Override
     public void modifier(Reservation_Chauffeur c) throws SQLException {
-        String req = " UPDATE reservation_chauffeur SET id_reservation_chauffeur  = ? , duree_service = ? , date_prise_en_charge = ? , description_demande = ?   where id_reservation_chauffeur  = ?    ";
+        String req = " UPDATE reservation_chauffeur SET  duree_service = ? , date_prise_en_charge = ? , description_demande = ?   where id_reservation_chauffeur  = ?    ";
         PreparedStatement ps = cnx.prepareStatement(req);
-        ps.setInt(1, c.getId_reservation_chauffeur ());
-        ps.setInt(2, c.getDuree_service());
-        ps.setString(3, c.getDate_prise_en_charge());
-        ps.setString(4, c.getDescription_demande());
+
+        ps.setInt(1, c.getDuree_service());
+        ps.setDate(2, (Date) c.getDate_prise_en_charge());
+        ps.setString(3, c.getDescription_demande());
+             ps.setInt(4, c.getId_reservation_chauffeur());
         ps.executeUpdate();
     }
 
@@ -67,7 +89,7 @@ public void ajouter(Reservation_Chauffeur c) throws SQLException {
             Reservation_Chauffeur c = new Reservation_Chauffeur();
             c.setId_reservation_chauffeur(rs.getInt("id_reservation_chauffeur"));
             c.setDuree_service(rs.getInt("duree_service"));
-            c.setDate_prise_en_charge(rs.getString("date_prise_en_charge"));
+            c.setDate_prise_en_charge(rs.getDate("date_prise_en_charge"));
             c.setDescription_demande(rs.getString("description_demande"));
            
     

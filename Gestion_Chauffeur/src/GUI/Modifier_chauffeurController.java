@@ -6,6 +6,7 @@
 package GUI;
 
 import entities.Chauffeur;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -17,11 +18,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import services.ServiceChauffeur;
 
@@ -65,15 +71,30 @@ public class Modifier_chauffeurController implements Initializable {
     }    
 
     @FXML
-    private void aff(ActionEvent event) {
+    private void aff(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("Afficher_chauffeur.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
-    private void suppr(ActionEvent event) {
+    private void suppr(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("supprimer_chauffeur.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
-    private void aj(ActionEvent event) {
+    private void aj(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("Ajout_chauffeur.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
@@ -86,9 +107,9 @@ public class Modifier_chauffeurController implements Initializable {
         ServiceChauffeur sv = new ServiceChauffeur();
         
 
-         String tcin = cin.getText();
- String tnom = nom.getText();
-  String tadresse = adresse.getText();
+         String tcin = cin1.getText();
+ String tnom = nom1.getText();
+  String tadresse = adresse1.getText();
   String tdispo = dispo.getText();
   int id=Reclamation.getSelectionModel().getSelectedItem().getId_chauffeur();
     Chauffeur c=new Chauffeur(id,tcin,tnom,tadresse,tdispo );
@@ -135,10 +156,10 @@ public class Modifier_chauffeurController implements Initializable {
       private void vider() {
 
       
-        cin.setText(null);
-        nom.setText(null);
+        cin1.setText(null);
+        nom1.setText(null);
     
-        adresse.setText(null);
+        adresse1.setText(null);
         dispo.setText(null);
 
     }

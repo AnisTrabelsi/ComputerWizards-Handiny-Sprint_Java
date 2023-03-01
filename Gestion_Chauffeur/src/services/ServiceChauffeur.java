@@ -6,6 +6,7 @@
 package services;
 //import utils.MyConnection;
 import entities.Chauffeur;
+import entities.Reservation_Chauffeur;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -37,7 +38,7 @@ public class ServiceChauffeur implements IServices <Chauffeur> {
        @Override
     public void ajouter(Chauffeur c) throws SQLException {
         
-        String req = "INSERT INTO `chauffeur` ( `CIN`, `Nom`, `Adresse`,`Statut_disponibilite`) VALUES (?, ?, ?, ?) ; ";
+        String req = "INSERT INTO `chauffeur` ( `CIN`, `Nom`, `Adresse`,`Statut_disponibilite`) VALUES (?, ?, ?, ?)";
         PreparedStatement pre = con.prepareStatement(req);
         
         pre.setString(1, c.getCIN());
@@ -119,6 +120,10 @@ public class ServiceChauffeur implements IServices <Chauffeur> {
             listper.add(p);
         }
         return listper;
+    }
+
+    public void ajouter(Reservation_Chauffeur c) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
        

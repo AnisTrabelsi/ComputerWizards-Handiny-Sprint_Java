@@ -7,20 +7,26 @@ package GUI;
 
 import entities.Chauffeur;
 import entities.utilisateur;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import services.ServiceChauffeur;
 
-/**
- * FXML Controller class
+/**                                   
+ * FXML Controller class         /////////////////////////////////////////////////////            
  *
  * @author Mehdi
  */
@@ -38,6 +44,7 @@ public class Ajout_chauffeur_adminController implements Initializable {
 
     /**
      * Initializes the controller class.
+     * @param url
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -45,15 +52,30 @@ public class Ajout_chauffeur_adminController implements Initializable {
     }    
 
     @FXML
-    private void aff(ActionEvent event) {
+    private void aff(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("Afficher_chauffeur_admin.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
-    private void suppr(ActionEvent event) {
+    private void suppr(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("supprimer_chauffeur_admin.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
-    private void md(ActionEvent event) {
+    private void md(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("Modifier_chauffeur_admin.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
@@ -67,15 +89,15 @@ public class Ajout_chauffeur_adminController implements Initializable {
 
      
         
-        String tcin = cin.getText();
- String tnom = nom.getText();
-  String tadresse = adresse.getText();
-  String tdispo = dispo.getText();
+        String ttcin = cin.getText();
+ String ttnom = nom.getText();
+  String ttadresse = adresse.getText();
+  String ttdispo = dispo.getText();
         ServiceChauffeur ser = new ServiceChauffeur();
         
         
         
-        if (tcin.isEmpty() || tnom.isEmpty() || tdispo.isEmpty() ) {
+        if (ttcin.isEmpty() || ttnom.isEmpty() || ttdispo.isEmpty() ) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("il y a des attributs vides");
             alert.showAndWait();
@@ -83,7 +105,8 @@ public class Ajout_chauffeur_adminController implements Initializable {
                 
                 
                 else{
-          Chauffeur c=new Chauffeur(tcin,tnom,tadresse,tdispo );
+          Chauffeur c;
+            c = new Chauffeur(ttcin,ttnom,ttadresse,ttdispo );
             try {
                 ser.ajouter(c);
                 JOptionPane.showMessageDialog(null, "chauffeur ajouté");

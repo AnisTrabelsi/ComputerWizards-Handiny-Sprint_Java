@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 package GUI;
+import entities.Reservation_Chauffeur;
 
-import entities.Chauffeur;
 import entities.utilisateur;
 import java.io.IOException;
 import java.net.URL;
@@ -30,7 +30,7 @@ import services.ServiceChauffeur;
  *
  * @author Mehdi
  */
-public class Ajout_chauffeurController implements Initializable {
+public class Ajout_reservationchauffeurController implements Initializable {
 
     private TextField id;
     @FXML
@@ -53,7 +53,7 @@ public class Ajout_chauffeurController implements Initializable {
 
     @FXML
     private void aff(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("Afficher_chauffeur.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Afficher_chauffeur_admin.fxml"));
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
@@ -62,7 +62,7 @@ public class Ajout_chauffeurController implements Initializable {
 
     @FXML
     private void suppr(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("supprimer_chauffeur.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("supprimer_chauffeur_admin.fxml"));
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
@@ -71,7 +71,7 @@ public class Ajout_chauffeurController implements Initializable {
 
     @FXML
     private void md(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("Modifier_chauffeur.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Modifier_chauffeur_admin.fxml"));
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
@@ -105,17 +105,13 @@ public class Ajout_chauffeurController implements Initializable {
                 
                 
                 else{
-          Chauffeur c;
-            c = new Chauffeur(ttcin,ttnom,ttadresse,ttdispo );
-            try {
-                ser.ajouter(c);
-                JOptionPane.showMessageDialog(null, "chauffeur ajouté");
-            } catch (SQLException ex) {
-                System.out.println(ex);
-            }
+          Reservation_Chauffeur c;
+                 c = new Reservation_Chauffeur(ttcin,ttnom,ttadresse,ttdispo );
+            ser.ajouter(c);
+            JOptionPane.showMessageDialog(null, "Reservation chauffeur ajouté");
                
             vider();
-            JOptionPane.showMessageDialog(null, "chauffeur ajouté");
+            JOptionPane.showMessageDialog(null, "Reservation chauffeur ajouté");
             
 
         }
