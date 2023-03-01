@@ -4,6 +4,10 @@
  */
 package Entite;
 
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+
 /**
  *
  * @author Chayma
@@ -16,6 +20,8 @@ private String etat_reclamation ;
 private String description ;
 private Utilisateur user;
 
+  
+
     public Utilisateur getUser() {
         return user;
     }
@@ -27,8 +33,16 @@ private Utilisateur user;
     public Reclamation() {
     }
 
+    public Reclamation(int id_utilisateur, int id_reclamation, String type_reclamation, String etat_reclamation, String description) {
+        this.id_utilisateur = id_utilisateur;
+        this.id_reclamation = id_reclamation;
+        this.type_reclamation = type_reclamation;
+        this.etat_reclamation = etat_reclamation;
+        this.description = description;
+    }
 
-    public Reclamation(int id_utilisateur , int id_reclamation, String type_reclamation, String etat_reclamation, String description , Utilisateur user) {
+
+    public Reclamation(int id_utilisateur , int id_reclamation, String etat_reclamation, String description , Utilisateur user) {
         this.id_utilisateur =id_utilisateur ;
         this.id_reclamation = id_reclamation;
         this.type_reclamation = type_reclamation;
@@ -37,7 +51,7 @@ private Utilisateur user;
         this.user = user ;
     }
 
-    public Reclamation( int id_reclamation, String type_reclamation, String etat_reclamation, String description) {
+    public Reclamation( int id_reclamation, String etat_reclamation, String description) {
         
         this.id_reclamation = id_reclamation;
         this.type_reclamation = type_reclamation;
@@ -45,7 +59,13 @@ private Utilisateur user;
         this.description = description;
     }
 
-    public Reclamation( String type_reclamation, String etat_reclamation, String description, Utilisateur user ) {
+    public Reclamation(String type_reclamation, String description) {
+        this.type_reclamation = type_reclamation;
+        this.description = description;
+    }
+    
+
+    public Reclamation(  String etat_reclamation, String description, Utilisateur user ) {
         this.id_utilisateur= id_utilisateur ;
         this.type_reclamation = type_reclamation;
         this.etat_reclamation = etat_reclamation;
@@ -59,8 +79,9 @@ private Utilisateur user;
         this.description = description;
         
     }
+     
 
-    public Reclamation(int id_utilisateur, String type_reclamation, String etat_reclamation, String description, Utilisateur user) {
+    public Reclamation(int id_utilisateur,  String type_reclamation ,String etat_reclamation, String description, Utilisateur user) {
         this.id_utilisateur = id_utilisateur;
         this.type_reclamation = type_reclamation;
         this.etat_reclamation = etat_reclamation;
@@ -111,7 +132,7 @@ private Utilisateur user;
 
     @Override
     public String toString() {
-        return "Reclamation{" + "id_utilisateur=" + id_utilisateur + ", id_reclamation=" + id_reclamation + ", type_reclamation=" + type_reclamation + ", etat_reclamation=" + etat_reclamation + ", description=" + description + '}';
+        return "Reclamation{" + "id_utilisateur=" + id_utilisateur + ", id_reclamation=" + id_reclamation +", etat_reclamation=" + etat_reclamation +", type reclamation"+ type_reclamation+", description=" + description + '}';
     }
 
 

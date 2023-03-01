@@ -31,26 +31,27 @@ public class ServiceUtilisateur implements IService < Utilisateur > {
         }
     }
     
-public void setrolelocataire () throws SQLException{
-//Utilisateur u =new Utilisateur ();
-String req ="INSERT INTO `utilisateur`(`role`) VALUES ('locataire') ;" ;
-ste.executeUpdate(req);
-}
-public void setroleproprietaire () throws SQLException{
-//Utilisateur u =new Utilisateur ();
-String req ="INSERT INTO `utilisateur`( `role`) VALUES ('proprietaire') ;" ;
-ste.executeUpdate(req);
-}
-    @Override
+//public void setrolelocataire () throws SQLException{
+////Utilisateur u =new Utilisateur ();
+//String req ="INSERT INTO `utilisateur`(`role`) VALUES ('locataire') ;" ;
+//ste.executeUpdate(req);
+//}
+//public void setroleproprietaire () throws SQLException{
+////Utilisateur u =new Utilisateur ();
+//String req ="INSERT INTO `utilisateur`( `role`) VALUES ('proprietaire') ;" ;
+//ste.executeUpdate(req);
+//}
+  @Override
     public void ajouter(Utilisateur u) throws SQLException {
         
      
-String req = "INSERT INTO `utilisateur`( `nom`, `prenom`, `cin`, `email`, `telephone`, `login`, `mot_de_passe`, `date_de_naissance`, `region`, `adresse`,`code_postal`, `role`)"
+String req = "INSERT INTO `user`( `nom`, `prenom`, `cin`, `email`, `telephone`, `login`, `mot_de_passe`, `date_de_naissance`, `region`, `adresse`,`code_postal`, `role`)"
         +"VALUES ( '"+u.getNom()+"', '"+u.getPrenom()+"', '"+u.getCin()+"', '"+u.getEmail()+"', '"+u.getTelephone()+"', '"+u.getLogin()+"', '"+u.getMot_de_passe()+"', '"+u.getDate_de_naissance()+"', '"+u.getRegion()+"', '"+u.getAdresse()+"', '"+u.getCode_postal()+"', '"+u.getRole()+"');";
       
         ste.executeUpdate(req);
         System.out.println("Un utilisateur est ajouté ");
     }
+
 
     
     
@@ -146,10 +147,43 @@ Utilisateur u = new Utilisateur ();
 
   return  u;
     }
+    
+    public boolean emailExists(String email) throws SQLException {
+        boolean exists = false;
+
+        String req = "SELECT COUNT(*) FROM `user` WHERE `email`  = ?;";
+        PreparedStatement stmt = con.prepareStatement(req);
+
+        stmt.setString(1, email);
+        ResultSet rs = stmt.executeQuery();
+
+        if (rs.next()) {
+            int count = rs.getInt(1);
+            exists = (count > 0);
+        }
+
+        return exists;
+    }
+
+    public boolean loginExists(String login) throws SQLException {
+        boolean exists = false;
+
+        String req = "SELECT COUNT(*) FROM `user` WHERE `login`  = ?;";
+        PreparedStatement stmt = con.prepareStatement(req);
+
+        stmt.setString(1, login);
+        ResultSet rs = stmt.executeQuery();
+
+        if (rs.next()) {
+            int count = rs.getInt(1);
+            exists = (count > 0);
+        }
+
+        return exists;
+    }
+ 
 
     
     
     }
     
-
-

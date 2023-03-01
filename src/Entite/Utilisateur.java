@@ -26,8 +26,15 @@ public class Utilisateur {
         private String adresse ;
         private int code_postal ;
         private String role ;
-    
+        private String code_postal_en_string = Integer.toString(code_postal);
+        private String id_en_string = Integer.toString(id_utilisateur);
+
     public Utilisateur(){
+    }
+
+    public Utilisateur(String login, String mot_de_passe) {
+        this.login = login;
+        this.mot_de_passe = mot_de_passe;
     }
 
     public Utilisateur(int id_utilisateur, String nom, String prenom, String cin, String email, String telephone, String login, String mot_de_passe, Date date_de_naissance, String region, String adresse, int code_postal, String role) {
@@ -73,6 +80,30 @@ public class Utilisateur {
         this.region = region;
         this.adresse = adresse;
         this.code_postal = code_postal;
+    }
+
+    public Utilisateur(String email, String login, String mot_de_passe, String adresse) {
+        this.email = email;
+        this.login = login;
+        this.mot_de_passe = mot_de_passe;
+        this.adresse = adresse;
+    }
+    
+
+    public String getCode_postal_en_string() {
+        return code_postal_en_string;
+    }
+
+    public void setCode_postal_en_string(String code_postal_en_string) {
+        this.code_postal_en_string = code_postal_en_string;
+    }
+
+    public String getId_en_string() {
+        return id_en_string;
+    }
+
+    public void setId_en_string(String id_en_string) {
+        this.id_en_string = id_en_string;
     }
 
     
