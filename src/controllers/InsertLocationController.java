@@ -128,7 +128,7 @@ public class InsertLocationController implements Initializable {
 String subject = "Réservation de votre voiture";
 String message = "Bonjour Mr/Madame  "+prenprop+ "  ,\n\n Votre voiture ayant l\'immatriculation "+voitureimmatric+"  a été réservée par"+locatairePrenom+"\n\n cordialement.";
 String from = "chaima.lotfi@esen.tn";
-String password = "deutsch123LAMMA.";
+String password = "";
 String to =emailprop;
 Properties props = new Properties();
 props.put("mail.smtp.auth", "true");
