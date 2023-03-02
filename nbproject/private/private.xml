@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>src/Services/ServiceCommentaire.java</url>
+            <bookmark id="1">
+                <name/>
+                <line>0</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/bengh/OneDrive/Documents/NetBeansProjects/Handiny/src/Controllers/CategorieUpdateFXMLController.java</file>
-            <file>file:/C:/Users/bengh/OneDrive/Documents/NetBeansProjects/Handiny/src/Entite/Sujet.java</file>
-            <file>file:/C:/Users/bengh/OneDrive/Documents/NetBeansProjects/Handiny/src/handiny/Handiny.java</file>
-            <file>file:/C:/Users/bengh/OneDrive/Documents/NetBeansProjects/Handiny/src/Entite/Categorie.java</file>
+            <file>file:/C:/Users/bengh/OneDrive/Documents/NetBeansProjects/Handiny/src/Controllers/ForumSideBarFXMLController.java</file>
+            <file>file:/C:/Users/bengh/OneDrive/Documents/NetBeansProjects/Handiny/src/GUIUSER/MainUser.java</file>
+            <file>file:/C:/Users/bengh/OneDrive/Documents/NetBeansProjects/Handiny/src/Controllers/SujetListFXMLController.java</file>
             <file>file:/C:/Users/bengh/OneDrive/Documents/NetBeansProjects/Handiny/src/GUI/MainFX.java</file>
-            <file>file:/C:/Users/bengh/OneDrive/Documents/NetBeansProjects/Handiny/src/Controllers/CategorieListFXMLController.java</file>
-            <file>file:/C:/Users/bengh/OneDrive/Documents/NetBeansProjects/Handiny/src/Services/ServiceSujet.java</file>
-            <file>file:/C:/Users/bengh/OneDrive/Documents/NetBeansProjects/Handiny/src/Services/ServiceCategorie.java</file>
+            <file>file:/C:/Users/bengh/OneDrive/Documents/NetBeansProjects/Handiny/src/Controllers/CategorieFXMLController.java</file>
+            <file>file:/C:/Users/bengh/OneDrive/Documents/NetBeansProjects/Handiny/src/GUIUSER/CategorieListGridPaneFXML.fxml</file>
         </group>
     </open-files>
 </project-private>

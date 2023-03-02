@@ -1,31 +1,114 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="Controllers.CommentaireListFXMLController">
-    <stylesheets>
-        <URL value="@commentairelistfxml.css" />
-    </stylesheets>
-   <children>
-      <ImageView fitHeight="408.0" fitWidth="604.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Assets/327680433_1635361913582223_6273958701339860656_n.png" />
-         </image>
-      </ImageView>
-      <Label fx:id="categoriesLabel" layoutX="242.0" layoutY="8.0" text="Commentaires">
-         <font>
-            <Font name="Agency FB" size="28.0" />
-         </font>
-      </Label>
-      <Button fx:id="modifCommentBtn" layoutX="37.0" layoutY="360.0" mnemonicParsing="false" onMouseClicked="#goToModifCommentaire" prefHeight="26.0" prefWidth="214.0" style="-fx-background-color: #ABB9E1;" text="Modifier le commentaire" />
-      <Button fx:id="supprimerCommentBtn" layoutX="363.0" layoutY="360.0" mnemonicParsing="false" onMouseClicked="#supprimerCommentaire" prefHeight="26.0" prefWidth="214.0" style="-fx-background-color: #ABB9E1;" text="Supprimer le commentaire" />
-      <ListView fx:id="listView" layoutX="37.0" layoutY="61.0" prefHeight="286.0" prefWidth="547.0" />
-   </children>
-</AnchorPane>
+<BorderPane fx:id="bp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="626.0" prefWidth="674.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CommentaireListFXMLController">
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="100.0" prefWidth="906.0" style="-fx-background-color: #1c3144;">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="RIGHT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="62.0" prefWidth="184.0" text="Comments" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="23.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="nbcomments" alignment="CENTER" contentDisplay="RIGHT" prefHeight="48.0" prefWidth="171.0" textFill="WHITE">
+                           <font>
+                              <Font name="Century Gothic" size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="100.0" prefWidth="507.0">
+                     <children>
+                        <Button fx:id="categoriesReadAllBtn" mnemonicParsing="false" onMouseClicked="#categoriesReadAll" prefHeight="74.0" prefWidth="138.0" text="Categories List" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="78.0" prefWidth="674.0">
+               <children>
+                  <HBox prefHeight="38.0" prefWidth="254.0" />
+                  <HBox prefHeight="48.0" prefWidth="190.0" />
+                  <Button fx:id="refreshBtn" mnemonicParsing="false" onMouseClicked="#refresh">
+                     <HBox.margin>
+                        <Insets left="10.0" top="14.0" />
+                     </HBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="17.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Assets/icons8-mettre-à-jour-la-rotation-à-gauche-30.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox prefHeight="74.0" prefWidth="674.0">
+               <children>
+                  <VBox prefHeight="38.0" prefWidth="306.0">
+                     <children>
+                        <Label prefHeight="38.0" prefWidth="106.0" text="Comment">
+                           <VBox.margin>
+                              <Insets left="50.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Century Gothic" size="17.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="38.0" prefWidth="170.0">
+                     <children>
+                        <Label prefHeight="38.0" prefWidth="193.0" text="Attachement">
+                           <font>
+                              <Font name="Century Gothic" size="17.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label prefHeight="38.0" prefWidth="130.0" text="Mentions">
+                           <font>
+                              <Font name="Century Gothic" size="17.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <ScrollPane hbarPolicy="NEVER" prefHeight="418.0" prefWidth="674.0" vbarPolicy="ALWAYS">
+               <content>
+                  <GridPane fx:id="CommentGrid" alignment="TOP_RIGHT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="0.0" prefWidth="0.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                  </GridPane>
+               </content>
+            </ScrollPane>
+         </children>
+      </VBox>
+   </center>
+   <top>
+      <HBox prefHeight="74.0" prefWidth="674.0" BorderPane.alignment="CENTER" />
+   </top>
+</BorderPane>

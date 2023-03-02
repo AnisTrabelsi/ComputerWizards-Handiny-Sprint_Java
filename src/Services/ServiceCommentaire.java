@@ -7,18 +7,9 @@ package Services;
 import Entite.Commentaire;
 import Entite.Sujet;
 import Utils.DataSource;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 
 /**
  *
@@ -71,17 +62,18 @@ public class ServiceCommentaire implements IService<Commentaire> {
     }
 
     @Override
-    public void update(Commentaire t) throws SQLException {
-        String req = "UPDATE `Commentaire` SET"
-                + "`contenu_commentaire` = '" + t.getContenu_commentaire() + "', "
-                + "`date_publication` = '" + t.getDate_publication() + "', "
-                + "`nb_mentions` = '" + t.getNb_mentions()
-                + "`piecejointe` = '" + t.getPiecejointe()
-                + "`id_sujet` = '" + t.getSujet().getId_sujet()
-                + "`id_utilisateur` = '" + t.getUser().getId_utilisateur()
-                + "WHERE `id_commentaire` = " + t.getId_commentaire() + ";";
-
-        ste.executeUpdate(req);
+    public void update(Commentaire t) throws SQLException {  
+        String req = "UPDATE Commentaire SET contenu_commentaire= ?, date_publication = ?,  nb_mentions  = ? , piecejointe = ?, id_sujet = ? WHERE id_commentaire= ?;";
+        PreparedStatement pre = con.prepareStatement(req);
+        pre.setString(1, t.getContenu_commentaire());
+        pre.setDate(2, t.getDate_publication());
+        pre.setInt(3, t.getNb_mentions());
+        pre.setString(4, t.getPiecejointe());
+        pre.setInt(5, t.getSujet().getId_sujet());
+//        pre.setInt(6, t.getUser().getId_utilisateur());
+        pre.setInt(6, t.getId_commentaire());
+        pre.executeUpdate();
+        System.out.println("Commentaire modifié !");
     }
 
     @Override
@@ -91,7 +83,7 @@ public class ServiceCommentaire implements IService<Commentaire> {
             int res = ste.executeUpdate(req);
             return res > 0;
         } catch (SQLException ex) {
-            System.out.println("Y a pas de commentaires à supprimer, erreur !" + t.getId_commentaire() + ": " + ex.getMessage());
+            System.out.println("Y a pas de commentaires à supprimer, erreur !");
             return false;
         }
     }
@@ -101,6 +93,28 @@ public class ServiceCommentaire implements IService<Commentaire> {
         ArrayList<Commentaire> listcomm = new ArrayList<>();
 
         String req = "select * from Commentaire";
+        ServiceSujet ss=new ServiceSujet();
+
+        ResultSet res = ste.executeQuery(req);
+
+        while (res.next()) {
+            Commentaire commentaire = new Commentaire();
+            commentaire.setId_commentaire(res.getInt("id_commentaire"));
+            commentaire.setContenu_commentaire(res.getString("contenu_commentaire"));
+            commentaire.setDate_publication(res.getDate("date_publication"));
+            commentaire.setNb_mentions(res.getInt("nb_mentions"));
+            commentaire.setPiecejointe(res.getString("piecejointe"));
+            int ids = res.getInt("id_sujet");
+            commentaire.setSujet(ss.findById(ids));
+            listcomm.add(commentaire);
+        }
+        return listcomm;
+    }
+
+    public List<Commentaire> CommentsBySujet(Sujet sujet) throws SQLException {
+        ArrayList<Commentaire> listcomm = new ArrayList<>();
+
+        String req = "select * from Commentaire where id_sujet = " + sujet.getId_sujet();
 
         ResultSet res = ste.executeQuery(req);
 

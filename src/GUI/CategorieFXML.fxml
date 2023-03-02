@@ -14,19 +14,52 @@
         <URL value="@categoriefxml.css" />
     </stylesheets>
    <children>
-      <ImageView fitHeight="400.0" fitWidth="607.0" layoutX="-2.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="400.0" fitWidth="600.0" layoutY="-1.0" opacity="0.51" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Assets/327680433_1635361913582223_6273958701339860656_n.png" />
+            <Image url="@../Assets/20945188.jpg" />
          </image>
       </ImageView>
-      <Label layoutX="51.0" layoutY="123.0" text="Titre de catégorie" />
-      <TextField fx:id="nom_categorie" layoutX="180.0" layoutY="119.0" prefHeight="26.0" prefWidth="246.0" />
-      <Button fx:id="CreationCategorieBtn" layoutX="300.0" layoutY="212.0" mnemonicParsing="false" onAction="#CreationCategorie" style="-fx-background-color: #ABB9E1;" text="Créer catégorie" textAlignment="CENTER" textFill="#303631" />
-      <Button fx:id="AnnulerBtn" layoutX="444.0" layoutY="212.0" mnemonicParsing="false" onAction="#Annuler" style="-fx-background-color: #ABB9E1;" text="Annuler" />
-      <Label layoutX="184.0" layoutY="6.0" prefHeight="40.0" prefWidth="232.0" text="Création de catégorie">
-         <font>
-            <Font name="Agency FB" size="32.0" />
-         </font>
-      </Label>
+      <AnchorPane layoutX="85.0" layoutY="81.0" opacity="0.93" prefHeight="237.0" prefWidth="444.0" style="-fx-background-color: #1d3557;">
+         <children>
+            <TextField fx:id="nom_categorie" layoutX="173.0" layoutY="91.0" prefHeight="26.0" prefWidth="246.0" />
+            <Button fx:id="CreationCategorieBtn" layoutX="198.0" layoutY="171.0" mnemonicParsing="false" onAction="#CreationCategorie" style="-fx-background-color: #ABB9E1;" text="Create" textAlignment="CENTER" textFill="#303631">
+               <graphic>
+                  <ImageView fitHeight="16.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Assets/icons8-check-mark-button-48.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="AnnulerBtn" layoutX="326.0" layoutY="171.0" mnemonicParsing="false" onAction="#Annuler" style="-fx-background-color: #ABB9E1;" text="Cancel">
+               <graphic>
+                  <ImageView fitHeight="16.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Assets/icons8-effacer-48%20(1).png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="106.0" layoutY="14.0" prefHeight="40.0" prefWidth="232.0" text="Add a new category" textFill="WHITE">
+               <font>
+                  <Font name="Agency FB" size="32.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="7.0" layoutY="92.0" prefHeight="26.0" prefWidth="172.0" text="Name of category" textFill="WHITE">
+               <font>
+                  <Font name="Century Gothic" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Button fx:id="returnlistcategoriesBtn" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#returnlistcategories">
+         <graphic>
+            <ImageView fitHeight="18.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Assets/icons8-gauche-50.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>

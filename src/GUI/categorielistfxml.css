@@ -2,6 +2,16 @@
  * Empty Stylesheet file.
  */
 
+.bottom{
+    -fx-backgound-color : #1C90E4;
+    -fx-backgroud-radius : 50;
+}
+.gradient{
+    -fx-background-color:linear-gradient(to top, #676767, transparent);
+}
+.shadow{
+    -fx-effect:dropshadow(three-pass-box, rgba(0,0,0,0.2),10,0,0,10);
+}
 .mainFxmlClass {
 
 }

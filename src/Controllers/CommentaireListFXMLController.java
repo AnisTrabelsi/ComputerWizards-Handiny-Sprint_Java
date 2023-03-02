@@ -8,18 +8,31 @@ package Controllers;
 import Entite.Commentaire;
 import Services.ServiceCommentaire;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -28,45 +41,77 @@ import javafx.scene.input.MouseEvent;
  */
 public class CommentaireListFXMLController implements Initializable {
 
+    private List<Commentaire> comments;
     @FXML
-    private Label categoriesLabel;
+    private BorderPane bp;
     @FXML
-    private Button modifCommentBtn;
+    private Label nbcomments;
     @FXML
-    private Button supprimerCommentBtn;
+    private Button categoriesReadAllBtn;
     @FXML
-    private ListView<Commentaire> listView;
-    private List<Commentaire> items = null;
-    ServiceCommentaire catdao = new ServiceCommentaire();
+    private Button refreshBtn;
+    @FXML
+    private GridPane CommentGrid;
+    ServiceCommentaire ser = new ServiceCommentaire();
+    int column = 0;
+    int row = 1;
 
     /**
      * Initializes the controller class.
      */
+    public void loadData() {
+        try {
+            comments = new ArrayList<>(ser.readAll());
+            nbcomments.setText(String.valueOf(comments.size() + " Comments"));
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+
+        comments.forEach((c) -> {
+            FXMLLoader fxmlloader = new FXMLLoader();
+            fxmlloader.setLocation(getClass().getResource("/GUI/CommentaireGridFXML.fxml"));
+            Pane pane;
+
+            try {
+                pane = fxmlloader.load();
+                CommentaireGridFXMLController Controller = fxmlloader.getController();
+                Controller.setData(c);
+                System.out.println(c.getSujet().getId_sujet());
+
+                if (column == 3) {
+                    column = 0;
+                }
+                ++row;
+                CommentGrid.add(pane, column, row);
+                GridPane.setMargin(pane, new Insets(20));
+            } catch (IOException ex) {
+                Logger.getLogger(CategorieListGridPaneFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         try {
-            items = catdao.readAll();
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
+        loadData();
 
-        for (Commentaire c : items) {
-            String path = "C:\\Users\\bengh\\OneDrive\\Documents\\NetBeansProjects\\Handiny\\src\\Assets\\" + c.getPiecejointe();
-            File file = new File(path);
-            ImageView i;
-            i = new ImageView(new Image(file.toURI().toString()));
-            i.setFitWidth(100);
-            i.setFitHeight(100);
-            listView.getItems().add(c);
-        }
-    }    
-
-    @FXML
-    private void goToModifCommentaire(MouseEvent event) {
     }
 
     @FXML
-    private void supprimerCommentaire(MouseEvent event) {
+    private void categoriesReadAll(MouseEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/GUI/CategorieListGridPaneFXML.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(CategorieListGridPaneFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-    
+
+    @FXML
+    private void refresh(MouseEvent event) {
+        CommentGrid.getChildren().clear();
+        loadData();
+    }
 }

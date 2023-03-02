@@ -45,6 +45,15 @@ public class Commentaire {
         this.user = user;
     }
 
+    public Commentaire(int id_commentaire, String contenu_commentaire, Date date_publication, int nb_mentions, String piecejointe, Sujet sujet) {
+        this.id_commentaire = id_commentaire;
+        this.contenu_commentaire = contenu_commentaire;
+        this.date_publication = date_publication;
+        this.nb_mentions = nb_mentions;
+        this.piecejointe = piecejointe;
+        this.sujet = sujet;
+    }
+
     public Commentaire() {
     }
 
@@ -103,10 +112,17 @@ public class Commentaire {
     public void setPiecejointe(String piecejointe) {
         this.piecejointe = piecejointe;
     }
+//    public void incrementMentionsCount() {
+//        nb_mentions++;
+//    }
 
     @Override
     public String toString() {
-        return contenu_commentaire + "   " +date_publication + "   " + nb_mentions + "j'aime"+ "   " + piecejointe ;
+        return contenu_commentaire + "   " + date_publication + "   " + nb_mentions + "j'aime" + "   " + piecejointe;
+    }
+
+    public int setNb_mentions() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

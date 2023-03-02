@@ -2,7 +2,6 @@
 
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
@@ -12,52 +11,80 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="587.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SujetFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="518.0" prefWidth="606.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SujetFXMLController">
     <stylesheets>
         <URL value="@sujetfxml.css" />
     </stylesheets>
    <children>
-      <ImageView fitHeight="594.0" fitWidth="605.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="528.0" fitWidth="352.0" opacity="0.82" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Assets/327680433_1635361913582223_6273958701339860656_n.png" />
+            <Image url="@../Assets/car-with-disabled-person-symbol.jpg" />
          </image>
       </ImageView>
-      <TextField fx:id="titre_sujet" layoutX="94.0" layoutY="100.0" prefHeight="26.0" prefWidth="212.0" />
-      <Label layoutX="94.0" layoutY="153.0" text="Séléctionner la catégorie" />
-      <ChoiceBox fx:id="id_categorie" layoutX="94.0" layoutY="187.0" prefWidth="150.0" />
-      <Label layoutX="94.0" layoutY="237.0" text="Description" />
-      <TextField fx:id="contenu_sujet" layoutX="95.0" layoutY="264.0" prefHeight="78.0" prefWidth="439.0" />
-      <Label layoutX="95.0" layoutY="366.0" text="État" />
-      <RadioButton fx:id="ouvert" layoutX="111.0" layoutY="396.0" mnemonicParsing="false" onAction="#getRbEtat" text="Ouvert" />
-      <RadioButton fx:id="ferme" layoutX="213.0" layoutY="396.0" mnemonicParsing="false" onAction="#getRbEtat" text="Fermé" />
-      <RadioButton fx:id="bloque" layoutX="306.0" layoutY="396.0" mnemonicParsing="false" onAction="#getRbEtat" text="Bloqué" />
-      <Label layoutX="89.0" layoutY="498.0" text="Partager" />
-      <CheckBox layoutX="175.0" layoutY="498.0" mnemonicParsing="false" />
-      <CheckBox layoutX="297.0" layoutY="498.0" mnemonicParsing="false" />
-      <CheckBox layoutX="415.0" layoutY="498.0" mnemonicParsing="false" />
-      <Button fx:id="cancelBtn" layoutX="482.0" layoutY="538.0" mnemonicParsing="false" onAction="#cancelsujet" style="-fx-background-color: #ABB9E1;" text="Annuler" />
-      <Button fx:id="submitBtn" layoutX="372.0" layoutY="538.0" mnemonicParsing="false" onAction="#submitsujet" style="-fx-background-color: #ABB9E1;" text="Créer le sujet" />
-      <Label layoutX="91.0" layoutY="455.0" text="Tags" />
-      <TextField fx:id="tags" layoutX="138.0" layoutY="451.0" prefHeight="26.0" prefWidth="392.0" />
-      <Label layoutX="186.0" layoutY="4.0" prefHeight="40.0" prefWidth="186.0" text="Création de sujet">
-         <font>
-            <Font name="Agency FB" size="32.0" />
-         </font></Label>
-      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="192.0" layoutY="494.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="552.0" fitWidth="352.0" layoutX="254.0" opacity="0.78" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Assets/icons8-facebook-48.png" />
+            <Image url="@../Assets/car-with-disabled-person-symbol.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="314.0" layoutY="494.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Assets/icons8-linkedin-48.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="434.0" layoutY="494.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Assets/icons8-gmail-48.png" />
-         </image>
-      </ImageView>
-      <Label layoutX="90.0" layoutY="66.0" text="Titre de sujet" />
+      <AnchorPane layoutX="11.0" layoutY="14.0" prefHeight="497.0" prefWidth="583.0" style="-fx-background-color: #1d3557;">
+         <children>
+            <TextField fx:id="titre_sujet" layoutX="181.0" layoutY="88.0" prefHeight="26.0" prefWidth="212.0" />
+            <Label layoutX="25.0" layoutY="142.0" text="Séléctionner la catégorie" textFill="WHITE" />
+            <ChoiceBox fx:id="id_categorie" layoutX="204.0" layoutY="138.0" prefWidth="150.0" />
+            <Label layoutX="60.0" layoutY="193.0" text="Description" textFill="WHITE" />
+            <TextField fx:id="contenu_sujet" layoutX="175.0" layoutY="187.0" prefHeight="78.0" prefWidth="392.0" />
+            <Label layoutX="80.0" layoutY="294.0" text="État" textFill="WHITE" />
+            <RadioButton fx:id="ouvert" layoutX="183.0" layoutY="294.0" mnemonicParsing="false" onAction="#getRbEtat" text="Ouvert" textFill="WHITE" />
+            <RadioButton fx:id="ferme" layoutX="287.0" layoutY="294.0" mnemonicParsing="false" onAction="#getRbEtat" text="Fermé" textFill="WHITE" />
+            <Label layoutX="68.0" layoutY="417.0" text="Partager" textFill="WHITE" />
+            <RadioButton fx:id="bloque" layoutX="399.0" layoutY="294.0" mnemonicParsing="false" onAction="#getRbEtat" text="Bloqué" textFill="WHITE" />
+            <Label layoutX="78.0" layoutY="352.0" text="Tags" textFill="WHITE" />
+            <TextField fx:id="tags" layoutX="166.0" layoutY="352.0" prefHeight="26.0" prefWidth="392.0" />
+            <Label layoutX="213.0" layoutY="14.0" prefHeight="40.0" prefWidth="186.0" text="Création de sujet" textFill="WHITE">
+               <font>
+                  <Font name="Agency FB" size="32.0" />
+               </font>
+            </Label>
+            <Label layoutX="56.0" layoutY="93.0" text="Titre de sujet" textFill="WHITE" />
+            <Button fx:id="submitBtn" layoutX="402.0" layoutY="458.0" mnemonicParsing="false" onAction="#submitsujet" style="-fx-background-color: #ABB9E1;" text="Créer le sujet" />
+            <Button fx:id="cancelBtn" layoutX="325.0" layoutY="458.0" mnemonicParsing="false" onAction="#cancelsujet" style="-fx-background-color: #ABB9E1;" text="Annuler" />
+            <Button fx:id="linkedInBtn" layoutX="162.0" layoutY="409.0" mnemonicParsing="false" onAction="#linkedIn" prefHeight="18.0" prefWidth="26.0">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Assets/icons8-linkedin-48.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="FacebookBtn" layoutX="266.0" layoutY="409.0" mnemonicParsing="false" onAction="#Facebook" prefHeight="18.0" prefWidth="26.0">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Assets/icons8-facebook-48.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="GmailBtn" layoutX="368.0" layoutY="409.0" mnemonicParsing="false" onAction="#Gmail" prefHeight="18.0" prefWidth="26.0">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Assets/icons8-gmail-48.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </AnchorPane>
+      <Button fx:id="returnlistSujetsBtn" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onMouseClicked="#returnlistsujets">
+         <graphic>
+            <ImageView fitHeight="18.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Assets/icons8-gauche-50.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>

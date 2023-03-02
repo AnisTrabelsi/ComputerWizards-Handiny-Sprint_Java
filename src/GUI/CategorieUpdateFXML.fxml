@@ -4,17 +4,62 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CategorieUpdateFXMLController">
     <stylesheets>
         <URL value="@categorieupdatefxml.css" />
     </stylesheets>
    <children>
-      <Label layoutX="253.0" layoutY="39.0" text="Modif d'une catégorie" />
-      <Label layoutX="27.0" layoutY="135.0" prefHeight="18.0" prefWidth="220.0" text="Nouveau titre de catégorie" />
-      <TextField fx:id="nom_categorie" layoutX="265.0" layoutY="131.0" prefHeight="26.0" prefWidth="246.0" />
-      <Button fx:id="ModifCategorieBtn" layoutX="310.0" layoutY="222.0" mnemonicParsing="false" onAction="#ModifCategorie" text="Modifier catégorie" textAlignment="CENTER" textFill="#303631" />
-      <Button fx:id="AnnulerBtn" layoutX="454.0" layoutY="222.0" mnemonicParsing="false" onAction="#Annuler" text="Annuler" />
+      <ImageView fitHeight="400.0" fitWidth="600.0" layoutX="10.0" layoutY="9.0" opacity="0.51" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Assets/20945188.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="returnlistcategoriesBtn" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onMouseClicked="#returnlistcategories">
+         <graphic>
+            <ImageView fitHeight="18.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Assets/icons8-gauche-50.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <AnchorPane layoutX="95.0" layoutY="91.0" opacity="0.93" prefHeight="237.0" prefWidth="444.0" style="-fx-background-color: #1d3557;">
+         <children>
+            <TextField fx:id="nom_categorie" layoutX="173.0" layoutY="91.0" prefHeight="26.0" prefWidth="246.0" />
+            <Button fx:id="ModifCategorieBtn" layoutX="198.0" layoutY="171.0" mnemonicParsing="false" onAction="#ModifCategorie" style="-fx-background-color: #ABB9E1;" text="Update" textAlignment="CENTER" textFill="#303631">
+               <graphic>
+                  <ImageView fitHeight="16.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Assets/icons8-check-mark-button-48.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="AnnulerBtn" layoutX="326.0" layoutY="171.0" mnemonicParsing="false" onAction="#Annuler" style="-fx-background-color: #ABB9E1;" text="Cancel">
+               <graphic>
+                  <ImageView fitHeight="16.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Assets/icons8-effacer-48%20(1).png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="106.0" layoutY="14.0" prefHeight="40.0" prefWidth="232.0" text="Update a category" textFill="WHITE">
+               <font>
+                  <Font name="Agency FB" size="32.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="7.0" layoutY="92.0" prefHeight="26.0" prefWidth="172.0" text="Name of category" textFill="WHITE">
+               <font>
+                  <Font name="Century Gothic" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

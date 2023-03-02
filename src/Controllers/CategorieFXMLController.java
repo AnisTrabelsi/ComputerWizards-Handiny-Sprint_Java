@@ -23,6 +23,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -38,6 +41,9 @@ public class CategorieFXMLController implements Initializable {
     private TextField nom_categorie;
     @FXML
     private Button AnnulerBtn;
+    private ImageView returnlistcategoriesbtn;
+    @FXML
+    private Button returnlistcategoriesBtn;
 
     /**
      * Initializes the controller class.
@@ -50,6 +56,11 @@ public class CategorieFXMLController implements Initializable {
     @FXML
     private void CreationCategorie(ActionEvent event) {
         CreationCategorieBtn.setOnAction((ActionEvent e) -> {
+             if (nom_categorie.getText().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Le champ est vide !");
+            alert.showAndWait();
+        } else {
             try {
                 Categorie cat = new Categorie(nom_categorie.getText());
                 ServiceCategorie pdao = new ServiceCategorie();
@@ -67,7 +78,7 @@ public class CategorieFXMLController implements Initializable {
             } catch (SQLException ex) {
                 System.out.println(ex);
             }
-        }
+        }}
         );
 
     }
@@ -77,6 +88,23 @@ public class CategorieFXMLController implements Initializable {
         nom_categorie.setText("");
         Stage stage = (Stage) AnnulerBtn.getScene().getWindow();
         stage.close();
+    }
+
+    @FXML
+    private void returnlistcategories(MouseEvent event) {
+        returnlistcategoriesBtn.setOnAction((ActionEvent e) -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/CategorieListGridPaneFXML.fxml"));
+                Parent root = loader.load();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.setTitle("");
+                stage.initModality(Modality.APPLICATION_MODAL); 
+                stage.showAndWait();
+            } catch (IOException ex) {
+                Logger.getLogger(CategorieFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
     }
 
 }

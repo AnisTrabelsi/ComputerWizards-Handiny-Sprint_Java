@@ -6,7 +6,6 @@ package Services;
 
 import Entite.Categorie;
 import Entite.Sujet;
-import Entite.Utilisateur;
 import Utils.DataSource;
 import java.sql.SQLException;
 import java.util.List;
@@ -114,6 +113,8 @@ public class ServiceSujet implements IService<Sujet> {
 //                categorie.setNom_categorie(res.getString("nom_categorie"));
 //                categorie.setDate_creation_categorie(res.getDate("date_creation_categorie"));
 //                categorie.setNb_sujets(res.getInt("nb_sujets"));
+            ServiceCategorie ser = new ServiceCategorie();
+            
             Sujet sujet = new Sujet();
             sujet.setId_sujet(res.getInt("id_sujet"));
             sujet.setTitre_sujet(res.getString("titre_sujet"));
@@ -122,6 +123,8 @@ public class ServiceSujet implements IService<Sujet> {
             sujet.setNb_commentaires(res.getInt("nb_commentaires"));
             sujet.setEtat(res.getString("etat"));
             sujet.setTags(res.getString("tags"));
+            Categorie c = ser.findById(res.getInt("id_categorie"));
+            sujet.setCat(c);
             listsuj.add(sujet);
         }
         return listsuj;

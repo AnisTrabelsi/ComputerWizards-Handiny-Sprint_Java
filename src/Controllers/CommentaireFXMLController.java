@@ -8,15 +8,11 @@ package Controllers;
 import Entite.Commentaire;
 import Entite.Sujet;
 import Services.ServiceCommentaire;
-import Services.ServiceSujet;
-import java.awt.Desktop;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
@@ -25,7 +21,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -33,6 +28,18 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import java.awt.SystemTray;
+import java.awt.Toolkit;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Random;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 
 /**
  * FXML Controller class
@@ -56,36 +63,85 @@ public class CommentaireFXMLController implements Initializable {
     private ArrayList<File> attachments = new ArrayList<>();
     @FXML
     private ImageView imageview;
-    @FXML
-    private TextField id_sujet;
-
+    private Sujet sujet;
     /**
      * Initializes the controller class.
      */
+        @FXML
+    private void gettext(MouseEvent event) throws FileNotFoundException, IOException {
+//        FileChooser fileChooser = new FileChooser();
+//        fileChooser.setTitle("Attach File");
+//        File selectedFile = fileChooser.showOpenDialog(new Stage());
+//        if (selectedFile != null) {
+//            attachments.add(selectedFile);
+//            messageTextArea.setText(selectedFile.getName() + "\n");
+//            Image image;
+//            image = new Image(selectedFile.toURI().toString());
+//            imageview.setImage(image);
+//        }
+        Random rand = new Random();
+        int x = rand.nextInt(1000);
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Upload File Path");
+        fileChooser.getExtensionFilters().addAll(new ExtensionFilter[]{new ExtensionFilter("Image Files", new String[]{"*.png", "*.jpg", "*.jpeg", "*.gif", "*.bmp"}), new ExtensionFilter("JPG", new String[]{"*.jpg"}), new ExtensionFilter("JPEG", new String[]{"*.jpeg"}), new ExtensionFilter("BMP", new String[]{"*.bmp"}), new ExtensionFilter("PNG", new String[]{"*.png"}), new ExtensionFilter("GIF", new String[]{"*.gif"})});
+
+        File file = fileChooser.showOpenDialog(null);
+      String DBPath = "C:\\Users\\bengh\\OneDrive\\Documents\\NetBeansProjects\\Handiny\\src\\Assets\\" + x + ".jpg";
+
+        //String DBPath = "" + x + ".jpg";
+
+        if (file != null) {
+            FileInputStream Fsource = new FileInputStream(file.getAbsolutePath());
+            FileOutputStream Fdestination = new FileOutputStream(DBPath);
+            BufferedInputStream bin = new BufferedInputStream(Fsource);
+            BufferedOutputStream bou = new BufferedOutputStream(Fdestination);
+            System.out.println(file.getAbsoluteFile());
+            String path = file.getAbsolutePath();
+            messageTextArea.setText(path);
+            Image img = new Image(file.toURI().toString());
+            imageview.setImage(img);
+            int b = 0;
+            while (b != -1) {
+                b = bin.read();
+                bou.write(b);
+            }
+            bin.close();
+            bou.close();
+
+        } else {
+            System.out.println("error");
+
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         fileChooser.getExtensionFilters().addAll(new ExtensionFilter[]{new ExtensionFilter("Image Files", new String[]{"*.png", "*.jpg", "*.jpeg", "*.gif", "*.bmp"}), new ExtensionFilter("JPG", new String[]{"*.jpg"}), new ExtensionFilter("JPEG", new String[]{"*.jpeg"}), new ExtensionFilter("BMP", new String[]{"*.bmp"}), new ExtensionFilter("PNG", new String[]{"*.png"}), new ExtensionFilter("GIF", new String[]{"*.gif"})});
     }
 
+    public void showNotification() {
+        TrayNotification tray = new TrayNotification();
+        tray.setTitle("Nouveau commentaire");
+        tray.setMessage("Vous avez reçu un nouveau commentaire du sujet "+sujet.getTitre_sujet());
+        tray.setNotificationType(NotificationType.INFORMATION);
+        tray.showAndDismiss(Duration.seconds(5)); // affiche la notification pendant 5 secondes
+    }
+
     @FXML
     private void EnvoyerCommentaire(ActionEvent event) {
-        ServiceCommentaire serc=new ServiceCommentaire();
-        ServiceSujet sers=new ServiceSujet();
-        EnvoieCommentBtn.setOnAction((ActionEvent e) -> {
-            try {
-                
-                Sujet suj = sers.findById(Integer.parseInt(id_sujet.getText()));
-                Commentaire comment = new Commentaire(commentaire.getText(), messageTextArea.getText(), suj);
-                serc.ajouter(comment);
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Information Dialog");
-                alert.setHeaderText(null);
-                alert.setContentText("Commentaire inséré avec succés!");
-                alert.show();
-            } catch (SQLException ex) {
-                System.out.println(ex);
-            }
-        });
+        try {
+            ServiceCommentaire serc = new ServiceCommentaire();
+            Commentaire comment = new Commentaire(commentaire.getText(), messageTextArea.getText(), sujet);
+            serc.ajouter(comment);
+            showNotification();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("Commentaire inséré avec succés!");
+            alert.show();
+        } catch (SQLException ex) {
+            Logger.getLogger(CommentaireFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
@@ -94,18 +150,8 @@ public class CommentaireFXMLController implements Initializable {
         messageTextArea.setText("");
     }
 
-    @FXML
-    private void gettext(MouseEvent event) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Attach File");
-        File selectedFile = fileChooser.showOpenDialog(new Stage());
-        if (selectedFile != null) {
-            attachments.add(selectedFile);
-            messageTextArea.setText(selectedFile.getName() + "\n");
-            Image image;
-            image = new Image(selectedFile.toURI().toString());
-            imageview.setImage(image);
-        }
-    }
 
+    public void setSujet(Sujet sujet) {
+        this.sujet = sujet;
+    }
 }

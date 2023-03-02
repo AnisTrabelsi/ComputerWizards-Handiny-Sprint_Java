@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ForumRulesFXMLController">
+   <children>
+      <Pane layoutX="43.0" layoutY="40.0" prefHeight="319.0" prefWidth="513.0" style="-fx-background-color: #ffe8d6;">
+         <children>
+            <Label layoutX="31.0" layoutY="32.0" prefHeight="29.0" prefWidth="451.0" style="-fx-font-family: Century Gothic;" text="Welcome New Users! Please read this before posting!">
+               <font>
+                  <Font name="Century Gothic Bold" size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="gotofileBtn" layoutX="195.0" layoutY="187.0" mnemonicParsing="false" onAction="#gotofile" text="Read this">
+               <font>
+                  <Font name="Century Gothic" size="15.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Assets/icons8-dupliquer-sur-une-nouvelle-page-48.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <CheckBox fx:id="acceptrulesCheckbox" layoutX="31.0" layoutY="258.0" mnemonicParsing="false" text="I read and I accept rules">
+               <font>
+                  <Font name="Century Gothic Bold" size="13.0" />
+               </font>
+            </CheckBox>
+            <Label layoutX="31.0" layoutY="88.0" prefHeight="29.0" prefWidth="412.0" style="-fx-font-family: Century Gothic;" text="Congratulations, you have found the Community! ">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="30.0" layoutY="124.0" prefHeight="29.0" prefWidth="482.0" style="-fx-font-family: Century Gothic;" text=" Before you make a new topic or post, please read community guidelines.">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="19.0" fitWidth="21.0" layoutX="357.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Assets/icons8-poignée-de-main-30.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="confirmBtn" layoutX="303.0" layoutY="276.0" mnemonicParsing="false" onAction="#confirmer" text="Confirm">
+               <graphic>
+                  <ImageView fitHeight="19.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Assets/icons8-check-mark-button-48.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="cancelBtn" layoutX="403.0" layoutY="276.0" mnemonicParsing="false" onAction="#cancel" text="Cancel">
+               <graphic>
+                  <ImageView fitHeight="19.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Assets/icons8-effacer-48.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

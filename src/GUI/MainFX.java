@@ -24,7 +24,7 @@ public class MainFX extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/GUI/CommentaireListFXML.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/GUI/ForumSideBarFXML.fxml"));
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
             primaryStage.show();
