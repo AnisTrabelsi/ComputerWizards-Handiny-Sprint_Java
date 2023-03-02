@@ -17,42 +17,84 @@ public class Reservation_voiture {
  private Voiture voit; 
  private Date date_debut_reservation;
  private Date  date_fin_reservation;
+ private String etat_demande_reservation;
+ private String description_reservation;
+ private Date date_demande_reservation;
 
-    public Reservation_voiture(int id_reservation_voiture, int id_utilisateur, int id_voiture,Date date_debut_reservation, Date date_fin_reservation) {
+    public Reservation_voiture(int id_reservation_voiture, Utilisateur user, Voiture voit, Date date_debut_reservation, Date date_fin_reservation, String etat_demande_reservation, String description_reservation) {
         this.id_reservation_voiture = id_reservation_voiture;
-        this.date_debut_reservation=date_debut_reservation;
-        this.date_fin_reservation=date_fin_reservation;
-    }
-    public Reservation_voiture(Date date_debut_reservation, Date date_fin_reservation) {
+        this.user = user;
+        this.voit = voit;
+        this.date_debut_reservation = date_debut_reservation;
+        this.date_fin_reservation = date_fin_reservation;
+        this.etat_demande_reservation = etat_demande_reservation;
+        this.description_reservation = description_reservation;
        
-        this.date_debut_reservation=date_debut_reservation;
-        this.date_fin_reservation=date_fin_reservation;
     }
-    public Reservation_voiture(int id_reservation_voiture,Date date_debut_reservation, Date date_fin_reservation) {
+
+    public Reservation_voiture(Utilisateur user, Voiture voit, Date date_debut_reservation, Date date_fin_reservation, String description_reservation) {
+        this.user = user;
+        this.voit = voit;
+        this.date_debut_reservation = date_debut_reservation;
+        this.date_fin_reservation = date_fin_reservation;
+       //this.etat_demande_reservation = etat_demande_reservation;
+        this.description_reservation = description_reservation;
+      
+    }
+    
+
+    public Reservation_voiture(int id_reservation_voiture, Date date_debut_reservation, Date date_fin_reservation, String etat_demande_reservation, String description_reservation, Date date_demande_reservation) {
         this.id_reservation_voiture = id_reservation_voiture;
-        this.date_debut_reservation=date_debut_reservation;
-        this.date_fin_reservation=date_fin_reservation;
+        this.date_debut_reservation = date_debut_reservation;
+        this.date_fin_reservation = date_fin_reservation;
+        this.etat_demande_reservation = etat_demande_reservation;
+        this.description_reservation = description_reservation;
+        this.date_demande_reservation = date_demande_reservation;
     }
     
-   
-    
-    
+    public Reservation_voiture(int id_reservation_voiture, Date date_debut_reservation, Date date_fin_reservation,String description_reservation) {
+        this.id_reservation_voiture = id_reservation_voiture;
+        this.date_debut_reservation = date_debut_reservation;
+        this.date_fin_reservation = date_fin_reservation;
+        
+        this.description_reservation = description_reservation;
+     
+    }
+
+    public Reservation_voiture(Date date_debut_reservation, Date date_fin_reservation, String etat_demande_reservation, String description_reservation, Date date_demande_reservation) {
+        this.date_debut_reservation = date_debut_reservation;
+        this.date_fin_reservation = date_fin_reservation;
+        this.etat_demande_reservation = etat_demande_reservation;
+        this.description_reservation = description_reservation;
+        this.date_demande_reservation = date_demande_reservation;
+    }
+     
     
 
     public int getId_reservation_voiture() {
         return id_reservation_voiture;
     }
 
-    public void setId_reservation_voiture(int id_reservation_voiture) {
-        this.id_reservation_voiture = id_reservation_voiture;
-    }
-
     @Override
     public String toString() {
-        return date_debut_reservation +"\t \t \t \t"+date_fin_reservation ;
+        return date_debut_reservation + "\t \t \t \t" + date_fin_reservation + "\t  \t \t \t" + etat_demande_reservation + "\t \t \t \t" + description_reservation + " \t \t \t \t" + date_demande_reservation ;
     }
 
-    
+    public Utilisateur getUser() {
+        return user;
+    }
+
+    public void setUser(Utilisateur user) {
+        this.user = user;
+    }
+
+    public Voiture getVoit() {
+        return voit;
+    }
+
+    public void setVoit(Voiture voit) {
+        this.voit = voit;
+    }
 
     public Date getDate_debut_reservation() {
         return date_debut_reservation;
@@ -70,14 +112,31 @@ public class Reservation_voiture {
         this.date_fin_reservation = date_fin_reservation;
     }
 
-   
+    public String getEtat_demande_reservation() {
+        return etat_demande_reservation;
+    }
 
-   
+    public void setEtat_demande_reservation(String etat_demande_reservation) {
+        this.etat_demande_reservation = etat_demande_reservation;
+    }
 
+    public String getDescription_reservation() {
+        return description_reservation;
+    }
+
+    public void setDescription_reservation(String description_reservation) {
+        this.description_reservation = description_reservation;
+    }
+
+    public Date getDate_demande_reservation() {
+        return date_demande_reservation;
+    }
+
+    public void setDate_demande_reservation(Date date_demande_reservation) {
+        this.date_demande_reservation = date_demande_reservation;
+    }
     
 
-   
-
- 
+    
          
 }

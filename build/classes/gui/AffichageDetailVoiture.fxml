@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="726.0" prefWidth="838.0" style="-fx-background-color: #f2f2f2fa;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AffichageDetailVoitureController">
+    <stylesheets>
+        <URL value="@affichagedetailvoiture.css" />
+    </stylesheets>
+   <VBox fx:id="reserverBTN" alignment="CENTER" layoutX="63.0" layoutY="75.0" prefHeight="300.0" prefWidth="748.0" spacing="20" style="-fx-padding: 20px; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 10px;">
+    <Label prefHeight="88.0" prefWidth="290.0" style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Détails de la voiture" textFill="#44ae64">
+         <font>
+            <Font name="System Bold Italic" size="48.0" />
+         </font></Label>
+      <ImageView fx:id="imageV" fitHeight="210.0" fitWidth="498.0" pickOnBounds="true" preserveRatio="true" />
+      <Pane prefHeight="4.0" prefWidth="769.0" style="-fx-background-color: #000000;" />
+    <HBox prefHeight="236.0" prefWidth="618.0" spacing="40">
+        <VBox>
+            <Label style="-fx-font-size: 32px;" text="Marque:" />
+            <Label style="-fx-font-size: 32px;" text="Modèle:" />
+            <Label style="-fx-font-size: 32px;" text="Boite de vitesse:" />
+            <Label style="-fx-font-size: 32px;" text="Carburant:" />
+            <Label style="-fx-font-size: 32px;" text="Date de valisation technique:" />
+        </VBox>
+        <VBox>
+            <Label fx:id="marqueLabel" style="-fx-font-size: 32px;" />
+            <Label fx:id="modeleLabel" style="-fx-font-size: 32px;" />
+            <Label fx:id="anneeLabel" style="-fx-font-size: 32px;" />
+            <Label fx:id="couleurLabel" style="-fx-font-size: 32px;" />
+            <Label fx:id="prixLabel" style="-fx-font-size: 32px;" />
+        </VBox>
+    </HBox>
+      <Button fx:id="reserverboutton" mnemonicParsing="false" prefHeight="31.0" prefWidth="207.0" style="-fx-background-color: #44ae64;" text="réserver" />
+</VBox>
+
+</AnchorPane>

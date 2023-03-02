@@ -4,8 +4,8 @@
  */
 package Entite;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  *
@@ -13,23 +13,21 @@ import java.util.Date;
  */
 
 public class Utilisateur {
-        private int id_utilisateur;
-        private String nom ;
-        private String prenom ;
-        private String cin ;
-        private String email ;
-        private String telephone ;
-        private String login ;
-        private String mot_de_passe ;
-        Date date= new Date();
-        SimpleDateFormat formatter= new SimpleDateFormat("yyyy/mm/dd");
-        String date_de_naissance= formatter.format(date);
-        private String pays ;
-        private String adresse ;
-        private int code_postal ;
-        private String role ;
-    public Utilisateur(){}
-    public Utilisateur(int id_utilisateur, String nom, String prenom, String cin, String email, String telephone, String login, String mot_de_passe, String date_de_naissance, String pays, String adresse, int code_postal, String role) {
+    private int id_utilisateur;
+    private String nom;
+    private String 	prenom;
+    private String 	cin;
+    private String email;
+    private String 	telephone;
+    private String login;
+    private String  mot_de_passe;
+    private Date date_de_naissance;
+    private String pays;
+    private int code_postal;
+    private String role;
+    private String adresse;
+
+    public Utilisateur(int id_utilisateur, String nom, String prenom, String cin, String email, String telephone, String login, String mot_de_passe, Date date_de_naissance, String pays, int code_postal, String role, String adresse) {
         this.id_utilisateur = id_utilisateur;
         this.nom = nom;
         this.prenom = prenom;
@@ -40,24 +38,9 @@ public class Utilisateur {
         this.mot_de_passe = mot_de_passe;
         this.date_de_naissance = date_de_naissance;
         this.pays = pays;
-        this.adresse = adresse;
         this.code_postal = code_postal;
         this.role = role;
-    }
-
-    public Utilisateur(String nom, String prenom, String cin, String email, String telephone, String login, String mot_de_passe, String date_de_naissance, String pays, String adresse, int code_postal, String role) {
-        this.nom = nom;
-        this.prenom = prenom;
-        this.cin = cin;
-        this.email = email;
-        this.telephone = telephone;
-        this.login = login;
-        this.mot_de_passe = mot_de_passe;
-        this.date_de_naissance = date_de_naissance;
-        this.pays = pays;
         this.adresse = adresse;
-        this.code_postal = code_postal;
-        this.role = role;
     }
 
     public int getId_utilisateur() {
@@ -124,11 +107,11 @@ public class Utilisateur {
         this.mot_de_passe = mot_de_passe;
     }
 
-    public String getDate_de_naissance() {
+    public Date getDate_de_naissance() {
         return date_de_naissance;
     }
 
-    public void setDate_de_naissance(String date_de_naissance) {
+    public void setDate_de_naissance(Date date_de_naissance) {
         this.date_de_naissance = date_de_naissance;
     }
 
@@ -138,14 +121,6 @@ public class Utilisateur {
 
     public void setPays(String pays) {
         this.pays = pays;
-    }
-
-    public String getAdresse() {
-        return adresse;
-    }
-
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
     }
 
     public int getCode_postal() {
@@ -164,11 +139,47 @@ public class Utilisateur {
         this.role = role;
     }
 
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
     @Override
     public String toString() {
-        return "Utilisateur{" + "id_utilisateur=" + id_utilisateur + ", nom=" + nom + ", prenom=" + prenom + ", cin=" + cin + ", email=" + email + ", telephone=" + telephone + ", login=" + login + ", mot_de_passe=" + mot_de_passe + ", date_de_naissance=" + date_de_naissance + ", pays=" + pays + ", adresse=" + adresse + ", code_postal=" + code_postal + ", role=" + role + '}';
+        return "utilisateur{" + "nom=" + nom + ", prenom=" + prenom + ", cin=" + cin + ", email=" + email + ", telephone=" + telephone + ", login=" + login + ", mot_de_passe=" + mot_de_passe + ", date_de_naissance=" + date_de_naissance + ", pays=" + pays + ", code_postal=" + code_postal + ", role=" + role + ", adresse=" + adresse + '}';
     }
-        
-     
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.cin);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Utilisateur other = (Utilisateur) obj;
+        if (!Objects.equals(this.cin, other.cin)) {
+            return false;
+        }
+        return true;
+    }
+         
+
+
+  
+    
+    
 }

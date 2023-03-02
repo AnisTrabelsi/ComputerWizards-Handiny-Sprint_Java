@@ -39,15 +39,18 @@ Connection con=DataSource.getInstance().getConnection();
     public boolean ajouter(Reservation_voiture t) throws SQLException {
       boolean verif=true;
       
-      try { String req = "INSERT INTO `reservation_voiture` (`id_utilisateur`,`id_voiture`,`date_debut_reservation`,`date_fin_reservation`prix_location) VALUES ( 1,30,?,?);";
+      try { String req = "INSERT INTO `reservation_voiture`(`date_debut_reservation`, `date_fin_reservation`, `id_utilisateur`, `id_voiture`,`description_reservation`, `etat_demande_reservation`, `date_demande_reservation`) VALUES (?,?,?,?,?,'en attente',CURDATE());";
         
         PreparedStatement pre=con.prepareStatement(req);
         
      
     
-     pre.setDate(10,new java.sql.Date(t.getDate_debut_reservation().getTime()));
-     pre.setDate(10,new java.sql.Date(t.getDate_fin_reservation().getTime()));
-        
+     pre.setDate(1,new java.sql.Date(t.getDate_debut_reservation().getTime()));
+     pre.setDate(2,new java.sql.Date(t.getDate_fin_reservation().getTime()));
+     pre.setInt(3,t.getUser().getId_utilisateur());
+     pre.setInt(4,t.getVoit().getId_voiture());
+     pre.setString(5,t.getDescription_reservation());
+     
      
         
      
@@ -73,11 +76,13 @@ Connection con=DataSource.getInstance().getConnection();
         
         try {
             
-          String req = "UPDATE reservation_voiture SET date_debut_reservation=?, date_fin_reservation=? WHERE id_reservation_voiture=?";
+          String req = "UPDATE reservation_voiture SET `date_debut_reservation`=?, `date_fin_reservation`=?, `description_reservation`=? WHERE id_reservation_voiture=? ";
           PreparedStatement pre = con.prepareStatement(req);
         
-        pre.setDate(10,new java.sql.Date(t.getDate_debut_reservation().getTime()));
-        pre.setDate(10,new java.sql.Date(t.getDate_fin_reservation().getTime()));
+        pre.setDate(1,new java.sql.Date(t.getDate_debut_reservation().getTime()));
+        pre.setDate(2,new java.sql.Date(t.getDate_fin_reservation().getTime()));
+          pre.setString(3,t.getDescription_reservation());
+          pre.setInt(4,t.getId_reservation_voiture());
         
 
         int rowsUpdated = pre.executeUpdate();
@@ -123,8 +128,9 @@ Connection con=DataSource.getInstance().getConnection();
             
             ResultSet rs = ste.executeQuery(req);
             while (rs.next()) {
-               Reservation_voiture p = new Reservation_voiture(rs.getInt("id_reservation_voiture"),rs.getDate("date_debut_reservation"), rs.getDate("date_fin_reservation"));
-                list.add(p);
+               Reservation_voiture p = new Reservation_voiture(rs.getInt("id_reservation_voiture"),rs.getDate("date_debut_reservation"), rs.getDate("date_fin_reservation"),rs.getString("description_reservation"),rs.getString("etat_demande_reservation"),rs.getDate("date_demande_reservation"));
+               
+               list.add(p);
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -141,8 +147,7 @@ Connection con=DataSource.getInstance().getConnection();
             
             ResultSet rs = ste.executeQuery(req);
             while (rs.next()) {
-                 //v = new Reservation_voiture(rs.getInt("id_reservation_voiture")rs.getDate("date_debut_reservation"), rs.getDate("date_fin_reservation"));
-               v = new Reservation_voiture(rs.getInt("id_reservation_voiture"),rs.getDate("date_debut_reservation"), rs.getDate("date_fin_reservation"));
+                       v = new Reservation_voiture(rs.getInt("id_reservation_voiture"),rs.getDate("date_debut_reservation"), rs.getDate("date_fin_reservation"),rs.getString("description_reservation"),rs.getString("etat_demande_reservation"),rs.getDate("date_demande_reservation"));
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());

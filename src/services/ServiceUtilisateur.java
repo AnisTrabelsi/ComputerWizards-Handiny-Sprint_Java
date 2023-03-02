@@ -33,17 +33,25 @@ public class ServiceUtilisateur implements IService <Utilisateur>{
     @Override
     
     
-  public void ajouter(Utilisateur u) throws SQLException {
+  public boolean ajouter(Utilisateur u) throws SQLException {
         
-     
-String req = "INSERT INTO `utilisateur`(`id_utilisateur`, `nom`, `prenom`, `cin`, `email`, `telephone`, `login`, `mot_de_passe`, `date_de_naissance`, `pays`, `adresse`,`code_postal`, `role`)"
+     boolean verif = false;    
+      try { String req = "INSERT INTO `utilisateur`(`id_utilisateur`, `nom`, `prenom`, `cin`, `email`, `telephone`, `login`, `mot_de_passe`, `date_de_naissance`, `pays`, `adresse`,`code_postal`, `role`)"
         +"VALUES ( '"+u.getId_utilisateur()+"','"+u.getNom()+"', '"+u.getPrenom()+"', '"+u.getCin()+"', '"+u.getEmail()+"', '"+u.getTelephone()+"', '"+u.getLogin()+"', '"+u.getMot_de_passe()+"', '"+u.getDate_de_naissance()+"', '"+u.getPays()+"', '"+u.getAdresse()+"', '"+u.getCode_postal()+"', '"+u.getRole()+"');";
       
-        ste.executeUpdate(req);
-   
+       int rowsUpdated = ste.executeUpdate(req);
+        if (rowsUpdated > 0) {
+            verif=true;
+        }
+            
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            verif=false;
+        }
+        return verif;   
     }  
     @Override
-    public void update(Utilisateur t) throws SQLException {
+    public boolean update(Utilisateur t) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

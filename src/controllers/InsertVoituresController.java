@@ -4,6 +4,7 @@
  */
 package controllers;
 
+import Entite.Utilisateur;
 import Entite.Voiture;
 import java.awt.Desktop;
 import java.awt.Image;
@@ -14,6 +15,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import static java.time.temporal.TemporalQueries.localDate;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,6 +37,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
+import services.ServiceUtilisateur;
 import services.ServiceVoiture;
 
 /**
@@ -74,6 +77,7 @@ public class InsertVoituresController implements Initializable {
     private TextField idV;
     @FXML
     private ImageView imageV;
+    private ObservableList<Voiture> ObList;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -186,8 +190,14 @@ public class InsertVoituresController implements Initializable {
         alert.showAndWait();
         return;
     }
-             
-            Voiture v= new Voiture(immat,marque,modele,idBoiteV.getValue(),kilometrage,carburant,img,desc,prixLocation,java.sql.Date.valueOf(date),5);
+            Utilisateur u=new Utilisateur(5,"Lotfi","chaima","12678","chaima.lotfi@esen.tn","25837256","chaima2703","motdepasse",new Date(27/03/2000),"tunis",2045,"locataire","Aouina");
+            ServiceUtilisateur su= new ServiceUtilisateur();
+        try {
+            su.ajouter(u);
+        } catch (SQLException ex) {
+            Logger.getLogger(InsertVoituresController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            Voiture v= new Voiture(immat,marque,modele,idBoiteV.getValue(),kilometrage,carburant,img,desc,prixLocation,java.sql.Date.valueOf(date),u);
             ServiceVoiture sv=new ServiceVoiture();
             try { 
             if (sv.ajouter(v)){
@@ -196,6 +206,9 @@ public class InsertVoituresController implements Initializable {
                 alert.setHeaderText("");
                 alert.setContentText("Voiture ajoutée avec succés ! ");
                 alert.showAndWait();
+                 ObList.add(v);
+            
+                stage.close();
             }
             else {
                 Alert alert=new Alert(Alert.AlertType.INFORMATION);
@@ -203,10 +216,12 @@ public class InsertVoituresController implements Initializable {
                 alert.setHeaderText("Alerte");
                 alert.setContentText("Impossible d'ajouter cette voiture");
                 alert.showAndWait();
+                 
             }
         } catch (SQLException ex) {
             Logger.getLogger(InsertVoituresController.class.getName()).log(Level.SEVERE, null, ex);
         }
+           
         
         
         
@@ -219,7 +234,8 @@ public class InsertVoituresController implements Initializable {
         file = filechooser.showOpenDialog(stage);
         if (file != null) {
             String s = file.getName();
-           img="C:/xampp/htdocs/img/"+s;
+          // img="C:/xampp/htdocs/img/"+s;
+          img="/gui/images/"+s;
            //img=s;
 
             System.out.println(img);
@@ -262,6 +278,10 @@ public class InsertVoituresController implements Initializable {
 
     @FXML
     private void findID(ActionEvent event) {
+    }
+
+    void setObList(ObservableList ObList) {
+       this.ObList = ObList;
     }
 
 

@@ -22,7 +22,7 @@ public class Voiture {
     private Utilisateur user;
 public Voiture(String string, String string1, String string2, double aDouble, Date date){} 
     
-  public Voiture(String immatriculation, String marque, String modele, String boite_vitesse, String kilometrage, String carburant, String image_voiture, String description, Double prix_location, Date date_validation_technique, int user) {
+  public Voiture(String immatriculation, String marque, String modele, String boite_vitesse, String kilometrage, String carburant, String image_voiture, String description, Double prix_location, Date date_validation_technique, Utilisateur user) {
        
         this.immatriculation = immatriculation;
         this.marque = marque;
@@ -34,7 +34,7 @@ public Voiture(String string, String string1, String string2, double aDouble, Da
         this.description = description;
         this.prix_location = prix_location;
         this.date_validation_technique=date_validation_technique;
-       // this.user = user;
+        this.user = user;
         
     }
     public Voiture(int id_voiture) {

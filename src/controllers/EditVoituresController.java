@@ -9,9 +9,13 @@ import java.io.File;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -34,7 +38,7 @@ import services.ServiceVoiture;
  * @author Chaima
  */
 public class EditVoituresController implements Initializable {
-
+ private ObservableList<Voiture> ObList;
     @FXML
     private AnchorPane anchlorPaneVoiture;
     @FXML
@@ -58,32 +62,70 @@ public class EditVoituresController implements Initializable {
     @FXML
     private Button idImage;
     @FXML
-    private TextField idV;
-    @FXML
     private ImageView imageV;
-    @FXML
-    private TextField idDatee;
     private FileChooser filechooser;
     private File file;
     private Stage stage;
     String img;
+    int carId;
+    @FXML
+    private TextField urlImg;
 
     /**
      * Initializes the controller class.
      */
+     public void setIDVoiture(int id_voiture) throws SQLException {
+         carId = id_voiture;
+         System.out.println("methode set "+carId);
+           ServiceVoiture sv =new ServiceVoiture();
+            Voiture v= sv.findById2(carId);
+            System.out.println(v);
+            idImmatriculation.setText(v.getImmatriculation());
+            idMarque.setText(v.getMarque());
+            idModele.setText(v.getModele());
+           
+            idBoiteV.setText(v.getBoite_vitesse());
+            idKilometrage.setText(v.getKilometrage());
+            idCarburant.setText(v.getCarburant());
+            idDesc.setText(v.getDescription());
+            Double  prix=v.getPrix_location();
+            idPrixLocation.setText(prix.toString());
+            
+            String path=v.getImage_voiture();
+            urlImg.setText(path);
+            System.out.println(path);
+           // Image img1=new Image(getClass().getResourceAsStream(path));
+            
+          //  imageV.setImage(img1);
+         java.sql.Date sqlDate2 = (java.sql.Date) v.getDate_validation_technique();
+         java.util.Date utilDate2 = new java.util.Date(sqlDate2.getTime());
+         LocalDate localDate2 = utilDate2.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+         idDate.setValue(localDate2);
+    }
+    public int getIDVoiture() {
+        return this.carId;
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        filechooser=new FileChooser();
-        
-        filechooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter[]{new FileChooser.ExtensionFilter("Image Files", new String[]{"*.png", "*.jpg", "*.jpeg", "*.gif", "*.bmp"}), new FileChooser.ExtensionFilter("JPG", new String[]{"*.jpg"}), new FileChooser.ExtensionFilter("JPEG", new String[]{"*.jpeg"}), new FileChooser.ExtensionFilter("BMP", new String[]{"*.bmp"}), new FileChooser.ExtensionFilter("PNG", new String[]{"*.png"}), new FileChooser.ExtensionFilter("GIF", new String[]{"*.gif"})});
+      
+            // TODO
+            filechooser=new FileChooser();
+            
+            filechooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter[]{new FileChooser.ExtensionFilter("Image Files", new String[]{"*.png", "*.jpg", "*.jpeg", "*.gif", "*.bmp"}), new FileChooser.ExtensionFilter("JPG", new String[]{"*.jpg"}), new FileChooser.ExtensionFilter("JPEG", new String[]{"*.jpeg"}), new FileChooser.ExtensionFilter("BMP", new String[]{"*.bmp"}), new FileChooser.ExtensionFilter("PNG", new String[]{"*.png"}), new FileChooser.ExtensionFilter("GIF", new String[]{"*.gif"})});
+            
+           
+          
+      
+            
+       
     }   
 
     @FXML
     private void éditer(ActionEvent event) {
         try {
-            int id=Integer.parseInt(idV.getText());
-            System.out.println(id);
+             
+          
             //System.out.println(v);
             String immat= idImmatriculation.getText();
             System.out.println(immat);
@@ -102,16 +144,8 @@ public class EditVoituresController implements Initializable {
             System.out.println(desc);
             Double prixLocation=Double.parseDouble(idPrixLocation.getText());
             // Vérification des saisies
-        if (immat.isEmpty() || marque.isEmpty() || modele.isEmpty()
-                || boite.isEmpty() || kilometrage.trim().isEmpty()
-                || carburant.isEmpty() || desc.isEmpty()
-                || idPrixLocation.getText().isEmpty() || date == null || img.isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erreur de saisie");
-            alert.setContentText("Tous les champs sont obligatoires.");
-            alert.showAndWait();
-            return;
-        }
+        
+        
 
         if (!immat.matches("^[a-zA-Z0-9]+$") || !marque.matches("^[a-zA-Z]+$")
                 || !modele.matches("^[a-zA-Z0-9]+$") || !boite.matches("^[a-zA-Z]+$")
@@ -140,8 +174,8 @@ public class EditVoituresController implements Initializable {
             return;
         }
 
-            Voiture v= new Voiture(id,immat,marque,modele,boite,kilometrage,carburant,img,desc,prixLocation,java.sql.Date.valueOf(date));
-            //System.out.println(v);
+            Voiture v= new Voiture(getIDVoiture(),immat,marque,modele,boite,kilometrage,carburant,img,desc,prixLocation,java.sql.Date.valueOf(date));
+            System.out.println(v);
             ServiceVoiture sv=new ServiceVoiture();
             
            
@@ -151,6 +185,10 @@ public class EditVoituresController implements Initializable {
                 alert.setHeaderText("");
                 alert.setContentText("Voiture modifiéé avec succés ! ");
                 alert.showAndWait();
+                 List<Voiture> voitures= sv.readAll();
+                ObList.clear();
+            
+                ObList.addAll(voitures);
             }
             else {
                 Alert alert=new Alert(Alert.AlertType.INFORMATION);
@@ -164,51 +202,27 @@ public class EditVoituresController implements Initializable {
         }
     }
 
-    @FXML
-    private void vider(ActionEvent event) {
-    }
+   
 
     @FXML
     private void loadImage(ActionEvent event) {
          file = filechooser.showOpenDialog(stage);
         if (file != null) {
             String s = file.getName();
-           img="C:/xampp/htdocs/img/"+s;
+           img="/gui/images/"+s;
            //img=s;
 
-            System.out.println(img);
+//            System.out.println(img);
             
         }
     }
 
-    @FXML
-    private void findID(ActionEvent event) {
-        try {
-            int id=Integer.parseInt(idV.getText());
-            ServiceVoiture sv =new ServiceVoiture();
-            Voiture v= sv.findById(id);
-            //System.out.println(v);
-            idImmatriculation.setText(v.getImmatriculation());
-            idMarque.setText(v.getMarque());
-            idModele.setText(v.getModele());
-            idDatee.setText((v.getDate_validation_technique()).toString());
-            idBoiteV.setText(v.getBoite_vitesse());
-            idKilometrage.setText(v.getKilometrage());
-            idCarburant.setText(v.getCarburant());
-            idDesc.setText(v.getDescription());
-            Double  prix=v.getPrix_location();
-            idPrixLocation.setText(prix.toString());
-            
-            String path=v.getImage_voiture();
-            System.out.println(path);
-            Image img=new Image((path));
-            
-            imageV.setImage(img);
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(EditVoituresController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+  
+     
+    void setObList(ObservableList ObList) {
+       this.ObList = ObList;
     }
+
+   
     
 }

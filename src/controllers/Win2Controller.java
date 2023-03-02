@@ -3,8 +3,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
 package controllers;
-
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import Entite.Voiture;
+import controllers.EditVoituresController;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
@@ -22,11 +32,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
+
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
+
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import services.ServiceVoiture;
 
 /**
@@ -38,30 +53,57 @@ public class Win2Controller implements Initializable {
 
     @FXML
     private ListView<Voiture> listv;
+    @FXML
+    private TextField searchBar;
+     ObservableList ObList;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+       
         try {
             // TODO
             ServiceVoiture sv= new ServiceVoiture();
             List<Voiture> voitures= sv.readAll();
-            ObservableList ObList = FXCollections.observableList(voitures);
+             ObList = FXCollections.observableList(voitures);
             
             
             listv.setItems(ObList);
-        } catch (SQLException ex) {
+            
+            searchBar.setOnKeyReleased(event -> {
+                
+                
+                try {
+                    String searchText = searchBar.getText().toLowerCase();
+                    List<Voiture> filteredVoitures = sv.filtre(searchText);
+                    System.out.println(filteredVoitures);
+                    ObList.clear();
+                     
+                     ObList = FXCollections.observableList(filteredVoitures);
+            
+            
+                    listv.setItems(ObList);
+                    
+                } catch (SQLException ex) {
+                    Logger.getLogger(Win2Controller.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                
+                
+            }); } catch (SQLException ex) {
             Logger.getLogger(Win2Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
     }    
   @FXML
-    private void ajouterVoitures(ActionEvent event) {
+    private void ajouterVoitures(ActionEvent event) throws SQLException {
      try{
        FXMLLoader fxmloader= new FXMLLoader(getClass().getResource("/gui/InsertVoitures.fxml"));
        Parent root1= (Parent) fxmloader.load();
        Stage stage=new Stage();
+       InsertVoituresController controller = fxmloader.<InsertVoituresController>getController();
+       controller.setObList(ObList);
        
         stage.setTitle("Insert page");
         stage.setScene(new Scene(root1));
@@ -69,6 +111,7 @@ public class Win2Controller implements Initializable {
        }catch(Exception e){
        e.printStackTrace();
        }
+     
     }
 
 
@@ -97,19 +140,116 @@ public class Win2Controller implements Initializable {
         alert.showAndWait();
     }
 }     
+      @FXML
+    private void updateVoiture(ActionEvent event) throws IOException {
+       Voiture voiture = listv.getSelectionModel().getSelectedItem();
+          int id_voiture;
+        if (voiture != null) {
+           try {
+               id_voiture = voiture.getId_voiture();
+               ServiceVoiture sv = new ServiceVoiture();
+               FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/EditVoitures.fxml"));
+               Parent root = loader.load();
+               EditVoituresController controller = loader.getController();
+               System.out.println(controller);
+               controller.setIDVoiture(id_voiture);
+               System.out.println(voiture.getId_voiture());
+               Scene scene = new Scene(root);
+               Stage stage = new Stage();
+               
+                controller.setObList(ObList);
+               stage.setTitle("Edit page");
+               stage.setScene(scene);
+               stage.show();
+           } catch (SQLException ex) {
+               Logger.getLogger(Win2Controller.class.getName()).log(Level.SEVERE, null, ex);
+           }}
+     else {
+        Alert alert=new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Attention");
+        alert.setHeaderText("");
+        alert.setContentText("Veuillez sélectionner une voiture à modifier.");
+        alert.showAndWait();
+    }
+    }
      @FXML
-    private void updateVoiture(ActionEvent event) {
-        try{
-       FXMLLoader fxmloader= new FXMLLoader(getClass().getResource("/gui/EditVoitures.fxml"));
-       Parent root1= (Parent) fxmloader.load();
-       Stage stage=new Stage();
+    private void exporter(ActionEvent event) throws FileNotFoundException, IOException {
+      /* File outputFile = new File("D:/JDBC/output.txt");
+       PrintWriter writer = new PrintWriter(outputFile);
+       for (Voiture v : listv.getItems()) {
+       writer.println(v);}
+       writer.close();*/
+    Workbook workbook = new XSSFWorkbook();
+Sheet sheet = (Sheet) workbook.createSheet("Voitures");
+
+Row headerRow = sheet.createRow(0);
+headerRow.createCell(0).setCellValue("Immatriculation");
+headerRow.createCell(1).setCellValue("Marque");
+headerRow.createCell(2).setCellValue("Modèle");
+headerRow.createCell(3).setCellValue("BoiteVitesse");
+headerRow.createCell(4).setCellValue("Description");
+headerRow.createCell(5).setCellValue("Prix de location");
+
        
-        stage.setTitle("Edit page");
-        stage.setScene(new Scene(root1));
-        stage.show();
-       }catch(Exception e){
-       e.printStackTrace();
-       }
+
+        int rowIndex = 1;
+        for (Voiture v : listv.getItems()) {
+            Row row = sheet.createRow(rowIndex++);
+            row.createCell(0).setCellValue(v.getImmatriculation());
+            row.createCell(1).setCellValue(v.getMarque());
+            row.createCell(2).setCellValue(v.getModele());
+            row.createCell(3).setCellValue(v.getBoite_vitesse());
+            row.createCell(4).setCellValue(v.getDescription());
+            row.createCell(5).setCellValue(v.getPrix_location());
+           
+        }
+
+        FileOutputStream outputStream = new FileOutputStream("D:/JDBC/voitures.xlsx");
+        workbook.write(outputStream);
+        
+        workbook.close();
+         Alert alert=new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Attention");
+        alert.setHeaderText("");
+        alert.setContentText("La liste de voitures est téléchargée avec succès ");
+        alert.showAndWait();
+
+
+
+
+
+
+    }
+
+   
+
+    @FXML
+    private void filtreParMarque(ActionEvent event) throws SQLException {
+        ServiceVoiture sv = new ServiceVoiture();
+        List<Voiture> voitures = sv.trierParMarque();// appel de la fonction de tri
+        System.out.println(voitures);
+        ObList.clear(); // suppression des anciens éléments de la grille
+        ObList = FXCollections.observableList(voitures);
+        listv.setItems(ObList);
+      
+    }
+
+    @FXML
+    private void filtreParModele(ActionEvent event) throws SQLException {
+        ServiceVoiture sv = new ServiceVoiture();
+        List<Voiture> voitures = sv.trierParModele();// appel de la fonction de tri
+        ObList.clear(); // suppression des anciens éléments de la grille
+        ObList = FXCollections.observableList(voitures);
+        listv.setItems(ObList);
+    }
+
+    @FXML
+    private void filtreParPrix(ActionEvent event) throws SQLException {
+        ServiceVoiture sv = new ServiceVoiture();
+        List<Voiture> voitures = sv.trierParPrix();// appel de la fonction de tri
+        ObList.clear(); // suppression des anciens éléments de la grille
+        ObList = FXCollections.observableList(voitures);
+        listv.setItems(ObList);
     }
 
     
