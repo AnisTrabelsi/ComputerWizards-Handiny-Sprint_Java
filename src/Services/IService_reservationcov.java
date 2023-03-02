@@ -15,7 +15,7 @@ public interface IService_reservationcov<T> {
 
     void update_reservation_cov(T t) throws SQLException;
 
-    boolean supprime_reservation_cov(int id) throws SQLException;
+    boolean supprime_reservation_cov(int id,int idc) throws SQLException;
 
     List<T> readAll_reservation_cov() throws SQLException;
 

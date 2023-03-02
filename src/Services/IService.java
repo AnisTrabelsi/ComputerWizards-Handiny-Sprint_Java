@@ -22,7 +22,7 @@ public interface IService<Covoiturage> {
    List<Covoiturage> sortbydate() throws SQLException;
 
 
-    boolean supprime(Covoiturage t) throws SQLException;
+    boolean supprime(int t) throws SQLException;
     List<Covoiturage> readAll() throws SQLException;
 
     Covoiturage findById(int id) throws SQLException;

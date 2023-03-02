@@ -24,7 +24,7 @@ public class handiny extends Application {
     
     @Override
     public void start(Stage primaryStage) throws IOException {
-       Parent root = FXMLLoader.load(getClass().getResource("/view/listcov.fxml")); 
+       Parent root = FXMLLoader.load(getClass().getResource("/view/ajout_covoiturage.fxml")); 
         Scene scene = new Scene(root);
         
         primaryStage.setTitle("ajouter covoiturage!");

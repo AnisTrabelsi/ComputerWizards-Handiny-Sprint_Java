@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 /**
  *
  * @author sanabenfadhel
@@ -37,7 +37,7 @@ public class ServiceCovoiturage implements IService<Covoiturage>{
     {
                 boolean verif=true;
 
-    try {   String req = "INSERT INTO `Covoiturage`(`id_cov`, `id_utilisateur`, `depart`, `destination`, `date_covoiturage`, `Prix` , `nbrplace`) VALUES ( ?,?,?,?,?,?,?);";
+    try {   String req = "INSERT INTO `Covoiturage`(`id_cov`, `id_utilisateur`, `depart`, `destination`, `date_covoiturage`, `Prix` , `nbrplace`, `nom` , `telephone`) VALUES ( ?,?,?,?,?,?,?,?,?);";
 
      PreparedStatement pre=con.prepareStatement(req);
             pre.setInt(1, c.getId_cov());
@@ -45,11 +45,12 @@ public class ServiceCovoiturage implements IService<Covoiturage>{
     pre.setInt(2, c.getId_utilisateur());
         pre.setString(3, c.getDepart());
         pre.setString(4, c.getDestination());
-         pre.setString(5,(c.getDate_covoiturage()));
+         pre.setDate(5,(c.getDate_covoiturage()));
         
         pre.setInt(6, c.getPrix());
                 pre.setInt(7, c.getNbrplace());
-
+ pre.setString(8, c.getNom());
+        pre.setString(9, c.getTelephone());
          int rowsInserted = pre.executeUpdate();
      if (rowsInserted > 0) {
          
@@ -72,7 +73,7 @@ public class ServiceCovoiturage implements IService<Covoiturage>{
     pre.setInt(1, c.getId_utilisateur());
         pre.setString(2, c.getDepart());
         pre.setString(3, c.getDestination());
-         pre.setString(4,(c.getDate_covoiturage()));
+         pre.setDate(4,(c.getDate_covoiturage()));
         
         pre.setInt(5, c.getPrix());
                 pre.setInt(6, c.getNbrplace());
@@ -82,21 +83,17 @@ public class ServiceCovoiturage implements IService<Covoiturage>{
     }
 
     @Override
- public boolean supprime(Covoiturage c) throws SQLException {
-        try{
-            String req ="DELETE FROM `Covoiturage` WHERE id_cov ="+c.getId_cov()+"";
-         Statement state;
-         Connection cnx=DataSource.getInstance().getConnection();
-         state=cnx.createStatement();
-         state.execute(req);
-         return true;
+public boolean supprime(int id) throws SQLException {
+
+        String req = "DELETE FROM `Covoiturage` WHERE id_cov = " + id + ";";
+
+        if ((ste.executeUpdate(req)) == 1) {
+            return true;
         }
-        catch(SQLException ex){
-            System.err.println(ex.getMessage());
-            return false;
-        }
+
+        return false;
+
     }
-     @Override
     public List<Covoiturage> readAll() throws SQLException {
         ArrayList<Covoiturage> listper = new ArrayList<>();
 
@@ -109,11 +106,12 @@ public class ServiceCovoiturage implements IService<Covoiturage>{
             int id_utilisateur = res.getInt(2);
             String depart = res.getString("depart");
             String destination = res.getString(4);
-            String date_covoiturage = res.getString(5);
+            Date date_covoiturage = res.getDate(5);
             int Prix = res.getInt(6);
             int nbrplace = res.getInt(7);
- 
-            Covoiturage c = new Covoiturage(id_cov, id_utilisateur, depart, destination, date_covoiturage ,Prix , nbrplace );
+ String nom = res.getString(8);
+            String telephone = res.getString(9);
+            Covoiturage c = new Covoiturage(id_cov, id_utilisateur, depart, destination, date_covoiturage ,Prix , nbrplace , nom , telephone);
             // System.out.println(p);
             listper.add(c);
         }
@@ -131,10 +129,12 @@ Covoiturage d=new Covoiturage();
             int id_utilisateur = res.getInt(2);
             String depart = res.getString("depart");
             String destination = res.getString(4);
-            String date_covoiturage = res.getString(5);
+            Date date_covoiturage = res.getDate(5);
             int Prix = res.getInt(6);
             int nbrplace = res.getInt(7);
-         d = new Covoiturage(id_cov, id_utilisateur, depart, destination, date_covoiturage , Prix , nbrplace);
+            String nom = res.getString(8);
+            String telephone = res.getString(9);
+         d = new Covoiturage(id_cov, id_utilisateur, depart, destination, date_covoiturage , Prix , nbrplace, nom , telephone);
     }
         
         return d;
@@ -144,7 +144,7 @@ Covoiturage d=new Covoiturage();
       public List<Covoiturage> sortbydate() throws SQLException {
         ArrayList<Covoiturage> listper = new ArrayList<>();
 
-        String req = "select * from don ORDER by Prix";
+        String req = "select * from Covoiturage ORDER by Prix";
 
         ResultSet res = ste.executeQuery(req);
 
@@ -153,10 +153,12 @@ Covoiturage d=new Covoiturage();
             int id_utilisateur = res.getInt(2);
             String depart = res.getString("depart");
             String destination = res.getString(4);
-            String date_covoiturage = res.getString(5);
+            Date date_covoiturage = res.getDate(5);
             int Prix = res.getInt(6);
             int nbrplace = res.getInt(7);
-            Covoiturage p = new Covoiturage(id_cov, id_utilisateur, depart, destination, date_covoiturage , Prix , nbrplace);
+             String nom = res.getString(8);
+            String telephone = res.getString(9);
+            Covoiturage p = new Covoiturage(id_cov, id_utilisateur, depart, destination, date_covoiturage , Prix , nbrplace, nom , telephone);
             // System.out.println(p);
             listper.add(p);
         }

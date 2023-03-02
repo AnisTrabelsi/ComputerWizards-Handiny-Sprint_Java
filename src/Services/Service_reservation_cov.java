@@ -14,6 +14,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import Entite.reservation_covoiturage;
+import Entite.Covoiturage;
 
 /**
  *
@@ -33,17 +34,24 @@ public class Service_reservation_cov implements IService_reservationcov<reservat
 
     @Override
     public void ajouter_reservation_cov(reservation_covoiturage d) throws SQLException {
-        String req = "INSERT INTO `reservation_covoiturage` ( `id_cov`, `id_utilisateur`, `prix_covoiturage`) VALUES (?, ?, ?);";
+        String req = "INSERT INTO `reservation_covoiturage` ( `id_cov`, `id_utilisateur`, `prix_covoiturage`, `depart`, `destination`, `nom`, `telephone`) VALUES ( ?, ?, ?, ?, ?, ?, ?);";
+      String req2 = "UPDATE covoiturage SET nbrplace= nbrplace-1 WHERE id_cov ="+ d.getId_cov()+ ";";
+
         PreparedStatement pre = con.prepareStatement(req);
+        PreparedStatement pre2 = con.prepareStatement(req2);
 
         pre.setInt(1, d.getId_cov());
         pre.setInt(2, d.getId_utilisateur());
                 pre.setInt(3, d.getPrix_covoiturage());
-
+pre.setString(4, d.getDepart());
+pre.setString(5, d.getDestination());
+pre.setString(6, d.getNom());
+pre.setString(7, d.getTelephone());
    
        
 
         pre.executeUpdate();
+        pre2.executeUpdate(); 
     }
 
     @Override
@@ -55,15 +63,20 @@ public class Service_reservation_cov implements IService_reservationcov<reservat
         pre.setInt(3, d.getPrix_covoiturage());
      
         pre.executeUpdate();
-        System.out.println("demande_don modifié !");
+        System.out.println("reservation modifié !");
     }
 
-    @Override
-    public boolean supprime_reservation_cov(int id) throws SQLException {
+    public boolean supprime_reservation_cov(int id,int idc ) throws SQLException {
         String req = "DELETE FROM `reservation_covoiturage` WHERE id_reserv_cov = " + id + ";";
+      String req2 = "UPDATE covoiturage SET nbrplace= nbrplace+1 WHERE id_cov ="+ idc + ";";
+        PreparedStatement pre = con.prepareStatement(req2);
 
         if ((ste.executeUpdate(req)) == 1) {
+                    pre.executeUpdate(); 
+
             return true;
+                
+
         }
 
         return false;
@@ -82,8 +95,11 @@ public class Service_reservation_cov implements IService_reservationcov<reservat
             int id_cov = res.getInt(2);
             int id_utilisateur = res.getInt(3);
             int prix_covoiturage = res.getInt(4);
-           
-            reservation_covoiturage p = new reservation_covoiturage(id_reserv_cov, id_cov, id_utilisateur, prix_covoiturage);
+           String depart = res.getString(5); 
+           String destination = res.getString(6); 
+ String nom = res.getString(7); 
+           String telephone = res.getString(8); 
+            reservation_covoiturage p = new reservation_covoiturage(id_reserv_cov, id_cov, id_utilisateur, prix_covoiturage , depart , destination, nom, telephone);
             // System.out.println(p);
             listper.add(p);
         }
@@ -93,7 +109,7 @@ public class Service_reservation_cov implements IService_reservationcov<reservat
     @Override
     public reservation_covoiturage findById_reservation_cov(int id) throws SQLException {
         reservation_covoiturage d = new reservation_covoiturage();
-        String req = "select * FROM `reservation_covoiturage` WHERE id_reserv_cov= " + id + ";";
+        String req = "select * FROM `reservation_covoiturage` WHERE id_utilisateur= " + id + ";";
 
         ResultSet res = ste.executeQuery(req);
         while (res.next()) {
@@ -101,8 +117,11 @@ public class Service_reservation_cov implements IService_reservationcov<reservat
             int id_cov = res.getInt(2);
             int id_utilisateur = res.getInt(3);
             int prix_covoiturage = res.getInt(4);
-           
-             d = new reservation_covoiturage(id_reserv_cov, id_cov, id_utilisateur, prix_covoiturage);
+           String depart = res.getString(5); 
+           String destination = res.getString(6); 
+             String nom = res.getString(7); 
+           String telephone = res.getString(8); 
+             d = new reservation_covoiturage(id_reserv_cov, id_cov, id_utilisateur, prix_covoiturage, depart , destination , nom , telephone);
         }
 
         return d;
@@ -121,13 +140,18 @@ public class Service_reservation_cov implements IService_reservationcov<reservat
             int id_cov = res.getInt(2);
             int id_utilisateur = res.getInt(3);
             int prix_covoiturage = res.getInt(4);
-            reservation_covoiturage p = new reservation_covoiturage(id_reserv_cov, id_cov, id_utilisateur, prix_covoiturage);
+            String depart = res.getString(5); 
+           String destination = res.getString(6); 
+               String nom = res.getString(7); 
+           String telephone = res.getString(8); 
+            reservation_covoiturage p = new reservation_covoiturage(id_reserv_cov, id_cov, id_utilisateur, prix_covoiturage, depart , destination, nom , telephone);
             // System.out.println(p);
             listper.add(p);
         }
         return listper;
     }
 
+   
    
     
 }

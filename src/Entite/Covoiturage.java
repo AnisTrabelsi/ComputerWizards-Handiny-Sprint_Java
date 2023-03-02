@@ -5,24 +5,25 @@
  */
 package Entite;
 
-import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-
+import java.sql.Date ; 
 /**
  *
  * @author abbes
  */
 public class Covoiturage {
     
-   
+   private String nom ;
+  private String telephone ;
     private int id_cov,id_utilisateur,Prix,nbrplace ;
     private String depart,destination ;
-   Date date= new Date();
- SimpleDateFormat formatter= new SimpleDateFormat("yyyy/mm/dd");
- private String date_covoiturage= formatter.format(date);
+     Date date_covoiturage ; 
+  // Date date= new Date();
+ //SimpleDateFormat formatter= new SimpleDateFormat("yyyy/mm/dd");
+ // private String date_covoiturage= formatter.format(date);
 
-    public Covoiturage(int id_cov, int id_utilisateur, String depart, String destination , String date_covoiturage ,int Prix ,int nbrplace ) {
+    public Covoiturage(int id_cov, int id_utilisateur, String depart, String destination , Date date_covoiturage ,int Prix ,int nbrplace, String nom, String telephone) {
         this.id_cov = id_cov;
         this.id_utilisateur = id_utilisateur;
         this.depart=depart;
@@ -30,9 +31,23 @@ public class Covoiturage {
         this.Prix=Prix;
         this.nbrplace = nbrplace ; 
         this.date_covoiturage = date_covoiturage ; 
+        this.nom = nom;
+        this.telephone = telephone;
     }
     
-     public Covoiturage( int id_utilisateur , String depart, String destination , String date_covoiturage ,int Prix ,int nbrplace ) {
+    
+    public Covoiturage(int id_cov, int id_utilisateur, String depart, String destination , Date date_covoiturage ,int Prix ,int nbrplace) {
+        this.id_cov = id_cov;
+        this.id_utilisateur = id_utilisateur;
+        this.depart=depart;
+        this.destination = destination;
+        this.Prix=Prix;
+        this.nbrplace = nbrplace ; 
+        this.date_covoiturage = date_covoiturage ; 
+       
+    }
+    
+     public Covoiturage( int id_utilisateur , String depart, String destination , Date date_covoiturage ,int Prix ,int nbrplace) {
               this.id_utilisateur = id_utilisateur;
 
         this.depart=depart;
@@ -40,6 +55,18 @@ public class Covoiturage {
         this.Prix=Prix;
         this.nbrplace = nbrplace ; 
         this.date_covoiturage = date_covoiturage ; 
+         
+    }
+        public Covoiturage( int id_utilisateur , String depart, String destination , Date date_covoiturage ,int Prix ,int nbrplace, String nom, String telephone) {
+              this.id_utilisateur = id_utilisateur;
+
+        this.depart=depart;
+        this.destination = destination;
+        this.Prix=Prix;
+        this.nbrplace = nbrplace ; 
+        this.date_covoiturage = date_covoiturage ; 
+         this.nom = nom;
+        this.telephone = telephone;
     }
     
 
@@ -49,6 +76,22 @@ public class Covoiturage {
 
     public Covoiturage(int id_cov, String depart, String destination, LocalDate date, int prix, int nbrplace) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
     }
 
    
@@ -100,11 +143,11 @@ public class Covoiturage {
         this.destination = destination;
     }
 
-    public String getDate_covoiturage() {
+    public Date getDate_covoiturage() {
         return date_covoiturage;
     }
 
-    public void setDate_covoiturage(String date_covoiturage) {
+    public void setDate_covoiturage(Date date_covoiturage) {
         this.date_covoiturage = date_covoiturage;
     }
 

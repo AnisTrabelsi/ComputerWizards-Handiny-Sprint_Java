@@ -1,0 +1,10 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+.my-alert {
+    -fx-background-color: #FFCCCC;
+}
