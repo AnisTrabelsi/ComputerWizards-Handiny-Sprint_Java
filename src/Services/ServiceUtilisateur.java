@@ -54,14 +54,14 @@ String req = "INSERT INTO `user`( `nom`, `prenom`, `cin`, `email`, `telephone`, 
 
 
     
-    
+  
       @Override
     public void update(Utilisateur u) throws SQLException  {
         try {
-            String req = "UPDATE `utilisateur` SET `nom` = '" + u.getNom() + "', `prenom` = '" + u.getPrenom() + "', `cin` = '"+ u.getCin() 
+            String req = "UPDATE `user` SET `nom` = '" + u.getNom() + "', `prenom` = '" + u.getPrenom() + "', `cin` = '"+ u.getCin() 
                     + "', `email` = '"+ u.getEmail() + "', `telephone` = '"+ u.getTelephone() + "', `login` = '"+ u.getLogin() 
                     +"', `mot_de_passe` = '"+ u.getMot_de_passe() +"', `date_de_naissance` = '"+ u.getDate_de_naissance()+"', `region` = '"+ u.getRegion()+"', `adresse` = '"
-                    +u.getAdresse()+ "', `code_postal` = '"+u.getCode_postal()+ "', `role` = '"+u.getRole() + "' WHERE `utilisateur`.`id_utilisateur` = " + u.getId_utilisateur();
+                    +u.getAdresse()+ "', `code_postal` = '"+u.getCode_postal()+ "', `role` = '"+u.getRole() + "' WHERE `user`.`id_user` = " + u.getId_utilisateur();
             Statement st = con.createStatement();
             st.executeUpdate(req);
             System.out.println("Utilisateur mis à jour ");
@@ -74,7 +74,7 @@ String req = "INSERT INTO `user`( `nom`, `prenom`, `cin`, `email`, `telephone`, 
    @Override
     public boolean supprime(Utilisateur u) throws SQLException  {
         try {
-            String req = "DELETE FROM `utilisateur` WHERE id_utilisateur = " + u.getId_utilisateur();
+            String req = "DELETE FROM `user` WHERE id_user = " + u.getId_utilisateur();
             Statement st = con.createStatement();
             st.executeUpdate(req);
             System.out.println("utilisateur suprimé !");
@@ -91,7 +91,7 @@ String req = "INSERT INTO `user`( `nom`, `prenom`, `cin`, `email`, `telephone`, 
         
          ArrayList<Utilisateur> listutilisateur=new ArrayList<>();
         
-        String req=" SELECT * FROM `utilisateur` ";
+        String req=" SELECT * FROM `user` ";
         Statement statement = con.createStatement();
         ResultSet res=ste.executeQuery(req);
         

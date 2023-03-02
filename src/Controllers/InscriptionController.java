@@ -9,7 +9,6 @@ import Controllers.HelloPageController;
 import Entite.Utilisateur;
 import Services.ServiceUtilisateur;
 import java.io.IOException;
-import java.net.PasswordAuthentication;
 import java.net.URL;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
@@ -41,9 +40,12 @@ import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
+import javax.mail.PasswordAuthentication;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.util.ResourceBundle;
+
 
 /**
  * FXML Controller class
@@ -191,7 +193,7 @@ public class InscriptionController implements Initializable {
         String email = email_inscri.getText();
         //*************************Controle de saisie nom
 
-        if (!isValidEmail(email)) {
+        if (!isValidEmailAddress(email)) {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Erreur de saisie");
             alert.setHeaderText(null);
@@ -202,9 +204,10 @@ public class InscriptionController implements Initializable {
         if (su.emailExists(email)) {
 
             Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Ce mail est déja utilisé Veuillez saisir un nouveau mail ");
+            
+            alert.setTitle("L'email est invalide.");
             alert.setHeaderText(null);
-            alert.setContentText("L'email est invalide.");
+            alert.setContentText("Ce mail est déja utilisé Veuillez saisir un nouveau mail");
             alert.showAndWait();
             return;
 
@@ -266,47 +269,49 @@ public class InscriptionController implements Initializable {
         su.ajouter(u);
         System.out.println(u.toString());
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui_handiny/HelloPage.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui_handiny/home.fxml"));
         Parent root = loader.load();
-        HelloPageController hpc = loader.getController();
+        HomeController fc = loader.getController();
         inscription.getScene().setRoot(root);
-     //   String subject = "Mail de bienvenue";
+        
+        String subject = "Mail de bienvenue";
+        String message = " Mr/Madame  " + nom + " Vous etes la bienvenue chez Handiny . Nous vous tiendrons au courant de toutes  actualité via le mail . Nous vous souhaitons une excellente journnée.";
+        String from = "Chayma.bensaad@esprit.tn";
+        String password = "223JFT2127";
+        String to = email;
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+        
+     Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+        protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(from, password);
+            }
+            
+     });
 
-////        String message = " Mr/Madame  " + nom + " Vous etes la bienvenue chez Handiny ./n /n Nous vous tiendrons au courant de toutes  actualité via le mail \n\n cNous vous souhaitons une excellente journnée.";
-////        String from = "";
-////        String password = "";
-////        String to = nom;
-////        Properties props = new Properties();
-////        props.put("mail.smtp.auth", "true");
-////        props.put("mail.smtp.starttls.enable", "true");
-////        props.put("mail.smtp.host", "smtp.gmail.com");
-////        props.put("mail.smtp.port", "587");
-////        Session session = Session.getInstance(props, new javax.mail.Authenticator() {
-//////            @Override
-//////            protected PasswordAuthentication getPasswordAuthentication() {
-//////                return new PasswordAuthentication(from, password);
-//////            }
-////        });
-////
-////        // Envoyer l'e-mail
-////        try {
-////            Message emailing = new MimeMessage(session);
-////            emailing.setFrom(new InternetAddress(from));
-////            emailing.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
-////            emailing.setSubject(subject);
-////            emailing.setText(message);
-////            Transport.send(emailing);
-////            System.out.println("E-mail envoyé à " + to);
-////        } catch (MessagingException e) {
-////            throw new RuntimeException(e);
-////        }
+         //Envoyer l'e-mail
+        try {
+            Message emaill = new MimeMessage(session);
+            emaill.setFrom(new InternetAddress(from));
+            emaill.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
+            emaill.setSubject(subject);
+            emaill.setText(message);
+            Transport.send(emaill);
+            System.out.println("E-mail envoyé à " + to);
+        } 
+        catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 
-    private boolean isValidEmail(String email) {
-        String regex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
-        return email.matches(regex);
-    }
+//    private boolean isValidEmail(String email) {
+//        String regex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
+//        return email.matches(regex);
+//    }
 
     private boolean isValidNom(String nom) {
         String regex = "^[a-zA-Z ]+$";
@@ -357,6 +362,32 @@ public class InscriptionController implements Initializable {
             role = "Proprietaire";
         }
     }
+    public boolean isValidEmailAddress(String email) {
+    // Vérifie si l'adresse email est null ou vide
+    if (email == null || email.isEmpty()) {
+        return false;
+    }
+    
+    // Vérifie si l'adresse email contient le symbole @ et le domaine
+    int atIndex = email.indexOf("@");
+    if (atIndex == -1 || atIndex == 0 || atIndex == email.length() - 1) {
+        return false;
+    }
+    
+    // Vérifie si l'adresse email est valide selon la norme RFC-5321
+    try {
+        InternetAddress internetAddress = new InternetAddress(email);
+        internetAddress.validate();
+    } catch (AddressException e) {
+        return false;
+    }
+    
+    return true;
+}
+
+
+
+
 
     @FXML
     private void changeer_visibilité(ActionEvent event) {

@@ -77,16 +77,15 @@ public class ServiceReclamation implements IService <Reclamation>{
     public void ajouter(Reclamation r) throws SQLException {
 
 
-    try {String req = "INSERT INTO reclamation (`id_utilisateur`, `type_reclamation`, `etat_reclamation`, `description`) VALUES (?,?,?,?);";
+    try {String req = "INSERT INTO reclamation (`id_utilisateur`, `type_reclamation`, `etat_reclamation`, `description`) VALUES (3,?,?,?);";
      PreparedStatement pre=con.prepareStatement(req);
-    // pre.setInt(1,r.getId_reclamation());
-     pre.setInt(1, r.getUser().getId_utilisateur());
-     pre.setString(2, r.getType_reclamation());
-     pre.setString(3, r.getEtat_reclamation());
-     pre.setString(4, r.getDescription());
+    // pre.setInt(1,r.getUser().getId_utilisateur());
+     pre.setString(1, r.getType_reclamation());
+     pre.setString(2, r.getEtat_reclamation());
+     pre.setString(3, r.getDescription());
      pre.executeUpdate();
   
-            
+            System.out.println(r.toString());
      }catch(SQLException e){
             System.out.println(e);
      

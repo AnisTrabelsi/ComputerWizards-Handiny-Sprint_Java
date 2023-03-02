@@ -20,6 +20,10 @@ private String etat_reclamation ;
 private String description ;
 private Utilisateur user;
 
+    public Reclamation(int i, String selectedType, Object object, String description) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
   
 
     public Utilisateur getUser() {

@@ -71,10 +71,9 @@ public class AuthentificationController implements Initializable {
         if (sa.auth() == true) {
   
             infoBox("Connexion avec succés", "succés", null);
-
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui_handiny/home.fxml"));
             Parent root = loader.load();
-            HomeController hpc = loader.getController();
+            HomeController fc = loader.getController();
             login_auth.getScene().setRoot(root);
 
         } else {

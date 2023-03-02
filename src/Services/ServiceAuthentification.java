@@ -23,9 +23,18 @@ public class ServiceAuthentification {
 
     Connection con = DataSource.getInstance().getConnection();
     Utilisateur u = new Utilisateur();
-  
+   private  int id_auth ;
     boolean verif ;
 
+    public int getId_auth() {
+        return id_auth;
+    }
+
+    public void setId_auth(int id_auth) {
+        this.id_auth = id_auth;
+    }
+
+ 
   
    
 
@@ -40,7 +49,10 @@ public class ServiceAuthentification {
         ResultSet res = pre.executeQuery();
         if(!res.next()){
                  verif =true ;
-             
+                 id_auth=u.getId_utilisateur();
+
+                 
+        
             } 
          
             

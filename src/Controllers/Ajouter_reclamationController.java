@@ -42,10 +42,9 @@ public class Ajouter_reclamationController implements Initializable {
 
     public void get_type(ActionEvent event) {
         String type = choice_box.getValue();
-
         int index = Arrays.asList(Type_reclamations).indexOf(Type_reclamations); // rechercher l'index de la région dans le tableau regions[]
         if (index >= 0) {
-            r.setType_reclamation(Type_reclamations[index]);
+           r.setType_reclamation(Type_reclamations[index]);
 
         }
     }
@@ -58,10 +57,10 @@ public class Ajouter_reclamationController implements Initializable {
     @FXML
     private void Envoyer_reclamation(ActionEvent event) throws SQLException {
         String selectedType = choice_box.getValue();
-        description = description_ajout_reclamation.getText();
-        u = su.findById(7);
-        r = new Reclamation(u.getId_utilisateur(), selectedType,null, description,u);
-
+        String description = description_ajout_reclamation.getText();
+       // u = su.findById(7);
+        r.setType_reclamation(selectedType);
+        r.setDescription(description);
         sr.ajouter(r);
 
     }
