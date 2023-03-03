@@ -8,11 +8,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="487.0" prefWidth="869.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Supprimer_demande_don_adminController">
+<AnchorPane id="AnchorPane" prefHeight="487.0" prefWidth="869.0"  xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Supprimer_demande_don_adminController">
    <children>
       <ImageView fitHeight="558.0" fitWidth="1029.4" layoutX="7.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../back.png" />
+            <Image url="@../Images/back.png" />
          </image>
       </ImageView>
       <ScrollPane layoutX="120.0" layoutY="112.0" prefHeight="370.0" prefWidth="838.0">

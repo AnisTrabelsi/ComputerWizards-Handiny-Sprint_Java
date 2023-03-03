@@ -8,11 +8,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="530.0" prefWidth="848.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Supprimer_donController">
+<AnchorPane id="AnchorPane" prefHeight="530.0" prefWidth="848.0"  xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Supprimer_donController">
    <children>
       <ImageView fitHeight="558.0" fitWidth="1029.4" layoutX="1.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../background.png" />
+            <Image url="@../Images/background.png" />
          </image>
       </ImageView>
       <Label layoutX="380.0" layoutY="33.0" prefHeight="43.0" prefWidth="270.0" text="Suppression dons" textFill="#52a9df">

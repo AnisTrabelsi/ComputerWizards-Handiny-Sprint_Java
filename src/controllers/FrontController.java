@@ -60,7 +60,7 @@ public class FrontController implements Initializable {
         try{
            String videoname = null;
            String path = new File("src/" + videoname + ".mp4").getAbsolutePath();
-           File mediaFile = new File("C:\\xampp4\\htdocs\\Gestion don\\src\\src\\projet_final.mp4");
+           File mediaFile = new File("C:\\xampp4\\htdocs\\Gestion don\\src\\Images\\projet_final.mp4");
            Media media = new Media(mediaFile.toURI().toURL().toString());
             mediaplayer = new MediaPlayer(media);
             mediaview.setMediaPlayer(mediaplayer);

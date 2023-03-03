@@ -9,12 +9,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="558.0" prefWidth="1027.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Ajout_donController">
+<AnchorPane id="AnchorPane" prefHeight="558.0" prefWidth="1027.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="controllers.Ajout_donController">
   
     <children>
       <ImageView fitHeight="558.0" fitWidth="1029.4" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../background.png" />
+            <Image url="@../Images/background.png" />
          </image>
       </ImageView>
       <Label layoutX="171.0" layoutY="159.0" prefHeight="35.0" prefWidth="134.0" stylesheets="@list.css" text="Type : " />

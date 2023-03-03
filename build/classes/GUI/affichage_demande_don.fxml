@@ -9,11 +9,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Affichage_demande_donController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0"  xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Affichage_demande_donController">
    <children>
       <ImageView fitHeight="558.0" fitWidth="1029.4" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../background.png" />
+            <Image url="@../Images/background.png" />
          </image></ImageView>
       <Button layoutX="403.0" layoutY="486.0" mnemonicParsing="false" onAction="#afficher" stylesheets="@list.css" text="Actualiser" />
       <Button layoutX="550.0" layoutY="486.0" mnemonicParsing="false" onAction="#sort" stylesheets="@list.css" text="Trier par date" />

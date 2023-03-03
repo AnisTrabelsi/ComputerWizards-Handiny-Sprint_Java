@@ -11,11 +11,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="496.0" prefWidth="740.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Modifier_don_adminController">
+<AnchorPane id="AnchorPane" prefHeight="496.0" prefWidth="740.0"  xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Modifier_don_adminController">
    <children>
       <ImageView fitHeight="558.0" fitWidth="1029.4" layoutX="3.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../back.png" />
+            <Image url="@../Images/back.png" />
          </image>
       </ImageView>
       <Label layoutX="32.0" layoutY="120.0" prefHeight="35.0" prefWidth="134.0" stylesheets="@admin.css" text="Type : " />

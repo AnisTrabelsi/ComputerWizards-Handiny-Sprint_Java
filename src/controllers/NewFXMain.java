@@ -34,7 +34,7 @@ public class NewFXMain extends Application {
             Scene scene = new Scene(root);    
             primaryStage.setTitle("Handiny");
             primaryStage.setScene(scene);
-              Image icon = new Image("logo.png");
+              Image icon = new Image("/Images/logo.png");
 
         // Ajouter l'icône au Primary Stage
         primaryStage.getIcons().add(icon);

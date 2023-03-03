@@ -12,6 +12,15 @@ import Entite.utilisateur;
 import Services.Service_demande_don;
 import Services.Service_don;
 import Services.Service_utilisateur;
+//import com.itextpdf.text.pdf.qrcode.BitMatrix;
+//import com.itextpdf.text.pdf.qrcode.QRCodeWriter;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.qrcode.QRCodeWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import java.awt.Color;
+import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -22,6 +31,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -30,30 +40,22 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import javafx.util.Duration;
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import tray.animations.AnimationType;
 import tray.notification.NotificationType;
@@ -281,6 +283,42 @@ public class Ajout_demande_donController implements Initializable {
                    MailerAPI.Mail(UN, PW, mto, msub, cTEXT, d.getJustificatif_handicap());
             notiff();
             vider();
+            LocalDate currentDate = LocalDate.now();
+            // Créer une chaîne contenant les informations de la réservation
+String demande_don =  "Prenom: "+u.getNom()+ "\n"+ "Nom: "+u.getPrenom()+"\n"+"Type de don demande: "+d.getType_produit_demande()+"\n"+"Date de demande : "
+        +currentDate.toString()+"\n"+"Remarques: "+d.getRemarques()+"\n"+"Etat: En cours";
+
+// Créer un objet QRCodeWriter pour générer le code QR
+QRCodeWriter qrCodeWriter = new QRCodeWriter();
+
+
+// Générer le code QR à partir des informations de la réservation
+BitMatrix bitMatrix = null;
+        try {
+            bitMatrix = qrCodeWriter.encode(demande_don, BarcodeFormat.QR_CODE, 200, 200);
+        } catch (WriterException ex) {
+            Logger.getLogger(Ajout_demande_donController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+// Créer une image BufferedImage à partir du BitMatrix
+int width = bitMatrix.getWidth();
+int height = bitMatrix.getHeight();
+BufferedImage qrImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+for (int x = 0; x < width; x++) {
+    for (int y = 0; y < height; y++) {
+        qrImage.setRGB(x, y, bitMatrix.get(x, y) ? Color.BLACK.getRGB() : Color.WHITE.getRGB());
+    }
+}
+  Random rand = new Random();
+        int x = rand.nextInt(1000);
+// Enregistrer l'image du code QR dans un fichier
+File qrFile = new File("C:\\xampp4\\htdocs\\Gestion don\\Demande_don_"+x+".png");
+        try {
+            ImageIO.write(qrImage, "png", qrFile);
+        } catch (IOException ex) {
+            Logger.getLogger(Ajout_demande_donController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         }
     }
     
