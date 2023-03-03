@@ -94,12 +94,12 @@ public class Read_user_by_adminController implements Initializable {
 
     @FXML
     private void affichage(ActionEvent event) {
-       nom_vue_admin.setText(listu.getSelectionModel().getSelectedItem().getNom());
-       prenom_vue_admin.setText(listu.getSelectionModel().getSelectedItem().getPrenom());
-       telephone_vue_admin.setText(listu.getSelectionModel().getSelectedItem().getTelephone());
-       date_naiss_vue_admin.setText(listu.getSelectionModel().getSelectedItem().getDate_de_naissance().toString());
-       CIN_vue_admin.setText(listu.getSelectionModel().getSelectedItem().getCin());
-       email_vue_admin.setText(listu.getSelectionModel().getSelectedItem().getEmail());
+      nom_vue_admin.setText(listu.getSelectionModel().getSelectedItem().getNom());
+      prenom_vue_admin.setText(listu.getSelectionModel().getSelectedItem().getPrenom());
+      telephone_vue_admin.setText(listu.getSelectionModel().getSelectedItem().getTelephone());
+      date_naiss_vue_admin.setText(listu.getSelectionModel().getSelectedItem().getDate_de_naissance().toString());
+      CIN_vue_admin.setText(listu.getSelectionModel().getSelectedItem().getCin());
+      email_vue_admin.setText(listu.getSelectionModel().getSelectedItem().getEmail());
       login_vue_admin.setText(listu.getSelectionModel().getSelectedItem().getLogin());
       mdp_vue_admin.setText(listu.getSelectionModel().getSelectedItem().getMot_de_passe());
       adresse_vue_admin.setText(listu.getSelectionModel().getSelectedItem().getAdresse());

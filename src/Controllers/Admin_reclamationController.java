@@ -9,7 +9,7 @@ import Entite.Reclamation;
 import Services.ServiceReclamation;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.Arrays;
+//import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -19,7 +19,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ChoiceBox;
+//import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -35,8 +35,6 @@ public class Admin_reclamationController implements Initializable {
     private ListView<Reclamation> listview;
     @FXML
     private Label description;
-    ServiceReclamation sr = new ServiceReclamation();
-    Reclamation r = new Reclamation();
 
     private String etat_reclam[] = {"En attente", "En cours de traitement ", "En attente de réponse ", "Résolue ", "Fermée", "Rejetée "};
     @FXML
@@ -49,18 +47,14 @@ public class Admin_reclamationController implements Initializable {
     }
 
     public void list_reclamation() throws SQLException {
-
+        ServiceReclamation sr = new ServiceReclamation();
+        Reclamation r = new Reclamation();
         List<Reclamation> reclam;
         try {
 
-//        users = su.readAll();
-//        ObservableList<Utilisateur> obs = FXCollections.observableList(users);
-//        listu.setItems(obs);
-//        listu.setCellFactory(param -> new UserListCell());
             reclam = sr.readAll();
-            //System.out.println(users);
-            // la liste qui contient la liste d'utilisateurs dans la base 
-            ObservableList obs = FXCollections.observableList(reclam);
+
+            ObservableList<Reclamation> obs = FXCollections.observableList(reclam);
             listview.setItems(obs);
             listview.setCellFactory(param -> new ReclamationCell());
         } catch (SQLException ex) {
@@ -71,7 +65,10 @@ public class Admin_reclamationController implements Initializable {
 
     @FXML
     private void read_all_reclamation(ActionEvent event) {
-        description.setText(listview.getSelectionModel().getSelectedItem().getDescription());
+        Reclamation selectedReclamation = listview.getSelectionModel().getSelectedItem();
+        if (selectedReclamation != null) {
+            description.setText(selectedReclamation.getDescription());
+        }
 
     }
 

@@ -27,6 +27,7 @@ public class Utilisateur {
         private int code_postal ;
         private String role ;
         private String code_postal_en_string = Integer.toString(code_postal);
+        private static Utilisateur current_user ;
         private String id_en_string = Integer.toString(id_utilisateur);
 
     public Utilisateur(){
@@ -87,6 +88,14 @@ public class Utilisateur {
         this.login = login;
         this.mot_de_passe = mot_de_passe;
         this.adresse = adresse;
+    }
+
+    public static Utilisateur getCurrent_user() {
+        return current_user;
+    }
+
+    public static void setCurrent_user(Utilisateur current_user) {
+        Utilisateur.current_user = current_user;
     }
     
 

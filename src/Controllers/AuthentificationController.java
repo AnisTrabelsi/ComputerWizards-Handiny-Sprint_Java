@@ -5,6 +5,7 @@
  */
 package Controllers;
 
+import Entite.Utilisateur;
 import Services.ServiceAuthentification;
 import Utils.DataSource;
 import java.io.IOException;
@@ -43,8 +44,9 @@ public class AuthentificationController implements Initializable {
 
     @FXML
     private TextField mdp_auth;
-    private int id_auth;
+
     ServiceAuthentification sa = new ServiceAuthentification();
+
     Stage dialogStage = new Stage();
     Scene scene;
 
@@ -67,16 +69,19 @@ public class AuthentificationController implements Initializable {
     private void btn_authentification(ActionEvent event) throws IOException, SQLException {
         String login_entrée = login_auth.getText();
         String mot_de_passe_entrèe = mdp_auth.getText();
+        Utilisateur u = new Utilisateur();
+        u.setLogin(login_entrée);
+        u.setMot_de_passe(mot_de_passe_entrèe);
 
-        if (sa.auth() == true) {
-  
+        if (sa.auth(u) == true) {
+             System.out.println(Utilisateur.getCurrent_user().getEmail());
             infoBox("Connexion avec succés", "succés", null);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui_handiny/home.fxml"));
             Parent root = loader.load();
             HomeController fc = loader.getController();
             login_auth.getScene().setRoot(root);
 
-        } else {
+        } else if (sa.auth(u) == false) {
 
             infoBox("Veuillez resaisir votre login et mot de passe", "Success", null);
 

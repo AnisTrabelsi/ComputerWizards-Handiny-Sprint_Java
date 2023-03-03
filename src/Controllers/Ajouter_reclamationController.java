@@ -60,7 +60,9 @@ public class Ajouter_reclamationController implements Initializable {
         String description = description_ajout_reclamation.getText();
        // u = su.findById(7);
         r.setType_reclamation(selectedType);
+        r.setEtat_reclamation("En attente");
         r.setDescription(description);
+        
         sr.ajouter(r);
 
     }

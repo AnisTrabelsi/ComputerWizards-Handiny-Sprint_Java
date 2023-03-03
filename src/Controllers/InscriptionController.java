@@ -8,6 +8,7 @@ package Controllers;
 import Controllers.HelloPageController;
 import Entite.Utilisateur;
 import Services.ServiceUtilisateur;
+import Utils.SessionManager;
 import java.io.IOException;
 import java.net.URL;
 import java.security.InvalidAlgorithmParameterException;
@@ -88,7 +89,7 @@ public class InscriptionController implements Initializable {
     private RadioButton proprietaire_inscri;
     @FXML
     private ToggleGroup Role;
-        @FXML
+    @FXML
     private ComboBox<String> region;
    
 
@@ -128,7 +129,6 @@ public class InscriptionController implements Initializable {
 
 
 //    public void get_region(ActionEvent event) {
-//    Utilisateur u = new Utilisateur ();
 //        int index = Arrays.asList(regions).indexOf(selectedRegion); 
 //        if (index >= 0) {
 //            u.setRegion(regions[index]); 
@@ -229,7 +229,7 @@ public class InscriptionController implements Initializable {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Login invalide ");
             alert.setHeaderText(null);
-            alert.setContentText("Ce login est déja utilisé Veuillez saisir un nouveau login.");
+            alert.setContentText("Ce login est déja utilisé . Veuillez saisir un nouveau login.");
             alert.showAndWait();
             return;
         }
@@ -267,7 +267,10 @@ public class InscriptionController implements Initializable {
 //     Date d=new Date(2022,02,14);
 //     Utilisateur u = new Utilisateur("nom", "prenom", "cin", "email@gmail.fr", "telephone", "login","nn",d,"region"," adresse",2045, "role");
         su.ajouter(u);
-        System.out.println(u.toString());
+
+        //System.out.println(u.toString());
+        System.out.println(Utilisateur.getCurrent_user().getCin());
+
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui_handiny/home.fxml"));
         Parent root = loader.load();

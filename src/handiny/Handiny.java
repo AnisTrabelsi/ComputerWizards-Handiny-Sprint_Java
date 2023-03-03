@@ -31,10 +31,10 @@ public class Handiny extends Application {
    //   ServiceReclamation serr = new ServiceReclamation();
     ServiceUtilisateur seru = new ServiceUtilisateur();
 //
-  Utilisateur u = new Utilisateur( 8,"Chayma", "Ben Saad", "1436274", "chayma.bensaad@gmail.com", "25964725", "cha", "chgrtyul", d1, "Tunis", "Bardo", 2000, "Locataire");
+//  Utilisateur u = new Utilisateur( 8,"Chayma", "Ben Saad", "1436274", "chayma.bensaad@gmail.com", "25964725", "cha", "chgrtyul", d1, "Tunis", "Bardo", 2000, "Locataire");
 //    u.setId_utilisateur(7);
 ////
-        Reclamation r = new Reclamation(18, "jjdsjhdjh", "en cours", "hvhj", u);
+        //Reclamation r = new Reclamation(18, "jjdsjhdjh", "en cours", "hvhj", u);
 ////        Reclamation r1 = new Reclamation(19, "hdhdhdudj", "traité", "kkdkkdll ", u);
 //
 //        //r.setId_reclamation(1);
@@ -44,7 +44,7 @@ public class Handiny extends Application {
 //        } catch (SQLException ex) {
 //            System.out.println(ex);
 //        }
-    
+//    
 
 //    try {
 //            seru.supprime(u);
@@ -110,7 +110,7 @@ public class Handiny extends Application {
 //    }
 //        catch (IOException ex) {
 //            System.out.println(ex.getMessage());  }
-
+//
 
 //    try {
 //
@@ -123,17 +123,17 @@ public class Handiny extends Application {
 //    }
 //        catch (IOException ex) {
 //            System.out.println(ex.getMessage());  }
-//        try {
-//            root = FXMLLoader.load(getClass().getResource("/gui_handiny/Inscription.fxml"));
-//            Scene scene = new Scene(root);
-//
-//            primaryStage.setTitle("Inscription Handiny");
-//            primaryStage.setScene(scene);
-//            primaryStage.show();
-//
-//        } catch (IOException ex) {
-//            System.out.println(ex.getMessage());
-//        
+        try {
+            root = FXMLLoader.load(getClass().getResource("/gui_handiny/Inscription.fxml"));
+            Scene scene = new Scene(root);
+
+            primaryStage.setTitle("Inscription Handiny");
+            primaryStage.setScene(scene);
+            primaryStage.show();
+
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        
 //   try {
 //            root = FXMLLoader.load(getClass().getResource("/gui_handiny/espace_user.fxml"));
 //            Scene scene = new Scene(root);
@@ -145,22 +145,23 @@ public class Handiny extends Application {
 //        } catch (IOException ex) {
 //            System.out.println(ex.getMessage());
 //        }
-////
-     try {
-
-    root=FXMLLoader.load(getClass().getResource("/gui_handiny/Authentification.fxml"));        
-        Scene scene = new Scene(root);
-        
-        primaryStage.setTitle("Authentification Handiny ");
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }
-        catch (IOException ex) {
-            System.out.println(ex.getMessage());  }
-
-
+//
+//  try {
+//
+//    root=FXMLLoader.load(getClass().getResource("/gui_handiny/Authentification.fxml"));        
+//        Scene scene = new Scene(root);
+//        
+//        primaryStage.setTitle("Authentification Handiny ");
+//        primaryStage.setScene(scene);
+//        primaryStage.show();
+//    }
+//        catch (IOException ex) {
+//            System.out.println(ex.getMessage());  }
 //
 //
+
+
+
 //try {
 //
 //     root=FXMLLoader.load(getClass().getResource("/gui_handiny/Affichage_admin.fxml"));        
@@ -202,6 +203,8 @@ public class Handiny extends Application {
 
   }
 
+
+}
 }
 
 

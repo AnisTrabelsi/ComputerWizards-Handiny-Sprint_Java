@@ -8,6 +8,18 @@ package Controllers;
 import Entite.Reclamation;
 
 import javafx.scene.control.ListCell;
+//public class UserListCell extends ListCell<Utilisateur> {
+//    @Override
+//    public void updateItem(Utilisateur user, boolean empty) {
+//        super.updateItem(user, empty);
+//
+//        if (empty || user == null) {
+//            setText(null);
+//        } else {
+//            setText(user.getLogin() + " - " + user.getEmail());
+//        }
+//    }
+//}
 
 /**
  *
@@ -16,12 +28,12 @@ import javafx.scene.control.ListCell;
 public class ReclamationCell extends ListCell<Reclamation>  {
     @Override
     public void updateItem(Reclamation r, boolean empty) {
-        super.updateItem(r, empty);
+        super.updateItem(r,empty);
 
         if (empty || r == null) {
             setText(null);
         } else {
-            setText(r.getType_reclamation() + " - " + r.getEtat_reclamation());
+            setText(r.getEtat_reclamation() + "                      " + r.getDescription());
         }
     }
 }
