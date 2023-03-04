@@ -1,6 +1,8 @@
 package controllers;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.qrcode.QRCodeWriter;
+import javafx.event.ActionEvent;
+
 
 import Entite.Reservation_voiture;
 import Entite.Utilisateur;
@@ -16,22 +18,47 @@ import javax.mail.PasswordAuthentication;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.Duration;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javax.mail.*;
 import javax.mail.internet.*;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.DialogPane;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Popup;
+import javafx.stage.Stage;
 import javax.imageio.ImageIO;
 import services.ServiceReservation_Voiture;
 import services.ServiceUtilisateur;
@@ -48,10 +75,24 @@ public class InsertLocationController implements Initializable {
     @FXML
     private TextField desc;
    public int carId;
-   public void setIDVoiture(int id_voiture) {
-         carId = id_voiture;
-         System.out.println("methode set "+carId);
+   
+   
+public void setIDVoiture(int id_voiture) {
+    try {
+        carId = id_voiture;
+        System.out.println("methode set " + carId);
+
+        ServiceVoiture sv = new ServiceVoiture();
+        Voiture v = sv.findById(carId);
+        System.out.println(v);
+        ServiceReservation_Voiture sr = new ServiceReservation_Voiture();
+    } catch (SQLException ex) {
+        ex.printStackTrace();
     }
+}
+
+
+
     public int getIDVoiture() {
         return this.carId;
     }
@@ -59,12 +100,58 @@ public class InsertLocationController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+    
         
-       
-        
-        
-        
+    datedeb.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                handleDateSelection(event);
+            }
+        });
+        datefin.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                handleDateSelection(event);
+            }
+        });
     }
+    @FXML
+    private void handleDateSelection(ActionEvent event) {
+        LocalDate debut = datedeb.getValue();
+        LocalDate fin = datefin.getValue();
+       
+        if (debut != null && fin != null) {
+            if (fin.isBefore(debut)) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur de saisie");
+        alert.setHeaderText("Dates incorrectes");
+        alert.setContentText("La date de fin ne peut pas être antérieure à la date de début.");
+        alert.showAndWait();}
+            else{
+            try {
+                long daysBetween = Duration.between(debut.atStartOfDay(), fin.atStartOfDay()).toDays();
+                ServiceVoiture sv = new ServiceVoiture();
+                Voiture v = sv.findById(getIDVoiture());
+                ServiceReservation_Voiture sr = new ServiceReservation_Voiture();
+                double prixTotal = sr.calculerPrixTotal(v, debut,fin); // Calcul du prix total de la location (10 € par jour)
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Prix de location");
+        alert.setHeaderText(null);
+        alert.setContentText(String.format("Le prix total de la location est de %.2f DT pour une durée de %d jours.", prixTotal, daysBetween));
+        // Définir le style inline de l'alerte
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.setStyle("-fx-background-color:  #f2f2ff; "
+            + "-fx-font-size: 18pt; "
+            + "-fx-text-fill: #444444; "
+            + "-fx-font-family: 'Segoe UI', Helvetica, Arial, sans-serif;");
+                alert.showAndWait();
+            } catch (SQLException ex) {
+                Logger.getLogger(InsertLocationController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }}
+    }
+
+
 
     @FXML
     private void insert(ActionEvent event) throws SQLException, WriterException, IOException {
@@ -74,15 +161,33 @@ public class InsertLocationController implements Initializable {
         String descrip=desc.getText();
 
         // Vérification de la date
-    if (date1 == null || date2 == null) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Erreur de saisie");
-        alert.setHeaderText("Dates manquantes");
-        alert.setContentText("Veuillez saisir une date de début et une date de fin.");
-        alert.showAndWait();
-        return;
-    }
+    if (date1 == null) {
+        datedeb.setStyle("-fx-border-color:red ; -fx-border-width:2px");
+        new animatefx.animation.Shake(datedeb).play();
+    }else
+        datedeb.setStyle("");
+        
+      
+    if (date2 == null) {
+        datefin.setStyle("-fx-border-color:red ; -fx-border-width:2px");
+        new animatefx.animation.Shake(datefin).play();
+        
+    }else
+        datefin.setStyle("");
+        
+        if (descrip.isEmpty()) {
+        desc.setStyle("-fx-border-color:red ; -fx-border-width:2px");
+        new animatefx.animation.Shake(desc).play();
+        }
+        else
+       desc.setStyle("");
+    if (datedeb == null ||datefin == null ||descrip.isEmpty()){return;}
     if (date2.isBefore(date1)) {
+        datefin.setStyle("-fx-border-color:red ; -fx-border-width:2px");
+        new animatefx.animation.Shake(datefin).play();
+        datedeb.setStyle("-fx-border-color:red ; -fx-border-width:2px");
+        new animatefx.animation.Shake(datedeb).play();
+        
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Erreur de saisie");
         alert.setHeaderText("Dates incorrectes");
@@ -93,9 +198,13 @@ public class InsertLocationController implements Initializable {
 
        
 
+ 
+
         // Vérifier si le champ Prix Location est un nombre valide
         ServiceVoiture sv = new ServiceVoiture();
         Voiture v=sv.findById(getIDVoiture());
+        
+        
         String emailprop = v.getUser().getEmail();
         String prenprop=v.getUser().getPrenom();
 
@@ -114,6 +223,7 @@ public class InsertLocationController implements Initializable {
                 alert.setContentText("Location ajoutée avec succés ! ");
                 alert.showAndWait();
             } else {
+                
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("ERROR");
                 alert.setHeaderText("");

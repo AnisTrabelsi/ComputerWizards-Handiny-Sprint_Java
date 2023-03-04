@@ -27,9 +27,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -141,19 +143,110 @@ public class InsertVoituresController implements Initializable {
         String kilometrage=idKilometrage.getText();
         String carburant=idCarburant.getText();
         String desc=idDesc.getText();
-       String prixLocationStr=idPrixLocation.getText();
+        String prixLocationStr=idPrixLocation.getText();
+        String BoiteVitesse= idBoiteV.getValue();
         Double prixLocation;
-        // Vérifier si tous les champs sont remplis
-    if (immat.isEmpty() || marque.isEmpty() || modele.isEmpty() || date == null || 
-        kilometrage.isEmpty() || carburant.isEmpty() || desc.isEmpty() || prixLocationStr.isEmpty()||img.isEmpty()) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Erreur");
-        alert.setHeaderText("Champ(s) vide(s)");
-        alert.setContentText("Veuillez remplir tous les champs");
-        alert.showAndWait();
+        
+    /*conditions de saisies pour l'immatriculation */    
+    if (immat.isEmpty()){
+    idImmatriculation.setStyle("-fx-border-color:red ; -fx-border-width:2px");
+    new animatefx.animation.Shake(idImmatriculation).play();
+    //Génération d'une alerte
+    }
+     else {
+    idImmatriculation.setStyle("");}
+    
+    
+    /* conditions de saisies pour la marque */ 
+     if (marque.isEmpty()){
+    idMarque.setStyle("-fx-border-color:red ; -fx-border-width:2px");
+    new animatefx.animation.Shake(idMarque).play();
+    }
+     else {
+    idMarque.setStyle("");}
+     
+  /* conditions de saisies pour le modèle */ 
+     if (modele.isEmpty()){
+    idModele.setStyle("-fx-border-color:red ; -fx-border-width:2px");
+    new animatefx.animation.Shake(idModele).play();
+    }
+     else {
+    idModele.setStyle("");}
+     
+     /* conditions de saisies pour la date de validation technique */ 
+     if (date == null){
+    idDate.setStyle("-fx-border-color:red ; -fx-border-width:2px");
+    new animatefx.animation.Shake(idDate).play();
+    }
+     else {
+    idDate.setStyle("");}
+     
+      /* conditions de saisies pour le kilométrage */ 
+     if (kilometrage.isEmpty()){
+    idKilometrage.setStyle("-fx-border-color:red ; -fx-border-width:2px");
+    new animatefx.animation.Shake(idKilometrage).play();
+    }
+     else {
+   idKilometrage.setStyle("");}
+     
+       /* conditions de saisies pour le carburant */ 
+     if (carburant.isEmpty()){
+    idCarburant.setStyle("-fx-border-color:red ; -fx-border-width:2px");
+    new animatefx.animation.Shake(idCarburant).play();
+    }
+     else {
+   idCarburant.setStyle("");}
+     
+         /* conditions de saisies pour la description */ 
+     if (desc.isEmpty()){
+    idDesc.setStyle("-fx-border-color:red ; -fx-border-width:2px");
+    new animatefx.animation.Shake(idDesc).play();
+    }
+     else {
+   idDesc.setStyle("");}
+     
+     
+         /* conditions de saisies pour le prix de location */ 
+     if (prixLocationStr.isEmpty()){
+    idPrixLocation.setStyle("-fx-border-color:red ; -fx-border-width:2px");
+    new animatefx.animation.Shake(idPrixLocation).play();
+    }
+     else {
+   idPrixLocation.setStyle("");}
+     
+         /* conditions de saisies pour le boite de vitesse*/ 
+     if (idBoiteV.getValue()==null){
+    idBoiteV.setStyle("-fx-border-color:red ; -fx-border-width:2px");
+    new animatefx.animation.Shake(idBoiteV).play();
+    }
+     else {
+   idBoiteV.setStyle("");}
+     
+      if (file != null) {
+        idImage.setStyle("");
+    } else {
+        
+        idImage.setStyle("-fx-border-color:red ; -fx-border-width:2px");
+        new animatefx.animation.Shake(idImage).play();
+    }
+   
+  
+
+    
+        
+    /*if (immat.isEmpty() || marque.isEmpty() || modele.isEmpty() || date == null || 
+        kilometrage.isEmpty() || carburant.isEmpty() || desc.isEmpty() || idPrixLocation.isEmpty()||img.isEmpty()) {
+        Alert alert = new Alert(AlertType.ERROR);
+    alert.setTitle("Erreur");
+    alert.setHeaderText(null);
+    alert.setContentText("Veuillez remplir tous les champs");
+    DialogPane dialogPane = alert.getDialogPane();
+    // Ajouter le style CSS inline
+    dialogPane.setStyle("-fx-background-color: #F8D7DA; -fx-border-color: #F5C6CB; -fx-border-width: 2px;");
+    alert.showAndWait();
         return;
     }
-    if (!immat.matches("^[a-zA-Z0-9]+$") || !marque.matches("^[a-zA-Z]+$")
+   /* if (!immat.matches("^[a-zA-Z0-9]+$") || !marque.matches("^[a-zA-Z]+$")
                 || !modele.matches("^[a-zA-Z0-9]+$")
                 || !kilometrage.matches("^[0-9]+$") || !carburant.matches("^[a-zA-Z]+$")
                 || !desc.matches("^[a-zA-Z0-9\\s]+$")) {
@@ -162,34 +255,58 @@ public class InsertVoituresController implements Initializable {
             alert.setContentText("Certains champs contiennent des caractères spéciaux.");
             alert.showAndWait();
             return;
-        }
+        }*/
      
 
-    // Vérification de la date
+    // Vérification de la date : elle doit être inférieure ou égale à la date d'aujourd'hui !
     
     LocalDate today = LocalDate.now();
     if (date.isAfter(today)) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Erreur");
         alert.setHeaderText("Date invalide");
-        alert.setContentText("La date saisie doit être inférieure ou égale à la date d'aujourd'hui.");
+        alert.setContentText("La date saisie doit être inférieure ou égale à la date d'aujourd'hui !");
         alert.showAndWait();
+        idDate.setStyle("-fx-border-color:red ; -fx-border-width:2px");
+        new animatefx.animation.Shake(idDate).play();
         return;
     }
     
+   
     
     // Vérifier si le champ Prix Location est un nombre valide
     
+     try {
+        Double kilometrage_double = Double.parseDouble(kilometrage);
+    } catch (NumberFormatException e) {
+        idKilometrage.setStyle("-fx-border-color:red ; -fx-border-width:2px");
+        new animatefx.animation.Shake(idKilometrage).play();
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setHeaderText("Prix Location invalide");
+        alert.setContentText("Veuillez entrer un nombre valide pour le kilométrage");
+        alert.showAndWait();
+        
+        return;
+    }
     try {
         prixLocation = Double.parseDouble(prixLocationStr);
     } catch (NumberFormatException e) {
+        idPrixLocation.setStyle("-fx-border-color:red ; -fx-border-width:2px");
+        new animatefx.animation.Shake(idPrixLocation).play();
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Erreur");
         alert.setHeaderText("Prix Location invalide");
         alert.setContentText("Veuillez entrer un nombre valide pour le Prix Location");
         alert.showAndWait();
+        
         return;
     }
+     // Vérifier si le champ Kilométrage est un nombre valide
+    
+   
+    
+    
             Utilisateur u=new Utilisateur(5,"Lotfi","chaima","12678","chaima.lotfi@esen.tn","25837256","chaima2703","motdepasse",new Date(27/03/2000),"tunis",2045,"locataire","Aouina");
             ServiceUtilisateur su= new ServiceUtilisateur();
         try {
@@ -197,7 +314,8 @@ public class InsertVoituresController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(InsertVoituresController.class.getName()).log(Level.SEVERE, null, ex);
         }
-            Voiture v= new Voiture(immat,marque,modele,idBoiteV.getValue(),kilometrage,carburant,img,desc,prixLocation,java.sql.Date.valueOf(date),u);
+           Voiture v= new Voiture(immat,marque,modele,BoiteVitesse,kilometrage,carburant,img,desc,prixLocation,java.sql.Date.valueOf(date),u);
+        // Vérifier si tous les champs sont remplis
             ServiceVoiture sv=new ServiceVoiture();
             try { 
             if (sv.ajouter(v)){

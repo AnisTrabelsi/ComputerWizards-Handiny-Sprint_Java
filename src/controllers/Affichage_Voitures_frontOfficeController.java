@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gui;
+package controllers;
 
 import Entite.Note_voitures;
 import Entite.Utilisateur;
 import Entite.Voiture;
 import controllers.AffichageDetailVoitureController;
-import controllers.AffichageVoituresFrontOfficeController;
+import controllers.Affichage_Voitures_frontOfficeController;
 import controllers.InsertLocationController;
 import java.io.IOException;
 import java.net.URL;
@@ -22,6 +22,8 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,8 +33,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -52,20 +58,23 @@ import services.ServiceVoiture;
  *
  * @author Chaima
  */
-public class AFFfinaleController implements Initializable {
+public class Affichage_Voitures_frontOfficeController implements Initializable {
 
     @FXML
     private GridPane gridPane;
     private List<Voiture> voitures = new ArrayList<Voiture>();
     @FXML
-    private Button boutonModele;
-    @FXML
-    private Button boutonPrix;
-    @FXML
-    private Button boutonMarque;
-    @FXML
     private TextField searchBar;
    // HashMap<Integer, List<Double>> notesParVoiture = new HashMap<>();
+@FXML
+private ComboBox<String> comboBoxTri;
+
+
+
+    
+    
+
+
 
 
     /**
@@ -75,13 +84,18 @@ public class AFFfinaleController implements Initializable {
    @Override
 public void initialize(URL url, ResourceBundle rb) {
        
-   
+    comboBoxTri.setItems(FXCollections.observableArrayList(
+    "Tri par marque",
+    "Tri par modèle",
+    "Tri par prix de location"
+));
+    comboBoxTri.setValue("Tri par marque"); // Set default value to "Tri par marque"
     ServiceVoiture sv = new ServiceVoiture();
 
     try {
         voitures=sv.readAll();
     } catch (SQLException ex) {
-        Logger.getLogger(AffichageVoituresFrontOfficeController.class.getName()).log(Level.SEVERE, null, ex);
+        Logger.getLogger(Affichage_Voitures_frontOfficeController.class.getName()).log(Level.SEVERE, null, ex);
     }
    
     gridPaneVoitures(voitures);
@@ -96,15 +110,14 @@ public void initialize(URL url, ResourceBundle rb) {
             gridPane.getChildren().clear();
             gridPaneVoitures(filteredVoitures);
         } catch (SQLException ex) {
-            Logger.getLogger(AFFfinaleController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Affichage_Voitures_frontOfficeController.class.getName()).log(Level.SEVERE, null, ex);
         }
          
     
     });
 }
 
-    @FXML
-private void trierParModele(ActionEvent event) throws SQLException {
+private void trierParModele() throws SQLException {
     ServiceVoiture sv = new ServiceVoiture();
     List<Voiture> voitures = sv.trierParModele();// appel de la fonction de tri
     gridPane.getChildren().clear(); // suppression des anciens éléments de la grille
@@ -116,8 +129,7 @@ private void trierParModele(ActionEvent event) throws SQLException {
 }
 
 
-    @FXML
-    private void trierParPrix(ActionEvent event) throws SQLException {
+    private void trierParPrix() throws SQLException {
         ServiceVoiture sv = new ServiceVoiture();
     List<Voiture> voitures = sv.trierParPrix();// appel de la fonction de tri
     gridPane.getChildren().clear(); // suppression des anciens éléments de la grille
@@ -126,8 +138,7 @@ private void trierParModele(ActionEvent event) throws SQLException {
     
     }
 
-    @FXML
-    private void trierParMarque(ActionEvent event) throws SQLException {
+    private void trierParMarque() throws SQLException {
         ServiceVoiture sv = new ServiceVoiture();
     List<Voiture> voitures = sv.trierParMarque();// appel de la fonction de tri
     gridPane.getChildren().clear(); // suppression des anciens éléments de la grille
@@ -206,7 +217,7 @@ rating.setOnMouseClicked(event -> {
                 alert.showAndWait();
                 System.out.println("la note est enregistrée");
             } catch (SQLException ex) {
-                Logger.getLogger(AFFfinaleController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Affichage_Voitures_frontOfficeController.class.getName()).log(Level.SEVERE, null, ex);
             }
 });
 
@@ -256,7 +267,7 @@ rating.setOnMouseClicked(event -> {
         } catch (IOException e) {
             e.printStackTrace();
         }   catch (SQLException ex) {
-                Logger.getLogger(AFFfinaleController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Affichage_Voitures_frontOfficeController.class.getName()).log(Level.SEVERE, null, ex);
             }
       
     
@@ -271,6 +282,28 @@ rating.setOnMouseClicked(event -> {
         }
     }
     }
+
+    @FXML
+    private void tri(ActionEvent event) throws SQLException {
+        String selectedOption = comboBoxTri.getValue();
+    // Perform sorting based on the selected option
+    switch (selectedOption) {
+        case "Tri par marque":
+            trierParMarque();
+            break;
+        case "Tri par modèle":
+            trierParModele();
+            break;
+        case "Tri par prix de location":
+            trierParPrix();
+            break;
+        default:
+            System.out.println("Invalid selection");
+            break;
+    }
+    }
+
+    
 
 
 

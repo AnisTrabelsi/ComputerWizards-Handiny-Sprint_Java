@@ -61,19 +61,19 @@ public class HomeController implements Initializable {
 
     @FXML
     private void mesVoitures(ActionEvent event) throws IOException {
-         AnchorPane pane = FXMLLoader.load(getClass().getResource("/gui/win2.fxml"));
+         AnchorPane pane = FXMLLoader.load(getClass().getResource("/gui/Affichage_Voitures.fxml"));
            rootpane.getChildren().setAll(pane);
     }
 
     @FXML
     private void aff2(ActionEvent event) throws IOException {
-         AnchorPane pane = FXMLLoader.load(getClass().getResource("/gui/AFFfinale.fxml"));
+         AnchorPane pane = FXMLLoader.load(getClass().getResource("/gui/Affichage_Voitures_frontOffice.fxml"));
            rootpane.getChildren().setAll(pane);
     }
 
     @FXML
     private void affichageVoitures(ActionEvent event) throws IOException {
-         AnchorPane pane = FXMLLoader.load(getClass().getResource("/gui/AFFfinale.fxml"));
+         AnchorPane pane = FXMLLoader.load(getClass().getResource("/gui/Affichage_Voitures_frontOffice.fxml"));
            rootpane.getChildren().setAll(pane);
     }
 

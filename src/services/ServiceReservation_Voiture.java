@@ -11,6 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.Duration;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import utils.DataSource;
@@ -155,5 +157,20 @@ Connection con=DataSource.getInstance().getConnection();
 
         return v;
     }
+    public double calculerPrixTotal(Voiture v, LocalDate debut, LocalDate fin) {
+    double prixParJour = v.getPrix_location();
+    double prixTotal=0;
+    if (debut != null && fin != null && debut.isBefore(fin)) {
+        
+        /*Cette ligne calcule la différence en nombre de jours entre deux dates, en utilisant la classe Duration de Java 8.
 
-    }
+debut.atStartOfDay() et fin.atStartOfDay() retournent des objets LocalDateTime représentant le début de la journée des dates sélectionnées (00h00).
+
+La méthode Duration.between() calcule la durée entre ces deux objets, et retourne un objet Duration qui représente cette durée. Enfin, la méthode toDays() retourne le nombre de jours entre les deux dates.*/
+        long daysBetween = Duration.between(debut.atStartOfDay(), fin.atStartOfDay()).toDays();
+         prixTotal = prixParJour * daysBetween;}
+    return prixTotal;
+}
+
+}
+    

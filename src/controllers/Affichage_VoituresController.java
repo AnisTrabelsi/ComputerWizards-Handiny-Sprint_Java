@@ -49,7 +49,7 @@ import services.ServiceVoiture;
  *
  * @author Chaima
  */
-public class Win2Controller implements Initializable {
+public class Affichage_VoituresController implements Initializable {
 
     @FXML
     private ListView<Voiture> listv;
@@ -87,13 +87,13 @@ public class Win2Controller implements Initializable {
                     listv.setItems(ObList);
                     
                 } catch (SQLException ex) {
-                    Logger.getLogger(Win2Controller.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Affichage_VoituresController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
                 
                 
             }); } catch (SQLException ex) {
-            Logger.getLogger(Win2Controller.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Affichage_VoituresController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }    
   @FXML
@@ -162,7 +162,7 @@ public class Win2Controller implements Initializable {
                stage.setScene(scene);
                stage.show();
            } catch (SQLException ex) {
-               Logger.getLogger(Win2Controller.class.getName()).log(Level.SEVERE, null, ex);
+               Logger.getLogger(Affichage_VoituresController.class.getName()).log(Level.SEVERE, null, ex);
            }}
      else {
         Alert alert=new Alert(Alert.AlertType.WARNING);
