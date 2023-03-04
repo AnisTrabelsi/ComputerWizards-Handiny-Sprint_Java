@@ -7,7 +7,6 @@
             <file>file:/C:/xampp4/htdocs/Gestion%20don/src/Controllers/Ajout_donController.java</file>
             <file>file:/C:/xampp4/htdocs/Gestion%20don/src/Controllers/NewFXMain.java</file>
             <file>file:/C:/xampp4/htdocs/Gestion%20don/src/Controllers/Supprimer_demande_donController.java</file>
-            <file>file:/C:/xampp4/htdocs/Gestion%20don/src/Services/IService_demande_don.java</file>
             <file>file:/C:/xampp4/htdocs/Gestion%20don/src/Entite/demande_don.java</file>
             <file>file:/C:/xampp4/htdocs/Gestion%20don/src/Controllers/Supprimer_donController.java</file>
             <file>file:/C:/xampp4/htdocs/Gestion%20don/src/Entite/Pdfdd.java</file>
@@ -19,20 +18,21 @@
             <file>file:/C:/xampp4/htdocs/Gestion%20don/src/gui_handiny/affichage_demande_don.fxml</file>
             <file>file:/C:/xampp4/htdocs/Gestion%20don/src/Controllers/Affichage_donController.java</file>
             <file>file:/C:/xampp4/htdocs/Gestion%20don/src/Controllers/Ajout_demande_don_adminController.java</file>
-            <file>file:/C:/xampp4/htdocs/Gestion%20don/src/Services/IService_don.java</file>
             <file>file:/C:/xampp4/htdocs/Gestion%20don/src/Controllers/Modifier_demande_don_adminController.java</file>
             <file>file:/C:/xampp4/htdocs/Gestion%20don/src/Entite/utilisateur.java</file>
+            <file>file:/C:/xampp4/htdocs/Gestion%20don/src/Tests/main.java</file>
             <file>file:/C:/xampp4/htdocs/Gestion%20don/src/Controllers/DonStatsController.java</file>
             <file>file:/C:/xampp4/htdocs/Gestion%20don/src/Controllers/Supprimer_demande_don_adminController.java</file>
             <file>file:/C:/xampp4/htdocs/Gestion%20don/src/Services/Service_don.java</file>
             <file>file:/C:/xampp4/htdocs/Gestion%20don/src/Controllers/FrontController.java</file>
             <file>file:/C:/xampp4/htdocs/Gestion%20don/src/Controllers/Affichage_don_adminController.java</file>
             <file>file:/C:/xampp4/htdocs/Gestion%20don/src/Controllers/BackController.java</file>
+            <file>file:/C:/xampp4/htdocs/Gestion%20don/src/Services/Service_demande_don.java</file>
             <file>file:/C:/xampp4/htdocs/Gestion%20don/src/Controllers/Affichage_demande_don_adminController.java</file>
             <file>file:/C:/xampp4/htdocs/Gestion%20don/src/Controllers/Modifier_donController.java</file>
             <file>file:/C:/xampp4/htdocs/Gestion%20don/src/Controllers/Ajout_demande_donController.java</file>
             <file>file:/C:/xampp4/htdocs/Gestion%20don/src/gui_handiny/DemandesDonStats.fxml</file>
-            <file>file:/C:/xampp4/htdocs/Gestion%20don/src/Services/IService_utilisateur.java</file>
+            <file>file:/C:/xampp4/htdocs/Gestion%20don/src/Services/IService.java</file>
             <file>file:/C:/xampp4/htdocs/Gestion%20don/src/Controllers/DemandesDonStatsController.java</file>
             <file>file:/C:/xampp4/htdocs/Gestion%20don/src/Controllers/Supprimer_don_adminController.java</file>
             <file>file:/C:/xampp4/htdocs/Gestion%20don/src/Services/Service_utilisateur.java</file>
