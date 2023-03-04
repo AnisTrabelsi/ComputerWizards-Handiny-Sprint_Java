@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMain.java to edit this template
  */
-package controllers;
+package Controllers;
 
 import java.io.IOException;
 import java.util.logging.Level;
@@ -30,11 +30,11 @@ public class NewFXMain extends Application {
     public void start(Stage primaryStage) {
         
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/GUI/front.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/gui_handiny/front.fxml"));
             Scene scene = new Scene(root);    
             primaryStage.setTitle("Handiny");
             primaryStage.setScene(scene);
-              Image icon = new Image("/Images/logo.png");
+              Image icon = new Image("/images/logo.png");
 
         // Ajouter l'icône au Primary Stage
         primaryStage.getIcons().add(icon);

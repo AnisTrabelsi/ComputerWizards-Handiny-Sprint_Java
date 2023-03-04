@@ -13,23 +13,23 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="661.0" prefWidth="1022.0" style="-fx-background-color: #124559;" styleClass="mainFxmlClass"  xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FrontController">
+<AnchorPane id="AnchorPane" prefHeight="661.0" prefWidth="1022.0" style="-fx-background-color: #124559;" styleClass="mainFxmlClass"  xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.BackController">
    <children>
       <Pane prefHeight="80.0" prefWidth="1022.0" style="-fx-background-color: #e5e8e9;">
          <children>
-            <ImageView fitHeight="86.0" fitWidth="78.0" layoutX="307.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="86.0" fitWidth="78.0" layoutX="341.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Images/logo.png" />
                </image>
             </ImageView>
-            <Text layoutX="400.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Handiny" wrappingWidth="194.0550537109375">
+            <Text layoutX="431.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Handiny" wrappingWidth="194.0550537109375">
                <font>
                   <Font name="Arial Rounded MT Bold" size="48.0" />
                </font>
             </Text>
          </children>
       </Pane>
-      <MenuBar layoutY="80.0" prefHeight="26.0" prefWidth="966.0" stylesheets="@front_main.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <MenuBar layoutY="80.0" prefHeight="26.0" prefWidth="966.0" stylesheets="@back_main.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <menus>
             <Menu mnemonicParsing="false" onAction="#accueil" text="Accueil">
                <items>
@@ -72,9 +72,9 @@
             <ImageView fitHeight="32.0" fitWidth="30.0" layoutX="414.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: #ffffff;" />
             <MediaView fx:id="mediaview" fitHeight="300.0" fitWidth="700.0" layoutX="189.0" layoutY="129.0" />
             <Slider fx:id="volume" layoutX="314.0" layoutY="437.0" onDragDetected="#click" prefHeight="14.0" prefWidth="250.0" />
-            <Button fx:id="play" layoutX="409.0" layoutY="466.0" mnemonicParsing="false" onAction="#play" prefHeight="25.0" prefWidth="106.0" stylesheets="@list.css" text="Play" />
-            <Button fx:id="pause" layoutX="551.0" layoutY="466.0" mnemonicParsing="false" onAction="#pause" prefHeight="25.0" prefWidth="106.0" stylesheets="@list.css" text="Pause" />
-            <Button fx:id="stop" layoutX="254.0" layoutY="466.0" mnemonicParsing="false" onAction="#stop" prefHeight="25.0" prefWidth="106.0" stylesheets="@list.css" text="F5" />
+            <Button fx:id="play" layoutX="409.0" layoutY="466.0" mnemonicParsing="false" onAction="#play" prefHeight="25.0" prefWidth="106.0" stylesheets="@admin.css" text="Play" />
+            <Button fx:id="pause" layoutX="551.0" layoutY="466.0" mnemonicParsing="false" onAction="#pause" prefHeight="25.0" prefWidth="106.0" stylesheets="@admin.css" text="Pause" />
+            <Button fx:id="stop" layoutX="254.0" layoutY="466.0" mnemonicParsing="false" onAction="#stop" prefHeight="25.0" prefWidth="106.0" stylesheets="@admin.css" text="F5" />
             <Button layoutX="859.0" layoutY="188.0" mnemonicParsing="false" onAction="#youtube" opacity="0.96" prefHeight="30.0" prefWidth="86.0" style="-fx-background-color: red;" text="Youtube">
                <font>
                   <Font name="System Bold" size="14.0" />

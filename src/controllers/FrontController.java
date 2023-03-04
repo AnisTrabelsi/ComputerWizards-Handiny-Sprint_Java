@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers;
+package Controllers;
 
 import java.awt.Desktop;
 import java.io.File;
@@ -60,7 +60,7 @@ public class FrontController implements Initializable {
         try{
            String videoname = null;
            String path = new File("src/" + videoname + ".mp4").getAbsolutePath();
-           File mediaFile = new File("C:\\xampp4\\htdocs\\Gestion don\\src\\Images\\projet_final.mp4");
+           File mediaFile = new File("C:\\xampp4\\htdocs\\Gestion don\\src\\images\\projet_final.mp4");
            Media media = new Media(mediaFile.toURI().toURL().toString());
             mediaplayer = new MediaPlayer(media);
             mediaview.setMediaPlayer(mediaplayer);
@@ -84,49 +84,49 @@ public class FrontController implements Initializable {
 
     @FXML
     private void Liste_des_dons(ActionEvent event) throws IOException {
-          AnchorPane pane = FXMLLoader.load(getClass().getResource("/GUI/affichage_don.fxml"));
+          AnchorPane pane = FXMLLoader.load(getClass().getResource("/gui_handiny/affichage_don.fxml"));
            mesDons.getChildren().setAll(pane);
     }
 
     @FXML
     private void Ajouter_don(ActionEvent event) throws IOException {
-         AnchorPane pane = FXMLLoader.load(getClass().getResource("/GUI/ajout_don.fxml"));
+         AnchorPane pane = FXMLLoader.load(getClass().getResource("/gui_handiny/ajout_don.fxml"));
            mesDons.getChildren().setAll(pane);
     }
 
     @FXML
     private void Supprimer_don(ActionEvent event) throws IOException {
-         AnchorPane pane = FXMLLoader.load(getClass().getResource("/GUI/supprimer_don.fxml"));
+         AnchorPane pane = FXMLLoader.load(getClass().getResource("/gui_handiny/supprimer_don.fxml"));
            mesDons.getChildren().setAll(pane);
     }
 
     @FXML
     private void Modifier_don(ActionEvent event) throws IOException {
-         AnchorPane pane = FXMLLoader.load(getClass().getResource("/GUI/modifier_don.fxml"));
+         AnchorPane pane = FXMLLoader.load(getClass().getResource("/gui_handiny/modifier_don.fxml"));
            mesDons.getChildren().setAll(pane);
     }
 
     @FXML
     private void Liste_des_demandes_dons(ActionEvent event) throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("/GUI/affichage_demande_don.fxml"));
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/gui_handiny/affichage_demande_don.fxml"));
            mesDons.getChildren().setAll(pane);
     }
 
     @FXML
     private void Ajouter_demande_don(ActionEvent event) throws IOException {
-         AnchorPane pane = FXMLLoader.load(getClass().getResource("/GUI/ajout_demande_don.fxml"));
+         AnchorPane pane = FXMLLoader.load(getClass().getResource("/gui_handiny/ajout_demande_don.fxml"));
            mesDons.getChildren().setAll(pane);
     }
 
     @FXML
     private void Supprimer_demande_don(ActionEvent event) throws IOException {
-         AnchorPane pane = FXMLLoader.load(getClass().getResource("/GUI/supprimer_demande_don.fxml"));
+         AnchorPane pane = FXMLLoader.load(getClass().getResource("/gui_handiny/supprimer_demande_don.fxml"));
            mesDons.getChildren().setAll(pane);
     }
 
     @FXML
     private void Modifier_demande_don(ActionEvent event) throws IOException {
-         AnchorPane pane = FXMLLoader.load(getClass().getResource("/GUI/modifier_demande_don.fxml"));
+         AnchorPane pane = FXMLLoader.load(getClass().getResource("/gui_handiny/modifier_demande_don.fxml"));
            mesDons.getChildren().setAll(pane);
     }
 
@@ -153,7 +153,7 @@ public class FrontController implements Initializable {
 
     @FXML
     private void stat(ActionEvent event) throws IOException {
-         AnchorPane pane = FXMLLoader.load(getClass().getResource("/GUI/DonStats.fxml"));
+         AnchorPane pane = FXMLLoader.load(getClass().getResource("/gui_handiny/DonStats.fxml"));
            mesDons.getChildren().setAll(pane);
     }
 
@@ -210,7 +210,7 @@ public class FrontController implements Initializable {
 
     @FXML
     private void statdd(ActionEvent event) throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("/GUI/DemandesDonStats.fxml"));
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/gui_handiny/DemandesDonStats.fxml"));
            mesDons.getChildren().setAll(pane);
     }
     

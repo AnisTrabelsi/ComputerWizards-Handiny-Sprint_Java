@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers;
+package Controllers;
 
 import Entite.Pdf;
 import Entite.Pdfdd;
@@ -14,7 +14,7 @@ import Services.Service_don;
 import Services.Service_utilisateur;
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.DocumentException;
-import static controllers.Affichage_donController.printNode;
+import static Controllers.Affichage_donController.printNode;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
