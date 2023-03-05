@@ -8,11 +8,18 @@ package Controllers;
 import Entite.Commentaire;
 import Entite.Sujet;
 import Services.ServiceCommentaire;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -33,10 +40,10 @@ import javafx.stage.Stage;
  * @author bengh
  */
 public class CommentaireUpdateFXMLController implements Initializable {
-    
+
     FileChooser fileChooser = new FileChooser();
     private Sujet sujet = new Sujet();
-    
+
     @FXML
     private TextField commentaire;
     @FXML
@@ -49,7 +56,7 @@ public class CommentaireUpdateFXMLController implements Initializable {
     private Button EffacerBtn;
     @FXML
     private Label messageTextArea;
-    
+
     ServiceCommentaire sc = new ServiceCommentaire();
     private ArrayList<File> attachments = new ArrayList<>();
     Commentaire comm = new Commentaire();
@@ -62,13 +69,13 @@ public class CommentaireUpdateFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter[]{new FileChooser.ExtensionFilter("Image Files", new String[]{"*.png", "*.jpg", "*.jpeg", "*.gif", "*.bmp"}), new FileChooser.ExtensionFilter("JPG", new String[]{"*.jpg"}), new FileChooser.ExtensionFilter("JPEG", new String[]{"*.jpeg"}), new FileChooser.ExtensionFilter("BMP", new String[]{"*.bmp"}), new FileChooser.ExtensionFilter("PNG", new String[]{"*.png"}), new FileChooser.ExtensionFilter("GIF", new String[]{"*.gif"})});
-        
+
     }
-    
+
     void initData(Commentaire selectedItem) {
         commentaire.setText(selectedItem.getContenu_commentaire());
         messageTextArea.setText(selectedItem.getPiecejointe());
-      String path = selectedItem.getPiecejointe();
+        String path = selectedItem.getPiecejointe();
 
         File file = new File(path);
         if (path != null) {
@@ -77,29 +84,61 @@ public class CommentaireUpdateFXMLController implements Initializable {
             ImageView image = new ImageView(new Image(file.toURI().toString()));
             imageview.setImage(image.getImage());
         }
-//        sujet.setId_sujet(selectedItem.getSujet().getId_sujet());
-//        System.out.println(sujet.getId_sujet());
+        comm = selectedItem;
     }
-    
+
     @FXML
-    private void gettext(MouseEvent event) {
+    private void gettext(MouseEvent event) throws FileNotFoundException, IOException {
+//        FileChooser fileChooser = new FileChooser();
+//        fileChooser.setTitle("Attach File");
+//        File selectedFile = fileChooser.showOpenDialog(new Stage());
+//        if (selectedFile != null) {
+//            attachments.add(selectedFile);
+//            messageTextArea.setText(selectedFile.getName() + "\n");
+//            Image image;
+//            image = new Image(selectedFile.toURI().toString());
+//            imageview.setImage(image);
+//        }
+        Random rand = new Random();
+        int x = rand.nextInt(1000);
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Attach File");
-        File selectedFile = fileChooser.showOpenDialog(new Stage());
-        if (selectedFile != null) {
-            attachments.add(selectedFile);
-            messageTextArea.setText(selectedFile.getName() + "\n");
-            Image image;
-            image = new Image(selectedFile.toURI().toString());
-            imageview.setImage(image);
+        fileChooser.setTitle("Upload File Path");
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter[]{new FileChooser.ExtensionFilter("Image Files", new String[]{"*.png", "*.jpg", "*.jpeg", "*.gif", "*.bmp"}), new FileChooser.ExtensionFilter("JPG", new String[]{"*.jpg"}), new FileChooser.ExtensionFilter("JPEG", new String[]{"*.jpeg"}), new FileChooser.ExtensionFilter("BMP", new String[]{"*.bmp"}), new FileChooser.ExtensionFilter("PNG", new String[]{"*.png"}), new FileChooser.ExtensionFilter("GIF", new String[]{"*.gif"})});
+
+        File file = fileChooser.showOpenDialog(null);
+        String DBPath = "C:\\Users\\bengh\\OneDrive\\Documents\\NetBeansProjects\\Handiny\\src\\images\\" + x + ".jpg";
+
+        //String DBPath = "" + x + ".jpg";
+        if (file != null) {
+            FileInputStream Fsource = new FileInputStream(file.getAbsolutePath());
+            FileOutputStream Fdestination = new FileOutputStream(DBPath);
+            BufferedInputStream bin = new BufferedInputStream(Fsource);
+            BufferedOutputStream bou = new BufferedOutputStream(Fdestination);
+            System.out.println(file.getAbsoluteFile());
+            String path = file.getAbsolutePath();
+            messageTextArea.setText(path);
+            Image img = new Image(file.toURI().toString());
+            imageview.setImage(img);
+            int b = 0;
+            while (b != -1) {
+                b = bin.read();
+                bou.write(b);
+            }
+            bin.close();
+            bou.close();
+
+        } else {
+            System.out.println("error");
+
         }
     }
-    
+
     @FXML
     private void modifCommentaire(ActionEvent event) {
         modifCommentBtn.setOnAction((ActionEvent e) -> {
             try {
-                System.out.println(sujet.toString());
+                System.out.println(comm.getId_commentaire());
+                System.out.println(comm.getSujet().getId_sujet());
                 comm.setContenu_commentaire(commentaire.getText());
                 comm.setSujet(sujet);
                 comm.setPiecejointe(messageTextArea.getText());
@@ -108,17 +147,17 @@ public class CommentaireUpdateFXMLController implements Initializable {
                 // Conversion en java.sql.Date
                 java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
                 comm.setDate_publication(sqlDate);
-                System.out.println(comm.toString()+comm.getSujet().getId_sujet());
+                System.out.println(comm.toString() + comm.getSujet().getId_sujet());
                 sc.update(comm);
                 System.out.println(comm.toString());
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                
+
                 alert.setTitle("Information Dialog");
-                
+
                 alert.setHeaderText(null);
-                
+
                 alert.setContentText("Commentaire modifié avec succés!");
-                
+
                 alert.show();
             } catch (SQLException ex) {
                 System.out.println(ex);
@@ -126,12 +165,12 @@ public class CommentaireUpdateFXMLController implements Initializable {
         }
         );
     }
-    
+
     @FXML
     private void clearCommentaire(ActionEvent event) {
         commentaire.setText("");
         Stage stage = (Stage) EffacerBtn.getScene().getWindow();
         stage.close();
     }
-    
+
 }

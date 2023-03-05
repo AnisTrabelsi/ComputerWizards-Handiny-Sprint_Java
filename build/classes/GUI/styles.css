@@ -1,0 +1,24 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.chat-message {
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 60%;
+}
+
+/* User message styles */
+.user-message {
+  background-color: #007bff;
+  color: white;
+  align-self: flex-end;
+}
+
+/* Chatbot message styles */
+.chatbot-message {
+  background-color: #f8f8f8;
+  color: #555;
+  align-self: flex-start;
+}

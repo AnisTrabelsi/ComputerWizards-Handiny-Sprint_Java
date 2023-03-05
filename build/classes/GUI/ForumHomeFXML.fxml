@@ -12,20 +12,20 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="773.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ForumHomeFXMLController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="773.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ForumHomeFXMLController">
    <top>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="toResearch" prefHeight="15.0" prefWidth="290.0">
+            <TextField fx:id="toResearch" prefHeight="15.0" prefWidth="290.0" promptText="Rechercher" style="-fx-background-color: #f1faee; -fx-background-radius: 3;">
                <HBox.margin>
                   <Insets left="200.0" top="20.0" />
                </HBox.margin>
             </TextField>
-            <Button fx:id="rechercheBtn" mnemonicParsing="false" onAction="#Rechercher" prefHeight="24.0" prefWidth="23.0">
+            <Button fx:id="rechercheBtn" mnemonicParsing="false" onAction="#Rechercher" prefHeight="24.0" prefWidth="23.0" style="-fx-background-color: #f1faee;">
                <graphic>
                   <ImageView fitHeight="18.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Assets/icons8-chercher-24.png" />
+                        <Image url="@../images/icons8-chercher-24.png" />
                      </image>
                   </ImageView>
                </graphic>

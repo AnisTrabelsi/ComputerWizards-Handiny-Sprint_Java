@@ -31,6 +31,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -61,7 +62,7 @@ public class SujetFXMLController implements Initializable {
     @FXML
     private Button submitBtn;
     private Statement ste;
-
+    
     ServiceCategorie ser = new ServiceCategorie();
     ServiceSujet sersujet = new ServiceSujet();
     @FXML
@@ -76,6 +77,7 @@ public class SujetFXMLController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    ToggleGroup etatToggleGroup = new ToggleGroup();
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ObservableList liste;
@@ -86,27 +88,17 @@ public class SujetFXMLController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(SujetFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        ouvert.setToggleGroup(etatToggleGroup);
+        ferme.setToggleGroup(etatToggleGroup);
+        bloque.setToggleGroup(etatToggleGroup);
 
     }
 
     @FXML
     private String getRbEtat(ActionEvent event) {
-        ServiceSujet sujetdao = new ServiceSujet();
-        Sujet suj = new Sujet();
-
-        if (ouvert.isSelected()) {
-            suj.setEtat("ouvert");
-            return "Ouvert";
-        }
-        if (ferme.isSelected()) {
-            suj.setEtat("fermé");
-            return "Fermé";
-        }
-        if (bloque.isSelected()) {
-            suj.setEtat("bloqué");
-            return "Bloqué";
-        }
-        return "null";
+        RadioButton selectedRadioButton = (RadioButton) etatToggleGroup.getSelectedToggle();
+        return selectedRadioButton.getText();
     }
 
     @FXML
@@ -170,14 +162,14 @@ public class SujetFXMLController implements Initializable {
             });
         }
     }
-    
+
     private boolean isEmptyFields() {
-    return titre_sujet.getText().isEmpty()
-            || contenu_sujet.getText().isEmpty()
-            || tags.getText().isEmpty()
-            || id_categorie.getSelectionModel().isEmpty()
-            || (!ouvert.isSelected() && !ferme.isSelected() && !bloque.isSelected());
-}
+        return titre_sujet.getText().isEmpty()
+                || contenu_sujet.getText().isEmpty()
+                || tags.getText().isEmpty()
+                || id_categorie.getSelectionModel().isEmpty()
+                || (!ouvert.isSelected() && !ferme.isSelected() && !bloque.isSelected());
+    }
 
     @FXML
     private void cancelsujet(ActionEvent event) {
@@ -225,12 +217,12 @@ public class SujetFXMLController implements Initializable {
     private void returnlistsujets(MouseEvent event) {
         returnlistSujetsBtn.setOnAction((ActionEvent e) -> {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/SujetListFXML.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/ForumHomeFXML.fxml"));
                 Parent root = loader.load();
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
                 stage.setTitle("");
-                stage.initModality(Modality.APPLICATION_MODAL); 
+                stage.initModality(Modality.APPLICATION_MODAL);
                 stage.showAndWait();
             } catch (IOException ex) {
                 Logger.getLogger(CategorieFXMLController.class.getName()).log(Level.SEVERE, null, ex);

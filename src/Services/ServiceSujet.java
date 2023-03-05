@@ -30,6 +30,7 @@ public class ServiceSujet implements IService<Sujet> {
             System.out.println(ex);
         }
     }
+    ServiceCategorie ser = new ServiceCategorie();
 
     public void ajouter(Sujet t) throws SQLException {
 
@@ -67,22 +68,15 @@ public class ServiceSujet implements IService<Sujet> {
 
     @Override
     public void update(Sujet t) throws SQLException {
-//        String req = "UPDATE `Sujet` SET "
-//                + "`titre_sujet` = '" + t.getTitre_sujet() + "', "
-//                + "`contenu_sujet` = '" + t.getContenu_sujet() + "', "
-//                + "`etat` = '" + t.getEtat() + "', "
-//                + "`id_categorie` = '" + t.getCat().getId_categorie()
-//                + "WHERE `id_sujet` = " + t.getId_sujet() + ";";
-//
-//        ste.executeUpdate(req);
-//        
-        String req = " UPDATE Sujet SET titre_sujet= ?, contenu_sujet = ? , etat  = ? , tags = ?  WHERE id_sujet= ?;";
+        String req = " UPDATE Sujet SET titre_sujet= ?, contenu_sujet = ? , etat  = ? , tags = ?, id_categorie = ?  WHERE id_sujet= ?;";
         PreparedStatement pre = con.prepareStatement(req);
         pre.setString(1, t.getTitre_sujet());
         pre.setString(2, t.getContenu_sujet());
         pre.setString(3, t.getEtat());
         pre.setString(4, t.getTags());
-        pre.setInt(5, t.getId_sujet());
+        pre.setInt(5, t.getCat().getId_categorie());
+        pre.setInt(6, t.getId_sujet());
+        
         pre.executeUpdate();
         System.out.println("Sujet modifiée !");
     }
@@ -113,8 +107,7 @@ public class ServiceSujet implements IService<Sujet> {
 //                categorie.setNom_categorie(res.getString("nom_categorie"));
 //                categorie.setDate_creation_categorie(res.getDate("date_creation_categorie"));
 //                categorie.setNb_sujets(res.getInt("nb_sujets"));
-            ServiceCategorie ser = new ServiceCategorie();
-            
+
             Sujet sujet = new Sujet();
             sujet.setId_sujet(res.getInt("id_sujet"));
             sujet.setTitre_sujet(res.getString("titre_sujet"));
@@ -123,8 +116,7 @@ public class ServiceSujet implements IService<Sujet> {
             sujet.setNb_commentaires(res.getInt("nb_commentaires"));
             sujet.setEtat(res.getString("etat"));
             sujet.setTags(res.getString("tags"));
-            Categorie c = ser.findById(res.getInt("id_categorie"));
-            sujet.setCat(c);
+            sujet.setCat(ser.findById(res.getInt("id_categorie")));
             listsuj.add(sujet);
         }
         return listsuj;
@@ -141,31 +133,12 @@ public class ServiceSujet implements IService<Sujet> {
                         rs.getString("titre_sujet"),
                         rs.getString("contenu_sujet"),
                         rs.getString("etat"),
-                        rs.getString("tags")
-                );
+                        rs.getString("tags"));
             }
         } catch (SQLException ex) {
             System.out.println("Un sujet avec cet id " + id_sujet + " est non trouvé !" + ex.getMessage());
         }
         return sujet;
-//        Sujet sujet = new Sujet();
-//        Categorie cat = new Categorie();
-//        Utilisateur user = new Utilisateur();
-//        String req = "select * from Sujet WHERE  id_sujet =" + id_sujet;
-//        Statement ste = con.createStatement();
-//        ResultSet res = ste.executeQuery(req);
-//        while (res.next()) {
-//            String titre_sujet = res.getString("titre_sujet");
-//            String contenu_sujet = res.getString("contenu_sujet");
-//            int nb_commentaires = res.getInt("nb_commentaires");
-//            String etat = res.getString("etat");
-//            String tags = res.getString("tags");
-//
-//            // System.out.println(r);
-//            Sujet s1 = new Sujet(titre_sujet, contenu_sujet, nb_commentaires, etat, tags, cat, user);
-//            sujet = s1;
-//        }
-//        return sujet;
     }
 
     public List<String> readNoms() throws SQLException {
@@ -181,6 +154,7 @@ public class ServiceSujet implements IService<Sujet> {
         }
         return listSuj;
     }
+
     public List<String> getAllTags() throws SQLException {
         ArrayList<String> listSuj = new ArrayList<>();
         String req = "select tags from Sujet";

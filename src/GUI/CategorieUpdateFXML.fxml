@@ -16,14 +16,14 @@
    <children>
       <ImageView fitHeight="400.0" fitWidth="600.0" layoutX="10.0" layoutY="9.0" opacity="0.51" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Assets/20945188.jpg" />
+            <Image url="@../images/20945188.jpg" />
          </image>
       </ImageView>
       <Button fx:id="returnlistcategoriesBtn" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onMouseClicked="#returnlistcategories">
          <graphic>
             <ImageView fitHeight="18.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Assets/icons8-gauche-50.png" />
+                  <Image url="@../images/icons8-gauche-50.png" />
                </image>
             </ImageView>
          </graphic>
@@ -35,7 +35,7 @@
                <graphic>
                   <ImageView fitHeight="16.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Assets/icons8-check-mark-button-48.png" />
+                        <Image url="@../images/icons8-check-mark-button-48.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -44,7 +44,7 @@
                <graphic>
                   <ImageView fitHeight="16.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Assets/icons8-effacer-48%20(1).png" />
+                        <Image url="@../images/icons8-effacer-48%20(1).png" />
                      </image>
                   </ImageView>
                </graphic>

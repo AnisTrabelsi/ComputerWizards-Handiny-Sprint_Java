@@ -69,16 +69,6 @@ public class CommentaireFXMLController implements Initializable {
      */
         @FXML
     private void gettext(MouseEvent event) throws FileNotFoundException, IOException {
-//        FileChooser fileChooser = new FileChooser();
-//        fileChooser.setTitle("Attach File");
-//        File selectedFile = fileChooser.showOpenDialog(new Stage());
-//        if (selectedFile != null) {
-//            attachments.add(selectedFile);
-//            messageTextArea.setText(selectedFile.getName() + "\n");
-//            Image image;
-//            image = new Image(selectedFile.toURI().toString());
-//            imageview.setImage(image);
-//        }
         Random rand = new Random();
         int x = rand.nextInt(1000);
         FileChooser fileChooser = new FileChooser();
@@ -86,7 +76,7 @@ public class CommentaireFXMLController implements Initializable {
         fileChooser.getExtensionFilters().addAll(new ExtensionFilter[]{new ExtensionFilter("Image Files", new String[]{"*.png", "*.jpg", "*.jpeg", "*.gif", "*.bmp"}), new ExtensionFilter("JPG", new String[]{"*.jpg"}), new ExtensionFilter("JPEG", new String[]{"*.jpeg"}), new ExtensionFilter("BMP", new String[]{"*.bmp"}), new ExtensionFilter("PNG", new String[]{"*.png"}), new ExtensionFilter("GIF", new String[]{"*.gif"})});
 
         File file = fileChooser.showOpenDialog(null);
-      String DBPath = "C:\\Users\\bengh\\OneDrive\\Documents\\NetBeansProjects\\Handiny\\src\\Assets\\" + x + ".jpg";
+      String DBPath = "C:\\Users\\bengh\\OneDrive\\Documents\\NetBeansProjects\\Handiny\\src\\images\\" + x + ".jpg";
 
         //String DBPath = "" + x + ".jpg";
 

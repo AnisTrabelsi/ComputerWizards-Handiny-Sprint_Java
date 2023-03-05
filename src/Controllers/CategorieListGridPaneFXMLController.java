@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -75,7 +76,7 @@ public class CategorieListGridPaneFXMLController implements Initializable {
         try {
             CategoriesGrid.getChildren().clear();
             categories = new ArrayList<>(ser.readAll());
-            nbposts.setText(String.valueOf(categories.size()+" Posts"));
+            nbposts.setText(String.valueOf(categories.size()+" Catégories"));
         } catch (SQLException ex) {
             System.out.println(ex);
         }
@@ -126,10 +127,11 @@ public class CategorieListGridPaneFXMLController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(CategorieListGridPaneFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        loadData();
     }
 
     @FXML
-    private void refresh(MouseEvent event) {
+    private void refresh(ActionEvent event) {
         loadData();
     }
 

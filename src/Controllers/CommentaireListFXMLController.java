@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -32,6 +33,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -55,6 +57,8 @@ public class CommentaireListFXMLController implements Initializable {
     ServiceCommentaire ser = new ServiceCommentaire();
     int column = 0;
     int row = 1;
+    @FXML
+    private Button returnlistsujetsBtn;
 
     /**
      * Initializes the controller class.
@@ -62,7 +66,7 @@ public class CommentaireListFXMLController implements Initializable {
     public void loadData() {
         try {
             comments = new ArrayList<>(ser.readAll());
-            nbcomments.setText(String.valueOf(comments.size() + " Comments"));
+            nbcomments.setText(String.valueOf(comments.size() + " Réponses"));
         } catch (SQLException ex) {
             System.out.println(ex);
         }
@@ -110,8 +114,25 @@ public class CommentaireListFXMLController implements Initializable {
     }
 
     @FXML
-    private void refresh(MouseEvent event) {
+    private void refresh(ActionEvent event) {
         CommentGrid.getChildren().clear();
         loadData();
+    }
+
+    @FXML
+    private void returnlistsujets(MouseEvent event) {
+        returnlistsujetsBtn.setOnAction((ActionEvent e) -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/SujetListFXML.fxml"));
+                Parent root = loader.load();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.setTitle("");
+                stage.initModality(Modality.APPLICATION_MODAL); 
+                stage.showAndWait();
+            } catch (IOException ex) {
+                Logger.getLogger(CategorieFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
     }
 }

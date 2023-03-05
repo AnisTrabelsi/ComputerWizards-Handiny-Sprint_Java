@@ -45,7 +45,7 @@ public class CategorieGridFXMLController implements Initializable {
     private Button supprimerCategorieBtn;
 
     ServiceCategorie ser = new ServiceCategorie();
-
+    CategorieListGridPaneFXMLController cc = new CategorieListGridPaneFXMLController();
     /**
      * Initializes the controller class.
      */
@@ -56,7 +56,7 @@ public class CategorieGridFXMLController implements Initializable {
 
     public void setData(Categorie cat) {
         namecategorie.setText(cat.getNom_categorie());
-        nbsujets.setText(cat.getNb_sujets() + " Topics");
+        nbsujets.setText(cat.getNb_sujets() + " Sujets");
     }
 
     @FXML
@@ -72,38 +72,18 @@ public class CategorieGridFXMLController implements Initializable {
             stage.setTitle("Modifier une catégorie");
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
+            cc.loadData();
         } catch (SQLException ex) {
             Logger.getLogger(CategorieGridFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(CategorieGridFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
     }
 
     @FXML
     private void supprimerCategorie(MouseEvent event) {
         try {
-            //        try {
-//            Categorie cat = ser.findById(ser.getIdByName(namecategorie.getText()));
-//
-//            supprimerCategorieBtn.setOnAction(event1 -> {
-//                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//                alert.setTitle("info evenement ");
-//                alert.setHeaderText(null);
-//
-//                // alert.setContentText("Description : "+evenement.getDescription());
-//                try {
-//                    ser.supprime(cat);
-//                    JOptionPane.showMessageDialog(null, "Catégorie supprimée");
-//                    CategorieListGridPaneFXMLController clg=new CategorieListGridPaneFXMLController();
-//                    
-//                } catch (SQLException ex) {
-//                    System.out.println(ex);
-//                }
-//            });
-//        } catch (SQLException ex) {
-//            Logger.getLogger(CategorieGridFXMLController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
             Categorie cat = ser.findById(ser.getIdByName(namecategorie.getText()));
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirmation de suppression");
@@ -113,9 +93,11 @@ public class CategorieGridFXMLController implements Initializable {
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
                 ser.supprime(cat);
+                cc.loadData(); 
             }
         } catch (SQLException ex) {
             Logger.getLogger(CategorieGridFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }
 }

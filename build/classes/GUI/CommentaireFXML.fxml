@@ -16,7 +16,7 @@
    <children>
       <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Assets/medium-shot-woman-man-wheelchair.jpg" />
+            <Image url="@../images/medium-shot-woman-man-wheelchair.jpg" />
          </image>
       </ImageView>
       <AnchorPane layoutX="24.0" layoutY="23.0" opacity="0.94" prefHeight="354.0" prefWidth="551.0" style="-fx-background-color: #1d3557;">
@@ -29,7 +29,7 @@
             </Label>
             <ImageView fitHeight="49.0" fitWidth="58.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Assets/icons8-commentaires-48.png" />
+                  <Image url="@../images/icons8-commentaires-48.png" />
                </image>
             </ImageView>
             <ImageView fx:id="imageview" fitHeight="162.0" fitWidth="209.0" layoutX="328.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true" />

@@ -50,13 +50,27 @@ public class ForumSideBarFXMLController implements Initializable {
     private BorderPane bp;
     @FXML
     private Button openChatbotBtn;
+    @FXML
+    private Button mesPostesBtn;
 
     /**
      * Initializes the controller class.
      */
+    int s = 0;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    }    
+//        if (Session.getInstance().getSessionUser() != null) {
+        // si oui, remplacer le bouton "categories" par le bouton "mes postes"
+        if (s == 0) {
+            categoriesBtn.setVisible(false);
+            mesPostesBtn.setVisible(true);
+        } else {
+            // sinon, afficher le bouton "categories" et cacher le bouton "mes postes"
+            categoriesBtn.setVisible(true);
+            mesPostesBtn.setVisible(false);
+        }
+    }
 
     @FXML
     private void home(MouseEvent event) {
@@ -80,7 +94,7 @@ public class ForumSideBarFXMLController implements Initializable {
 
     @FXML
     private void categories(MouseEvent event) {
-         try {
+        try {
             Parent root = FXMLLoader.load(getClass().getResource("/GUI/CategorieListGridPaneFXML.fxml"));
             bp.setCenter(root);
         } catch (IOException ex) {
@@ -111,7 +125,15 @@ public class ForumSideBarFXMLController implements Initializable {
             Logger.getLogger(CategorieListGridPaneFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
-    
+
+    @FXML
+    private void mesPostes(MouseEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/GUI/MesPostesFXML.fxml"));
+            bp.setCenter(root);
+        } catch (IOException ex) {
+            Logger.getLogger(CategorieListGridPaneFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }

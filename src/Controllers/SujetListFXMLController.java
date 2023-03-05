@@ -46,7 +46,6 @@ import javafx.stage.Stage;
  */
 public class SujetListFXMLController implements Initializable {
 
-    private ObservableList<Sujet> objects = FXCollections.observableArrayList();
     private List<Sujet> sujets;
     @FXML
     private BorderPane bp;
@@ -63,9 +62,9 @@ public class SujetListFXMLController implements Initializable {
     @FXML
     private Button addsujetBtn;
     @FXML
-    private Button refreshBtn;
-    @FXML
     private Button returnlistcategoriesBtn;
+    @FXML
+    private Button refreshBtn;
 
     /**
      * Initializes the controller class.
@@ -73,7 +72,7 @@ public class SujetListFXMLController implements Initializable {
      public void loadData(){
          try {
             sujets = new ArrayList<>(ser.readAll());
-            nbposts.setText(String.valueOf(sujets.size() + " Posts"));
+            nbposts.setText(String.valueOf(sujets.size() + " Sujets"));
         } catch (SQLException ex) {
             System.out.println(ex);
         }
@@ -107,48 +106,6 @@ public class SujetListFXMLController implements Initializable {
 
     }
 
-//    private void handleEditButton(Sujet get) {
-////        System.out.println("Edit button clicked for object " + get.getTitre_sujet());
-//
-//        try {
-//            ServiceSujet service = new ServiceSujet();
-//            ObservableList liste, liste2;
-//            liste = FXCollections.observableArrayList(service.readNoms());
-//            id_categorie.setItems(liste);
-//            liste2 = FXCollections.observableArrayList(service.getAllTags());
-//            tags.setItems(liste2);
-//            try {
-//                objects.addAll(service.readAll());
-//            } catch (SQLException ex) {
-//                System.out.println(ex);
-//            }
-//            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-//            // Add the objects to the GridPane
-//            for (int i = 0; i < objects.size(); i++) {
-//                final int index = i; // create a final copy of i
-//                Label nameLabel = new Label(objects.get(index).getTitre_sujet());
-//                Label descLabel = new Label(dateFormatter.format((TemporalAccessor) objects.get(index).getDate_creation_sujet()));
-//                Label descLabe2 = new Label(objects.get(index).getContenu_sujet());
-//                Label descLabe3 = new Label(String.valueOf(objects.get(index).getNb_commentaires()));
-//                Label descLabe4 = new Label(objects.get(index).getEtat());
-//                gridpane.addRow(index, nameLabel, descLabel, descLabe2, descLabe3, descLabe4);
-//            }
-//        } catch (SQLException ex) {
-//            Logger.getLogger(SujetListFXMLController.class.getName()).log(Level.SEVERE, null, ex);
-//        }                
-//        
-//
-//    }
-//    private void update(ActionEvent event) throws SQLException {
-//        updateBtn.setOnAction((ActionEvent e) -> {
-//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//            alert.setTitle("Information Dialog");
-//            alert.setHeaderText(null);
-//            alert.setContentText("Sujet modifié avec succés!");
-//            alert.show();
-//        });
-//    }
-
     @FXML
     private void addsujet(MouseEvent event) {
         try {
@@ -160,13 +117,10 @@ public class SujetListFXMLController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(CategorieListGridPaneFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-
-    @FXML
-    private void refresh(MouseEvent event) {
         TopicGrid.getChildren().clear();
         loadData();
     }
+
 
     @FXML
     private void commentsReadAll(MouseEvent event) {
@@ -196,6 +150,12 @@ public class SujetListFXMLController implements Initializable {
                 Logger.getLogger(CategorieFXMLController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
+    }
+
+    @FXML
+    private void refresh(ActionEvent event) {
+        TopicGrid.getChildren().clear();
+        loadData();
     }
 
 }

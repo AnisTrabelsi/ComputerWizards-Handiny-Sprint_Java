@@ -22,7 +22,7 @@
                <children>
                   <VBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="100.0" prefWidth="906.0" style="-fx-background-color: #1c3144;">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="RIGHT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="62.0" prefWidth="184.0" text="Comments" textFill="WHITE">
+                        <Label alignment="CENTER" contentDisplay="RIGHT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="62.0" prefWidth="184.0" text="Commentaires" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="23.0" />
                            </font>
@@ -34,25 +34,37 @@
                         </Label>
                      </children>
                   </VBox>
-                  <VBox prefHeight="100.0" prefWidth="507.0">
-                     <children>
-                        <Button fx:id="categoriesReadAllBtn" mnemonicParsing="false" onMouseClicked="#categoriesReadAll" prefHeight="74.0" prefWidth="138.0" text="Categories List" />
-                     </children>
-                  </VBox>
                </children>
             </HBox>
             <HBox prefHeight="78.0" prefWidth="674.0">
                <children>
-                  <HBox prefHeight="38.0" prefWidth="254.0" />
+                  <HBox prefHeight="38.0" prefWidth="254.0">
+                     <children>
+                        <Button fx:id="refreshBtn" mnemonicParsing="false" onAction="#refresh" style="-fx-background-color: #14213d; -fx-background-radius: 50;">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/icons8-mettre-à-jour-la-rotation-à-gauche-50.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <HBox.margin>
+                              <Insets left="20.0" top="10.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children></HBox>
                   <HBox prefHeight="48.0" prefWidth="190.0" />
-                  <Button fx:id="refreshBtn" mnemonicParsing="false" onMouseClicked="#refresh">
+                  <Button fx:id="categoriesReadAllBtn" mnemonicParsing="false" onMouseClicked="#categoriesReadAll" prefHeight="42.0" prefWidth="191.0" style="-fx-background-color: #14213d; -fx-background-radius: 50;" text="Liste de catégories" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="12.0" />
+                     </font>
                      <HBox.margin>
-                        <Insets left="10.0" top="14.0" />
+                        <Insets top="5.0" />
                      </HBox.margin>
                      <graphic>
-                        <ImageView fitHeight="17.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="23.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../Assets/icons8-mettre-à-jour-la-rotation-à-gauche-30.png" />
+                              <Image url="@../images/icons8-forum-64.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -63,7 +75,7 @@
                <children>
                   <VBox prefHeight="38.0" prefWidth="306.0">
                      <children>
-                        <Label prefHeight="38.0" prefWidth="106.0" text="Comment">
+                        <Label prefHeight="38.0" prefWidth="138.0" text="Commentaire">
                            <VBox.margin>
                               <Insets left="50.0" />
                            </VBox.margin>
@@ -75,7 +87,7 @@
                   </VBox>
                   <VBox prefHeight="38.0" prefWidth="170.0">
                      <children>
-                        <Label prefHeight="38.0" prefWidth="193.0" text="Attachement">
+                        <Label prefHeight="38.0" prefWidth="193.0" text="Pièce jointe">
                            <font>
                               <Font name="Century Gothic" size="17.0" />
                            </font>
@@ -109,6 +121,17 @@
       </VBox>
    </center>
    <top>
-      <HBox prefHeight="74.0" prefWidth="674.0" BorderPane.alignment="CENTER" />
+      <HBox prefHeight="74.0" prefWidth="674.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="returnlistsujetsBtn" mnemonicParsing="false" onMouseClicked="#returnlistsujets" style="-fx-background-color: #14213d; -fx-background-radius: 50;">
+               <graphic>
+                  <ImageView fitHeight="18.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8-gauche-24.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children></HBox>
    </top>
 </BorderPane>

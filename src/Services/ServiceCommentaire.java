@@ -17,6 +17,7 @@ import java.util.List;
  */
 public class ServiceCommentaire implements IService<Commentaire> {
 
+    ServiceSujet ss = new ServiceSujet();
     Connection con = DataSource.getInstance().getConnection();
 
     private Statement ste;
@@ -62,16 +63,16 @@ public class ServiceCommentaire implements IService<Commentaire> {
     }
 
     @Override
-    public void update(Commentaire t) throws SQLException {  
-        String req = "UPDATE Commentaire SET contenu_commentaire= ?, date_publication = ?,  nb_mentions  = ? , piecejointe = ?, id_sujet = ? WHERE id_commentaire= ?;";
+    public void update(Commentaire t) throws SQLException {
+        String req = "UPDATE Commentaire SET contenu_commentaire= ?, date_publication = ?,  nb_mentions  = ? , piecejointe = ? WHERE id_commentaire= ?;";
         PreparedStatement pre = con.prepareStatement(req);
         pre.setString(1, t.getContenu_commentaire());
         pre.setDate(2, t.getDate_publication());
         pre.setInt(3, t.getNb_mentions());
         pre.setString(4, t.getPiecejointe());
-        pre.setInt(5, t.getSujet().getId_sujet());
-//        pre.setInt(6, t.getUser().getId_utilisateur());
-        pre.setInt(6, t.getId_commentaire());
+//        pre.setInt(5, t.getSujet().getId_sujet());
+        //pre.setInt(6, t.getUser().getId_utilisateur());
+        pre.setInt(5, t.getId_commentaire());
         pre.executeUpdate();
         System.out.println("Commentaire modifié !");
     }
@@ -93,7 +94,6 @@ public class ServiceCommentaire implements IService<Commentaire> {
         ArrayList<Commentaire> listcomm = new ArrayList<>();
 
         String req = "select * from Commentaire";
-        ServiceSujet ss=new ServiceSujet();
 
         ResultSet res = ste.executeQuery(req);
 
@@ -112,10 +112,10 @@ public class ServiceCommentaire implements IService<Commentaire> {
     }
 
     public List<Commentaire> CommentsBySujet(Sujet sujet) throws SQLException {
+
         ArrayList<Commentaire> listcomm = new ArrayList<>();
-
-        String req = "select * from Commentaire where id_sujet = " + sujet.getId_sujet();
-
+        System.out.println(sujet.getId_sujet());
+        String req = "SELECT * FROM Commentaire WHERE id_sujet = " +sujet.getId_sujet();
         ResultSet res = ste.executeQuery(req);
 
         while (res.next()) {
@@ -125,6 +125,8 @@ public class ServiceCommentaire implements IService<Commentaire> {
             commentaire.setDate_publication(res.getDate("date_publication"));
             commentaire.setNb_mentions(res.getInt("nb_mentions"));
             commentaire.setPiecejointe(res.getString("piecejointe"));
+            int ids = res.getInt("id_sujet");
+            commentaire.setSujet(ss.findById(ids));
             listcomm.add(commentaire);
         }
         return listcomm;
@@ -135,7 +137,6 @@ public class ServiceCommentaire implements IService<Commentaire> {
         Commentaire comment = new Commentaire();
         Sujet suj = null;
         String req = "select * from Commentaire WHERE  id_commentaire =" + id;
-        Statement ste = con.createStatement();
         ResultSet res = ste.executeQuery(req);
         while (res.next()) {
             String contenu_commentaire = res.getString("contenu_commentaire");

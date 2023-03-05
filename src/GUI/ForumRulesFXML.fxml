@@ -25,7 +25,7 @@
                <graphic>
                   <ImageView fitHeight="32.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Assets/icons8-dupliquer-sur-une-nouvelle-page-48.png" />
+                        <Image url="@../images/icons8-dupliquer-sur-une-nouvelle-page-48.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -47,14 +47,14 @@
             </Label>
             <ImageView fitHeight="19.0" fitWidth="21.0" layoutX="357.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Assets/icons8-poignée-de-main-30.png" />
+                  <Image url="@../images/icons8-poignée-de-main-30.png" />
                </image>
             </ImageView>
             <Button fx:id="confirmBtn" layoutX="303.0" layoutY="276.0" mnemonicParsing="false" onAction="#confirmer" text="Confirm">
                <graphic>
                   <ImageView fitHeight="19.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Assets/icons8-check-mark-button-48.png" />
+                        <Image url="@../images/icons8-check-mark-button-48.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -63,7 +63,7 @@
                <graphic>
                   <ImageView fitHeight="19.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Assets/icons8-effacer-48.png" />
+                        <Image url="@../images/icons8-effacer-48.png" />
                      </image>
                   </ImageView>
                </graphic>

@@ -35,7 +35,7 @@
                      <graphic>
                         <ImageView fitHeight="41.0" fitWidth="83.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../Assets/icons8-j'aime-ça-50.png" />
+                              <Image url="@../images/icons8-j'aime-ça-50.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -51,7 +51,7 @@
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../Assets/edit-regular.png" />
+                              <Image url="@../images/edit-regular.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -63,7 +63,7 @@
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../Assets/trash-solid.png" />
+                              <Image url="@../images/trash-solid.png" />
                            </image>
                         </ImageView>
                      </graphic>

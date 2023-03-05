@@ -11,24 +11,24 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="518.0" prefWidth="606.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SujetFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="525.0" prefWidth="592.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SujetFXMLController">
     <stylesheets>
         <URL value="@sujetfxml.css" />
     </stylesheets>
    <children>
       <ImageView fitHeight="528.0" fitWidth="352.0" opacity="0.82" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Assets/car-with-disabled-person-symbol.jpg" />
+            <Image url="@../images/car-with-disabled-person-symbol.jpg" />
          </image>
       </ImageView>
       <ImageView fitHeight="552.0" fitWidth="352.0" layoutX="254.0" opacity="0.78" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Assets/car-with-disabled-person-symbol.jpg" />
+            <Image url="@../images/car-with-disabled-person-symbol.jpg" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="11.0" layoutY="14.0" prefHeight="497.0" prefWidth="583.0" style="-fx-background-color: #1d3557;">
+      <AnchorPane layoutX="11.0" layoutY="14.0" prefHeight="516.0" prefWidth="583.0" style="-fx-background-color: #1d3557;">
          <children>
-            <TextField fx:id="titre_sujet" layoutX="181.0" layoutY="88.0" prefHeight="26.0" prefWidth="212.0" />
+            <TextField fx:id="titre_sujet" layoutX="202.0" layoutY="88.0" prefHeight="26.0" prefWidth="212.0" />
             <Label layoutX="25.0" layoutY="142.0" text="Séléctionner la catégorie" textFill="WHITE" />
             <ChoiceBox fx:id="id_categorie" layoutX="204.0" layoutY="138.0" prefWidth="150.0" />
             <Label layoutX="60.0" layoutY="193.0" text="Description" textFill="WHITE" />
@@ -39,38 +39,52 @@
             <Label layoutX="68.0" layoutY="417.0" text="Partager" textFill="WHITE" />
             <RadioButton fx:id="bloque" layoutX="399.0" layoutY="294.0" mnemonicParsing="false" onAction="#getRbEtat" text="Bloqué" textFill="WHITE" />
             <Label layoutX="78.0" layoutY="352.0" text="Tags" textFill="WHITE" />
-            <TextField fx:id="tags" layoutX="166.0" layoutY="352.0" prefHeight="26.0" prefWidth="392.0" />
-            <Label layoutX="213.0" layoutY="14.0" prefHeight="40.0" prefWidth="186.0" text="Création de sujet" textFill="WHITE">
+            <TextField fx:id="tags" layoutX="172.0" layoutY="349.0" prefHeight="26.0" prefWidth="392.0" />
+            <Label layoutX="173.0" layoutY="14.0" prefHeight="40.0" prefWidth="283.0" text="Création de sujet" textFill="WHITE">
                <font>
-                  <Font name="Agency FB" size="32.0" />
+                  <Font name="Arial Rounded MT Bold" size="32.0" />
                </font>
             </Label>
             <Label layoutX="56.0" layoutY="93.0" text="Titre de sujet" textFill="WHITE" />
-            <Button fx:id="submitBtn" layoutX="402.0" layoutY="458.0" mnemonicParsing="false" onAction="#submitsujet" style="-fx-background-color: #ABB9E1;" text="Créer le sujet" />
-            <Button fx:id="cancelBtn" layoutX="325.0" layoutY="458.0" mnemonicParsing="false" onAction="#cancelsujet" style="-fx-background-color: #ABB9E1;" text="Annuler" />
-            <Button fx:id="linkedInBtn" layoutX="162.0" layoutY="409.0" mnemonicParsing="false" onAction="#linkedIn" prefHeight="18.0" prefWidth="26.0">
+            <Button fx:id="submitBtn" layoutX="324.0" layoutY="468.0" mnemonicParsing="false" onAction="#submitsujet" prefHeight="26.0" prefWidth="122.0" style="-fx-background-color: #ABB9E1;" text="Créer sujet">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8-plus-2-mathématique-100.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Button fx:id="cancelBtn" layoutX="462.0" layoutY="467.0" mnemonicParsing="false" onAction="#cancelsujet" prefHeight="31.0" prefWidth="106.0" style="-fx-background-color: #ABB9E1;" text="Annuler">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8-fermer-la-fenêtre-48.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Button fx:id="linkedInBtn" layoutX="204.0" layoutY="409.0" mnemonicParsing="false" onAction="#linkedIn" prefHeight="18.0" prefWidth="26.0">
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Assets/icons8-linkedin-48.png" />
+                        <Image url="@../images/icons8-linkedin-48.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="FacebookBtn" layoutX="266.0" layoutY="409.0" mnemonicParsing="false" onAction="#Facebook" prefHeight="18.0" prefWidth="26.0">
+            <Button fx:id="FacebookBtn" layoutX="308.0" layoutY="409.0" mnemonicParsing="false" onAction="#Facebook" prefHeight="18.0" prefWidth="26.0">
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Assets/icons8-facebook-48.png" />
+                        <Image url="@../images/icons8-facebook-48.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="GmailBtn" layoutX="368.0" layoutY="409.0" mnemonicParsing="false" onAction="#Gmail" prefHeight="18.0" prefWidth="26.0">
+            <Button fx:id="GmailBtn" layoutX="410.0" layoutY="409.0" mnemonicParsing="false" onAction="#Gmail" prefHeight="18.0" prefWidth="26.0">
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Assets/icons8-gmail-48.png" />
+                        <Image url="@../images/icons8-gmail-48.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -81,7 +95,7 @@
          <graphic>
             <ImageView fitHeight="18.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Assets/icons8-gauche-50.png" />
+                  <Image url="@../images/icons8-gauche-50.png" />
                </image>
             </ImageView>
          </graphic>

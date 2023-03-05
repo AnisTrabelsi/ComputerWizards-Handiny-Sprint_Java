@@ -20,11 +20,11 @@
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <VBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="100.0" prefWidth="906.0" style="-fx-background-color: #1c3144;">
+                  <VBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="54.0" prefWidth="1069.0" style="-fx-background-color: #1c3144;">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="RIGHT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="62.0" prefWidth="184.0" text="Categories" textFill="WHITE">
+                        <Label alignment="CENTER" contentDisplay="RIGHT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="62.0" prefWidth="184.0" text="Catégories" textFill="WHITE">
                            <font>
-                              <Font name="System Bold" size="23.0" />
+                              <Font name="Arial Rounded MT Bold" size="23.0" />
                            </font>
                         </Label>
                         <Label fx:id="nbposts" alignment="CENTER" contentDisplay="RIGHT" prefHeight="48.0" prefWidth="171.0" textFill="WHITE">
@@ -34,31 +34,39 @@
                         </Label>
                      </children>
                   </VBox>
-                  <VBox prefHeight="100.0" prefWidth="507.0">
-                     <children>
-                        <Button fx:id="sujetReadAllBtn" mnemonicParsing="false" onMouseClicked="#sujetReadAll" prefHeight="55.0" prefWidth="138.0" text="Topics List" />
-                     </children>
-                  </VBox>
                </children>
             </HBox>
             <HBox prefHeight="104.0" prefWidth="900.0">
                <children>
-                  <HBox prefHeight="51.0" prefWidth="230.0" />
+                  <HBox prefHeight="51.0" prefWidth="230.0">
+                     <children>
+                        <Button fx:id="refreshBtn" mnemonicParsing="false" onAction="#refresh" style="-fx-background-color: #14213d; -fx-background-radius: 50;">
+                           <HBox.margin>
+                              <Insets left="20.0" top="20.0" />
+                           </HBox.margin>
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/icons8-mettre-à-jour-la-rotation-à-gauche-50.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children></HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="addCategorieBtn" mnemonicParsing="false" onMouseClicked="#addCategorie" prefHeight="38.0" prefWidth="224.0" text="Add new Category" />
+                        <Button fx:id="addCategorieBtn" mnemonicParsing="false" onMouseClicked="#addCategorie" prefHeight="38.0" prefWidth="194.0" style="-fx-background-color: #14213d; -fx-background-radius: 50;" text="Ajouter nouvelle catégorie" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets top="10.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font></Button>
                      </children>
                   </HBox>
-                  <Button fx:id="refreshBtn" mnemonicParsing="false" onMouseClicked="#refresh">
-                     <graphic>
-                        <ImageView fitHeight="29.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Assets/icons8-mettre-à-jour-la-rotation-à-gauche-30.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
+                  <Button fx:id="sujetReadAllBtn" mnemonicParsing="false" onMouseClicked="#sujetReadAll" prefHeight="38.0" prefWidth="174.0" style="-fx-background-color: #14213d; -fx-background-radius: 50;" text="Liste de sujets" textFill="WHITE">
                      <HBox.margin>
-                        <Insets left="50.0" />
+                        <Insets top="10.0" />
                      </HBox.margin>
                   </Button>
                </children>

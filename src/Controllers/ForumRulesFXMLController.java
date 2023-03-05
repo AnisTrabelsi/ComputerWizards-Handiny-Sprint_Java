@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Controllers;
+
 import javax.mail.PasswordAuthentication;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -38,7 +39,7 @@ public class ForumRulesFXMLController implements Initializable {
     private Button confirmBtn;
     @FXML
     private Button cancelBtn;
-    
+
     /**
      * Initializes the controller class.
      */
@@ -118,16 +119,16 @@ public class ForumRulesFXMLController implements Initializable {
             contentStream.beginText();
             contentStream.setFont(PDType1Font.HELVETICA_BOLD, 12);
             contentStream.newLineAtOffset(100, 700);
-            contentStream.showText("Hello, World!");
+            contentStream.showText("Voici le règlement du forum !");
             contentStream.endText();
             contentStream.close();
 
             // Save the document
-            document.save("example.pdf");
+            document.save("RèglementsForum.pdf");
             document.close();
 
             // Download the PDF file
-            File pdfFile = new File("example.pdf");
+            File pdfFile = new File("RèglementsForum.pdf");
             if (pdfFile.exists()) {
                 Desktop.getDesktop().open(pdfFile);
             }
