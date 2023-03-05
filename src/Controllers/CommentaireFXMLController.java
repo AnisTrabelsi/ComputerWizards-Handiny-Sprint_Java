@@ -76,7 +76,7 @@ public class CommentaireFXMLController implements Initializable {
         fileChooser.getExtensionFilters().addAll(new ExtensionFilter[]{new ExtensionFilter("Image Files", new String[]{"*.png", "*.jpg", "*.jpeg", "*.gif", "*.bmp"}), new ExtensionFilter("JPG", new String[]{"*.jpg"}), new ExtensionFilter("JPEG", new String[]{"*.jpeg"}), new ExtensionFilter("BMP", new String[]{"*.bmp"}), new ExtensionFilter("PNG", new String[]{"*.png"}), new ExtensionFilter("GIF", new String[]{"*.gif"})});
 
         File file = fileChooser.showOpenDialog(null);
-      String DBPath = "C:\\Users\\bengh\\OneDrive\\Documents\\NetBeansProjects\\Handiny\\src\\images\\" + x + ".jpg";
+      String DBPath = "C:\\xampp8.1\\htdocs\\Handiny\\src\\images\\" + x + ".jpg";
 
         //String DBPath = "" + x + ".jpg";
 

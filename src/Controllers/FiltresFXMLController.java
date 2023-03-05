@@ -84,7 +84,7 @@ public class FiltresFXMLController implements Initializable {
         // On ajoute les sujets filtrés à la grille
         filteredSujets.forEach((c) -> {
             FXMLLoader fxmlloader = new FXMLLoader();
-            fxmlloader.setLocation(getClass().getResource("PostHomeFXML.fxml"));
+            fxmlloader.setLocation(getClass().getResource("/GUI/PostHomeFXML.fxml"));
             Pane pane;
 
             try {
@@ -138,7 +138,7 @@ public class FiltresFXMLController implements Initializable {
                 .collect(Collectors.toList());
         filteredSujets.forEach((c) -> {
             FXMLLoader fxmlloader = new FXMLLoader();
-            fxmlloader.setLocation(getClass().getResource("PostHomeFXML.fxml"));
+            fxmlloader.setLocation(getClass().getResource("/GUI/PostHomeFXML.fxml"));
             Pane pane;
 
             try {
