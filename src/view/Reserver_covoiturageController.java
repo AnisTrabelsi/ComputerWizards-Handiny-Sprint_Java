@@ -10,6 +10,7 @@ import Entite.reservation_covoiturage;
 import Entite.utilisateur;
 import Services.ServiceCovoiturage;
 import Services.Service_reservation_cov;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
@@ -37,6 +38,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
+import com.twilio.type.PhoneNumber;
 
 /**
  * FXML Controller class
@@ -49,9 +53,12 @@ public class Reserver_covoiturageController implements Initializable {
     @FXML
     private VBox vb;
 HBox column1 = new HBox();
-    private static int a,c;
+    private static int a,c,h;
     private static String e,f; 
-
+ List<reservation_covoiturage> l1 = null;
+public static final String ACCOUNT_SID = "AC2cf3b48480710e75f659adfb8932f0f2";
+  // Your Auth Token from twilio.com/console
+  public static final String AUTH_TOKEN = "830a31796d5e9844b56c19cb24d4ea09";
     /**
      * Initializes the controller class.
      */
@@ -64,14 +71,115 @@ HBox column1 = new HBox();
       //     column1.setStyle("  -fx-background-color: red;  -fx-padding:20;  -fx-spacing:17 -fx-border-color: black -fx-border-width: 2px;    -fx-border-style: solid; ");
  //column1.setSpacing(100);
    //         column1.setAlignment(Pos.CENTER_LEFT);
-        utilisateur u = new utilisateur(3, "abbes", "benabbes", "002233852", "mail", "24076882", "kbikjb", "kbikjb", new Date(2020, 15, 01), "kbikjb", 2086, "kbikjb", "kbikjb");
-
+        utilisateur u = new utilisateur(5, "abbes", "benabbes", "24076282", "mail", "+21624076282", "kbikjb", "kbikjb", new Date(2020, 15, 01), "kbikjb", 2086, "kbikjb", "kbikjb");
 
         List<Covoiturage> l = new ArrayList<Covoiturage>();
         ServiceCovoiturage ser = new ServiceCovoiturage();
         Service_reservation_cov serv = new Service_reservation_cov() ; 
         try {
             l = ser.readAll();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        ///////////////////////////////////////////////user
+        for (Covoiturage d : l) {
+
+        
+            HBox hbox = new HBox();
+
+            Label label1 = new Label(d.getDepart());
+            Label label2 = new Label(d.getDestination());
+            Label label3 = new Label(String.valueOf(d.getNbrplace()));
+Label label4 = new Label(String.valueOf(d.getPrix()));
+           label2.setStyle("-fx-font-size: 16px; -fx-text-fill: black;");
+
+/////////////////////////////////////////////////
+          
+            Label label5 = new Label(d.getDate_covoiturage().toString());
+           hbox.setStyle("  -fx-background-color: #67e860;  -fx-padding:20;  -fx-spacing:17 -fx-border-color: black -fx-border-width: 2px;    -fx-border-style: solid; ");
+            label2.setStyle("-fx-font-size: 16px; -fx-text-fill: black; -fx-border-color: gray; -fx-border-width: 0 1 0 0; -fx-border-style: solid;-fx-padding: 0 10 0 0;");
+           label1.setStyle("-fx-font-size: 17px; -fx-text-fill: black; -fx-font-weight: bold;-fx-wrap-text: true; -fx-alignment: center;-fx-alignment: center; -fx-border-color: gray; -fx-border-width: 0 1 0 0; -fx-border-style: solid;-fx-padding: 0 10 0 0;");
+                        label3.setStyle("-fx-font-size: 17px; -fx-text-fill: black; -fx-font-weight: bold;-fx-wrap-text: true; -fx-alignment: center;-fx-alignment: center; -fx-border-color: gray; -fx-border-width: 0 1 0 0; -fx-border-style: solid;-fx-padding: 0 10 0 0;");
+            label5.setStyle("-fx-font-size: 17px; -fx-text-fill: black; -fx-font-weight: bold;-fx-wrap-text: true; -fx-alignment: center;-fx-alignment: center; -fx-border-color: gray; -fx-border-width: 0 1 0 0; -fx-border-style: solid;-fx-padding: 0 10 0 0;");
+
+            label2.setStyle("-fx-font-size: 17px; -fx-text-fill: black; -fx-font-weight: bold;-fx-wrap-text: true; -fx-alignment: center;-fx-alignment: center; -fx-border-color: gray; -fx-border-width: 0 1 0 0; -fx-border-style: solid;-fx-padding: 0 10 0 0;");
+            label4.setStyle("-fx-font-size: 17px; -fx-text-fill: black; -fx-font-weight: bold;-fx-wrap-text: true;-fx-alignment: center;-fx-alignment: center; -fx-border-color: gray; -fx-border-width: 0 1 0 0; -fx-border-style: solid;-fx-padding: 0 10 0 0;");
+        Button button2 = new Button("Reserver !");
+                                     button2.setStyle("-fx-background-color: #3f51b5; -fx-text-fill: white; -fx-font-weight: bold;-fx-font-size: 10px; ");
+
+button2.setOnAction(event -> {
+
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("info evenement ");
+                alert.setHeaderText(null);
+ a = d.getId_cov();
+ c =    d.getNbrplace();
+e = d.getDepart(); 
+ f = d.getDestination();
+
+        h = u.getId_utilisateur() ;
+    
+
+try {
+    reservation_covoiturage  k = new reservation_covoiturage(a,u.getId_utilisateur(),c , e ,f,d.getNom(),d.getTelephone() ) ; 
+ l1 =  serv.find_reservation_cov_of_user_rech(d.getId_cov(), u.getId_utilisateur()) ; 
+ 
+ if(l1.size() > 0) { 
+     Alert alertt = new Alert(Alert.AlertType.ERROR);
+alertt.setHeaderText(null);
+alertt.setContentText(" vous êtes deja inscrit dans ce covoiturage");
+alertt.showAndWait(); 
+
+  return;
+ } else
+    
+if ( d.getNbrplace() <=	0) { 
+Alert alertt = new Alert(Alert.AlertType.ERROR);
+alertt.setHeaderText(null);
+alertt.setContentText("covoiturage complet");
+
+// Add custom CSS stylesheet to change the color of the alert box
+DialogPane dialogPane = alertt.getDialogPane();
+dialogPane.getStylesheets().add(getClass().getResource("reserver_covoiturage.css").toExternalForm());
+dialogPane.getStyleClass().add("my-alert");
+
+alertt.showAndWait();                     return;
+}else {
+
+                     serv.ajouter_reservation_cov(k);
+                             //             sendSms(d.getTelephone() ,"salut" + d.getNom() +  "vous avez une nouvelle reservation sur votre covoiturage") ;
+
+                     JOptionPane.showMessageDialog(null, "votre réservation est confirmée"); }
+    button2.setVisible(false);
+
+                 } catch (SQLException ex) {
+                     Logger.getLogger(Affichage_covoiturageController.class.getName()).log(Level.SEVERE, null, ex);
+                 } 
+            //   actualiser();  
+ 
+});
+
+       hbox.getChildren().addAll(label1, label2, label3, label4 , label5 , button2);
+            hbox.setSpacing(20);
+            hbox.setAlignment(Pos.CENTER_LEFT);
+          //  hbox.setPadding(new Insets(10));
+
+            vb.getChildren().add(hbox);
+        }
+
+    }
+
+     @FXML
+    private void trier() {
+                vb.getChildren().clear();
+
+                utilisateur u = new utilisateur(3, "abbes", "benabbes", "+21624076282", "mail", "24076282", "kbikjb", "kbikjb", new Date(2020, 15, 01), "kbikjb", 2086, "kbikjb", "kbikjb");
+
+   List<Covoiturage> l = new ArrayList<Covoiturage>();
+        ServiceCovoiturage ser = new ServiceCovoiturage();
+        Service_reservation_cov serv = new Service_reservation_cov() ; 
+        try {
+            l = ser.sortbydate();
         } catch (SQLException ex) {
             System.out.println(ex);
         }
@@ -149,53 +257,6 @@ alertt.showAndWait();                     return;
 
     }
 
-     @FXML
-    private void trier(ActionEvent event) {
-         vb.getChildren().clear();
-        List<Covoiturage> l = new ArrayList<Covoiturage>();
-        ServiceCovoiturage ser = new ServiceCovoiturage();
-        try {
-            l = ser.sortbydate();
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-        ///////////////////////////////////////////////user
-        vb.setSpacing(20);
-        for (Covoiturage d : l) {
-
-        
-            HBox hbox = new HBox();
-            Label label1 = new Label(d.getDepart());
-            Label label2 = new Label(d.getDestination());
-            Label label3 = new Label(String.valueOf(d.getNbrplace()));
-Label label4 = new Label(String.valueOf(d.getPrix()));
-            label2.setStyle("-fx-font-size: 16px; -fx-text-fill: black;");
-
-/////////////////////////////////////////////////
-          
-            Label label5 = new Label(d.getDate_covoiturage().toString());
-               hbox.setStyle("  -fx-background-color: #f5eeeee5;  -fx-padding:17;  -fx-spacing:17 -fx-border-color: black -fx-border-width: 2px;    -fx-border-style: solid; ");
-            label2.setStyle("-fx-font-size: 16px; -fx-text-fill: black; -fx-border-color: gray; -fx-border-width: 0 1 0 0; -fx-border-style: solid;-fx-padding: 0 10 0 0;");
-            label1.setStyle("-fx-font-size: 17px; -fx-text-fill: black; -fx-font-weight: bold;-fx-wrap-text: true; -fx-alignment: center;-fx-alignment: center; -fx-border-color: gray; -fx-border-width: 0 1 0 0; -fx-border-style: solid;-fx-padding: 0 10 0 0;");
-                        label3.setStyle("-fx-font-size: 17px; -fx-text-fill: black; -fx-font-weight: bold;-fx-wrap-text: true; -fx-alignment: center;-fx-alignment: center; -fx-border-color: gray; -fx-border-width: 0 1 0 0; -fx-border-style: solid;-fx-padding: 0 10 0 0;");
-            label5.setStyle("-fx-font-size: 17px; -fx-text-fill: black; -fx-font-weight: bold;-fx-wrap-text: true; -fx-alignment: center;-fx-alignment: center; -fx-border-color: gray; -fx-border-width: 0 1 0 0; -fx-border-style: solid;-fx-padding: 0 10 0 0;");
-
-            label2.setStyle("-fx-font-size: 17px; -fx-text-fill: black; -fx-font-weight: bold;-fx-wrap-text: true; -fx-alignment: center;-fx-alignment: center; -fx-border-color: gray; -fx-border-width: 0 1 0 0; -fx-border-style: solid;-fx-padding: 0 10 0 0;");
-            label4.setStyle("-fx-font-size: 17px; -fx-text-fill: black; -fx-font-weight: bold;-fx-wrap-text: true;-fx-alignment: center;-fx-alignment: center; -fx-border-color: gray; -fx-border-width: 0 1 0 0; -fx-border-style: solid;-fx-padding: 0 10 0 0;");
-           
-            hbox.getChildren().addAll(label1, label2, label3, label4 , label5);
-            hbox.setSpacing(20);
-            hbox.setAlignment(Pos.CENTER_LEFT);
-            hbox.setPadding(new Insets(10));
-
-            vb.getChildren().add(hbox);
-        }
-       // vb.setStyle("fx-spacing: 10; fx-padding: 10; fx-alignment: center;");
-
-        
-    }
-
-
 
 
     
@@ -234,6 +295,23 @@ Label label4 = new Label(String.valueOf(d.getPrix()));
         stage.show();
   
 }
+    
+    public static void sendSms(String recipient, String messageBody) {
+    Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+
+    Message message = Message.creator(
+            new PhoneNumber("+216"+recipient), // To number
+            new PhoneNumber("++15673716202"), // From number
+            messageBody) // SMS body
+        .create();
+
+    System.out.println("Message sent: " + message.getSid());
+  }
+
+    private boolean does_reservation_cov_exist(int id_utilisateur, int id_cov) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+   
         
     }
 

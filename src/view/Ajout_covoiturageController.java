@@ -29,7 +29,20 @@ import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
+import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import java.util.Properties;
 /**
  * FXML Controller class
  *
@@ -71,7 +84,7 @@ public class Ajout_covoiturageController implements Initializable {
 
     @FXML
     private void ajouterCov(ActionEvent event) {
-                utilisateur u = new utilisateur(1, "mohamed", "benabbes", "09638420", "abbes525@gmail.com", "24076282", "aaa", "aaaa", new Date(2020, 25, 01), "tounes", 2086, "user", "sdsdsd");
+                utilisateur u = new utilisateur(3, "mohamed", "benabbes", "09638420", "mohamed.benabbes@esprit.tn", "24076282", "aaa", "aaaa", new Date(2020, 25, 01), "tounes", 2086, "user", "sdsdsd");
         ServiceCovoiturage ser = new ServiceCovoiturage();
 
          String depart = tfdepart.getText() ; 
@@ -114,6 +127,11 @@ String prixText = tfprix.getText();
 
             try {
                 ser.ajouter(p);
+                String subject = "Your covoiturage  has been added";
+                String body = "Hello " + u.getNom() + ",\n\nYour carpool from " + depart + " to " + destination + " on " + date.toString() + " has been successfully added to the system.\n\nThank you for using our service!\n\nBest regards,\nThe Carpool Team";
+                sendEmail(u.getEmail(), subject, body);
+                
+              
             } catch (SQLException ex) {
                 System.out.println(ex);
             }
@@ -126,7 +144,39 @@ String prixText = tfprix.getText();
 tfdate.setValue(null) ; 
 
         }
-        } }
+        } 
+    String subject = "Réservation de votre voiture";
+String message = "Bonjour Mr/Madame  "+ u.getNom()+ "  ,\n\n Votre covoiturage est ajouter avec success ";
+String from = "mohamed.benabbes@esprit.tn";
+String password = "223JMT3660";
+String to = u.getEmail();
+Properties props = new Properties();
+props.put("mail.smtp.auth", "true");
+props.put("mail.smtp.starttls.enable", "true");
+props.put("mail.smtp.host", "smtp.gmail.com");
+props.put("mail.smtp.port", "587");
+Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(from, password);
+            }
+        });
+
+        // Envoyer l'e-mail
+        try {
+            Message email = new MimeMessage(session);
+            email.setFrom(new InternetAddress(from));
+            email.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
+            email.setSubject(subject);
+            email.setText(message);
+            Transport.send(email);
+            System.out.println("E-mail envoyé à " + to);
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
+    
+    
+    
+    }
 
     @FXML
     private void goaffi(ActionEvent event) throws IOException {
@@ -183,6 +233,26 @@ tfdate.setValue(null) ;
         return false; // input is not a valid number
     }
 }
+    
+    private void sendEmail(String recipient, String subject, String body) {
+    String host = "smtp.gmail.com";
+    String username = "mohamed.benabbes@esprit.tn"; // Replace with your Gmail address
+    String password = "223JMT3660"; // Replace with your Gmail password
+    Properties props = new Properties();
+    props.put("mail.smtp.host", host);
+    props.put("mail.smtp.auth", "true");
+    props.put("mail.smtp.starttls.enable", "true");
+
+    Session session = Session.getInstance(props, new Authenticator() {
+        protected PasswordAuthentication getPasswordAuthentication() {
+            return new PasswordAuthentication(username, password);
+        }
+    });
+ 
+        Message message = new MimeMessage(session);
+ 
+    }
+    
     
     }
     

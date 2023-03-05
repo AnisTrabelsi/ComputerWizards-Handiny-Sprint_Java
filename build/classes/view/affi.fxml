@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.AffiController">
+    <children>
+        <Label layoutX="226" layoutY="6" text="Covoiturages" />
+        <TextField fx:id="rech" layoutX="246" layoutY="37" promptText="Rechercher" />
+        <TableView fx:id="tableView" layoutX="50" layoutY="75" prefHeight="275" prefWidth="500">
+            <columns>
+                <TableColumn fx:id="departColumn" prefWidth="100" text="Départ" />
+                <TableColumn fx:id="destinationColumn" prefWidth="100" text="Destination" />
+                <TableColumn fx:id="nbrplaceColumn" prefWidth="100" text="Nombre de places" />
+                <TableColumn fx:id="prixColumn" prefWidth="100" text="Prix" />
+                <TableColumn fx:id="dateColumn" prefWidth="100" text="Date" />
+            </columns>
+        </TableView>
+    </children>
+</AnchorPane>

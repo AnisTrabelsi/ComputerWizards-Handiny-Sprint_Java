@@ -119,9 +119,9 @@ public boolean supprime(int id) throws SQLException {
     }
 
     @Override
-    public Covoiturage findById(int id) throws SQLException {
-Covoiturage d=new Covoiturage(); 
-        String req = "select * FROM Covoiturage where id_cov = " + id + ";";
+    public List<Covoiturage> findById(int id) throws SQLException {
+        ArrayList<Covoiturage> listper = new ArrayList<>();
+        String req = "select * FROM Covoiturage where id_utilisateur = " + id + ";";
 
         ResultSet res = ste.executeQuery(req);
     while (res.next()) {
@@ -134,10 +134,11 @@ Covoiturage d=new Covoiturage();
             int nbrplace = res.getInt(7);
             String nom = res.getString(8);
             String telephone = res.getString(9);
-         d = new Covoiturage(id_cov, id_utilisateur, depart, destination, date_covoiturage , Prix , nbrplace, nom , telephone);
+       Covoiturage  d = new Covoiturage(id_cov, id_utilisateur, depart, destination, date_covoiturage , Prix , nbrplace, nom , telephone);
+  listper.add(d);
     }
         
-        return d;
+        return listper;
     }
     
     

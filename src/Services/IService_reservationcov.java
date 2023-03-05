@@ -22,4 +22,6 @@ public interface IService_reservationcov<T> {
     T findById_reservation_cov(int id) throws SQLException;
     
       List<T> find_reservation_cov_of_user(int id) throws SQLException;
+ //boolean does_reservation_cov_exist(int id_utilisateur, int id_cov) throws SQLException ;
+ List<T> find_reservation_cov_of_user_rech(int id , int ide )  throws SQLException ;
 }

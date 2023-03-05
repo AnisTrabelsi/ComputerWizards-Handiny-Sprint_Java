@@ -10,6 +10,7 @@ import Entite.reservation_covoiturage;
 import Entite.utilisateur;
 import Services.ServiceCovoiturage;
 import Services.Service_reservation_cov;
+import ch.qos.logback.core.CoreConstants;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
@@ -25,19 +26,37 @@ public class Main {
      */
     public static void main(String[] args) throws SQLException {
         // TODO code application logic here
-          //      utilisateur u = new utilisateur(1, "mohamed", "benabbes", "09638420", "abbes525@gmail.com", "24076282", "aaa", "aaaa", new Date(2020, 25, 01), "tounes", 2086, "user", "sdsdsd");
+               utilisateur u = new utilisateur(1, "mohamed", "benabbes", "09638420", "abbes525@gmail.com", "24076282", "aaa", "aaaa", new Date(2020, 25, 01), "tounes", 2086, "user", "sdsdsd");
 
-         Covoiturage c3 = new Covoiturage(3,1 ,"rades ", "gahzela","2222-02-02",5,7);
+       //  Covoiturage c3 = new Covoiturage(3,1 ,"rades ", "gahzela",java.sql.Date.valueOf("2023-02-16"),5,7,"mohamed","24076282");
        //  reservation_covoiturage c8 = new reservation_covoiturage(c3.getId_cov(),1 ,c3.getPrix(), c3.getDepart(),c3.getDestination());
+        Covoiturage c3 = new Covoiturage(827,1 ,"rades ", "gahzela",java.sql.Date.valueOf("2023-02-16"),5,7,"mohamed","24076282");
 
         ServiceCovoiturage ser = new ServiceCovoiturage();
         Service_reservation_cov serv = new Service_reservation_cov();
 
-        try {
-            ser.ajouter(c3);
+     //   try {
+    //        ser.ajouter(c3);
+   //     } catch (SQLException ex) {
+    //        System.out.println(ex);
+     //   }
+        
+         //  does_reservation_cov_exist(3, 827);
+         
+         List<reservation_covoiturage> l1 = null;
+         try {
+                    l1 =     serv.find_reservation_cov_of_user_rech(827,3);
+             System.out.println("HAHAHAHAH");
         } catch (SQLException ex) {
             System.out.println(ex);
         }
+         if (l1.size() == 0 )  { 
+          System.out.println("zzaaa")    ; 
+         }
+        
+          l1.forEach(e -> {
+            System.out.println(e);
+        });
      /*     try {
         serv.ajouter_reservation_cov(c8);
  } catch (SQLException ex) {
@@ -65,16 +84,18 @@ public class Main {
          //   System.out.println(ex);}
        
         
-        List<Covoiturage> l1 = null;
+     //   List<Covoiturage> l1 = null;
 
-        try {
-            l1 = ser.readAll();
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-        l1.forEach(e -> {
-            System.out.println(e);
-        });
+    //    try {
+      //      l1 = ser.readAll();
+       // } catch (SQLException ex) {
+         //   System.out.println(ex);
+       // }
+     //   l1.forEach(e -> {
+       //     System.out.println(e);
+       // });
     }
+
+   
 
 }

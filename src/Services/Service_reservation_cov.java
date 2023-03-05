@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import Entite.reservation_covoiturage;
 import Entite.Covoiturage;
+import java.time.Clock;
 
 /**
  *
@@ -150,7 +151,33 @@ pre.setString(7, d.getTelephone());
         }
         return listper;
     }
+public List<reservation_covoiturage> find_reservation_cov_of_user_rech(int id , int ide ) throws SQLException {
+        ArrayList<reservation_covoiturage> listper = new ArrayList<>();
 
+       // String req = "select * from reservation_covoiturage where id_utilisateur =" + id + "AND id_cov =" + ide + ";";
+String req = "SELECT * FROM reservation_covoiturage WHERE id_cov = ? AND id_utilisateur = ?";
+PreparedStatement stmt = con.prepareStatement(req);
+stmt.setInt(1, id);
+stmt.setInt(2, ide);
+ResultSet res = stmt.executeQuery();
+      
+
+        while (res.next()) {
+          int id_reserv_cov = res.getInt(1);
+            int id_cov = res.getInt(2);
+            int id_utilisateur = res.getInt(3);
+            int prix_covoiturage = res.getInt(4);
+            String depart = res.getString(5); 
+           String destination = res.getString(6); 
+               String nom = res.getString(7); 
+           String telephone = res.getString(8); 
+            reservation_covoiturage p = new reservation_covoiturage(id_reserv_cov, id_cov, id_utilisateur, prix_covoiturage, depart , destination, nom , telephone);
+            // System.out.println(p);
+            listper.add(p);
+        }
+        return listper;
+       
+    }
    
    
     

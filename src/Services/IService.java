@@ -25,5 +25,6 @@ public interface IService<Covoiturage> {
     boolean supprime(int t) throws SQLException;
     List<Covoiturage> readAll() throws SQLException;
 
-    Covoiturage findById(int id) throws SQLException;
+    List<Covoiturage> findById(int id) throws SQLException;
+    
 }
