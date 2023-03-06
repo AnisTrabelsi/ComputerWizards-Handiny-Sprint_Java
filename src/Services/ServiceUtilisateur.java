@@ -56,14 +56,12 @@ public class ServiceUtilisateur implements IService< Utilisateur> {
 
         System.out.println("Un utilisateur est ajouté ");
     }
-
+   
     @Override
     public void update(Utilisateur u) throws SQLException {
         try {
-            String req = "UPDATE `user` SET `nom` = '" + u.getNom() + "', `prenom` = '" + u.getPrenom() + "', `cin` = '" + u.getCin()
-                    + "', `email` = '" + u.getEmail() + "', `telephone` = '" + u.getTelephone() + "', `login` = '" + u.getLogin()
-                    + "', `mot_de_passe` = '" + u.getMot_de_passe() + "', `date_de_naissance` = '" + u.getDate_de_naissance() + "', `region` = '" + u.getRegion() + "', `adresse` = '"
-                    + u.getAdresse() + "', `code_postal` = '" + u.getCode_postal() + "', `role` = '" + u.getRole() + "' WHERE `user`.`id_user` = " + u.getId_utilisateur();
+            String req = "UPDATE `user` SET `email` = '" + u.getEmail() + "', `telephone` = '" + u.getTelephone() + "', `login` = '" + u.getLogin()
+                    + "', `adresse` = '" + u.getAdresse() + "' WHERE `user`.`id_user` = "+u.getId_utilisateur() ;
             Statement st = con.createStatement();
             st.executeUpdate(req);
             System.out.println("Utilisateur mis à jour ");

@@ -15,11 +15,11 @@
             <Image url="@../images/327680433_1635361913582223_6273958701339860656_n.png" />
          </image>
       </ImageView>
-      <TextField fx:id="nom" layoutX="157.0" layoutY="221.0" prefHeight="36.0" prefWidth="186.0" />
-      <TextField fx:id="prenom" layoutX="423.0" layoutY="221.0" prefHeight="36.0" prefWidth="186.0" />
+      <TextField fx:id="login" layoutX="157.0" layoutY="221.0" prefHeight="36.0" prefWidth="186.0" />
+      <TextField fx:id="email" layoutX="423.0" layoutY="221.0" prefHeight="36.0" prefWidth="186.0" />
       <TextField fx:id="adresse" layoutX="424.0" layoutY="302.0" prefHeight="36.0" prefWidth="186.0" />
       <TextField fx:id="numero_telph" layoutX="158.0" layoutY="307.0" prefHeight="36.0" prefWidth="186.0" />
-      <Label layoutX="423.0" layoutY="182.0" text="Prenom" textFill="#122f5e">
+      <Label layoutX="423.0" layoutY="182.0" text="email" textFill="#122f5e">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Label>
@@ -35,7 +35,7 @@
          <font>
             <Font name="System Bold" size="16.0" />
          </font></Button>
-      <Label layoutX="157.0" layoutY="182.0" text="Nom" textFill="#122f5e">
+      <Label layoutX="157.0" layoutY="182.0" text="Login" textFill="#122f5e">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>

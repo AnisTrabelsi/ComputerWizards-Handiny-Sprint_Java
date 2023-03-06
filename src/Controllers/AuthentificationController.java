@@ -76,9 +76,9 @@ public class AuthentificationController implements Initializable {
         if (sa.auth(u) == true) {
              System.out.println(Utilisateur.getCurrent_user().getEmail());
             infoBox("Connexion avec succés", "succés", null);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui_handiny/home.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui_handiny/FrontController.fxml"));
             Parent root = loader.load();
-            HomeController fc = loader.getController();
+            FrontController fc = loader.getController();
             login_auth.getScene().setRoot(root);
 
         } else if (sa.auth(u) == false) {
@@ -96,4 +96,17 @@ public class AuthentificationController implements Initializable {
         alert.showAndWait();
     }
 
+    @FXML
+    private void recupererMotDePasse(ActionEvent event) throws IOException {
+FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui_handiny/Recuperer_mdp.fxml"));
+        Parent root = loader.load();
+        Recuperer_mdpController fc = loader.getController();
+        authentification.getScene().setRoot(root);
+
+
+
 }
+
+    }
+
+

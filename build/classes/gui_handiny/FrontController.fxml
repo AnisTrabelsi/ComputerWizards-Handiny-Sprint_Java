@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="661.0" prefWidth="1022.0" style="-fx-background-color: #124559;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FrontController">
+<AnchorPane id="AnchorPane" prefHeight="661.0" prefWidth="1022.0" style="-fx-background-color: #124559;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.FrontController">
    <stylesheets>
       <URL value="@../../../../../Users/anis/Desktop/3a8-Computer-wizards-Handiny-chaima_Lotfi_gestion_voitures_et_reservation_Voitures/src/gui/chi.css" />
    </stylesheets>
@@ -56,6 +56,21 @@
                   <MenuItem mnemonicParsing="false" onAction="#Supprimer_demande_don" text="Supprimer demande don" />
                   <MenuItem mnemonicParsing="false" onAction="#Modifier_demande_don" text="Modifier demande don" />
                   <MenuItem mnemonicParsing="false" onAction="#statdd" text="Statistiques" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Mes reclamations">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#Consulter_mes_reclamations" text="Consulter mes reclamations" />
+                  <MenuItem mnemonicParsing="false" onAction="#Supprimer_une_reclamation" text="Supprimer une reclamation" />
+                  <MenuItem mnemonicParsing="false" onAction="#Modifier_une_reclamation" text="Modifiier une reclamation" />
+                  <MenuItem mnemonicParsing="false" onAction="#Ajouter_une_reclamation" text="Ajpoputer une reclamation" />
+                
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Mon profil">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#Modifier_mon_profil" text="Modifier mon profil" />
+
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Aide" />

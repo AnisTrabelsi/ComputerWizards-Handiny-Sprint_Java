@@ -95,7 +95,7 @@ public class InscriptionController implements Initializable {
 
     ServiceUtilisateur su = new ServiceUtilisateur();
 
-    Encryptor encryptor = new Encryptor();
+    AESEncryptor encryptor = new AESEncryptor();
     String role = "";
     String mot_de_passe;
     String type;
@@ -152,7 +152,7 @@ public class InscriptionController implements Initializable {
     }
 
     @FXML
-    private void ajouter_utilisateur(ActionEvent event) throws SQLException, IOException, NoSuchPaddingException, InvalidKeyException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, InvalidAlgorithmParameterException, AddressException, MessagingException {
+    private void ajouter_utilisateur(ActionEvent event) throws SQLException, IOException, NoSuchPaddingException, InvalidKeyException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, InvalidAlgorithmParameterException, AddressException, MessagingException, Exception {
         String nom = nom_inscri.getText();
         //***********************Controle de saisie nom
         if (!isValidNom(nom)) {
@@ -236,7 +236,7 @@ public class InscriptionController implements Initializable {
 //        String region = region_inscri.getValue();
         String adresse = adresse_inscri.getText();
         String mot_de_passe = mdp_inscri.getText();
-        String mdp_chiffré = encryptor.encryptString(mot_de_passe);
+        String mdp_chiffré = AESEncryptor.encrypt(mot_de_passe);
 //        //MessageDigest md = MessageDigest.getInstance("SHA-256");
         System.out.println(mdp_chiffré);
 
@@ -272,10 +272,10 @@ public class InscriptionController implements Initializable {
         System.out.println(Utilisateur.getCurrent_user().getCin());
 
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui_handiny/home.fxml"));
-        Parent root = loader.load();
-        HomeController fc = loader.getController();
-        inscription.getScene().setRoot(root);
+////       FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui_handiny/FrontControllerfxml"));
+////            Parent root = loader.load();
+////            FrontController fc = loader.getController();
+////            login_inscri.getScene().setRoot(root);
         
         String subject = "Mail de bienvenue";
         String message = " Mr/Madame  " + nom + " Vous etes la bienvenue chez Handiny . Nous vous tiendrons au courant de toutes  actualité via le mail . Nous vous souhaitons une excellente journnée.";

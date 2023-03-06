@@ -33,7 +33,7 @@ public class ReclamationCell extends ListCell<Reclamation>  {
         if (empty || r == null) {
             setText(null);
         } else {
-            setText(r.getEtat_reclamation() + "                      " + r.getDescription());
+            setText(r.getType_reclamation() + "                      " + r.getEtat_reclamation());
         }
     }
 }

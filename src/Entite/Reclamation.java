@@ -18,11 +18,22 @@ private int id_reclamation ;
 private String type_reclamation ;
 private String etat_reclamation ; 
 private String description ;
+private String reponse ;
+
 private Utilisateur user;
 
-    public Reclamation(int i, String selectedType, Object object, String description) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+
+    public Reclamation( String etat_reclamation, String reponse) {
+      
+        this.etat_reclamation = etat_reclamation;
+       
+        this.reponse = reponse;
     }
+
+    
+
+       
 
   
 
@@ -34,10 +45,35 @@ private Utilisateur user;
         this.user = user;
     }
 
+    public String getReponse() {
+        return reponse;
+    }
+
+    public void setReponse(String reponse) {
+        this.reponse = reponse;
+    }
+    
+
     public Reclamation() {
     }
 
-    public Reclamation(int id_utilisateur, int id_reclamation, String type_reclamation, String etat_reclamation, String description) {
+    public Reclamation(int id_reclamation, String type_reclamation, String etat_reclamation, String description) {
+        this.id_reclamation = id_reclamation;
+        this.type_reclamation = type_reclamation;
+        this.etat_reclamation = etat_reclamation;
+        this.description = description;
+    }
+    
+    public Reclamation(int id_utilisateur, int id_reclamation, String type_reclamation, String etat_reclamation, String description, String reponse) {
+        this.id_utilisateur = id_utilisateur;
+        this.id_reclamation = id_reclamation;
+        this.type_reclamation = type_reclamation;
+        this.etat_reclamation = etat_reclamation;
+        this.description = description;
+        this.reponse = reponse;
+    }
+
+    public Reclamation(int id_utilisateur, int id_reclamation, String etat_reclamation, String type_reclamation, String description) {
         this.id_utilisateur = id_utilisateur;
         this.id_reclamation = id_reclamation;
         this.type_reclamation = type_reclamation;
@@ -63,10 +99,10 @@ private Utilisateur user;
         this.description = description;
     }
 
-    public Reclamation(String type_reclamation, String description) {
-        this.type_reclamation = type_reclamation;
-        this.description = description;
-    }
+//    public Reclamation(String type_reclamation, String description) {
+//        this.type_reclamation = type_reclamation;
+//        this.description = description;
+//    }
     
 
     public Reclamation(  String etat_reclamation, String description, Utilisateur user ) {
@@ -76,7 +112,7 @@ private Utilisateur user;
         this.description = description;
         this.user = user ;
     }
-     public Reclamation( String type_reclamation, String etat_reclamation, String description) {
+     public Reclamation( String etat_reclamation, String type_reclamation, String description) {
         this.id_utilisateur= id_utilisateur ;
         this.type_reclamation = type_reclamation;
         this.etat_reclamation = etat_reclamation;
@@ -136,7 +172,7 @@ private Utilisateur user;
 
     @Override
     public String toString() {
-        return "Reclamation{" + "id_utilisateur=" + id_utilisateur + ", id_reclamation=" + id_reclamation +", etat_reclamation=" + etat_reclamation +", type reclamation"+ type_reclamation+", description=" + description + '}';
+        return  type_reclamation+ id_reclamation ;
     }
 
 

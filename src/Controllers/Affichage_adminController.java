@@ -57,7 +57,7 @@ public class Affichage_adminController implements Initializable {
     
     Parent root = loader.load();
     Read_user_by_adminController ruc = loader.getController();
-     ruc.list_tilisateur();
+    // ruc.list_tilisateur();
 
     admin_read.getScene().setRoot(root);
     }
@@ -78,7 +78,7 @@ public class Affichage_adminController implements Initializable {
     
     Parent root = loader.load();
     Admin_reclamationController ar = loader.getController();
-     ar.list_reclamation();
+    // ar.list_reclamation();
 
     admin_read.getScene().setRoot(root);
     }
