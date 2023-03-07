@@ -81,6 +81,12 @@ public class ForumRulesFXMLController implements Initializable {
             email.setText(message);
             Transport.send(email);
             System.out.println("E-mail envoyé à " + to);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            String s = "E-mail envoyé";
+            alert.setTitle(s);
+            alert.setHeaderText(null);
+            alert.setContentText("L'e-mail a été envoyé avec succès à " + to);
+            alert.showAndWait();
         } catch (MessagingException e) {
             throw new RuntimeException(e);
         }

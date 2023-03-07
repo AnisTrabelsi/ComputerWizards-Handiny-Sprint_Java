@@ -5,36 +5,29 @@
  */
 package Controllers;
 
-import Controllers.CategorieListGridPaneFXMLController;
-import Controllers.CommentListBySujetFXMLController;
-import Controllers.CommentaireFXMLController;
-import Controllers.CommentaireGridFXMLController;
-import Controllers.CommentaireListFXMLController;
-import Controllers.SujetGridFXMLController;
-import Entite.Commentaire;
 import Entite.Sujet;
+import Entite.Utilisateur;
+import Entite.PostsSauvegardés;
 import Services.ServiceCommentaire;
+import Services.ServiceSauvegarde;
 import Services.ServiceSujet;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 /**
@@ -59,6 +52,8 @@ public class PostHomeFXMLController implements Initializable {
     ServiceCommentaire ser = new ServiceCommentaire();
     @FXML
     private Button affichcommentsBtn;
+    @FXML
+    private Button sauvegardeBtn;
 
     /**
      * Initializes the controller class.
@@ -109,6 +104,24 @@ public class PostHomeFXMLController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(SujetGridFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @FXML
+    private void sauvegardePost(ActionEvent event) {
+            Utilisateur u = sujet.getUser();
+            ServiceSauvegarde ss1 = new ServiceSauvegarde();
+            PostsSauvegardés p= new PostsSauvegardés(u,sujet);
+            System.out.println(p.toString());
+            try {
+                ss1.ajouter(p);
+                Alert alert=new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information");
+                alert.setHeaderText("");
+                alert.setContentText("Votre sujet a été sauvegardé ! ");
+                alert.showAndWait();
+            }catch (SQLException ex) {
+                System.out.println(ex);
+            }
     }
 
 }

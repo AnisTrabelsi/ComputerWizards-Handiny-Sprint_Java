@@ -5,6 +5,7 @@
  */
 package Controllers;
 
+import Entite.PostsSauvegardés;
 import Entite.Sujet;
 import Services.ServiceCommentaire;
 import Services.ServiceSujet;
@@ -121,5 +122,13 @@ public class SujetGridFXMLController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(SujetGridFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    void setData(PostsSauvegardés c) {
+        sujet = c.getSujet();
+        contenu_sujet.setText(c.getSujet().getContenu_sujet());
+        category.setText(c.getSujet().getCat().getNom_categorie());
+        nb_comments.setText(String.valueOf(c.getSujet().getNb_commentaires()));
+        etat.setText(c.getSujet().getEtat());
     }
 }

@@ -52,6 +52,8 @@ public class MesPostesFXMLController implements Initializable {
     private List<Sujet> sujets;
     @FXML
     private AnchorPane anchorpane;
+    @FXML
+    private Button Sauvegardes;
 
     /**
      * Initializes the controller class.
@@ -108,6 +110,22 @@ public class MesPostesFXMLController implements Initializable {
 
         gridpane.getChildren().clear();
         loadData();
+    }
+
+    @FXML
+    private void PostsSauvegardes(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/PostsSauvegardésFXML.fxml"));
+            AnchorPane pane = fxmlLoader.load();
+            ScrollPane scrollPane = new ScrollPane();
+            scrollPane.setContent(pane);
+            scrollPane.setFitToWidth(true);
+            scrollPane.setFitToHeight(true);
+            anchorpane.getChildren().setAll(scrollPane);
+        } catch (IOException ex) {
+            System.out.println(ex.getStackTrace());
+        }
+
     }
 
 }

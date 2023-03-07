@@ -23,6 +23,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
 
 /**
@@ -60,13 +61,11 @@ public class ForumSideBarFXMLController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-//        if (Session.getInstance().getSessionUser() != null) {
-        // si oui, remplacer le bouton "categories" par le bouton "mes postes"
+        home(null);
         if (s == 0) {
             categoriesBtn.setVisible(false);
             mesPostesBtn.setVisible(true);
         } else {
-            // sinon, afficher le bouton "categories" et cacher le bouton "mes postes"
             categoriesBtn.setVisible(true);
             mesPostesBtn.setVisible(false);
         }
