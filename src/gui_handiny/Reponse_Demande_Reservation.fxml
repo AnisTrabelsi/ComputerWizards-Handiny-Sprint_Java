@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="726.0" prefWidth="838.0" style="-fx-background-color: #f2f2f2fa;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Reponse_Demande_ReservationController">
+    <stylesheets>
+        <URL value="@affichagedetailvoiture.css" />
+    </stylesheets>
+   <VBox fx:id="detailReservationId" alignment="CENTER" layoutX="63.0" layoutY="75.0" prefHeight="566.0" prefWidth="748.0" spacing="20" style="-fx-padding: 20px; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 10px;">
+    <Label prefHeight="81.0" prefWidth="378.0" style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Détails de la réservation de voiture" textFill="#44ae64">
+         <font>
+            <Font name="System Bold Italic" size="48.0" />
+         </font></Label>
+     
+    <HBox prefHeight="342.0" prefWidth="703.0" spacing="40">
+        <VBox prefHeight="342.0" prefWidth="477.0">
+            <Label prefHeight="31.0" prefWidth="428.0" style="-fx-font-size: 32px;" text="Date de début de réservation:">
+               <font>
+                  <Font size="11.0" />
+               </font></Label>
+            <Label style="-fx-font-size: 32px;" text="Date de fin de Réservation:" />
+            <Label style="-fx-font-size: 32px;" text="Description:" />
+            <Label prefHeight="47.0" prefWidth="481.0" style="-fx-font-size: 32px;" text="Date de demande de réservation:" />
+            <Pane prefHeight="98.0" prefWidth="766.0">
+               <children>
+                  <RadioButton fx:id="accepterButton" layoutX="261.0" layoutY="49.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="144.0" text="Accepter">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="toggleReponse" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="reffuserButton" layoutX="102.0" layoutY="49.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="144.0" text="Refuser" toggleGroup="$toggleReponse">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </RadioButton>
+               </children>
+            </Pane>
+            
+        </VBox>
+        <VBox prefHeight="342.0" prefWidth="189.0">
+            <Label fx:id="deb" style="-fx-font-size: 32px;" />
+            <Label fx:id="fin" style="-fx-font-size: 32px;" />
+            <Label fx:id="desc" style="-fx-font-size: 32px;" />
+            <Label fx:id="datedem" style="-fx-font-size: 32px;" />
+            
+                                   </VBox>
+    </HBox>
+      <Button fx:id="saveButton" mnemonicParsing="false" onAction="#save" prefHeight="31.0" prefWidth="207.0" style="-fx-background-color: #44ae64;" text="réserver" />
+</VBox>
+
+</AnchorPane>

@@ -1,0 +1,85 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+    /* Style de la grille */
+/* Encadrement et ombre pour le GridPane */
+
+
+
+/* Style des cellules de la grille */
+.grid-cell {
+    -fx-background-color:#d4d4d4;
+    -fx-border-color: black;
+    -fx-border-width: 1;
+}
+
+/* Style pour la souris lors du survol d'une cellule */
+.grid-cell:hover {
+    -fx-background-color: #d4d4d4;
+    -fx-background-color: #70C17F;
+}
+
+/* Style pour la sélection d'une cellule */
+.grid-cell:selected {
+    -fx-background-color: #007bff;
+    -fx-text-fill: white;
+}
+.hbox {
+    -fx-background-color: #f2f2f2; /* couleur de fond */
+    -fx-padding: 10; /* espacement interne */
+    -fx-border-style: solid;
+    -fx-border-color: #ddd; /* couleur de la bordure */
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px; /* arrondi des coins */
+}
+#imageView {
+    -fx-border-color: black;
+    -fx-border-width: 2px;
+    -fx-alignment: center;
+}
+
+.vbox {
+    -fx-spacing: 10;
+    -fx-padding: 10;
+    -fx-alignment: center;
+}
+
+label {
+  -fx-text-fill: #333; /* couleur du texte */
+  -fx-font-size: 18px; /* taille de police */
+  -fx-font-weight: bold; /* graisse de police */
+}
+
+.btn-reserver {
+    -fx-background-color: #008000;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 5px 10px;
+    -fx-border-radius: 5px;
+    -fx-cursor: hand;
+
+}
+.button-detail {
+    -fx-background-color: #008000;
+    -fx-text-fill: white;
+    -fx-padding: 5px 10px;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.button-detail:hover ,.btn-reserver:hover{
+    -fx-background-color: #1976D2;
+    -fx-background-insets: 0 0 0 0, 0 0 5 0;
+    -fx-transition: background-color 0.3s ease;
+}
+.heart-icon {
+    -fx-fill: red; /* couleur de remplissage */
+    -fx-cursor: hand; /* curseur de souris au survol */
+}
+
+}

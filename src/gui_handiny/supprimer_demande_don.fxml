@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0"  xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Supprimer_demande_donController">
+   <children>
+      <ImageView fitHeight="558.0" fitWidth="1029.4" layoutX="6.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/background.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="309.0" layoutY="46.0" prefHeight="43.0" prefWidth="440.0" text="Suppression demandes dons" textFill="#52a9df">
+         <font>
+            <Font name="System Bold" size="29.0" />
+         </font>
+      </Label>
+      <ScrollPane layoutX="101.0" layoutY="114.0" prefHeight="415.0" prefWidth="814.0">
+         <content>
+            <VBox fx:id="vb" prefHeight="405.0" prefWidth="806.0" />
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

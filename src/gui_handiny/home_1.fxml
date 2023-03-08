@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="763.0" prefWidth="1082.0" style="-fx-background-color: #124559;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeController">
+    
+   <children>
+      <Pane prefHeight="80.0" prefWidth="1091.0" style="-fx-background-color: #e5e8e9;">
+         <children>
+            <ImageView fitHeight="86.0" fitWidth="78.0" layoutX="257.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/logo%20pidevfinal-03.png" />
+               </image>
+            </ImageView>
+            <Text layoutX="348.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Handiny" wrappingWidth="194.0550537109375">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="48.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <MenuBar layoutY="80.0" prefHeight="26.0" prefWidth="966.0" style="-fx-background-color: #44AE64;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <menus>
+            <Menu mnemonicParsing="false" text="Acceuil" />
+          <Menu mnemonicParsing="false" text="Mes voitures">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#mesVoitures" text="Liste de mes voitures" />
+               </items>
+            </Menu>
+          <Menu mnemonicParsing="false" text="Mes Locations">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#locations" text="Liste de mes locations" />
+                <MenuItem mnemonicParsing="false" onAction="#demandes_reservations" text="Liste de mes demande de réservations" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Dashbord">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#dashbord" text="dashbord" />
+              </items>
+            </Menu>
+          <Menu mnemonicParsing="false" text="Aide">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#aff2" text="affichage" />
+               </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+      <AnchorPane id="mesVoitures" fx:id="rootpane" layoutY="106.0" prefHeight="556.0" prefWidth="955.0" AnchorPane.bottomAnchor="59.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="91.0" AnchorPane.topAnchor="106.0">
+         <children>
+            <ImageView fitHeight="409.0" fitWidth="680.0" layoutX="193.0" layoutY="140.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="193.0">
+               <image>
+                  <Image url="@images/background.jpg" />
+               </image>
+            </ImageView>
+            <Text fill="WHITE" layoutX="111.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Louez une voiture adaptée">
+               <font>
+                  <Font name="System Bold Italic" size="24.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="105.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="à un particulier ou un professionnel près de chez vous au meilleur prix">
+               <font>
+                  <Font name="System Bold Italic" size="24.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="32.0" fitWidth="30.0" layoutX="414.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/disability.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="489.0" layoutY="35.0" mnemonicParsing="false" onAction="#affichageVoitures" prefHeight="38.0" prefWidth="226.0" style="-fx-background-color: #44AE64;" text="Voir la liste des voitures" />
+         </children></AnchorPane>
+   </children>
+</AnchorPane>
