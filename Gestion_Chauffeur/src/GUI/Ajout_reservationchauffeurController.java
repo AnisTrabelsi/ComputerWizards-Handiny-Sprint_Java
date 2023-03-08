@@ -23,6 +23,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
+import static jdk.nashorn.internal.runtime.Debug.id;
 import services.ServiceChauffeur;
 
 /**                                   
@@ -32,15 +33,16 @@ import services.ServiceChauffeur;
  */
 public class Ajout_reservationchauffeurController implements Initializable {
 
+    
     private TextField id;
     @FXML
+    private TextField ds;
+    @FXML
+    private TextField dc;
+    @FXML
+    private TextField dd;
+    @FXML
     private TextField cin;
-    @FXML
-    private TextField nom;
-    @FXML
-    private TextField adresse;
-    @FXML
-    private TextField dispo;
 
     /**
      * Initializes the controller class.
@@ -89,15 +91,15 @@ public class Ajout_reservationchauffeurController implements Initializable {
 
      
         
-        String ttcin = cin.getText();
- String ttnom = nom.getText();
-  String ttadresse = adresse.getText();
-  String ttdispo = dispo.getText();
+        String rid = id.getText();
+ String rds = ds.getText();
+  String rdc = dc.getText();
+  String rdd = dd.getText();
         ServiceChauffeur ser = new ServiceChauffeur();
         
         
         
-        if (ttcin.isEmpty() || ttnom.isEmpty() || ttdispo.isEmpty() ) {
+        if (rid.isEmpty() || rds.isEmpty() || rdd.isEmpty() ) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("il y a des attributs vides");
             alert.showAndWait();
@@ -106,7 +108,7 @@ public class Ajout_reservationchauffeurController implements Initializable {
                 
                 else{
           Reservation_Chauffeur c;
-                 c = new Reservation_Chauffeur(ttcin,ttnom,ttadresse,ttdispo );
+                 c = new Reservation_Chauffeur(rid,rds,rdc,rdd );
             ser.ajouter(c);
             JOptionPane.showMessageDialog(null, "Reservation chauffeur ajouté");
                
@@ -120,12 +122,12 @@ public class Ajout_reservationchauffeurController implements Initializable {
      private void vider() {
 
         id.setText(null);
-        cin.setText(null);
+        ds.setText(null);
 
-        nom.setText(null);
+        dc.setText(null);
       
-        adresse.setText(null);
-        dispo.setText(null);
+        dd.setText(null);
+        
 
     }
     

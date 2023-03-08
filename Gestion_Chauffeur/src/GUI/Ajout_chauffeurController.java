@@ -6,6 +6,7 @@
 package GUI;
 
 import entities.Chauffeur;
+import entities.Reservation_Chauffeur;
 import entities.utilisateur;
 import java.io.IOException;
 import java.net.URL;
@@ -78,8 +79,14 @@ public class Ajout_chauffeurController implements Initializable {
         stage.show();
     }
 
-    @FXML
-    private void dd(ActionEvent event) {
+     @FXML
+    private void dd(ActionEvent event) throws IOException {
+        Parent root;
+        root = FXMLLoader.load(getClass().getResource("Ajout_reservationchauffeur.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
@@ -105,14 +112,10 @@ public class Ajout_chauffeurController implements Initializable {
                 
                 
                 else{
-          Chauffeur c;
-            c = new Chauffeur(ttcin,ttnom,ttadresse,ttdispo );
-            try {
-                ser.ajouter(c);
-                JOptionPane.showMessageDialog(null, "chauffeur ajouté");
-            } catch (SQLException ex) {
-                System.out.println(ex);
-            }
+          Reservation_Chauffeur c;
+            c = new Reservation_Chauffeur(ttcin,ttnom,ttadresse,ttdispo );
+            ser.ajouter(c);
+            JOptionPane.showMessageDialog(null, "chauffeur ajouté");
                
             vider();
             JOptionPane.showMessageDialog(null, "chauffeur ajouté");

@@ -23,6 +23,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -49,6 +50,8 @@ public class Afficher_chauffeurController implements Initializable {
     private TableColumn<Chauffeur, String> statut;
     @FXML
     private ComboBox<?> types;
+    @FXML
+    private Button button;
 
     /**
      * Initializes the controller class.
@@ -103,10 +106,15 @@ public class Afficher_chauffeurController implements Initializable {
     }
 
     @FXML
-    private void dd(ActionEvent event) {
+    private void dd(ActionEvent event) throws IOException {
+        Parent root;
+        root = FXMLLoader.load(getClass().getResource("Ajout_reservationchauffeur.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
-    @FXML
     private void afficher(ActionEvent event) throws IOException {
        Parent root = FXMLLoader.load(getClass().getResource("Afficher_chauffeur.fxml"));
         Scene scene = new Scene(root);
@@ -116,6 +124,14 @@ public class Afficher_chauffeurController implements Initializable {
      
               
             }
+
+    @FXML
+    private void cherch(ActionEvent event) {
+    }
+
+    @FXML
+    private void trier(ActionEvent event) {
+    }
     
         
         

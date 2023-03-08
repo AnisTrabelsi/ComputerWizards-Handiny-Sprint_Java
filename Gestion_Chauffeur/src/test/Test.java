@@ -33,10 +33,10 @@ public class Test {
         
         ///////////////////////////////////// Reservation CHAUFFEUR /////////////////////////////////////////////////////////
        
-        Reservation_Chauffeur E1 = new Reservation_Chauffeur(11,2,"TUNIS",Date.valueOf(localDate));
+        Reservation_Chauffeur E1 = new Reservation_Chauffeur(11,6,"TU",Date.valueOf(localDate));
            Reservation_Chauffeur E3 = new Reservation_Chauffeur(2,11,2,"jerba",Date.valueOf(localDate));
         ServiceReservation_Chauffeur ES = new ServiceReservation_Chauffeur();
-        //ES.ajouter(E1);
+        ES.ajouter(E1);
         //ES.modifier(E3);
       //  ES.supprimer(E3);
        System.out.println(ES.recuperer(E1));

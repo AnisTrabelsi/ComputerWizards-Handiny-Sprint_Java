@@ -100,8 +100,14 @@ public class Supprimer_chauffeurController implements Initializable {
         stage.show();
     }
 
-    @FXML
-    private void dd(ActionEvent event) {
+     @FXML
+    private void dd(ActionEvent event) throws IOException {
+        Parent root;
+        root = FXMLLoader.load(getClass().getResource("Ajout_reservationchauffeur.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
