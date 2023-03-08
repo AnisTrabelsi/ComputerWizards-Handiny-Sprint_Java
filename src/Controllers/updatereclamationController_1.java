@@ -65,7 +65,7 @@ public class updatereclamationController_1 implements Initializable {
         try {
             int id_utilisateur = 3;
             reclamationList = sr.findById_Utilisateur(id_utilisateur);
-            System.out.println(reclamationList);
+           // System.out.println(reclamationList);
 
             mes_reclams.setItems(FXCollections.observableArrayList(reclamationList));
 
@@ -83,6 +83,7 @@ public class updatereclamationController_1 implements Initializable {
 
 
         });
+
     }
 
     @FXML

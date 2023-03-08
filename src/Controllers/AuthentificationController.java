@@ -112,4 +112,8 @@ public class AuthentificationController implements Initializable {
         alert.showAndWait();
     }
 
+    @FXML
+    private void recupererMotDePasse(ActionEvent event) {
+    }
+
 }

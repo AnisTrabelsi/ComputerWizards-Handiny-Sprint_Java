@@ -238,10 +238,10 @@ rating.setOnMouseClicked(event -> {
         vbox.getChildren().add(rating);
         // création du bouton avec l'icône "heart"
 Button favorisBtn = new Button();
-FontAwesomeIconView heartIcon = new FontAwesomeIconView(FontAwesomeIcon.HEART);
+/*FontAwesomeIconView heartIcon = new FontAwesomeIconView(FontAwesomeIcon.HEART);
 heartIcon.setSize("2em"); // taille de l'icône
-heartIcon.setStyleClass("heart-icon"); // classe CSS personnalisée
-favorisBtn.setGraphic(heartIcon);
+heartIcon.setStyleClass("heart-icon"); // classe CSS personnalisée*/
+//favorisBtn.setGraphic(heartIcon);
 
 // ajout du gestionnaire d'événements pour le bouton "Favoris"
 favorisBtn.setOnAction(new EventHandler<ActionEvent>() {

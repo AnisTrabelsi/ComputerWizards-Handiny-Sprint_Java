@@ -55,6 +55,34 @@
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Aide" />
+            <Menu mnemonicParsing="false" text="Covoiturage">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#golescov" text="Les covoiturages" />
+                  <MenuItem mnemonicParsing="false" onAction="#golesreserv" text="Les reservations" />
+                  <MenuItem mnemonicParsing="false" onAction="#goreserv" text="Reserver" />
+                  <MenuItem mnemonicParsing="false" onAction="#goajout" text="Ajouter Covoiturage" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Utilisateurs">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#Liste_utilisateurs" text="Liste des utilisateurs" />
+                  <MenuItem mnemonicParsing="false" onAction="#Supprimer_utilisateurs" text="Supprimer un utilisateur" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Reclamations">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#Traiter_reclamation" text="Liste des utilisateurs" />
+                  <MenuItem mnemonicParsing="false" onAction="#Traiter_reclamation2" text="Liste des utilisateurs" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Chauffeur">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#ajcha" text="ajouter chauffeur" />
+                  <MenuItem mnemonicParsing="false" onAction="#modcha" text="modifier chauffeur" />
+                  <MenuItem mnemonicParsing="false" onAction="#suppchau" text="supprimer chauffeur" />
+                  <MenuItem mnemonicParsing="false" onAction="#affchaauf" text="afficher chauffeur" />
+               </items>
+            </Menu>
          </menus>
       </MenuBar>
       <AnchorPane id="mesVoitures" fx:id="mesDons" layoutX="-5.0" layoutY="106.0" prefHeight="535.0" prefWidth="973.0" stylesheets="@front_main.css" AnchorPane.bottomAnchor="-3.0" AnchorPane.leftAnchor="-5.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="106.0">

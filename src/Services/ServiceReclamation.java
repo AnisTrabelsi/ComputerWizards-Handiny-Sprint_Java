@@ -4,6 +4,7 @@
  */
 package Services;
 
+import Entite.Covoiturage;
 import Entite.Reclamation;
 import Entite.Utilisateur;
 import Utils.DataSource;
@@ -23,110 +24,112 @@ import java.util.logging.Logger;
  *
  * @author Chayma
  */
-public class ServiceReclamation implements IService <Reclamation>{
-    Reclamation r = new Reclamation  ();
+public class ServiceReclamation implements IService<Reclamation> {
 
-    
+    Reclamation r = new Reclamation();
+
     Connection con = DataSource.getInstance().getConnection();
-    private Statement ste ;
+    private Statement ste;
 
     public ServiceReclamation() {
         try {
-            ste =con.createStatement();
+            ste = con.createStatement();
         } catch (SQLException ex) {
-       System.out.println(ex) ;        
+            System.out.println(ex);
         }
     }
-        
 
-  @Override
+    @Override
     public void ajouter(Reclamation r) throws SQLException {
 
+        try {
+            String req = "INSERT INTO reclamation (`id_utilisateur`, `type_reclamation`, `etat_reclamation`, `description`) VALUES (3,?,?,?);";
+            PreparedStatement pre = con.prepareStatement(req);
+            // pre.setInt(1,r.getUser().getId_utilisateur());
+            pre.setString(1, r.getType_reclamation());
+            pre.setString(2, r.getEtat_reclamation());
+            pre.setString(3, r.getDescription());
+            pre.executeUpdate();
 
-    try {String req = "INSERT INTO reclamation (id_utilisateur, type_reclamation, etat_reclamation, description) VALUES (3,?,?,?);";
-     PreparedStatement pre=con.prepareStatement(req);
-    // pre.setInt(1,r.getUser().getId_utilisateur());
-     pre.setString(1, r.getType_reclamation());
-     pre.setString(2, r.getEtat_reclamation());
-     pre.setString(3, r.getDescription());
-     pre.executeUpdate();
-  
             System.out.println(r.toString());
-     }catch(SQLException e){
+        } catch (SQLException e) {
             System.out.println(e);
-     
+
+        }
+
     }
+
+    @Override
+    public void update(Reclamation r) throws SQLException {
+        String req = "UPDATE `reclamation` SET `type_reclamation` = ?, `etat_reclamation` = ?, `description` = ?, `reponse` = ? WHERE `id_reclamation` = ?";
+        try (PreparedStatement st = con.prepareStatement(req)) {
+            st.setString(1, r.getType_reclamation());
+            st.setString(2, r.getEtat_reclamation());
+            st.setString(3, r.getDescription());
+            st.setString(4, r.getReponse());
+            st.setInt(5, r.getId_reclamation());
+            st.executeUpdate();
+            System.out.println("Reclamation mise à jour ");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    public void Traiter (Reclamation r) throws SQLException {
+        String req = "UPDATE `reclamation` SET `etat_reclamation` = ?, `reponse` = ? WHERE `id_reclamation` = ?";
+                PreparedStatement st = con.prepareStatement(req);
+                st.setString(1, r.getEtat_reclamation());
+                st.setString(2, r.getReponse());
+                st.setInt(3, r.getId_reclamation());
+                st.executeUpdate();
+                System.out.println("Reclamation mise à jour ");
     
-
     }
-
-    @Override 
-public void update(Reclamation r) throws SQLException {
-    String req = "UPDATE reclamation SET type_reclamation = ?, etat_reclamation = ?, description = ?, reponse = ? WHERE id_reclamation = ?";
-    try (PreparedStatement st = con.prepareStatement(req)) {
-        st.setString(1, r.getType_reclamation());
-        st.setString(2, r.getEtat_reclamation());
-        st.setString(3, r.getDescription());
-        st.setString(4, r.getReponse());
-       st.setInt(5, r.getId_reclamation());
-        st.executeUpdate();
-        System.out.println("Reclamation mise à jour ");
-    } catch (SQLException ex) {
-        System.out.println(ex.getMessage());
-    }
-}
-
-
-
 
     @Override
     public List<Reclamation> readAll() throws SQLException {
 
-         ArrayList<Reclamation> listreclamation=new ArrayList<>();
-        
-        String req=" SELECT * FROM Reclamation ";
-        Statement statement = con.createStatement();
-        ResultSet res=ste.executeQuery(req);
-        
-        while (res.next()) {   
-            
-            //int id_utilisateur  =res.getInt(1);
-            String type_reclamation =res.getString(3);
-            String etat_reclamation=res.getString(4);
+        ArrayList<Reclamation> listreclamation = new ArrayList<>();
+
+        String req = " SELECT * FROM `reclamation` ";
+       // Statement statement = con.createStatement();
+        ResultSet res = ste.executeQuery(req);
+
+        while (res.next()) {
+
+            int id_reclamation = res.getInt(1);
+            String type_reclamation = res.getString(3);
+            String etat_reclamation = res.getString(4);
             String description = res.getString(5);
-            Reclamation r = new Reclamation (type_reclamation, etat_reclamation, description);
+            Reclamation r = new Reclamation(id_reclamation,type_reclamation, etat_reclamation, description);
             System.out.println(r);
             listreclamation.add(r);
         }
-            return listreclamation;
+        return listreclamation;
     }
-    
-
-
 
     @Override
     public Reclamation findById(int id_reclamation) throws SQLException {
-    Reclamation r = new Reclamation ();
-    Utilisateur u = new Utilisateur ();
-    String req = "SELECT * FROM reclamationWHERE  id_reclamation =" +id_reclamation ;
-    Statement ste = con.createStatement();
-    ResultSet res = ste.executeQuery(req);
-    while (res.next()) {
+        Reclamation r = new Reclamation();
+        Utilisateur u = new Utilisateur();
+        String req = "SELECT * FROM `reclamation`WHERE  id_reclamation =" + id_reclamation;
+        Statement ste = con.createStatement();
+        ResultSet res = ste.executeQuery(req);
+        while (res.next()) {
             int id_utilisateur = res.getInt(2);
-            String type_reclamation =res.getString(3);
-            String etat_reclamation=res.getString(4);
+            String type_reclamation = res.getString(3);
+            String etat_reclamation = res.getString(4);
             String description = res.getString(5);
-           // System.out.println(r);
-    Reclamation r1 = new Reclamation (id_utilisateur,type_reclamation, etat_reclamation,description,u);
-    r=r1 ;
-    }
-    return r ;
+            // System.out.println(r);
+            Reclamation r1 = new Reclamation(id_utilisateur, type_reclamation, etat_reclamation, description, u);
+            r = r1;
+        }
+        return r;
     }
 
     public List<Reclamation> findById_Utilisateur(int id_utilisateur) throws SQLException {
         List<Reclamation> reclamations = new ArrayList<>();
         Utilisateur u = new Utilisateur();
-        String req = "SELECT * FROM reclamation WHERE id_utilisateur =" + id_utilisateur;
+        String req = "SELECT * FROM `reclamation` WHERE id_utilisateur =" + id_utilisateur;
         Statement ste = con.createStatement();
         ResultSet res = ste.executeQuery(req);
         while (res.next()) {
@@ -142,20 +145,18 @@ public void update(Reclamation r) throws SQLException {
 
     @Override
     public boolean supprime(Reclamation r) throws SQLException {
-try {
-            String req = "DELETE FROM reclamation WHERE id_reclamation = ?" ;
+        try {
+            String req = "DELETE FROM `reclamation` WHERE `id_reclamation` = ?";
             PreparedStatement st = con.prepareStatement(req);
-   st.setInt(1, r.getId_reclamation());
-        int res = st.executeUpdate();
-        return res > 0;
-    } catch (SQLException ex) {
-        System.out.println(ex.getMessage());
-        return false;    
+            st.setInt(1, r.getId_reclamation());
+            int res = st.executeUpdate();
+            return res > 0;
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return false;
 
-      
-        
-}
-}
+        }
+    }
 
     @Override
     public void ajouter_don(Reclamation t) throws SQLException {
@@ -304,6 +305,41 @@ try {
 
     @Override
     public int rechercherid_parrrcin(String id) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean ajouter(Covoiturage t) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void update(Covoiturage t) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Covoiturage> sortbydate() throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean supprime(int t) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void modifier(Reclamation c) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void supprimer(int id) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Reclamation> recuperer(Reclamation c) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="530.0" prefWidth="848.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Ajout_covoiturageController">
+   <children>
+      <ImageView fitHeight="536.0" fitWidth="1113.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/back_1.png" />
+                      
+
+         </image>
+         
+         <effect>
+            <Glow />
+         </effect>
+      </ImageView>
+      <Label layoutX="43.0" layoutY="153.0" prefHeight="35.0" prefWidth="134.0" stylesheets="@list.css" text="depart :" />
+      <Label layoutX="43.0" layoutY="227.0" prefHeight="35.0" prefWidth="134.0" stylesheets="@list.css" text="Prix : " />
+      <Label layoutX="43.0" layoutY="185.0" prefHeight="42.0" prefWidth="114.0" stylesheets="@list.css" text="Destination : " />
+      <Button layoutX="157.0" layoutY="374.0" mnemonicParsing="false" onAction="#ajouterCov" prefHeight="42.0" prefWidth="134.0" style="-fx-background-color: green; -fx-background-radius: 30;" stylesheets="@list.css" text="ajouter" textFill="WHITE">
+         <effect>
+            <Blend>
+               <topInput>
+                  <Blend>
+                     <topInput>
+                        <Blend />
+                     </topInput>
+                  </Blend>
+               </topInput></Blend>
+         </effect>
+         <font>
+            <Font name="Calibri Bold Italic" size="16.0" />
+         </font></Button>
+      <ImageView fx:id="Image" fitHeight="244.0" fitWidth="367.0" layoutX="408.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true" />
+      <Button layoutX="23.0" layoutY="482.0" mnemonicParsing="false" onAction="#goaffi" prefHeight="42.0" prefWidth="134.0" style="-fx-background-color: green; -fx-background-radius: 50;" stylesheets="@list.css" text="Mes Covoiturage" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="11.0" />
+         </font></Button>
+      <Button layoutX="174.0" layoutY="482.0" mnemonicParsing="false" onAction="#gomodif" prefHeight="42.0" prefWidth="149.0" style="-fx-background-color: green; -fx-background-radius: 50;" stylesheets="@list.css" text="Modifier Covoiturage " textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="11.0" />
+         </font></Button>
+      <Button layoutX="334.0" layoutY="482.0" mnemonicParsing="false" onAction="#goreserv" prefHeight="42.0" prefWidth="149.0" style="-fx-background-color: green; -fx-background-radius: 50;" stylesheets="@list.css" text="Reserver" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Button>
+      <Label layoutX="161.0" layoutY="84.0" prefHeight="62.0" prefWidth="436.0" text="Ajouter un covoiturage" textAlignment="CENTER" textFill="#21282c">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+         <effect>
+            <Bloom threshold="0.81" />
+         </effect>
+      </Label>
+      <Label layoutX="43.0" layoutY="265.0" prefHeight="35.0" prefWidth="134.0" stylesheets="@list.css" text="nombre de place : " />
+      <Label layoutX="43.0" layoutY="300.0" prefHeight="35.0" prefWidth="134.0" stylesheets="@list.css" text="Date :" />
+      <TextField fx:id="tfdepart" layoutX="177.0" layoutY="158.0" />
+      <TextField fx:id="tfdestination" layoutX="177.0" layoutY="194.0" />
+      <TextField fx:id="tfprix" layoutX="177.0" layoutY="232.0" />
+      <TextField fx:id="tfnbr" layoutX="177.0" layoutY="270.0" />
+      <ImageView fitHeight="179.0" fitWidth="473.0" layoutX="364.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/covo.jpg" />
+         </image>
+         <effect>
+            <Glow />
+         </effect>
+      </ImageView>
+      <DatePicker fx:id="tfdate" layoutX="174.0" layoutY="305.0" />
+      <ImageView fitHeight="25.0" fitWidth="27.0" layoutX="174.0" layoutY="383.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/ajouter.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="495.0" layoutY="482.0" mnemonicParsing="false" onAction="#gomesreserv" prefHeight="42.0" prefWidth="149.0" style="-fx-background-color: green; -fx-background-radius: 50;" stylesheets="@list.css" text="Mes reservations" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

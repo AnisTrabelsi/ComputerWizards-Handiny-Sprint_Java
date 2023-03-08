@@ -19,30 +19,30 @@
    <children>
       <AnchorPane prefHeight="606.0" prefWidth="864.0">
          <children>
-            <ImageView fitHeight="600.0" fitWidth="1029.4" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="658.0" fitWidth="1022.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/327680433_1635361913582223_6273958701339860656_n.png" />
                </image>
             </ImageView>
-            <TextField fx:id="adresse_inscri" layoutX="365.0" layoutY="393.0" prefHeight="26.0" prefWidth="174.0" />
-            <TextField fx:id="code_postal_inscri" layoutX="730.0" layoutY="393.0" prefHeight="26.0" prefWidth="75.0" />
-            <ComboBox fx:id="region" layoutX="562.0" layoutY="393.0" prefWidth="150.0" />
-            <CheckBox fx:id="checkbox" layoutX="813.0" layoutY="327.0" mnemonicParsing="false" onAction="#changeer_visibilité" />
-            <TextField fx:id="password_text" layoutX="633.0" layoutY="318.0" prefHeight="36.0" prefWidth="168.0" />
-            <PasswordField fx:id="mdp_inscri" layoutX="633.0" layoutY="318.0" prefHeight="36.0" prefWidth="168.0" />
-            <Button fx:id="inscription" layoutX="499.0" layoutY="481.0" mnemonicParsing="false" onAction="#ajouter_utilisateur" prefHeight="46.0" prefWidth="200.0" style="-fx-background-color: #104D62; -fx-background-radius: 30;" text="Je m'inscris" textFill="#fffefe" textOverrun="WORD_ELLIPSIS">
+            <TextField fx:id="adresse_inscri" layoutX="367.0" layoutY="406.0" prefHeight="26.0" prefWidth="174.0" />
+            <TextField fx:id="code_postal_inscri" layoutX="725.0" layoutY="406.0" prefHeight="26.0" prefWidth="75.0" />
+            <ComboBox fx:id="region" layoutX="558.0" layoutY="406.0" prefWidth="150.0" />
+            <CheckBox fx:id="checkbox" layoutX="814.0" layoutY="337.0" mnemonicParsing="false" onAction="#changeer_visibilité" />
+            <TextField fx:id="password_text" layoutX="630.0" layoutY="328.0" prefHeight="36.0" prefWidth="168.0" />
+            <PasswordField fx:id="mdp_inscri" layoutX="630.0" layoutY="328.0" prefHeight="36.0" prefWidth="168.0" />
+            <Button fx:id="inscription" layoutX="499.0" layoutY="555.0" mnemonicParsing="false" onAction="#ajouter_utilisateur" prefHeight="46.0" prefWidth="200.0" style="-fx-background-color: #104D62; -fx-background-radius: 30;" text="Je m'inscris" textFill="#fffefe" textOverrun="WORD_ELLIPSIS">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <ImageView fitHeight="20.0" fitWidth="19.0" layoutX="324.0" layoutY="396.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="20.0" fitWidth="19.0" layoutX="325.0" layoutY="409.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/adresse.png" />
                </image>
             </ImageView>
-            <TextField fx:id="email_inscri" layoutX="630.0" layoutY="253.0" prefHeight="36.0" prefWidth="168.0" />
-            <TextField fx:id="nom_inscri" layoutX="370.0" layoutY="100.0" prefHeight="36.0" prefWidth="168.0" />
-            <RadioButton fx:id="loataire_inscri" layoutX="437.0" layoutY="448.0" mnemonicParsing="false" onAction="#locataire" text="Locataire de voiture" textFill="#104d62">
+            <TextField fx:id="email_inscri" layoutX="630.0" layoutY="257.0" prefHeight="36.0" prefWidth="168.0" />
+            <TextField fx:id="nom_inscri" layoutX="370.0" layoutY="107.0" prefHeight="36.0" prefWidth="168.0" />
+            <RadioButton fx:id="loataire_inscri" layoutX="438.0" layoutY="500.0" mnemonicParsing="false" onAction="#locataire" text="Locataire de voiture" textFill="#104d62">
                <toggleGroup>
                   <ToggleGroup fx:id="Role" />
                </toggleGroup>
@@ -50,7 +50,7 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </RadioButton>
-            <RadioButton fx:id="proprietaire_inscri" layoutX="618.0" layoutY="446.0" mnemonicParsing="false" onAction="#proprietaire" prefHeight="10.0" prefWidth="162.0" text="Proprietaire de voiture" textFill="#104d62" toggleGroup="$Role">
+            <RadioButton fx:id="proprietaire_inscri" layoutX="624.0" layoutY="500.0" mnemonicParsing="false" onAction="#proprietaire" prefHeight="10.0" prefWidth="162.0" text="Proprietaire de voiture" textFill="#104d62" toggleGroup="$Role">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -65,19 +65,43 @@
                   <Image url="@../images/users-alt.png" />
                </image>
             </ImageView>
-            <Button layoutX="229.0" layoutY="546.0" mnemonicParsing="false" onAction="#authentification" prefHeight="34.0" prefWidth="162.0" text="s'authentifier" />
+            <Label layoutX="729.0" layoutY="379.0" text="Code postal" textFill="#104d62">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="586.0" layoutY="379.0" text="Region" textFill="#104d62">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="370.0" layoutY="380.0" text="Adresse" textFill="#104d62">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="login_inscri" layoutX="367.0" layoutY="327.0" prefHeight="36.0" prefWidth="168.0" />
+            <ImageView fitHeight="19.0" fitWidth="24.0" layoutX="590.0" layoutY="335.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/lock.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="632.0" layoutY="302.0" text="Mot de passe" textFill="#104d62">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <Accordion layoutX="48.0" layoutY="63.0" />
-      <TextField fx:id="prenom_inscri" layoutX="626.0" layoutY="105.0" prefHeight="36.0" prefWidth="168.0" />
-      <TextField fx:id="cin_inscri" layoutX="374.0" layoutY="248.0" prefHeight="36.0" prefWidth="168.0" />
-      <TextField fx:id="telephone_inscri" layoutX="372.0" layoutY="180.0" prefHeight="36.0" prefWidth="168.0" promptText="+216" />
-      <TextField fx:id="login_inscri" layoutX="371.0" layoutY="320.0" prefHeight="36.0" prefWidth="168.0" />
-      <Label layoutX="362.0" layoutY="78.0" prefHeight="18.0" prefWidth="30.0" text="Nom" textFill="#104d62">
+      <TextField fx:id="prenom_inscri" layoutX="626.0" layoutY="111.0" prefHeight="36.0" prefWidth="168.0" />
+      <TextField fx:id="cin_inscri" layoutX="368.0" layoutY="250.0" prefHeight="36.0" prefWidth="168.0" />
+      <TextField fx:id="telephone_inscri" layoutX="365.0" layoutY="180.0" prefHeight="36.0" prefWidth="168.0" promptText="+216" />
+      <Label layoutX="362.0" layoutY="83.0" prefHeight="19.0" prefWidth="48.0" text="Nom" textFill="#104d62">
          <font>
             <Font name="System Bold" size="13.0" />
          </font></Label>
-      <Label layoutX="627.0" layoutY="77.0" prefHeight="18.0" prefWidth="72.0" text="Prenom" textFill="#104d62">
+      <Label layoutX="627.0" layoutY="85.0" prefHeight="18.0" prefWidth="72.0" text="Prenom" textFill="#104d62">
          <font>
             <Font name="System Bold" size="13.0" />
          </font></Label>
@@ -101,37 +125,14 @@
          <font>
             <Font name="System Bold" size="13.0" />
          </font></Label>
-      <Label layoutX="632.0" layoutY="292.0" text="Mot de passe" textFill="#104d62">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <Label layoutX="580.0" layoutY="365.0" text="Region" textFill="#104d62">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font></Label>
-      <Label layoutX="367.0" layoutY="366.0" text="Adresse" textFill="#104d62">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font></Label>
-      <Label layoutX="726.0" layoutY="363.0" text="Code postal" textFill="#104d62">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
       <DatePicker fx:id="date_naiss_inscri" layoutX="627.0" layoutY="180.0" prefHeight="36.0" prefWidth="168.0" />
       <ImageView fitHeight="25.0" fitWidth="24.0" layoutX="325.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fitHeight="19.0" fitWidth="19.0" layoutX="592.0" layoutY="253.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="18.0" fitWidth="17.0" layoutX="594.0" layoutY="267.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/email.png" />
+            <Image url="@../images/envelope.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="19.0" fitWidth="24.0" layoutX="595.0" layoutY="319.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/lock.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="25.0" fitWidth="24.0" layoutX="333.0" layoutY="254.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="25.0" fitWidth="24.0" layoutX="332.0" layoutY="255.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/carte-didentite.png" />
          </image>
@@ -152,35 +153,11 @@
          </image>
       </ImageView>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="46.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true" />
-      <AnchorPane layoutX="14.0" layoutY="69.0" prefHeight="434.0" prefWidth="265.0" style="-fx-background-color: #4FAC6E; -fx-background-radius: 30;">
-         <children>
-            <Button alignment="BASELINE_RIGHT" layoutX="6.0" layoutY="256.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="252.0" style="-fx-background-color: #2247b7; -fx-background-radius: 30;" text="Se connecter avec Facebook" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Button>
-            <ImageView fitHeight="36.0" fitWidth="34.0" layoutX="24.0" layoutY="266.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/facebook.png" />
-               </image>
-            </ImageView>
-            <Button alignment="BASELINE_RIGHT" layoutX="5.0" layoutY="346.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="252.0" style="-fx-background-color: #22457; -fx-background-radius: 30;" text="Se connecter avec Google">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Button>
-            <ImageView fitHeight="36.0" fitWidth="34.0" layoutX="22.0" layoutY="357.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/google.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="133.0" fitWidth="137.0" layoutX="71.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/user%20(1).png" />
-               </image>
-            </ImageView>
-         </children>
-      </AnchorPane>
-      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="276.0" fitWidth="270.0" layoutX="19.0" layoutY="133.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/logo%20pidevfinal-03.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="80.0" layoutY="368.0" mnemonicParsing="false" onAction="#authentification" stylesheets="@list.css" text="Authentification" />
    </children>
 </AnchorPane>

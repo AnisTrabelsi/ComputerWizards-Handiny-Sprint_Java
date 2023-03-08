@@ -169,5 +169,41 @@ public class FrontController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
+    @FXML
+    private void goajout(ActionEvent event) throws IOException {
+         AnchorPane pane = FXMLLoader.load(getClass().getResource("/gui_handiny/ajout_covoiturage.fxml"));
+           mesDons.getChildren().setAll(pane);
+    }
+
+    @FXML
+    private void gomesreserv(ActionEvent event) throws IOException {
+         AnchorPane pane = FXMLLoader.load(getClass().getResource("/gui_handiny/Mes_reservation.fxml"));
+           mesDons.getChildren().setAll(pane);
+    }
+
+    @FXML
+    private void goreserv(ActionEvent event)throws IOException {
+         AnchorPane pane = FXMLLoader.load(getClass().getResource("/gui_handiny/reserver_covoiturage.fxml"));
+           mesDons.getChildren().setAll(pane);
+    }
+
+    @FXML
+    private void gomescov(ActionEvent event) throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/gui_handiny/Modifier_mes_covoiturages.fxml"));
+           mesDons.getChildren().setAll(pane);
+    }
+
+    @FXML
+    private void add_recllam(ActionEvent event) throws IOException {
+          AnchorPane pane = FXMLLoader.load(getClass().getResource("/gui_handiny/ajouter_reclamation.fxml"));
+           mesDons.getChildren().setAll(pane);
+    }
+
+    @FXML
+    private void update_reclam(ActionEvent event) throws IOException {
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("/gui_handiny/updatereclamation.fxml"));
+           mesDons.getChildren().setAll(pane);
+    }
     
 }

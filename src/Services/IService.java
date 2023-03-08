@@ -4,6 +4,7 @@
  */
 package Services;
 
+import Entite.Covoiturage;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -89,5 +90,20 @@ public interface IService<T> {
     List<T> readAll() throws SQLException;
 
     T findById(int id) throws SQLException;
+    
+    
+     boolean ajouter(Covoiturage t) throws SQLException;
+
+    void update(Covoiturage t) throws SQLException;
+   List<Covoiturage> sortbydate() throws SQLException;
+
+
+    boolean supprime(int t) throws SQLException;
+
+   //  public void ajouter(T c) throws SQLException;
+     public void modifier(T c) throws SQLException;
+     public void supprimer(int id) throws SQLException;
+     public List<T> recuperer(T c) throws SQLException;
+    //   public List<T> readAll() throws SQLException;
 
 }

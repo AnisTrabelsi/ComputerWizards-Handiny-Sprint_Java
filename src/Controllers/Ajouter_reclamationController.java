@@ -19,6 +19,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
+import org.controlsfx.control.NotificationPane;
+import org.controlsfx.control.Notifications;
+
 
 /**
  *
@@ -28,7 +31,6 @@ public class Ajouter_reclamationController implements Initializable {
 
     @FXML
     private TextArea description_ajout_reclamation;
-    String description;
     @FXML
     private Button envoyer_reclamation;
     @FXML
@@ -36,16 +38,13 @@ public class Ajouter_reclamationController implements Initializable {
     // On a initilaisé les elements de choicebox aux differents types de reclamation
     private String[] Type_reclamations = {"Couvoiturage", "Site", "Location de voiture", "Don"};
     Reclamation r = new Reclamation();
-    Utilisateur u;
     ServiceReclamation sr = new ServiceReclamation();
-    ServiceUtilisateur su = new ServiceUtilisateur();
 
     public void get_type(ActionEvent event) {
         String type = choice_box.getValue();
-        int index = Arrays.asList(Type_reclamations).indexOf(Type_reclamations); // rechercher l'index de la région dans le tableau regions[]
+        int index = Arrays.asList(Type_reclamations).indexOf(type);
         if (index >= 0) {
            r.setType_reclamation(Type_reclamations[index]);
-
         }
     }
 
@@ -58,13 +57,15 @@ public class Ajouter_reclamationController implements Initializable {
     private void Envoyer_reclamation(ActionEvent event) throws SQLException {
         String selectedType = choice_box.getValue();
         String description = description_ajout_reclamation.getText();
-       // u = su.findById(7);
         r.setType_reclamation(selectedType);
         r.setEtat_reclamation("En attente");
         r.setDescription(description);
-        
         sr.ajouter(r);
-
+        
+        Notifications.create()
+            .title("Succès")
+            .text("Votre réclamation a été envoyée avec succès.")
+            .showInformation();
     }
-
+   
 }

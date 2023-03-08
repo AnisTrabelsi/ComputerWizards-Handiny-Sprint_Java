@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="540.0" prefWidth="843.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="gui_handiny.Supprimer_reservationchauffeurController">
+   <children>
+      <TableView fx:id="Reclamation" layoutX="42.0" layoutY="116.0" prefHeight="358.0" prefWidth="778.0">
+         <columns>
+            <TableColumn fx:id="cin" prefWidth="154.39999389648438" text="ID Chauffeur " />
+            <TableColumn fx:id="nom" prefWidth="179.20001220703125" text="Duree Service" />
+            <TableColumn fx:id="adresse" prefWidth="213.60000610351562" text="Date" />
+            <TableColumn fx:id="statut" prefWidth="228.79998779296875" text="Description Demande" />
+         </columns>
+      </TableView>
+      <Label layoutX="255.0" layoutY="75.0" prefHeight="34.0" prefWidth="351.0" text="Suppression Reservation Chauffeur" textFill="#52a9df">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Label>
+      <Button layoutX="32.0" layoutY="30.0" mnemonicParsing="false" onAction="#md" prefHeight="34.0" prefWidth="130.0" stylesheets="@../../../../../Downloads/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi%20(1)/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi/src/gui_handiny/list.css" text="Modifier CH" />
+      <Button layoutX="187.0" layoutY="30.0" mnemonicParsing="false" onAction="#aff" prefHeight="34.0" prefWidth="116.0" stylesheets="@../../../../../Downloads/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi%20(1)/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi/src/gui_handiny/list.css" text="Afficher CH" />
+      <Button layoutX="332.0" layoutY="30.0" mnemonicParsing="false" onAction="#aj" prefHeight="34.0" prefWidth="138.0" stylesheets="@../../../../../Downloads/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi%20(1)/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi/src/gui_handiny/list.css" text="Ajouter CH" />
+      <Button layoutX="495.0" layoutY="30.0" mnemonicParsing="false" onAction="#dd" prefHeight="34.0" prefWidth="130.0" stylesheets="@../../../../../Downloads/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi%20(1)/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi/src/gui_handiny/list.css" text="Demande CH" />
+      <Button layoutX="366.0" layoutY="505.0" mnemonicParsing="false" onAction="#supprimer" text="supprimer" />
+   </children>
+</AnchorPane>

@@ -53,7 +53,7 @@ public class MailerAPI {
             // Crée une partie de message pour la pièce jointe
             MimeBodyPart attachmentPart = new MimeBodyPart();
             try {
-                attachmentPart.attachFile(new File("C:\\xampp4\\htdocs\\Gestion don\\" + path));
+                attachmentPart.attachFile(new File("C:\\xampp4\\htdocs\\Handiny\\" + path));
             } catch (IOException ex) {
                 Logger.getLogger(MailerAPI.class.getName()).log(Level.SEVERE, null, ex);
             }

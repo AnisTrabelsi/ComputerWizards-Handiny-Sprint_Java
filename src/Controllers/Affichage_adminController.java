@@ -41,14 +41,6 @@ public class Affichage_adminController implements Initializable {
 
     }    
 
-////    private void admin_ajouter_utilisateur(ActionEvent event) throws IOException {
-////    FXMLLoader loader =new FXMLLoader(getClass().getResource("/gui_handiny/add_user_by_admin.fxml"));
-////    Parent root =loader.load();
-////    Add_user_by_adminController auc = loader.getController();
-////    admin_add.getScene().setRoot(root);
-////    }
-////
-////  
 
     @FXML
     private void admin_afficher_liste_utilisateur(ActionEvent event) throws IOException, SQLException {
@@ -57,20 +49,11 @@ public class Affichage_adminController implements Initializable {
     
     Parent root = loader.load();
     Read_user_by_adminController ruc = loader.getController();
-     ruc.list_tilisateur();
+    // ruc.list_tilisateur();
 
     admin_read.getScene().setRoot(root);
     }
 
-//////////////    @FXML
-//////////////    private void admin_mettre_a_jour_utilisateur(ActionEvent event) throws IOException {
-//////////////    FXMLLoader loader =new FXMLLoader(getClass().getResource("/gui_handiny/update_user_by_admin.fxml")) ;
-//////////////    Parent root =loader.load();
-//////////////    Modifier_profil_userController uuc = loader.getController();
-//////////////    
-//////////////    admin_update.getScene().setRoot(root);
-//////////////        
-//////////////    }
 
     @FXML
     private void afficher_liste_reclamation(ActionEvent event) throws IOException, SQLException {
@@ -78,7 +61,7 @@ public class Affichage_adminController implements Initializable {
     
     Parent root = loader.load();
     Admin_reclamationController ar = loader.getController();
-     ar.list_reclamation();
+    // ar.list_reclamation();
 
     admin_read.getScene().setRoot(root);
     }

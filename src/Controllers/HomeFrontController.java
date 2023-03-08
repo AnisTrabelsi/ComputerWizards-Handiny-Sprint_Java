@@ -50,29 +50,29 @@ public class HomeFrontController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-//        try{
-//           String videoname = null;
-//           String path = new File("src/" + videoname + ".mp4").getAbsolutePath();
-//           File mediaFile = new File("C:\\xampp4\\htdocs\\Handiny\\src\\images\\projet_final.mp4");
-//           Media media = new Media(mediaFile.toURI().toURL().toString());
-//            mediaplayer = new MediaPlayer(media);
-//            mediaview.setMediaPlayer(mediaplayer);
-//            volume.setValue(mediaplayer.getVolume() * 50);
-//            
-//             volume.valueProperty().addListener(new InvalidationListener() {
-//            
-//
-//               @Override
-//               public void invalidated(Observable observable) {
-//                 mediaplayer.setVolume(volume.getValue() / 100);
-//
-//               }
-//
-//        });
-//      } catch (MalformedURLException ex) {
-//           System.out.println(ex.getMessage());
-//      }
-        //mediaplayer.play();
+        try{
+           String videoname = null;
+           String path = new File("src/" + videoname + ".mp4").getAbsolutePath();
+           File mediaFile = new File("C:\\xampp4\\htdocs\\Handiny\\src\\images\\projet_final.mp4");
+           Media media = new Media(mediaFile.toURI().toURL().toString());
+            mediaplayer = new MediaPlayer(media);
+            mediaview.setMediaPlayer(mediaplayer);
+            volume.setValue(mediaplayer.getVolume() * 50);
+            
+             volume.valueProperty().addListener(new InvalidationListener() {
+            
+
+               @Override
+               public void invalidated(Observable observable) {
+                 mediaplayer.setVolume(volume.getValue() / 100);
+
+               }
+
+        });
+      } catch (MalformedURLException ex) {
+           System.out.println(ex.getMessage());
+      }
+       // mediaplayer.play();
     }
 
     @FXML

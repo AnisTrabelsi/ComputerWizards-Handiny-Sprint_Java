@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0"  xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Modifier_demande_don_adminController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="Controllers.Modifier_demande_don_adminController">
    <children>
       <ImageView fitHeight="558.0" fitWidth="1029.4" layoutX="3.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -34,7 +34,7 @@
       </Label>
       <ScrollPane layoutX="447.0" layoutY="119.0" prefHeight="392.0" prefWidth="549.0">
          <content>
-            <VBox fx:id="vb" prefHeight="361.0" prefWidth="500.0" />
+            <VBox fx:id="vb" prefHeight="373.0" prefWidth="550.0" />
          </content>
       </ScrollPane>
    </children>

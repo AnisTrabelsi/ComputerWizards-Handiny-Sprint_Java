@@ -5,6 +5,7 @@
  */
 package Controllers;
 
+import Entite.Chauffeur;
 import Entite.don;
 import Services.Service_don;
 import static com.itextpdf.text.pdf.XfaXpathConstructor.XdpPackage.Pdf;
@@ -17,6 +18,7 @@ import java.lang.*;
 import Entite.Pdf;
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.DocumentException;
+import java.awt.Desktop;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.net.URL;
@@ -39,10 +41,14 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.Writer;
 import java.lang.reflect.InvocationTargetException;
+import java.sql.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.print.PageLayout;
 import javafx.print.PageOrientation;
 import javafx.print.Paper;
@@ -52,6 +58,10 @@ import javafx.print.PrinterJob;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.transform.Scale;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import services.ServiceChauffeur;
 
 /**
  * FXML Controller class
@@ -326,34 +336,52 @@ public class Affichage_donController implements Initializable {
 
     @FXML
     private void Exporter(ActionEvent event) throws IOException, SQLException {
-             Writer writer = null;
-                  Service_don ser = new Service_don();
-               List<don> l = new ArrayList<don>();
-               l = ser.readAll_don();
-               
-         try {
-            //badel path fichier excel
-            File file = new File("C:\\Users\\anis\\Desktop\\Dons.csv");
-            writer = new BufferedWriter(new FileWriter(file));
-            
-            for (don ev : l) {
+        
+         
+         ////////////////////////////////////
+         
+           try {
+        String filename = "C:\\Users\\anis\\Desktop\\DataDons.xls";
+        HSSFWorkbook hwb = new HSSFWorkbook();
+        HSSFSheet sheet = hwb.createSheet("new sheet");
+        HSSFRow rowhead = sheet.createRow((short) 0);
+        rowhead.createCell((short) 0).setCellValue("Type");
+        rowhead.createCell((short) 1).setCellValue("Description");
+        rowhead.createCell((short) 2).setCellValue("Date d'ajout ");
 
-                String text = ev.getType()+" | " +ev.getDescription()+ "|" +ev.getDate_ajout()  + "\n";
-                System.out.println(text);
-                writer.write(text);
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        Service_don SC = new Service_don();
+        List<don> dons = SC.readAll_don();
+
+        for (int i = 0; i < dons.size(); i++) {
+            HSSFRow row = sheet.createRow((short) (i + 1));
+            row.createCell((short) 0).setCellValue(dons.get(i).getType());
+            row.createCell((short) 1).setCellValue(dons.get(i).getDescription());
+            row.createCell((short) 2).setCellValue(""+dons.get(i).getDate_ajout());
         }
-        finally {
-            writer.flush();
-             writer.close();
+
+        try (FileOutputStream fileOut = new FileOutputStream(filename)) {
+            hwb.write(fileOut);
+            System.out.println("Your excel file has been generated!");
+            File file = new File(filename);
+            if (file.exists() && Desktop.isDesktopSupported()) {
+                Desktop.getDesktop().open(file);
+            }
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+          finally {
+         
              Alert alert= new Alert(Alert.AlertType.INFORMATION);
              alert.setTitle("excel");
         alert.setHeaderText(null);
         alert.setContentText("!!!Excel exported!!!");
         alert.showAndWait();
         }
+
+    } catch (SQLException ex) {
+        Logger.getLogger(Afficher_chauffeurController.class.getName()).log(Level.SEVERE, null, ex);
+    }
+         
     }
     
    public static void printNode(final VBox vbox) throws NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {

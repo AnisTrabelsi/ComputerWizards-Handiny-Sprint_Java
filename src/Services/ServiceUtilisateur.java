@@ -4,11 +4,13 @@
  */
 package Services;
 
+import Entite.Covoiturage;
 import Entite.Utilisateur;
 import java.sql.*;
 import java.sql.Connection;
 import Utils.DataSource;
 import Utils.SessionManager;
+import java.security.SecureRandom;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -219,6 +221,126 @@ public class ServiceUtilisateur implements IService< Utilisateur> {
         
         return s;
     }
+       public void mettreAJourMotDePasse(Utilisateur u) throws SQLException {
+    String req = "UPDATE `user` SET `mot_de_passe` = ? WHERE `id_user` = ?";
+    PreparedStatement stmt = con.prepareStatement(req);
+    stmt.setString(1, u.getMot_de_passe());
+    stmt.setInt(2, u.getId_utilisateur());
+    stmt.executeUpdate();
+    System.out.println("Le mot de passe de l'utilisateur " + u.getNom() + " a été mis à jour");
+}
+//   public boolean emailExists(String email) throws SQLException {
+//        boolean exists = false;
+//
+//        String req = "SELECT COUNT(*) FROM `user` WHERE `email`  = ?;";
+//        PreparedStatement stmt = con.prepareStatement(req);
+//
+//        stmt.setString(1, email);
+//        ResultSet rs = stmt.executeQuery();
+//
+//        if (rs.next()) {
+//            int count = rs.getInt(1);
+//            exists = (count > 0);
+//        }
+//
+//        return exists;
+//    }
+
+//    public boolean loginExists(String login) throws SQLException {
+//        boolean exists = false;
+//
+//        String req = "SELECT COUNT(*) FROM `user` WHERE `login`  = ?;";
+//        PreparedStatement stmt = con.prepareStatement(req);
+//
+//        stmt.setString(1, login);
+//        ResultSet rs = stmt.executeQuery();
+//
+//        if (rs.next()) {
+//            int count = rs.getInt(1);
+//            exists = (count > 0);
+//        }
+//
+//        return exists;
+//    }
+    public boolean verifierEmailBd(String email) {
+        boolean emailExists = false;
+        
+        try {
+            String sql = "SELECT COUNT(*) AS count FROM user WHERE email = ?";
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, email);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                int count = rs.getInt("count");
+                if (count > 0) {
+                    emailExists = true;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return emailExists;
+    }
+    
+    
+     private final String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    private SecureRandom random = new SecureRandom();
+
+    public String getAlphaNumericString(int length) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < length; i++) {
+            int index = random.nextInt(ALPHA_NUMERIC_STRING.length());
+            sb.append(ALPHA_NUMERIC_STRING.charAt(index));
+        }
+        return sb.toString();
+    }
+    
+    
+    public static int getIdByEmail(String email) {
+    int id = -1;
+     Connection con = DataSource.getInstance().getConnection();
+
+    try  {
+        String sql = "SELECT id_user FROM user WHERE email = ?";
+    // String sql = "UPDATE user SET code = ? WHERE id_user = ?";
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+              
+            stmt.setString(1, email);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    id = rs.getInt("id_user");
+                }
+            }
+        }
+    } catch (SQLException e) {
+    }
+
+    return id;
+    }
+    
+    public void updateCode(String code, int userId) {
+if(userId == 0) {
+        System.out.println("Invalid user id");
+        return;
+    }
+    try {
+        String sql = "UPDATE user SET code = ? WHERE id_user = ?";
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setString(1, code);
+            stmt.setInt(2, userId);
+
+            stmt.executeUpdate();
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+
+
+
+}
 
     @Override
     public String rechercherparcin_email(String cin) throws SQLException {
@@ -408,6 +530,41 @@ public class ServiceUtilisateur implements IService< Utilisateur> {
 
     @Override
     public List<Utilisateur> sort_date_demande_don_of_user(int id) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean ajouter(Covoiturage t) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void update(Covoiturage t) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Covoiturage> sortbydate() throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean supprime(int t) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void modifier(Utilisateur c) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void supprimer(int id) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Utilisateur> recuperer(Utilisateur c) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

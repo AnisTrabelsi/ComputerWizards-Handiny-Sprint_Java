@@ -29,7 +29,25 @@ public class Utilisateur {
         private String code_postal_en_string = Integer.toString(code_postal);
         private static Utilisateur current_user ;
         private String id_en_string = Integer.toString(id_utilisateur);
+   private String code;
+   private int targetid ;
 
+    public int getTargetid() {
+        return targetid;
+    }
+
+    public void setTargetid(int targetid) {
+        this.targetid = targetid;
+    }
+   
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
     public Utilisateur(){
     }
 
@@ -38,7 +56,7 @@ public class Utilisateur {
         this.mot_de_passe = mot_de_passe;
     }
 
-    public Utilisateur(int id_utilisateur, String nom, String prenom, String cin, String email, String telephone, String login, String mot_de_passe, Date date_de_naissance, String region, String adresse, int code_postal, String role) {
+     public Utilisateur(int id_utilisateur, String nom, String prenom, String cin, String email, String telephone, String login, String mot_de_passe, Date date_de_naissance, String region, String adresse, int code_postal, String role) {
         this.id_utilisateur = id_utilisateur;
         this.nom = nom;
         this.prenom = prenom;
@@ -52,6 +70,14 @@ public class Utilisateur {
         this.adresse = adresse;
         this.code_postal = code_postal;
         this.role = role;
+    }
+
+    public Utilisateur(int id_utilisateur, String email, String telephone, String login, String adresse) {
+        this.id_utilisateur = id_utilisateur;
+        this.email = email;
+        this.telephone = telephone;
+        this.login = login;
+        this.adresse = adresse;
     }
 
     public Utilisateur(String nom, String prenom, String cin, String email, String telephone, String login, String mot_de_passe, Date date_de_naissance, String region, String adresse, int code_postal, String role) {

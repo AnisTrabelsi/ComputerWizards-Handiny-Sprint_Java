@@ -66,22 +66,17 @@ public class Read_user_by_adminController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-    }
+    
 
-    public void list_tilisateur() throws SQLException {
 
         ServiceUtilisateur su = new ServiceUtilisateur();
         Utilisateur user = new Utilisateur();
         List<Utilisateur> users;
         try {
             
-//            users = su.readAll();
-//        ObservableList<Utilisateur> obs = FXCollections.observableList(users);
-//        listu.setItems(obs);
-//        listu.setCellFactory(param -> new UserListCell());
+
             users = su.readAll();
-            //System.out.println(users);
-            // la liste qui contient la liste d'utilisateurs dans la base 
+
             ObservableList obs = FXCollections.observableList(users);
             listu.setItems(obs);
             listu.setCellFactory(param -> new UserListCell());

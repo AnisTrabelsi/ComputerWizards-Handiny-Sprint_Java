@@ -154,5 +154,75 @@ public class BackController implements Initializable {
         stage.show();
     }
 
+    @FXML
+    private void golesreserv(ActionEvent event) throws IOException  {
+          AnchorPane pane = FXMLLoader.load(getClass().getResource("/gui_handiny/Les_reservation.fxml"));
+           mesDons.getChildren().setAll(pane);
+    }
+
+    @FXML
+    private void goreserv(ActionEvent event) throws IOException  {
+         AnchorPane pane = FXMLLoader.load(getClass().getResource("/gui_handiny/reserver_covoiturage.fxml"));
+           mesDons.getChildren().setAll(pane);
+    }
+
+    @FXML
+    private void goajout(ActionEvent event) throws IOException  {
+         AnchorPane pane = FXMLLoader.load(getClass().getResource("/gui_handiny/ajout_covoiturage.fxml"));
+           mesDons.getChildren().setAll(pane);
+    }
+
+    @FXML
+    private void golescov(ActionEvent event) throws IOException {
+         AnchorPane pane = FXMLLoader.load(getClass().getResource("/gui_handiny/modifier_covoiturage.fxml"));
+           mesDons.getChildren().setAll(pane);
+    }
+
+    @FXML
+    private void Liste_utilisateurs(ActionEvent event) throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/gui_handiny/Admin_affichage_user.fxml"));
+           mesDons.getChildren().setAll(pane);
+    }
+
+    @FXML
+    private void Supprimer_utilisateurs(ActionEvent event) throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/gui_handiny/Admin_supprime_user.fxml"));
+           mesDons.getChildren().setAll(pane);
+    }
+
+    @FXML
+    private void Traiter_reclamation(ActionEvent event) throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/gui_handiny/admin_reclamation.fxml"));
+           mesDons.getChildren().setAll(pane);
+    }
+
+    @FXML
+    private void Traiter_reclamation2(ActionEvent event) {
+    }
+
+    @FXML
+    private void ajcha(ActionEvent event) throws IOException {
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("/gui_handiny/ajout_chauffeur.fxml"));
+           mesDons.getChildren().setAll(pane);
+    }
+
+    @FXML
+    private void modcha(ActionEvent event) throws IOException {
+             AnchorPane pane = FXMLLoader.load(getClass().getResource("/gui_handiny/supprimer_chauffeur.fxml"));
+           mesDons.getChildren().setAll(pane);
+    }
+
+    @FXML
+    private void suppchau(ActionEvent event) throws IOException {
+         AnchorPane pane = FXMLLoader.load(getClass().getResource("/gui_handiny/modifier_chauffeur.fxml"));
+           mesDons.getChildren().setAll(pane);
+    }
+
+    @FXML
+    private void affchaauf(ActionEvent event) throws IOException {
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("/gui_handiny/Afficher_chauffeur.fxml"));
+           mesDons.getChildren().setAll(pane);
+    }
+
     
 }

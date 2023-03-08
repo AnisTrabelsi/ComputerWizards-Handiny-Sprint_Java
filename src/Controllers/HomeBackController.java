@@ -47,7 +47,7 @@ public class HomeBackController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        /* try{
+         try{
            String videoname = null;
            String path = new File("src/" + videoname + ".mp4").getAbsolutePath();
            File mediaFile = new File("C:\\xampp4\\htdocs\\Handiny\\src\\images\\projet_final.mp4");
@@ -68,7 +68,7 @@ public class HomeBackController implements Initializable {
         });
       } catch (MalformedURLException ex) {
            System.out.println(ex.getMessage());
-      }*/
+      }
         //mediaplayer.play();
     }
 

@@ -64,6 +64,25 @@
                 <MenuItem mnemonicParsing="false" onAction="#AffichageReservations" text="Liste de mes réservations" />
               </items>
             </Menu>
+            <Menu mnemonicParsing="false" onAction="#accueil" text="Covoiturage">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#goajout" text="Ajout covoiturage" />
+                  <MenuItem mnemonicParsing="false" onAction="#gomescov" text="Mes Covoiturage" />
+                  <MenuItem mnemonicParsing="false" onAction="#goreserv" text="Reserver" />
+                  <MenuItem mnemonicParsing="false" onAction="#gomesreserv" text="Mes Reservations" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" onAction="#accueil" text="Reclamation">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#add_recllam" text="Ajouter reclamation" />
+                  <MenuItem mnemonicParsing="false" onAction="#update_reclam" text="Mettre a jour une reclamation" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" onAction="#accueil" text="Reclamation">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#modifier_profil" text="Ajouter reclamation" />
+               </items>
+            </Menu>
          </menus>
       </MenuBar>
       <AnchorPane id="mesVoitures" fx:id="mesDons" layoutX="-5.0" layoutY="106.0" prefHeight="535.0" prefWidth="973.0" stylesheets="@front_main.css" AnchorPane.bottomAnchor="-3.0" AnchorPane.leftAnchor="-5.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="106.0" />
