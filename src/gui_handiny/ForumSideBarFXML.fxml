@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -18,7 +19,7 @@
                <children>
                   <Pane fx:id="inner_pane" layoutX="19.0" layoutY="14.0" prefHeight="62.0" prefWidth="200.0" style="-fx-background-color: #f1faee;" styleClass="inner_pane" stylesheets="@forumhomefxml.css">
                      <children>
-                        <Button layoutX="14.0" layoutY="2.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="173.0" style="-fx-background-color: #f1faee;" text="Mon profil">
+                        <Button layoutX="14.0" layoutY="2.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="63.0" style="-fx-background-color: #f1faee;">
                            <graphic>
                               <ImageView fitHeight="52.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -30,6 +31,11 @@
                               <Font name="Arial Rounded MT Bold" size="12.0" />
                            </font>
                         </Button>
+                        <Label fx:id="username" layoutX="81.0" layoutY="19.0" prefHeight="24.0" prefWidth="90.0">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="14.0" />
+                           </font>
+                        </Label>
                      </children>
                   </Pane>
                   <Button fx:id="forumhomeBtn" layoutX="7.0" layoutY="124.0" mnemonicParsing="false" onMouseClicked="#home" prefHeight="50.0" prefWidth="222.0" style="-fx-background-color: #303551;" styleClass="forumhomeBtn" stylesheets="@forumhomefxml.css" text="Accueil de forum" textFill="WHITE">

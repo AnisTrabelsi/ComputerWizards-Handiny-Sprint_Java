@@ -20,8 +20,20 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import Entite.Utilisateur;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
+import com.google.zxing.WriterException;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -43,6 +55,8 @@ import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
+import javafx.stage.FileChooser;
+import javax.imageio.ImageIO;
 /**
  * FXML Controller class
  *
@@ -63,6 +77,8 @@ Utilisateur u=Utilisateur.getCurrent_user();
     private TextField tfnbr;
     @FXML
     private DatePicker tfdate;
+    @FXML
+    private Button idqr;
 
     /**
      * Initializes the controller class.
@@ -181,7 +197,6 @@ Session session = Session.getInstance(props, new javax.mail.Authenticator() {
     
     }
 
-    @FXML
     private void goaffi(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/gui_handiny/affichage_covoiturage.fxml")) ; 
         Scene scene = new Scene(root);
@@ -198,7 +213,6 @@ Session session = Session.getInstance(props, new javax.mail.Authenticator() {
         stage.show();
     }
 
-    @FXML
     private void gomodif(ActionEvent event) throws IOException {
          Parent root = FXMLLoader.load(getClass().getResource("/gui_handiny/modifier_covoiturage.fxml")) ; 
         Scene scene = new Scene(root);
@@ -207,7 +221,6 @@ Session session = Session.getInstance(props, new javax.mail.Authenticator() {
         stage.show();
     }
 
-    @FXML
     private void goreserv(ActionEvent event) throws IOException {
          Parent root = FXMLLoader.load(getClass().getResource("/gui_handiny/reserver_covoiturage.fxml")) ; 
         Scene scene = new Scene(root);
@@ -255,7 +268,6 @@ Session session = Session.getInstance(props, new javax.mail.Authenticator() {
  
     }
 
-    @FXML
     private void gomesreserv(ActionEvent event) throws IOException {
     
        Parent root = FXMLLoader.load(getClass().getResource("/gui_handiny/mes_reservation.fxml")) ; 
@@ -264,6 +276,37 @@ Session session = Session.getInstance(props, new javax.mail.Authenticator() {
         stage.setScene(scene);
         stage.show();
     }
+    
+      @FXML
+   private void generateQR(ActionEvent event) {
+    // Création de l'objet QRCodeWriter
+    QRCodeWriter qrCodeWriter = new QRCodeWriter();
+
+    // Paramètres de l'encodeur
+    int width = 300;
+    int height = 300;
+    FileChooser fileChooser = new FileChooser();
+    fileChooser.setTitle("Enregistrer le QR code");
+    File file = fileChooser.showSaveDialog(null);
+
+    // Configuration des paramètres de l'encodeur
+    Map<EncodeHintType, Object> hintMap = new HashMap<>();
+    hintMap.put(EncodeHintType.CHARACTER_SET, "UTF-8");
+
+    try {
+        String data = "https://youtu.be/nZ1JwKRxiLs";
+        BitMatrix bitMatrix = qrCodeWriter.encode(data, BarcodeFormat.QR_CODE, width, height, hintMap);
+        BufferedImage image = MatrixToImageWriter.toBufferedImage(bitMatrix);
+        String fileName = file.getName().concat(".png");
+        try (OutputStream out = new FileOutputStream(new File(file.getParent(), fileName))) {
+            ImageIO.write(image, "png", out);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    } catch (WriterException e) {
+        e.printStackTrace();
+    }
+}
     }
     
  

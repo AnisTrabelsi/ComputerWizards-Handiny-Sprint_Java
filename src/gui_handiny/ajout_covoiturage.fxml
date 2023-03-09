@@ -14,9 +14,9 @@
 
 <AnchorPane id="AnchorPane" prefHeight="530.0" prefWidth="848.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Ajout_covoiturageController">
    <children>
-      <ImageView fitHeight="536.0" fitWidth="1113.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="558.0" fitWidth="1029.4" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/back_1.png" />
+            <Image url="@../images/background.png" />
                       
 
          </image>
@@ -43,18 +43,6 @@
             <Font name="Calibri Bold Italic" size="16.0" />
          </font></Button>
       <ImageView fx:id="Image" fitHeight="244.0" fitWidth="367.0" layoutX="408.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true" />
-      <Button layoutX="23.0" layoutY="482.0" mnemonicParsing="false" onAction="#goaffi" prefHeight="42.0" prefWidth="134.0" style="-fx-background-color: green; -fx-background-radius: 50;" stylesheets="@list.css" text="Mes Covoiturage" textFill="WHITE">
-         <font>
-            <Font name="System Bold Italic" size="11.0" />
-         </font></Button>
-      <Button layoutX="174.0" layoutY="482.0" mnemonicParsing="false" onAction="#gomodif" prefHeight="42.0" prefWidth="149.0" style="-fx-background-color: green; -fx-background-radius: 50;" stylesheets="@list.css" text="Modifier Covoiturage " textFill="WHITE">
-         <font>
-            <Font name="System Bold Italic" size="11.0" />
-         </font></Button>
-      <Button layoutX="334.0" layoutY="482.0" mnemonicParsing="false" onAction="#goreserv" prefHeight="42.0" prefWidth="149.0" style="-fx-background-color: green; -fx-background-radius: 50;" stylesheets="@list.css" text="Reserver" textFill="WHITE">
-         <font>
-            <Font name="System Bold Italic" size="12.0" />
-         </font></Button>
       <Label layoutX="161.0" layoutY="84.0" prefHeight="62.0" prefWidth="436.0" text="Ajouter un covoiturage" textAlignment="CENTER" textFill="#21282c">
          <font>
             <Font name="System Bold" size="30.0" />
@@ -83,9 +71,20 @@
             <Image url="@../images/ajouter.png" />
          </image>
       </ImageView>
-      <Button layoutX="495.0" layoutY="482.0" mnemonicParsing="false" onAction="#gomesreserv" prefHeight="42.0" prefWidth="149.0" style="-fx-background-color: green; -fx-background-radius: 50;" stylesheets="@list.css" text="Mes reservations" textFill="WHITE">
+      <Button fx:id="idqr" layoutX="752.0" layoutY="478.0" mnemonicParsing="false" onAction="#generateQR" prefHeight="42.0" prefWidth="134.0" style="-fx-background-color: black; -fx-background-radius: 30;" stylesheets="@list.css" text="QR" textFill="WHITE">
+         <effect>
+            <Blend>
+               <topInput>
+                  <Blend>
+                     <topInput>
+                        <Blend />
+                     </topInput>
+                  </Blend>
+               </topInput>
+            </Blend>
+         </effect>
          <font>
-            <Font name="System Bold Italic" size="12.0" />
+            <Font name="Calibri Bold Italic" size="16.0" />
          </font>
       </Button>
    </children>

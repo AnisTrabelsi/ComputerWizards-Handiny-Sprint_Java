@@ -8,7 +8,6 @@ package Controllers;
 import Entite.PostsSauvegardés;
 import Entite.Sujet;
 import Entite.Utilisateur;
-import Services.ServiceCommentaire;
 import Services.ServiceSujet;
 import java.io.IOException;
 import java.net.URL;
@@ -20,7 +19,6 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -58,7 +56,7 @@ public class SujetGridFXMLController implements Initializable {
     private Button supprimerSujetBtn;
 
     ServiceSujet ss = new ServiceSujet();
-    private Sujet sujet;
+    private Sujet sujet1;
     private Utilisateur user;
     @FXML
     private Button commentsByTopicBtn;
@@ -68,15 +66,38 @@ public class SujetGridFXMLController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }
+    
 
     public void setData(Sujet suj) {
-        sujet = suj;
+        sujet1 = suj;
+        System.out.println(suj.getContenu_sujet() + suj.getCat().getNom_categorie());
         contenu_sujet.setText(suj.getContenu_sujet());
         category.setText(suj.getCat().getNom_categorie());
         nb_comments.setText(String.valueOf(suj.getNb_commentaires()));
         etat.setText(suj.getEtat());
+    }
+
+//    public void setData2(Sujet suj) {
+//        sujet1 = null;
+//        sujet1 = suj;
+//
+//        System.out.println(suj.getContenu_sujet() + suj.getCat().getNom_categorie());
+//        contenu_sujet.setText(suj.getContenu_sujet());
+//        category.setText(suj.getCat().getNom_categorie());
+//        nb_comments.setText(String.valueOf(suj.getNb_commentaires()));
+//        etat.setText(suj.getEtat());
+//    }
+
+    public void setData2(PostsSauvegardés c) {
+        sujet1 = null;
+        sujet1 = c.getSujet();
+
+        System.out.println(c.getSujet().getContenu_sujet() + c.getSujet().getCat().getNom_categorie());
+        contenu_sujet.setText(c.getSujet().getContenu_sujet());
+        category.setText(c.getSujet().getCat().getNom_categorie());
+        nb_comments.setText(String.valueOf(c.getSujet().getNb_commentaires()));
+        etat.setText(c.getSujet().getEtat());
     }
 
     @FXML
@@ -85,7 +106,7 @@ public class SujetGridFXMLController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui_handiny/SujetUpdateFXML.fxml"));
             Parent root = loader.load();
             SujetUpdateFXMLController controller = loader.getController();
-            controller.initData(sujet);
+            controller.initData(sujet1);
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.setTitle("Modifier un sujet");
@@ -105,7 +126,7 @@ public class SujetGridFXMLController implements Initializable {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
-            ss.supprime(sujet);
+            ss.supprime(sujet1);
         }
 
     }
@@ -116,7 +137,7 @@ public class SujetGridFXMLController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui_handiny/CommentaireFXML.fxml"));
             Parent root = loader.load();
             CommentaireFXMLController controller = loader.getController();
-            controller.setSujet(sujet);
+            controller.setSujet(sujet1);
             Stage stage = new Stage();
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -126,13 +147,4 @@ public class SujetGridFXMLController implements Initializable {
         }
     }
 
-    void setData2(PostsSauvegardés c) {
-        System.out.println(c.toString());
-        sujet = c.getSujet();
-        user = c.getUser();
-        contenu_sujet.setText(c.getSujet().getContenu_sujet());
-        category.setText(c.getSujet().getCat().getNom_categorie());
-        nb_comments.setText(String.valueOf(c.getSujet().getNb_commentaires()));
-        etat.setText(c.getSujet().getEtat());
-    }
 }

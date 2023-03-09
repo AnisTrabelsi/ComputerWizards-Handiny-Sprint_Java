@@ -4,28 +4,31 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="540.0" prefWidth="843.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="gui_handiny.Ajout_reservationchauffeurController">
+<AnchorPane id="AnchorPane" prefHeight="540.0" prefWidth="843.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Ajout_reservationchauffeurController">
    <children>
-      <Label layoutX="216.0" layoutY="81.0" prefHeight="62.0" prefWidth="412.0" text="Ajout Reservation Chauffeur" textAlignment="CENTER" textFill="#52a9df">
+      <ImageView fitHeight="558.0" fitWidth="1029.4" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/back.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="297.0" layoutY="44.0" prefHeight="62.0" prefWidth="412.0" text="Ajout Reservation Chauffeur" textAlignment="CENTER" textFill="#52a9df">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <Button layoutX="24.0" layoutY="31.0" mnemonicParsing="false" onAction="#aff" stylesheets="@../../../../../Downloads/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi%20(1)/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi/src/gui_handiny/admin.css" text="Affichage RC" />
-      <Button layoutX="171.0" layoutY="31.0" mnemonicParsing="false" onAction="#suppr" stylesheets="@../../../../../Downloads/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi%20(1)/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi/src/gui_handiny/admin.css" text="Suppression RC" />
-      <Button layoutX="332.0" layoutY="31.0" mnemonicParsing="false" onAction="#md" stylesheets="@../../../../../Downloads/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi%20(1)/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi/src/gui_handiny/admin.css" text="Modification RC" />
-      <Button layoutX="501.0" layoutY="31.0" mnemonicParsing="false" onAction="#dd" prefHeight="34.0" prefWidth="141.0" stylesheets="@../../../../../Downloads/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi%20(1)/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi/src/gui_handiny/admin.css" text="Demande RC" />
-      <TextField fx:id="cin" layoutX="423.0" layoutY="180.0" prefHeight="38.0" prefWidth="206.0" stylesheets="@../../../../../Downloads/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi%20(1)/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi/src/gui_handiny/admin.css" />
-      <TextField fx:id="nom" layoutX="423.0" layoutY="253.0" prefHeight="38.0" prefWidth="206.0" stylesheets="@../../../../../Downloads/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi%20(1)/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi/src/gui_handiny/admin.css" />
-      <TextField fx:id="dispo" layoutX="423.0" layoutY="410.0" prefHeight="42.0" prefWidth="206.0" />
-      <Label layoutX="250.0" layoutY="181.0" prefHeight="35.0" prefWidth="134.0" stylesheets="@../../../../../Downloads/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi%20(1)/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi/src/gui_handiny/list.css" text="Id chauffeur :" />
-      <Label layoutX="250.0" layoutY="251.0" prefHeight="42.0" prefWidth="114.0" stylesheets="@../../../../../Downloads/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi%20(1)/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi/src/gui_handiny/list.css" text="Duree Service :" />
-      <Label layoutX="240.0" layoutY="335.0" prefHeight="42.0" prefWidth="142.0" stylesheets="@../../../../../Downloads/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi%20(1)/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi/src/gui_handiny/list.css" text="Date prise en charge :" />
-      <Label layoutX="250.0" layoutY="422.0" prefHeight="18.0" prefWidth="134.0" text="Description demande" />
-      <Button layoutX="297.0" layoutY="477.0" mnemonicParsing="false" onAction="#ajouterch" prefHeight="42.0" prefWidth="223.0" stylesheets="@../../../../../Downloads/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi%20(1)/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi/src/gui_handiny/admin.css" text="ajouter" />
-      <DatePicker fx:id="adresse" layoutX="426.0" layoutY="344.0" prefHeight="38.0" prefWidth="206.0" />
+      <TextField fx:id="cin" layoutX="462.0" layoutY="142.0" prefHeight="38.0" prefWidth="206.0" stylesheets="@../../../../../Downloads/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi%20(1)/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi/src/gui_handiny/admin.css" />
+      <TextField fx:id="nom" layoutX="462.0" layoutY="212.0" prefHeight="38.0" prefWidth="206.0" stylesheets="@../../../../../Downloads/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi%20(1)/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi/src/gui_handiny/admin.css" />
+      <TextField fx:id="dispo" layoutX="462.0" layoutY="364.0" prefHeight="42.0" prefWidth="206.0" />
+      <Label layoutX="297.0" layoutY="143.0" prefHeight="35.0" prefWidth="134.0" stylesheets="@../../../../../Downloads/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi%20(1)/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi/src/gui_handiny/list.css" text="Id chauffeur :" />
+      <Label layoutX="294.0" layoutY="210.0" prefHeight="42.0" prefWidth="114.0" stylesheets="@../../../../../Downloads/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi%20(1)/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi/src/gui_handiny/list.css" text="Duree Service :" />
+      <Label layoutX="293.0" layoutY="284.0" prefHeight="42.0" prefWidth="142.0" stylesheets="@../../../../../Downloads/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi%20(1)/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi/src/gui_handiny/list.css" text="Date prise en charge :" />
+      <Label layoutX="284.0" layoutY="376.0" prefHeight="18.0" prefWidth="134.0" text="Description demande" />
+      <Button layoutX="381.0" layoutY="434.0" mnemonicParsing="false" onAction="#ajouterch" prefHeight="42.0" prefWidth="223.0" stylesheets="@../../../../../Downloads/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi%20(1)/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi/src/gui_handiny/admin.css" text="ajouter" />
+      <DatePicker fx:id="adresse" layoutX="462.0" layoutY="286.0" prefHeight="38.0" prefWidth="206.0" />
    </children>
 </AnchorPane>

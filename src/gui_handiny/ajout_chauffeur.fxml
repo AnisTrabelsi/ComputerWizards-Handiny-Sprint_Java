@@ -12,7 +12,7 @@
    <children>
       <ImageView fitHeight="558.0" fitWidth="1029.4" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/background.png" />
+            <Image url="@../images/back.png" />
          </image>
       </ImageView>
       <Label layoutX="220.0" layoutY="151.0" prefHeight="35.0" prefWidth="134.0" stylesheets="@../../../../../Downloads/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi%20(1)/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi/src/gui_handiny/list.css" text="CIN :" />

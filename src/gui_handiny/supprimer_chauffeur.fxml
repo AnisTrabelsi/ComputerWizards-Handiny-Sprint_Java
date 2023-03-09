@@ -13,16 +13,16 @@
    <children>
       <ImageView fitHeight="558.0" fitWidth="1029.4" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/background.png" />
+            <Image url="@../images/back.png" />
          </image>
       </ImageView>
-      <Label layoutX="292.0" layoutY="66.0" prefHeight="34.0" prefWidth="234.0" text="Suppression Chauffeur" textFill="#52a9df">
+      <Label layoutX="435.0" layoutY="48.0" prefHeight="34.0" prefWidth="234.0" text="Suppression Chauffeur" textFill="#52a9df">
          <font>
             <Font name="System Bold" size="21.0" />
          </font>
       </Label>
-      <Button layoutX="356.0" layoutY="495.0" mnemonicParsing="false" onAction="#supprimer" text="supprimer" />
-      <TableView fx:id="Reclamation" layoutX="32.0" layoutY="106.0" prefHeight="358.0" prefWidth="778.0">
+      <Button layoutX="534.0" layoutY="481.0" mnemonicParsing="false" onAction="#supprimer" text="supprimer" />
+      <TableView fx:id="Reclamation" layoutX="163.0" layoutY="100.0" prefHeight="358.0" prefWidth="778.0">
          <columns>
             <TableColumn fx:id="cin" prefWidth="154.39999389648438" text="CIN" />
             <TableColumn fx:id="nom" prefWidth="179.20001220703125" text="Nom" />

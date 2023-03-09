@@ -55,13 +55,14 @@ public class PostHomeFXMLController implements Initializable {
     @FXML
     private Button sauvegardeBtn;
     Utilisateur u = Utilisateur.getCurrent_user();
-
+    @FXML
+    private Label username;
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }
 
     @FXML
@@ -86,6 +87,7 @@ public class PostHomeFXMLController implements Initializable {
         etat.setText(s.getEtat());
         post.setText(s.getContenu_sujet());
         nom_categorie.setText(s.getCat().getNom_categorie());
+        username.setText(s.getUser().getNom());
     }
 
     @FXML
@@ -112,6 +114,22 @@ public class PostHomeFXMLController implements Initializable {
         ServiceSauvegarde ss1 = new ServiceSauvegarde();
         PostsSauvegardés p = new PostsSauvegardés(u, sujet);
         System.out.println(p.toString());
+
+        // Check if there is already a saved post with the same user ID and subject ID
+        try {
+            if (ss1.verifierExistenceSauvegarde(p)) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Avertissement");
+                alert.setHeaderText("");
+                alert.setContentText("Ce sujet a déjà été sauvegardé !");
+                alert.showAndWait();
+                return; // Exit the method without saving the post
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+
+        // Save the post
         try {
             ss1.ajouter(p);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);

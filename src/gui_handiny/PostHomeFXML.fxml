@@ -38,7 +38,7 @@
                               <Image url="@../images/icons8-utilisateur-30.png" />
                            </image>
                         </ImageView>
-                        <Label prefHeight="31.0" prefWidth="142.0" text="Nom de l'utilisateur">
+                        <Label fx:id="username" prefHeight="31.0" prefWidth="142.0">
                            <HBox.margin>
                               <Insets left="10.0" top="20.0" />
                            </HBox.margin>

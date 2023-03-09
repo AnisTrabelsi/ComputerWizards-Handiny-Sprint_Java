@@ -3,50 +3,89 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" fx:id="anchlorPaneVoiture" prefHeight="598.0" prefWidth="480.0" style="-fx-background-color: #f2f2ff;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.EditVoituresController">
+<AnchorPane id="AnchorPane" fx:id="anchlorPaneVoiture" prefHeight="631.0" prefWidth="567.0" style="-fx-background-color: #cde7da;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.EditVoituresController">
    <children>
       
-      <Label layoutX="33.0" layoutY="88.0" text="Immatriculation" />
-      <Label layoutX="32.0" layoutY="123.0" text="Marque" />
-      <Label layoutX="33.0" layoutY="154.0" text="Modèle" />
-      <Label layoutX="32.0" layoutY="194.0" text="Date de validation technique" />
-      <Label layoutX="32.0" layoutY="233.0" text="Boite de vitesse" />
-      <Label layoutX="28.0" layoutY="273.0" text="Kilométrage" />
-      <Label layoutX="27.0" layoutY="311.0" text="Carburant" />
+      <Label layoutX="33.0" layoutY="73.0" text="Immatriculation">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="33.0" layoutY="119.0" text="Marque">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="34.0" layoutY="164.0" text="Modèle">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="32.0" layoutY="209.0" text="Date de validation technique">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="33.0" layoutY="247.0" text="Boite de vitesse">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="31.0" layoutY="286.0" text="Kilométrage">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="33.0" layoutY="327.0" text="Carburant">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
       
-      <Label layoutX="32.0" layoutY="388.0" text="Prix de location" />
-      <Label layoutX="27.0" layoutY="335.0" text="Description" />
-      <TextField fx:id="idImmatriculation" centerShape="false" layoutX="264.0" layoutY="88.0" prefHeight="26.0" prefWidth="168.0" style="-fx-background-color: #ffffff;" />
-      <TextField fx:id="idMarque" layoutX="264.0" layoutY="119.0" prefHeight="26.0" prefWidth="168.0" style="-fx-background-color: #ffffff;" />
-      <DatePicker fx:id="idDate" layoutX="265.0" layoutY="189.0" prefHeight="26.0" prefWidth="168.0" style="-fx-background-color: #ffffff;" />
-      <TextField fx:id="idKilometrage" layoutX="267.0" layoutY="269.0" prefHeight="26.0" prefWidth="168.0" style="-fx-background-color: #ffffff;" />
-      <TextField fx:id="idCarburant" layoutX="264.0" layoutY="307.0" prefHeight="26.0" prefWidth="168.0" style="-fx-background-color: #ffffff;" />
-      <TextArea fx:id="idDesc" layoutX="266.0" layoutY="344.0" prefHeight="30.0" prefWidth="168.0" />
-      <Button layoutX="123.0" layoutY="551.0" mnemonicParsing="false" onAction="#éditer" prefHeight="30.0" prefWidth="78.0" style="-fx-background-color: #44AE64;" text="éditer" />
+      <Label layoutX="33.0" layoutY="366.0" text="Prix de location">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="35.0" layoutY="406.0" text="Description">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <TextField fx:id="idImmatriculation" centerShape="false" layoutX="314.0" layoutY="73.0" prefHeight="30.0" prefWidth="183.0" style="-fx-background-color: #f2f2f2; -fx-background-radius: 50;" />
+      <TextField fx:id="idMarque" layoutX="314.0" layoutY="117.0" prefHeight="30.0" prefWidth="183.0" style="-fx-background-color: #f2f2f2; -fx-background-radius: 50;" />
+      <DatePicker fx:id="idDate" layoutX="314.0" layoutY="203.0" prefHeight="30.0" prefWidth="183.0" />
+      <TextField fx:id="idKilometrage" layoutX="314.0" layoutY="285.0" prefHeight="30.0" prefWidth="183.0" style="-fx-background-color: #f2f2f2; -fx-background-radius: 50;" />
+      <TextField fx:id="idCarburant" layoutX="314.0" layoutY="326.0" prefHeight="30.0" prefWidth="183.0" style="-fx-background-color: #f2f2f2; -fx-background-radius: 50;" />
+      <Button layoutX="148.0" layoutY="570.0" mnemonicParsing="false" onAction="#edit" prefHeight="38.0" prefWidth="110.0" style="-fx-background-color: #44AE64; -fx-background-radius: 50;" text="éditer" />
    
-      <TextField fx:id="idPrixLocation" layoutX="268.0" layoutY="397.0" prefHeight="32.0" prefWidth="168.0" style="-fx-background-color: #ffffff;" />
-      <Button fx:id="idImage" layoutX="24.0" layoutY="453.0" mnemonicParsing="false" onAction="#loadImage" prefHeight="30.0" prefWidth="168.0" text="Ajouter votre Image ici" />
-      <Label layoutX="69.0" layoutY="428.0" text="Image de voiture" />
-      <Text layoutX="119.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mise à jour d'une voiture">
+      <TextField fx:id="idPrixLocation" layoutX="314.0" layoutY="365.0" prefHeight="30.0" prefWidth="183.0" style="-fx-background-color: #f2f2f2; -fx-background-radius: 50;" />
+      <Button fx:id="idImage" layoutX="34.0" layoutY="487.0" mnemonicParsing="false" onAction="#loadImage" prefHeight="30.0" prefWidth="168.0" style="-fx-background-color: #f2f2f2;" text="Ajouter votre Image ici">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Label layoutX="35.0" layoutY="455.0" text="Image de voiture">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Text layoutX="168.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mise à jour d'une voiture">
          <font>
             <Font name="System Bold Italic" size="24.0" />
          </font>
       </Text>
       
       
-      <ImageView fx:id="imageV" fitHeight="94.0" fitWidth="168.0" layoutX="272.0" layoutY="437.0" pickOnBounds="true" preserveRatio="true" />
-      <TextField fx:id="idBoiteV" layoutX="266.0" layoutY="229.0" prefHeight="26.0" prefWidth="168.0" />
-      <Pane layoutX="-7.0" layoutY="40.0" prefHeight="3.0" prefWidth="508.0" style="-fx-background-color: #000000;" />
-      <TextField fx:id="urlImg" layoutX="33.0" layoutY="491.0" />
-      <TextField fx:id="idModele" layoutX="264.0" layoutY="151.0" prefHeight="26.0" prefWidth="168.0" style="-fx-background-color: #ffffff;" />
+      <ImageView fx:id="imgg" fitHeight="100.0" fitWidth="183.0" layoutX="314.0" layoutY="453.0" pickOnBounds="true" preserveRatio="true" />
+      <TextField fx:id="idBoiteV" layoutX="314.0" layoutY="246.0" prefHeight="30.0" prefWidth="183.0" style="-fx-background-color: #f2f2f2; -fx-background-radius: 50;" />
+      <Pane layoutX="-7.0" layoutY="51.0" prefHeight="1.0" prefWidth="580.0" style="-fx-background-color: #000000;" />
+      <TextField fx:id="URLImage" layoutX="53.0" layoutY="526.0" prefHeight="26.0" prefWidth="109.0" style="-fx-background-color: #f2f2f2; -fx-background-radius: 50;" />
+      <TextField fx:id="idModele" layoutX="314.0" layoutY="162.0" prefHeight="30.0" prefWidth="183.0" style="-fx-background-color: #f2f2f2; -fx-background-radius: 50;" />
+      <Button layoutX="272.0" layoutY="570.0" mnemonicParsing="false" onAction="#vider" prefHeight="38.0" prefWidth="110.0" style="-fx-background-color: #44AE64; -fx-background-radius: 50;" text="vider" />
+      <ImageView fitHeight="30.0" fitWidth="33.0" layoutX="132.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../3a8-Computer-wizards-Handiny-integration/src/images/edit2.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="idDesc" layoutX="314.0" layoutY="404.0" prefHeight="30.0" prefWidth="183.0" style="-fx-background-radius: 50; -fx-background-color: #f2f2f2;" />
 
    </children>
 </AnchorPane>

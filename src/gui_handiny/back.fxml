@@ -27,6 +27,11 @@
             </Text>
             <Button layoutX="878.0" layoutY="25.0" mnemonicParsing="false" onAction="#logout" stylesheets="@admin.css" text="Logout" />
             <Button layoutX="755.0" layoutY="25.0" mnemonicParsing="false" onAction="#Forum" stylesheets="@admin.css" text="Forum" />
+            <Button layoutX="53.0" layoutY="24.0" mnemonicParsing="false" onAction="#tousLesvoitures" prefHeight="32.0" prefWidth="194.0" style="-fx-background-radius: 50; -fx-background-color: #;" text="Découvrir nos voitures !" textFill="#104d62">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
       <MenuBar layoutY="80.0" prefHeight="26.0" prefWidth="966.0" stylesheets="@back_main.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
@@ -54,7 +59,6 @@
                   <MenuItem mnemonicParsing="false" onAction="#statdd" text="Statistiques" />
                </items>
             </Menu>
-            <Menu mnemonicParsing="false" text="Aide" />
             <Menu mnemonicParsing="false" text="Covoiturage">
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#golescov" text="Les covoiturages" />
@@ -71,8 +75,7 @@
             </Menu>
             <Menu mnemonicParsing="false" text="Reclamations">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#Traiter_reclamation" text="Liste des utilisateurs" />
-                  <MenuItem mnemonicParsing="false" onAction="#Traiter_reclamation2" text="Liste des utilisateurs" />
+                  <MenuItem mnemonicParsing="false" onAction="#Traiter_reclamation" text="  Traiter les reclamations" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Chauffeur">
@@ -82,6 +85,24 @@
                   <MenuItem mnemonicParsing="false" onAction="#suppchau" text="supprimer chauffeur" />
                   <MenuItem mnemonicParsing="false" onAction="#affchaauf" text="afficher chauffeur" />
                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Reservation Chauffeur">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#ajchar" text="ajouter reservation chauffeur" />
+                  <MenuItem mnemonicParsing="false" onAction="#suppreserch" text="supprimer reservation  chauffeur" />
+                  <MenuItem mnemonicParsing="false" onAction="#affchaaufr" text="afficher reservation  chauffeur" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Gestion de voitures">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#voitures" text="Liste de voitures" />
+                  <MenuItem mnemonicParsing="false" onAction="#statistiques" text="Statistiques" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Gestion de réservation">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#reservations" text="Liste de réservations" />
+              </items>
             </Menu>
          </menus>
       </MenuBar>

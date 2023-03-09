@@ -36,6 +36,7 @@ public class ServiceUtilisateur implements IService< Utilisateur> {
             System.out.println(ex);
         }
     }
+    Utilisateur user =Utilisateur.getCurrent_user();
 
 //public void setrolelocataire () throws SQLException{
 ////Utilisateur u =new Utilisateur ();
@@ -59,12 +60,12 @@ public class ServiceUtilisateur implements IService< Utilisateur> {
 
         System.out.println("Un utilisateur est ajouté ");
     }
-   
+
     @Override
     public void update(Utilisateur u) throws SQLException {
         try {
             String req = "UPDATE user SET email = '" + u.getEmail() + "', telephone = '" + u.getTelephone() + "', login = '" + u.getLogin()
-                    + "', adresse = '" + u.getAdresse() + "' WHERE user.`id_user` = "+u.getId_utilisateur() ;
+                    + "', adresse = '" + u.getAdresse() + "' WHERE user.`id_user` = " + user.getId_utilisateur();
             Statement st = con.createStatement();
             st.executeUpdate(req);
             System.out.println("Utilisateur mis à jour ");
@@ -119,12 +120,11 @@ public class ServiceUtilisateur implements IService< Utilisateur> {
     @Override
     public Utilisateur findById(int id_utilisateur) throws SQLException {
 
-        String req = "SELECT * FROM utilisateurWHERE  id_utilisateur =" + id_utilisateur;
+        String req = "SELECT * FROM user WHERE  id_user =" + id_utilisateur;
         Utilisateur u = new Utilisateur();
         Statement ste = con.createStatement();
         ResultSet res = ste.executeQuery(req);
         while (res.next()) {
-
             String nom = res.getString(2);
             String prenom = res.getString(3);
             String cin = res.getString(4);
@@ -138,8 +138,7 @@ public class ServiceUtilisateur implements IService< Utilisateur> {
             int code_postal = res.getInt(12);
             String role = res.getString(13);
 
-            Utilisateur u1 = new Utilisateur(nom, prenom, cin, email, telephone, login, mot_de_passe, date_de_naissance, region, Adresse, code_postal, role);
-
+            Utilisateur u1 = new Utilisateur(id_utilisateur, nom, prenom, cin, email, telephone, login, mot_de_passe, date_de_naissance, region, Adresse, code_postal, role);
             u = u1;
         }
 
@@ -179,56 +178,58 @@ public class ServiceUtilisateur implements IService< Utilisateur> {
 
         return exists;
     }
- @Override
+
+    @Override
     public int rechercherparcin(String cin) throws SQLException {
-   
-    int id=0;
+
+        int id = 0;
         String req = "select * FROM `user` where cin = " + cin + ";";
 
         ResultSet res = ste.executeQuery(req);
-    while (res.next()) {
-         id = res.getInt(1);
-      
-    }
-        
+        while (res.next()) {
+            id = res.getInt(1);
+
+        }
+
         return id;
     }
 
     @Override
     public String rechercherparcin_nom(String cin) throws SQLException {
-          String s="";
+        String s = "";
         String req = "select * FROM `user` where cin = " + cin + ";";
 
         ResultSet res = ste.executeQuery(req);
-    while (res.next()) {
-         s = res.getString("nom");
-      
-    }
-        
+        while (res.next()) {
+            s = res.getString("nom");
+
+        }
+
         return s;
     }
 
     @Override
     public String rechercherparcin_prenom(String cin) throws SQLException {
-          String s="";
+        String s = "";
         String req = "select * FROM `user` where cin = " + cin + ";";
 
         ResultSet res = ste.executeQuery(req);
-    while (res.next()) {
-         s = res.getString("prenom");
-      
-    }
-        
+        while (res.next()) {
+            s = res.getString("prenom");
+
+        }
+
         return s;
     }
-       public void mettreAJourMotDePasse(Utilisateur u) throws SQLException {
-    String req = "UPDATE `user` SET `mot_de_passe` = ? WHERE `id_user` = ?";
-    PreparedStatement stmt = con.prepareStatement(req);
-    stmt.setString(1, u.getMot_de_passe());
-    stmt.setInt(2, u.getId_utilisateur());
-    stmt.executeUpdate();
-    System.out.println("Le mot de passe de l'utilisateur " + u.getNom() + " a été mis à jour");
-}
+
+    public void mettreAJourMotDePasse(Utilisateur u) throws SQLException {
+        String req = "UPDATE `user` SET `mot_de_passe` = ? WHERE `id_user` = ?";
+        PreparedStatement stmt = con.prepareStatement(req);
+        stmt.setString(1, u.getMot_de_passe());
+        stmt.setInt(2, u.getId_utilisateur());
+        stmt.executeUpdate();
+        System.out.println("Le mot de passe de l'utilisateur " + u.getNom() + " a été mis à jour");
+    }
 //   public boolean emailExists(String email) throws SQLException {
 //        boolean exists = false;
 //
@@ -264,7 +265,7 @@ public class ServiceUtilisateur implements IService< Utilisateur> {
 //    }
     public boolean verifierEmailBd(String email) {
         boolean emailExists = false;
-        
+
         try {
             String sql = "SELECT COUNT(*) AS count FROM user WHERE email = ?";
             PreparedStatement pstmt = con.prepareStatement(sql);
@@ -279,12 +280,11 @@ public class ServiceUtilisateur implements IService< Utilisateur> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        
+
         return emailExists;
     }
-    
-    
-     private final String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+    private final String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     private SecureRandom random = new SecureRandom();
 
     public String getAlphaNumericString(int length) {
@@ -295,64 +295,60 @@ public class ServiceUtilisateur implements IService< Utilisateur> {
         }
         return sb.toString();
     }
-    
-    
+
     public static int getIdByEmail(String email) {
-    int id = -1;
-     Connection con = DataSource.getInstance().getConnection();
+        int id = -1;
+        Connection con = DataSource.getInstance().getConnection();
 
-    try  {
-        String sql = "SELECT id_user FROM user WHERE email = ?";
-    // String sql = "UPDATE user SET code = ? WHERE id_user = ?";
-        try (PreparedStatement stmt = con.prepareStatement(sql)) {
-              
-            stmt.setString(1, email);
+        try {
+            String sql = "SELECT id_user FROM user WHERE email = ?";
+            // String sql = "UPDATE user SET code = ? WHERE id_user = ?";
+            try (PreparedStatement stmt = con.prepareStatement(sql)) {
 
-            try (ResultSet rs = stmt.executeQuery()) {
-                if (rs.next()) {
-                    id = rs.getInt("id_user");
+                stmt.setString(1, email);
+
+                try (ResultSet rs = stmt.executeQuery()) {
+                    if (rs.next()) {
+                        id = rs.getInt("id_user");
+                    }
                 }
             }
+        } catch (SQLException e) {
         }
-    } catch (SQLException e) {
+
+        return id;
     }
 
-    return id;
-    }
-    
     public void updateCode(String code, int userId) {
-if(userId == 0) {
-        System.out.println("Invalid user id");
-        return;
-    }
-    try {
-        String sql = "UPDATE user SET code = ? WHERE id_user = ?";
-        try (PreparedStatement stmt = con.prepareStatement(sql)) {
-            stmt.setString(1, code);
-            stmt.setInt(2, userId);
-
-            stmt.executeUpdate();
+        if (userId == 0) {
+            System.out.println("Invalid user id");
+            return;
         }
-    } catch (SQLException e) {
-        e.printStackTrace();
+        try {
+            String sql = "UPDATE user SET code = ? WHERE id_user = ?";
+            try (PreparedStatement stmt = con.prepareStatement(sql)) {
+                stmt.setString(1, code);
+                stmt.setInt(2, userId);
+
+                stmt.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
-
-
-
-
-}
 
     @Override
     public String rechercherparcin_email(String cin) throws SQLException {
-          String s="";
+        String s = "";
         String req = "select * FROM `user` where cin = " + cin + ";";
 
         ResultSet res = ste.executeQuery(req);
-    while (res.next()) {
-         s = res.getString("email");
-      
-    }
-        
+        while (res.next()) {
+            s = res.getString("email");
+
+        }
+
         return s;
     }
 
@@ -363,73 +359,71 @@ if(userId == 0) {
 
     @Override
     public String rechercherparid_nom(int id) throws SQLException {
-             String s="";
+        String s = "";
         String req = "select * FROM `user` where id_user = " + id + ";";
 
         ResultSet res = ste.executeQuery(req);
-    while (res.next()) {
-         s = res.getString("nom");
-      
-    }
-        
+        while (res.next()) {
+            s = res.getString("nom");
+
+        }
+
         return s;
     }
 
-    
-    
-    
     @Override
     public String rechercherparcid_cin(int id) throws SQLException {
-       String s="";
+        String s = "";
         String req = "select * FROM `user` where id_user = " + id + ";";
 
         ResultSet res = ste.executeQuery(req);
-    while (res.next()) {
-         s = res.getString("cin");
-      
-    }
-        
+        while (res.next()) {
+            s = res.getString("cin");
+
+        }
+
         return s;
     }
 
     @Override
     public String rechercherparid_email(int id) throws SQLException {
-            String s="";
+        String s = "";
         String req = "select * FROM `user` where id_user = " + id + ";";
 
         ResultSet res = ste.executeQuery(req);
-    while (res.next()) {
-         s = res.getString("email");
-      
-    }
-        
+        while (res.next()) {
+            s = res.getString("email");
+
+        }
+
         return s;
     }
 
     @Override
     public String rechercherparcid_prenom(int id) throws SQLException {
- String s="";
+        String s = "";
         String req = "select * FROM `user` where id_user = " + id + ";";
 
         ResultSet res = ste.executeQuery(req);
-    while (res.next()) {
-         s = res.getString("prenom");
-      
+        while (res.next()) {
+            s = res.getString("prenom");
+
+        }
+
+        return s;
     }
-        
-        return s;    }
 
     @Override
     public int rechercherid_parrrcin(String id) throws SQLException {
-          int a = 0;
+        int a = 0;
         String req = "select * FROM `user` where cin = " + id + ";";
 
         ResultSet res = ste.executeQuery(req);
-    while (res.next()) {
-         a = res.getInt("id_user");
-      
-    }
-        
+        while (res.next()) {
+            a = res.getInt("id_user");
+
+        }
+
         return a;
     }
 
@@ -567,5 +561,5 @@ if(userId == 0) {
     public List<Utilisateur> recuperer(Utilisateur c) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

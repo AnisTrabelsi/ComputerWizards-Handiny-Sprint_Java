@@ -4,45 +4,89 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" fx:id="anchlorPaneVoiture" prefHeight="662.0" prefWidth="558.0" style="-fx-background-color: #f2f2ff;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.InsertVoituresController">
+<AnchorPane id="AnchorPane" fx:id="anchlorPaneVoiture" prefHeight="631.0" prefWidth="567.0" style="-fx-background-color: #cde7da;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.InsertVoituresController">
    <children>
-      <Text layoutX="119.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter une voiture">
+      
+      <Label layoutX="33.0" layoutY="73.0" text="Immatriculation">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="33.0" layoutY="119.0" text="Marque">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="34.0" layoutY="164.0" text="Modèle">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="32.0" layoutY="209.0" text="Date de validation technique">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="33.0" layoutY="247.0" text="Boite de vitesse">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="31.0" layoutY="286.0" text="Kilométrage">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="33.0" layoutY="327.0" text="Carburant">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      
+      <Label layoutX="33.0" layoutY="366.0" text="Prix de location">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="35.0" layoutY="406.0" text="Description">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <TextField fx:id="idImmatriculation" centerShape="false" layoutX="314.0" layoutY="73.0" prefHeight="30.0" prefWidth="183.0" style="-fx-background-color: #f2f2f2; -fx-background-radius: 50;" />
+      <TextField fx:id="idMarque" layoutX="314.0" layoutY="117.0" prefHeight="30.0" prefWidth="183.0" style="-fx-background-color: #f2f2f2; -fx-background-radius: 50;" />
+      <DatePicker fx:id="idDate" layoutX="314.0" layoutY="203.0" prefHeight="30.0" prefWidth="183.0" />
+      <TextField fx:id="idKilometrage" layoutX="314.0" layoutY="285.0" prefHeight="30.0" prefWidth="183.0" style="-fx-background-color: #f2f2f2; -fx-background-radius: 50;" />
+      <TextField fx:id="idCarburant" layoutX="314.0" layoutY="326.0" prefHeight="30.0" prefWidth="183.0" style="-fx-background-color: #f2f2f2; -fx-background-radius: 50;" />
+      <Button layoutX="148.0" layoutY="570.0" mnemonicParsing="false" onAction="#insert" prefHeight="38.0" prefWidth="110.0" style="-fx-background-color: #44AE64; -fx-background-radius: 50;" text="Ajouter" />
+   
+      <TextField fx:id="idPrixLocation" layoutX="314.0" layoutY="365.0" prefHeight="30.0" prefWidth="183.0" style="-fx-background-color: #f2f2f2; -fx-background-radius: 50;" />
+      <Button fx:id="idImage" layoutX="34.0" layoutY="487.0" mnemonicParsing="false" onAction="#loadImage" prefHeight="30.0" prefWidth="168.0" style="-fx-background-color: #f2f2f2;" text="Ajouter votre Image ici">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Label layoutX="35.0" layoutY="455.0" text="Image de voiture">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Text layoutX="193.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajout d'une voiture">
          <font>
             <Font name="System Bold Italic" size="24.0" />
          </font>
       </Text>
-      <Label layoutX="33.0" layoutY="105.0" prefWidth="158.0" text="Immatriculation" />
-      <Label layoutX="33.0" layoutY="146.0" text="Marque" />
-      <Label layoutX="33.0" layoutY="186.0" text="Modèle" />
-      <Label layoutX="33.0" layoutY="224.0" text="Date de validation technique" />
-      <Label layoutX="33.0" layoutY="260.0" text="Boite de vitesse" />
-      <Label layoutX="33.0" layoutY="298.0" text="Kilométrage" />
-      <Label layoutX="34.0" layoutY="335.0" text="Carburant" />
       
-      <Label layoutX="33.0" layoutY="455.0" text="Prix de location" />
-      <Label layoutX="35.0" layoutY="487.0" text="Description" />
-      <TextField fx:id="idImmatriculation" centerShape="false" layoutX="279.0" layoutY="101.0" prefHeight="26.0" prefWidth="168.0" style="-fx-background-color: #ffffff;" />
-      <TextField fx:id="idMarque" layoutX="278.0" layoutY="142.0" prefHeight="26.0" prefWidth="168.0" style="-fx-background-color: #ffffff;" />
-      <TextField fx:id="idModele" layoutX="279.0" layoutY="183.0" prefHeight="26.0" prefWidth="168.0" style="-fx-background-color: #ffffff;" />
-      <DatePicker fx:id="idDate" layoutX="279.0" layoutY="220.0" prefHeight="26.0" prefWidth="168.0" style="-fx-background-color: #ffffff;" />
-      <ComboBox fx:id="idBoiteV" layoutX="278.0" layoutY="256.0" prefHeight="28.0" prefWidth="168.0" />
-      <TextField fx:id="idKilometrage" layoutX="278.0" layoutY="295.0" prefHeight="26.0" prefWidth="168.0" style="-fx-background-color: #ffffff;" />
-      <TextField fx:id="idCarburant" layoutX="278.0" layoutY="331.0" prefHeight="26.0" prefWidth="168.0" style="-fx-background-color: #ffffff;" />
-      <TextArea fx:id="idDesc" layoutX="279.0" layoutY="487.0" prefHeight="62.0" prefWidth="168.0" />
-      <Button layoutX="192.0" layoutY="596.0" mnemonicParsing="false" onAction="#insert" prefHeight="30.0" prefWidth="78.0" style="-fx-background-color: #44AE64;" text="Insérer" />
-      <Button layoutX="284.0" layoutY="596.0" mnemonicParsing="false" onAction="#vider" prefHeight="30.0" prefWidth="78.0" style="-fx-background-color: #44AE64;" text="vider" />
-      <TextField fx:id="idPrixLocation" layoutX="279.0" layoutY="451.0" prefHeight="26.0" prefWidth="168.0" style="-fx-background-color: #ffffff;" />
-      <Button fx:id="idImage" layoutX="29.0" layoutY="391.0" mnemonicParsing="false" onAction="#loadImage" prefHeight="30.0" prefWidth="168.0" text="Ajouter votre Image" />
-      <Label layoutX="136.0" layoutY="269.0" text="Image de voiture" />
-      <ImageView fx:id="imgg" fitHeight="73.0" fitWidth="168.0" layoutX="279.0" layoutY="370.0" pickOnBounds="true" preserveRatio="true" />
-      <TextField fx:id="URLImage" layoutX="461.0" layoutY="408.0" prefHeight="26.0" prefWidth="82.0" />
+      
+      <ImageView fx:id="imgg" fitHeight="100.0" fitWidth="183.0" layoutX="314.0" layoutY="453.0" pickOnBounds="true" preserveRatio="true" />
+       <ComboBox fx:id="idBoiteV" layoutX="314.0" layoutY="247.0" prefHeight="30.0" prefWidth="183.0" style="-fx-background-color: #ffffff;" />
+      <Pane layoutX="-7.0" layoutY="51.0" prefHeight="1.0" prefWidth="580.0" style="-fx-background-color: #000000;" />
+      <TextField fx:id="URLImage" layoutX="53.0" layoutY="526.0" prefHeight="26.0" prefWidth="109.0" style="-fx-background-color: #f2f2f2; -fx-background-radius: 50;" />
+      <TextField fx:id="idModele" layoutX="314.0" layoutY="162.0" prefHeight="30.0" prefWidth="183.0" style="-fx-background-color: #f2f2f2; -fx-background-radius: 50;" />
+      <Button layoutX="272.0" layoutY="570.0" mnemonicParsing="false" onAction="#vider" prefHeight="38.0" prefWidth="110.0" style="-fx-background-color: #44AE64; -fx-background-radius: 50;" text="vider" />
+      <ImageView fitHeight="30.0" fitWidth="32.0" layoutX="155.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../3a8-Computer-wizards-Handiny-integration/src/images/add.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="idDesc" layoutX="314.0" layoutY="404.0" prefHeight="30.0" prefWidth="183.0" style="-fx-background-radius: 50; -fx-background-color: #f2f2f2;" />
 
    </children>
 </AnchorPane>

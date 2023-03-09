@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
-package controllers;
+package Controllers;
 import Entite.Utilisateur;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -10,22 +10,16 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import Entite.Voiture;
-import Entite.demande_don;
-import Services.ServiceUtilisateur;
-import Services.Service_demande_don;
 import controllers.EditVoituresController;
+import controllers.InsertVoituresController;
 import java.awt.Desktop;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.Writer;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -41,6 +35,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -61,13 +57,13 @@ import services.ServiceVoiture;
  *
  * @author Chaima
  */
-public class Affichage_VoituresController implements Initializable {
+public class Affichage_VoituresBackEndController implements Initializable {
 
     @FXML
     private ListView<Voiture> listv;
     @FXML
     private TextField searchBar;
-     ObservableList ObList;
+     private ObservableList ObList;
 
     /**
      * Initializes the controller class.
@@ -78,8 +74,8 @@ public class Affichage_VoituresController implements Initializable {
         try {
             // TODO
             ServiceVoiture sv= new ServiceVoiture();
-            Utilisateur u=Utilisateur.getCurrent_user();
-            List<Voiture> voitures= sv.readAll_Of_user(u.getId_utilisateur());
+            //Utilisateur u=Utilisateur.getCurrent_user();
+            List<Voiture> voitures= sv.readAll();
             ObList = FXCollections.observableList(voitures);
             listv.setItems(ObList);
             searchBar.setOnKeyReleased(event -> {
@@ -107,7 +103,7 @@ public class Affichage_VoituresController implements Initializable {
             Logger.getLogger(Affichage_VoituresController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }    
-  @FXML
+    @FXML
     private void ajouterVoitures(ActionEvent event) throws SQLException {
      try{
        FXMLLoader fxmloader= new FXMLLoader(getClass().getResource("/gui_handiny/InsertVoitures.fxml"));
@@ -151,7 +147,7 @@ public class Affichage_VoituresController implements Initializable {
         alert.showAndWait();
     }
 }     
-      @FXML
+    @FXML
     private void updateVoiture(ActionEvent event) throws IOException {
        Voiture voiture = listv.getSelectionModel().getSelectedItem();
           int id_voiture;
@@ -167,7 +163,6 @@ public class Affichage_VoituresController implements Initializable {
                System.out.println(voiture.getId_voiture());
                Scene scene = new Scene(root);
                Stage stage = new Stage();
-               
                 controller.setObList(ObList);
                stage.setTitle("Edit page");
                stage.setScene(scene);
@@ -184,138 +179,65 @@ public class Affichage_VoituresController implements Initializable {
     }
     }
      @FXML
-    private void exporter(ActionEvent event) throws FileNotFoundException, IOException, SQLException {
-         
-             /*try ( /* File outputFile = new File("D:/JDBC/output.txt");
-             PrintWriter writer = new PrintWriter(outputFile);
-             for (Voiture v : listv.getItems()) {
-             writer.println(v);}
-             writer.close();*//* Workbook workbook = new XSSFWorkbook()) {
-             Sheet sheet = (Sheet) workbook.createSheet("Voitures");
-             
-             Row headerRow = sheet.createRow(0);
-             headerRow.createCell(0).setCellValue("Immatriculation");
-             headerRow.createCell(1).setCellValue("Marque");
-             headerRow.createCell(2).setCellValue("Modèle");
-             headerRow.createCell(3).setCellValue("BoiteVitesse");
-             headerRow.createCell(4).setCellValue("Description");
-             headerRow.createCell(5).setCellValue("Prix de location");
-             
-             
-             
-             int rowIndex = 1;
-             for (Voiture v : listv.getItems()) {
-             Row row = sheet.createRow(rowIndex++);
-             row.createCell(0).setCellValue(v.getImmatriculation());
-             row.createCell(1).setCellValue(v.getMarque());
-             row.createCell(2).setCellValue(v.getModele());
-             row.createCell(3).setCellValue(v.getBoite_vitesse());
-             row.createCell(4).setCellValue(v.getDescription());
-             row.createCell(5).setCellValue(v.getPrix_location());
-             
-             }
-             
-             FileOutputStream outputStream = new FileOutputStream("C:\\xampp\\htdocs\\3a8-Computer-wizards-Handiny-integration\\voitures.xlsx");
-             workbook.write(outputStream);
-             }
-             Alert alert=new Alert(Alert.AlertType.WARNING);
-             alert.setTitle("Attention");
-             alert.setHeaderText("");
-             alert.setContentText("La liste de voitures est téléchargée avec succès");
-             alert.showAndWait();*/
-           
-        String filename =  "C:\\xampp4\\htdocs\\Handiny\\voitures.xls";
-        HSSFWorkbook hwb = new HSSFWorkbook();
-        HSSFSheet sheet = hwb.createSheet("new sheet");
-        HSSFRow rowhead = sheet.createRow((short) 0);
-        rowhead.createCell((short) 0).setCellValue("Immatriculation");
-        rowhead.createCell((short) 1).setCellValue("Marque");
-        rowhead.createCell((short) 2).setCellValue("Modèle");
-        rowhead.createCell((short) 3).setCellValue("BoiteVitesse");
-        rowhead.createCell((short) 4).setCellValue("Description");
-        rowhead.createCell((short) 5).setCellValue("Prix de location");
-        rowhead.createCell((short) 6).setCellValue("Date de validation technique");
-        
-       
-
-  
-
-        ServiceVoiture SC = new ServiceVoiture();
-        List<Voiture> voit = SC.readAll();
-
-        for (int i = 0; i < voit.size(); i++) {
-            HSSFRow row = sheet.createRow((short) (i + 1));
-            row.createCell((short) 0).setCellValue(voit.get(i).getImmatriculation());
-            row.createCell((short) 1).setCellValue(voit.get(i).getMarque());
-            row.createCell((short) 2).setCellValue(voit.get(i).getModele());
-            row.createCell((short) 3).setCellValue(voit.get(i).getBoite_vitesse());
-            row.createCell((short) 4).setCellValue(voit.get(i).getDescription());
-            row.createCell((short) 5).setCellValue(voit.get(i).getPrix_location());
-            row.createCell((short) 6).setCellValue(""+voit.get(i).getDate_validation_technique());
-        }
-
-        try (FileOutputStream fileOut = new FileOutputStream(filename)) {
-            hwb.write(fileOut);
-            System.out.println("Your excel file has been generated!");
-            File file = new File(filename);
-            if (file.exists() && Desktop.isDesktopSupported()) {
-                Desktop.getDesktop().open(file);
+    private void exporter(ActionEvent event) throws FileNotFoundException, IOException {
+        try {
+            /* File outputFile = new File("D:/JDBC/output.txt");
+            PrintWriter writer = new PrintWriter(outputFile);
+            for (Voiture v : listv.getItems()) {
+            writer.println(v);}
+            writer.close();*/
+            String filename =  "C:\\xampp4\\htdocs\\Handiny\\voitures.xls";
+            HSSFWorkbook hwb = new HSSFWorkbook();
+            HSSFSheet sheet = hwb.createSheet("new sheet");
+            HSSFRow rowhead = sheet.createRow((short) 0);
+            rowhead.createCell((short) 0).setCellValue("Immatriculation");
+            rowhead.createCell((short) 1).setCellValue("Marque");
+            rowhead.createCell((short) 2).setCellValue("Modèle");
+            rowhead.createCell((short) 3).setCellValue("BoiteVitesse");
+            rowhead.createCell((short) 4).setCellValue("Description");
+            rowhead.createCell((short) 5).setCellValue("Prix de location");
+            rowhead.createCell((short) 6).setCellValue("Date de validation technique");
+            
+            
+            
+            
+            
+            ServiceVoiture SC = new ServiceVoiture();
+            List<Voiture> voit = SC.readAll();
+            
+            for (int i = 0; i < voit.size(); i++) {
+                HSSFRow row = sheet.createRow((short) (i + 1));
+                row.createCell((short) 0).setCellValue(voit.get(i).getImmatriculation());
+                row.createCell((short) 1).setCellValue(voit.get(i).getMarque());
+                row.createCell((short) 2).setCellValue(voit.get(i).getModele());
+                row.createCell((short) 3).setCellValue(voit.get(i).getBoite_vitesse());
+                row.createCell((short) 4).setCellValue(voit.get(i).getDescription());
+                row.createCell((short) 5).setCellValue(voit.get(i).getPrix_location());
+                row.createCell((short) 6).setCellValue(""+voit.get(i).getDate_validation_technique());
             }
-        } catch (IOException ex) {
-            System.out.println(ex);
-        }
-          finally {
-         
-             Alert alert= new Alert(Alert.AlertType.INFORMATION);
-             alert.setTitle("excel");
-        alert.setHeaderText(null);
-        alert.setContentText("La liste de voiture a été bien téléchargé");
-        alert.showAndWait();
+            
+            try (FileOutputStream fileOut = new FileOutputStream(filename)) {
+                hwb.write(fileOut);
+                System.out.println("Your excel file has been generated!");
+                File file = new File(filename);
+                if (file.exists() && Desktop.isDesktopSupported()) {
+                    Desktop.getDesktop().open(file);
+                }
+            } catch (IOException ex) {
+                System.out.println(ex);
+            }
+            finally {
+                
+                Alert alert= new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("excel");
+                alert.setHeaderText(null);
+                alert.setContentText("La liste de voiture a été bien téléchargé");
+                alert.showAndWait();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Affichage_VoituresBackEndController.class.getName()).log(Level.SEVERE, null,ex);
         }
          }
-
-  
-
-    
-             
-             
-//             Writer writer = null;
-//             ServiceVoiture ser = new ServiceVoiture();
-//             ServiceUtilisateur se= new ServiceUtilisateur();
-//             List<Voiture> l = new ArrayList<Voiture>();
-//             l = ser.readAll();
-//                     
-//                     try {
-//                         //badel path fichier excel
-//                         File file = new File("C:\\xampp\\htdocs\\3a8-Computer-wizards-Handiny-integration\\voitures.csv");
-//                         writer = new BufferedWriter(new FileWriter(file));
-//                         
-//                         for (Voiture v : l) {
-//                             
-//                             String text =""+ v.getImmatriculation()+ " | "+ v.getDescription() +"\n";
-//                             System.out.println(text);
-//                             writer.write(text);
-//                         }
-//                     } catch (Exception ex) {
-//                         ex.printStackTrace();
-//                     }
-//                     finally {
-//                         writer.flush();
-//                         writer.close();
-//                         Alert alert= new Alert(Alert.AlertType.INFORMATION);
-//                         alert.setTitle("excel");
-//                         alert.setHeaderText(null);
-//                         alert.setContentText("La liste de voitures est téléchargée avec succès");
-//                         alert.showAndWait();
-//                     }
-//         } catch (SQLException ex) {
-//            Logger.getLogger(Affichage_VoituresController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    
-
-
-
-
     
 
    
@@ -348,6 +270,9 @@ public class Affichage_VoituresController implements Initializable {
         ObList = FXCollections.observableList(voitures);
         listv.setItems(ObList);
     }
+
+
+
 
     
 }    

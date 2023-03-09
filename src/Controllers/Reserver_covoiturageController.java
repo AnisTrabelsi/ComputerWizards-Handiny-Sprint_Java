@@ -169,7 +169,7 @@ alertt.showAndWait();                     return;
 }else {
 
                      serv.ajouter_reservation_cov(k);
-                             //             sendSms(d.getTelephone() ,"salut" + d.getNom() +  "vous avez une nouvelle reservation sur votre covoiturage") ;
+                   sendSms(d.getTelephone() ,"salut" + d.getNom() +  "vous avez une nouvelle reservation sur votre covoiturage") ;
 
                      JOptionPane.showMessageDialog(null, "votre réservation est confirmée"); }
     button2.setVisible(false);
@@ -276,7 +276,7 @@ alertt.showAndWait();                     return;
 }else {
 
                      serv.ajouter_reservation_cov(k);
-                             //             sendSms(d.getTelephone() ,"salut" + d.getNom() +  "vous avez une nouvelle reservation sur votre covoiturage") ;
+                                       sendSms(d.getTelephone() ,"salut" + d.getNom() +  "vous avez une nouvelle reservation sur votre covoiturage") ;
 
                      JOptionPane.showMessageDialog(null, "votre réservation est confirmée"); }
     button2.setVisible(false);
@@ -421,7 +421,7 @@ alertt.showAndWait();                     return;
 }else {
 
                      serv.ajouter_reservation_cov(k);
-                             //             sendSms(d.getTelephone() ,"salut" + d.getNom() +  "vous avez une nouvelle reservation sur votre covoiturage") ;
+                                        sendSms(d.getTelephone() ,"salut" + d.getNom() +  "vous avez une nouvelle reservation sur votre covoiturage") ;
 
                      JOptionPane.showMessageDialog(null, "votre réservation est confirmée"); }
     button2.setVisible(false);
@@ -539,7 +539,7 @@ alertt.showAndWait();                     return;
 }else {
 
                      serv.ajouter_reservation_cov(k);
-                             //             sendSms(d.getTelephone() ,"salut" + d.getNom() +  "vous avez une nouvelle reservation sur votre covoiturage") ;
+                                        sendSms(d.getTelephone() ,"salut" + d.getNom() +  "vous avez une nouvelle reservation sur votre covoiturage") ;
 
                      JOptionPane.showMessageDialog(null, "votre réservation est confirmée"); }
     button2.setVisible(false);

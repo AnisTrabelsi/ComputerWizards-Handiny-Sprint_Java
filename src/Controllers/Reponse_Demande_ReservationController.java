@@ -156,8 +156,8 @@ public class Reponse_Demande_ReservationController implements Initializable {
             
             
             // Obtenir l'adresse e-mail et le mot de passe de l'utilisateur
-            String from = JOptionPane.showInputDialog("Adresse e-mail : ");
-            String password = JOptionPane.showInputDialog("Mot de passe : ");
+            String from = "chaima.lotfi@esen.tn";
+            String password="deutsch123LAMMA.";
             
             // Configurer la session SMTP
             Properties props = new Properties();
@@ -272,8 +272,9 @@ Transport.send(message);
 
                     ObList.addAll(reservations);
                     // Obtenir l'adresse e-mail et le mot de passe de l'utilisateur
-            String from = JOptionPane.showInputDialog("Adresse e-mail : ");
-            String password = JOptionPane.showInputDialog("Mot de passe : ");
+            String from = "chaima.lotfi@esen.tn";
+            String password="deutsch123LAMMA.";
+            //String password = JOptionPane.showInputDialog("Mot de passe : ");
             
             // Configurer la session SMTP
             Properties props = new Properties();

@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 import Utils.DataSource;
+import java.sql.ResultSet;
 
 /**
  *
@@ -64,6 +65,30 @@ Connection con=DataSource.getInstance().getConnection();
         }
     return verif;
     }
+    
+    
+    public boolean existe(int id_utilisateur, int id_voiture) throws SQLException {
+        boolean verif = false;
+
+        try {
+            String req = "SELECT COUNT(*) FROM `favoris_voitures` WHERE `id_user` = ? AND `id_voiture` = ?";
+            PreparedStatement pre = con.prepareStatement(req);
+            pre.setInt(1, id_utilisateur);
+            pre.setInt(2, id_voiture);
+            ResultSet rs = pre.executeQuery();
+            if (rs.next()) {
+                int count = rs.getInt(1);
+                if (count > 0) {
+                    verif = true;
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return verif;
+    }
+
 
     
     public boolean update(Favoris_voitures t) throws SQLException {
@@ -72,8 +97,13 @@ Connection con=DataSource.getInstance().getConnection();
 
    
     public void supprime(Favoris_voitures t) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    String req = "DELETE FROM `favoris_voitures` WHERE `id_user` = ? AND `id_voiture` = ?";
+    PreparedStatement pre = con.prepareStatement(req);
+    pre.setInt(1, t.getUser().getId_utilisateur());
+    pre.setInt(2, t.getVoit().getId_voiture());
+    pre.executeUpdate();
+}
+
 
    
     public List<Favoris_voitures> readAll() throws SQLException {

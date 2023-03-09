@@ -19,6 +19,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -57,10 +59,13 @@ public class ForumSideBarFXMLController implements Initializable {
      * Initializes the controller class.
      */
     Utilisateur u = Utilisateur.getCurrent_user();
+    @FXML
+    private Label username;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         home(null);
+        username.setText(u.getNom());
         if (u.getRole().equals("admin")) {
             categoriesBtn.setVisible(true);
             mesPostesBtn.setVisible(false);

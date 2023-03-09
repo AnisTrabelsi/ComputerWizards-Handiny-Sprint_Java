@@ -239,8 +239,10 @@ public void setIDVoiture(int id_voiture) {
             System.out.println(ex);}
         
 
-String from = JOptionPane.showInputDialog("Adresse e-mail : ");
-String password = JOptionPane.showInputDialog("Mot de passe : ");    
+String from = "chaima.lotfi@esen.tn";
+        //JOptionPane.showInputDialog("Adresse e-mail : ");
+String password = "deutsch123LAMMA.";
+        //JOptionPane.showInputDialog("Mot de passe : ");    
 String subject = "Réservation de votre voiture";
 String message = "Bonjour Mr/Madame  "+prenprop+ "  ,\n\n Votre voiture ayant l\'immatriculation "+voitureimmatric+"  a été réservée par  "+locatairePrenom+"\n\n cordialement.";
 

@@ -39,6 +39,7 @@ public class ServiceSujet implements IService<Sujet> {
         }
     }
     ServiceCategorie ser = new ServiceCategorie();
+    private Sujet sujet;
 
     public void ajouter(Sujet t) throws SQLException {
 
@@ -111,12 +112,6 @@ public class ServiceSujet implements IService<Sujet> {
         ResultSet res = ste.executeQuery(req);
 
         while (res.next()) {
-//            Categorie categorie = new Categorie();
-//                categorie.setId_categorie(res.getInt("id_categorie"));
-//                categorie.setNom_categorie(res.getString("nom_categorie"));
-//                categorie.setDate_creation_categorie(res.getDate("date_creation_categorie"));
-//                categorie.setNb_sujets(res.getInt("nb_sujets"));
-
             Sujet sujet = new Sujet();
             sujet.setId_sujet(res.getInt("id_sujet"));
             sujet.setTitre_sujet(res.getString("titre_sujet"));
@@ -126,6 +121,7 @@ public class ServiceSujet implements IService<Sujet> {
             sujet.setEtat(res.getString("etat"));
             sujet.setTags(res.getString("tags"));
             sujet.setCat(ser.findById(res.getInt("id_categorie")));
+            sujet.setUser(new ServiceUtilisateur().findById(res.getInt("id_utilisateur")));
             listsuj.add(sujet);
         }
         return listsuj;
@@ -133,7 +129,6 @@ public class ServiceSujet implements IService<Sujet> {
 
     @Override
     public Sujet findById(int id_sujet) throws SQLException {
-        Sujet sujet = null;
         String req = "SELECT * FROM `sujet` WHERE `id_sujet` = " + id_sujet + ";";
         try (ResultSet rs = ste.executeQuery(req)) {
             if (rs.next()) {
@@ -143,6 +138,12 @@ public class ServiceSujet implements IService<Sujet> {
                         rs.getString("contenu_sujet"),
                         rs.getString("etat"),
                         rs.getString("tags"));
+                        rs.getInt("nb_commentaires");
+                        Categorie categorie = ser.findById(rs.getInt("id_categorie"));
+                        categorie.setId_categorie(rs.getInt("id_categorie"));
+
+                        sujet.setCat(categorie);
+
             }
         } catch (SQLException ex) {
             System.out.println("Un sujet avec cet id " + id_sujet + " est non trouvé !" + ex.getMessage());

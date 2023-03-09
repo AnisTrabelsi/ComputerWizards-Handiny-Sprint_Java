@@ -23,6 +23,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import services.ServiceReservation_Voiture;
 import Services.ServiceUtilisateur;
+import java.time.Duration;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.event.EventHandler;
+import javafx.scene.control.DialogPane;
 import services.ServiceVoiture;
 
 /**
@@ -45,7 +50,7 @@ public class UpdateLocationController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    void setIDVoiture(int id_reservation) throws SQLException {
+    public void setIDVoiture(int id_reservation) throws SQLException {
          reservation_Id = id_reservation;
          System.out.println("rrr"+reservation_Id);
          ServiceReservation_Voiture sv= new ServiceReservation_Voiture();
@@ -81,8 +86,59 @@ datefin.setValue(localDate2);
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+        
+        datedeb.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                handleDateSelection(event);
+            }
+        });
+        datefin.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                handleDateSelection(event);
+            }
+        });
+    } 
+    @FXML
+    private void handleDateSelection(ActionEvent event) {
+        LocalDate debut = datedeb.getValue();
+        LocalDate fin = datefin.getValue();
+       
+        if (debut != null && fin != null) {
+            if (fin.isBefore(debut)) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur de saisie");
+        alert.setHeaderText("Dates incorrectes");
+        alert.setContentText("La date de fin ne peut pas être antérieure à la date de début.");
+        alert.showAndWait();}
+            else{
+            try {
+                long daysBetween = Duration.between(debut.atStartOfDay(), fin.atStartOfDay()).toDays();
+                ServiceVoiture sv = new ServiceVoiture();
+                Voiture v = sv.findById(getIDVoiture());
+                ServiceReservation_Voiture sr = new ServiceReservation_Voiture();
+                double prixTotal = sr.calculerPrixTotal(v, debut,fin); // Calcul du prix total de la location (10 € par jour)
+                System.out.println("prix : "+prixTotal);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Prix de location");
+        alert.setHeaderText(null);
+        alert.setContentText(String.format("Le prix total de la location est de %.2f DT pour une durée de %d jours.", prixTotal, daysBetween));
+        // Définir le style inline de l'alerte
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.setStyle("-fx-background-color:  #f2f2ff; "
+            + "-fx-font-size: 18pt; "
+            + "-fx-text-fill: #444444; "
+            + "-fx-font-family: 'Segoe UI', Helvetica, Arial, sans-serif;");
+                alert.showAndWait();
+            } catch (SQLException ex) {
+                Logger.getLogger(InsertLocationController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }}
+    }
+
+
+
 
     @FXML
     private void insert(ActionEvent event) {
@@ -92,15 +148,34 @@ datefin.setValue(localDate2);
         String descrip=desc.getText();
 
         // Vérification de la date
-    if (date1 == null || date2 == null) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Erreur de saisie");
-        alert.setHeaderText("Dates manquantes");
-        alert.setContentText("Veuillez saisir une date de début et une date de fin.");
-        alert.showAndWait();
-        return;
-    }
+     // Vérification de la date
+    if (date1 == null) {
+        datedeb.setStyle("-fx-border-color:red ; -fx-border-width:2px");
+        new animatefx.animation.Shake(datedeb).play();
+    }else
+        datedeb.setStyle("");
+        
+      
+    if (date2 == null) {
+        datefin.setStyle("-fx-border-color:red ; -fx-border-width:2px");
+        new animatefx.animation.Shake(datefin).play();
+        
+    }else
+        datefin.setStyle("");
+        
+        if (descrip.isEmpty()) {
+        desc.setStyle("-fx-border-color:red ; -fx-border-width:2px");
+        new animatefx.animation.Shake(desc).play();
+        }
+        else
+       desc.setStyle("");
+    if (datedeb == null ||datefin == null ||descrip.isEmpty()){return;}
     if (date2.isBefore(date1)) {
+        datefin.setStyle("-fx-border-color:red ; -fx-border-width:2px");
+        new animatefx.animation.Shake(datefin).play();
+        datedeb.setStyle("-fx-border-color:red ; -fx-border-width:2px");
+        new animatefx.animation.Shake(datedeb).play();
+        
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Erreur de saisie");
         alert.setHeaderText("Dates incorrectes");
@@ -108,6 +183,7 @@ datefin.setValue(localDate2);
         alert.showAndWait();
         return;
     }
+
 
        
 

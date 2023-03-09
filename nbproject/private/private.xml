@@ -4,28 +4,31 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/xampp4/htdocs/Handiny/src/Controllers/AffichageDetailVoitureController.java</file>
-            <file>file:/C:/xampp4/htdocs/Handiny/src/Controllers/AffichageLocationController.java</file>
-            <file>file:/C:/xampp4/htdocs/Handiny/src/gui_handiny/Afficher_chauffeur.fxml</file>
-            <file>file:/C:/xampp4/htdocs/Handiny/src/Controllers/Affichage_don_adminController.java</file>
+            <file>file:/C:/xampp4/htdocs/Handiny/src/gui_handiny/Affichage_Voitures_frontOffice.fxml</file>
+            <file>file:/C:/xampp4/htdocs/Handiny/src/Controllers/InsertVoituresController.java</file>
             <file>file:/C:/xampp4/htdocs/Handiny/src/API/MailerAPI.java</file>
-            <file>file:/C:/xampp4/htdocs/Handiny/src/Controllers/HomeFrontController.java</file>
-            <file>file:/C:/xampp4/htdocs/Handiny/src/gui_handiny/modifier_chauffeur.fxml</file>
-            <file>file:/C:/xampp4/htdocs/Handiny/src/gui_handiny/back_main.css</file>
-            <file>file:/C:/xampp4/htdocs/Handiny/src/Controllers/Affichage_donController.java</file>
+            <file>file:/C:/xampp4/htdocs/Handiny/src/Controllers/Affichage_Voitures_frontOfficeController.java</file>
+            <file>file:/C:/xampp4/htdocs/Handiny/src/Controllers/updatereclamationController_1.java</file>
+            <file>file:/C:/xampp4/htdocs/Handiny/src/Controllers/InsertLocationController.java</file>
+            <file>file:/C:/xampp4/htdocs/Handiny/src/Controllers/AffichageLocationBackEndController.java</file>
+            <file>file:/C:/xampp4/htdocs/Handiny/src/Controllers/AuthentificationController.java</file>
+            <file>file:/C:/xampp4/htdocs/Handiny/src/Controllers/ForgotMdpController.java</file>
+            <file>file:/C:/xampp4/htdocs/Handiny/src/gui_handiny/back.fxml</file>
+            <file>file:/C:/xampp4/htdocs/Handiny/src/Controllers/FrontPropietaireController.java</file>
             <file>file:/C:/xampp4/htdocs/Handiny/src/Controllers/Ajout_don_adminController.java</file>
-            <file>file:/C:/xampp4/htdocs/Handiny/src/Services/ServiceChauffeur.java</file>
-            <file>file:/C:/xampp4/htdocs/Handiny/src/Controllers/AffichageLocations_Proprietaire_voitureController.java</file>
-            <file>file:/C:/xampp4/htdocs/Handiny/src/Services/IService.java</file>
-            <file>file:/C:/xampp4/htdocs/Handiny/src/Controllers/Ajout_chauffeurController.java</file>
+            <file>file:/C:/xampp4/htdocs/Handiny/src/Services/ServiceUtilisateur.java</file>
             <file>file:/C:/xampp4/htdocs/Handiny/src/Controllers/FrontController.java</file>
-            <file>file:/C:/xampp4/htdocs/Handiny/src/Controllers/HomeController.java</file>
-            <file>file:/C:/xampp4/htdocs/Handiny/src/Controllers/Afficher_chauffeurController.java</file>
-            <file>file:/C:/xampp4/htdocs/Handiny/src/gui_handiny/supprimer_chauffeur.fxml</file>
             <file>file:/C:/xampp4/htdocs/Handiny/src/Controllers/NewFXMain.java</file>
-            <file>file:/C:/xampp4/htdocs/Handiny/src/Controllers/HomeBackController.java</file>
-            <file>file:/C:/xampp4/htdocs/Handiny/src/Entite/Chauffeur.java</file>
-            <file>file:/C:/xampp4/htdocs/Handiny/src/gui_handiny/ajout_chauffeur.fxml</file>
-            <file>file:/C:/xampp4/htdocs/Handiny/src/gui_handiny/affichage_demande_don.fxml</file>
+            <file>file:/C:/xampp4/htdocs/Handiny/src/Controllers/Reponse_Demande_ReservationController.java</file>
+            <file>file:/C:/xampp4/htdocs/Handiny/src/Controllers/ReclamationCell.java</file>
+            <file>file:/C:/xampp4/htdocs/Handiny/src/gui_handiny/front.fxml</file>
+            <file>file:/C:/xampp4/htdocs/Handiny/src/Controllers/BackController.java</file>
+            <file>file:/C:/xampp4/htdocs/Handiny/src/gui_handiny/Admin_supprime_user.fxml</file>
+            <file>file:/C:/xampp4/htdocs/Handiny/src/Services/ServiceReclamation.java</file>
+            <file>file:/C:/xampp4/htdocs/Handiny/src/Services/IService.java</file>
+            <file>file:/C:/xampp4/htdocs/Handiny/src/Controllers/Affichage_VoituresBackEndController.java</file>
+            <file>file:/C:/xampp4/htdocs/Handiny/src/Controllers/Modifier_profil_userController.java</file>
+            <file>file:/C:/xampp4/htdocs/Handiny/src/Controllers/UpdateLocationController.java</file>
         </group>
     </open-files>
 </project-private>

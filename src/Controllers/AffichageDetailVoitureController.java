@@ -6,6 +6,7 @@
 package controllers;
 
 import Entite.Voiture;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -57,10 +58,17 @@ public int carId;
         Voiture voiture=sv.findById2(getIDVoiture());
         System.out.println("les infos "+voiture);
         String path = "C:\\xampp4\\htdocs\\Handiny\\" + voiture.getImage_voiture();
-        Image img1=new Image(getClass().getResourceAsStream(path));
-        imageV.setImage(img1);
+        System.out.println(path);
+        //Image img1=new Image(getClass().getResourceAsStream(path));
+        File file = new File(path);
+        ImageView i;
+         
         
-         marqueLabel.setText(voiture.getMarque());
+         Image img = new Image(file.toURI().toString());
+            
+            imageV.setImage(img);
+        
+        marqueLabel.setText(voiture.getMarque());
         modeleLabel.setText(voiture.getModele());
         anneeLabel.setText(voiture.getBoite_vitesse());
         couleurLabel.setText(voiture.getCarburant());
@@ -69,7 +77,7 @@ public int carId;
     reserverboutton.setOnAction(event -> {
        try {
             // création de la nouvelle fenêtre
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/InsertLocation.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui_handiny/InsertLocation.fxml"));
             Parent root = loader.load();
             InsertLocationController controller = loader.getController();
             System.out.println(controller);

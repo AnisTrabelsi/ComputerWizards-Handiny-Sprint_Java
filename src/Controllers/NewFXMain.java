@@ -30,7 +30,7 @@ public class NewFXMain extends Application {
     public void start(Stage primaryStage) {
         
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/gui_handiny/affichage_demande_don.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/gui_handiny/Inscription.fxml"));
             Scene scene = new Scene(root);    
             primaryStage.setTitle("Handiny");
             primaryStage.setScene(scene);

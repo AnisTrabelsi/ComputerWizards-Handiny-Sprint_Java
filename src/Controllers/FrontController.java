@@ -5,6 +5,7 @@
  */
 package Controllers;
 
+import Entite.Utilisateur;
 import Utils.SessionManager;
 import java.awt.Desktop;
 import java.io.File;
@@ -25,6 +26,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
@@ -43,6 +45,9 @@ public class FrontController implements Initializable {
 
     @FXML
     private AnchorPane mesDons;
+    @FXML
+    private Label nom_actuel;
+    Utilisateur user = Utilisateur.getCurrent_user();
 
     /**
      * Initializes the controller class.
@@ -57,8 +62,10 @@ public class FrontController implements Initializable {
             Logger.getLogger(FrontController.class.getName()).log(Level.SEVERE, null, ex);
         }
         boolean setAll = mesDons.getChildren().setAll(pane);
+        nom_actuel.setText(user.getNom());
        
     }    
+    
   @FXML
     private void stat(ActionEvent event) throws IOException {
          AnchorPane pane = FXMLLoader.load(getClass().getResource("/gui_handiny/DonStats.fxml"));
@@ -205,5 +212,21 @@ public class FrontController implements Initializable {
             AnchorPane pane = FXMLLoader.load(getClass().getResource("/gui_handiny/updatereclamation.fxml"));
            mesDons.getChildren().setAll(pane);
     }
+
+
+    @FXML
+    private void tousLesVoit(ActionEvent event) throws IOException {
+       AnchorPane pane = FXMLLoader.load(getClass().getResource("/gui_handiny/Affichage_Voitures_frontOffice"));
+           mesDons.getChildren().setAll(pane);  
+    }
+
+   
+
+    @FXML
+    private void Modifier_profil(ActionEvent event) throws IOException {
+         AnchorPane pane = FXMLLoader.load(getClass().getResource("/gui_handiny/Modifier_profil_user.fxml"));
+           mesDons.getChildren().setAll(pane);  
+    }
+    }
     
-}
+

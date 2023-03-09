@@ -106,7 +106,7 @@ public class CommentaireUpdateFXMLController implements Initializable {
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter[]{new FileChooser.ExtensionFilter("Image Files", new String[]{"*.png", "*.jpg", "*.jpeg", "*.gif", "*.bmp"}), new FileChooser.ExtensionFilter("JPG", new String[]{"*.jpg"}), new FileChooser.ExtensionFilter("JPEG", new String[]{"*.jpeg"}), new FileChooser.ExtensionFilter("BMP", new String[]{"*.bmp"}), new FileChooser.ExtensionFilter("PNG", new String[]{"*.png"}), new FileChooser.ExtensionFilter("GIF", new String[]{"*.gif"})});
 
         File file = fileChooser.showOpenDialog(null);
-        String DBPath = "C:\\xampp8.1\\htdocs\\Handiny\\src\\images\\" + x + ".jpg";
+        String DBPath = "C:\\xampp4\\htdocs\\Handiny\\src\\images\\" + x + ".jpg";
 
         //String DBPath = "" + x + ".jpg";
         if (file != null) {

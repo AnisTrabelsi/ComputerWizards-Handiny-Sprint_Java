@@ -2,11 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
-package controllers;
+package Controllers;
 
 import Entite.Reservation_voiture;
 import Entite.Utilisateur;
-import Entite.Voiture;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -18,7 +17,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
-    import javafx.collections.ObservableList;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -33,16 +32,14 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import services.ServiceReservation_Voiture;
-import services.ServiceVoiture;
 
 /**
  * FXML Controller class
  *
  * @author Chaima
  */
-public class AffichageLocationController implements Initializable {
-
-    @FXML
+public class AffichageLocationBackEndController implements Initializable {
+       @FXML
     private ListView<Reservation_voiture> listv;
     @FXML
     private TextField searchBar;
@@ -60,7 +57,7 @@ public class AffichageLocationController implements Initializable {
             ObservableList ObList = FXCollections.observableList(locations);
             listv.setItems(ObList);
         } catch (SQLException ex) {
-            Logger.getLogger(AffichageLocationController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(controllers.AffichageLocationController.class.getName()).log(Level.SEVERE, null, ex);
         }
     } 
     
@@ -95,7 +92,7 @@ public class AffichageLocationController implements Initializable {
     }
 
     @FXML
-    private void exporter(ActionEvent event) {
+    private void exporter(ActionEvent event) { 
         try {
             String filename = "C:\\xampp4\\htdocs\\Handiny\\reservations.xls";
             HSSFWorkbook hwb = new HSSFWorkbook();
@@ -143,11 +140,9 @@ public class AffichageLocationController implements Initializable {
                 alert.showAndWait();
             }
         } catch (SQLException ex) {
-            Logger.getLogger(AffichageLocationController.class.getName()).log(Level.SEVERE, null,ex);
+            Logger.getLogger(controllers.AffichageLocationController.class.getName()).log(Level.SEVERE, null,ex);
         }
-         }
-
-    
+    }
 
     @FXML
     private void updateReservation(ActionEvent event) throws IOException, SQLException {
@@ -160,7 +155,7 @@ public class AffichageLocationController implements Initializable {
                 ServiceReservation_Voiture sv= new ServiceReservation_Voiture();
                FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui_handiny/UpdateLocation.fxml"));
                Parent root = loader.load();
-               UpdateLocationController controller = loader.getController();
+               controllers.UpdateLocationController controller = loader.getController();
                System.out.println(controller);
                controller.setIDVoiture(id_reservation);
                Scene scene = new Scene(root);
@@ -191,5 +186,5 @@ public class AffichageLocationController implements Initializable {
        e.printStackTrace();
        }
     }
-    
+
 }

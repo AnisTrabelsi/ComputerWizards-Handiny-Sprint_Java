@@ -6,8 +6,10 @@
 package Controllers;
 
 import Entite.PostsSauvegardés;
+import Entite.Sujet;
 import Entite.Utilisateur;
 import Services.ServiceSauvegarde;
+import Services.ServiceSujet;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -48,49 +50,57 @@ public class PostsSauvegardésFXMLController implements Initializable {
     int row = 1;
     private List<PostsSauvegardés> sauvegardes;
     Utilisateur u = Utilisateur.getCurrent_user();
+    ServiceSujet ss = new ServiceSujet();
     /**
      * Initializes the controller class.
      */
-    public void loadData() {
+    public void loadData() throws SQLException {
         try {
-            sauvegardes = new ArrayList<>(ser.readAll());
+            sauvegardes = new ArrayList<>(ser.readAllByUser(u));
             nbposts.setText(String.valueOf(sauvegardes.size() + " Sauvegardes"));
+            System.out.println(nbposts.getText());
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-
-        sauvegardes.forEach((c) -> {
-            System.out.println(c.toString());
-            FXMLLoader fxmlloader = new FXMLLoader();
-            fxmlloader.setLocation(getClass().getResource("/gui_handiny/SujetGridFXML.fxml"));
-            Pane pane;
-
+        for (PostsSauvegardés c : sauvegardes) {
             try {
-                pane = fxmlloader.load();
+                System.out.println("hi " + c.toString());
+                FXMLLoader fxmlloader = new FXMLLoader();
+                fxmlloader.setLocation(getClass().getResource("/gui_handiny/SujetGridFXML.fxml"));
+                Pane pane;
+
+                System.out.println(c.getUser().getId_utilisateur());
+                System.out.println(c.getSujet().getId_sujet());
+
                 SujetGridFXMLController sujController = fxmlloader.getController();
-                c.setUser(u);
+                pane = fxmlloader.load();
+                Sujet s = ss.findById(c.getSujet().getId_sujet());
+                if (s==null){System.out.println("s est null");}
+                else {System.out.println("s n'est pas null"+s.getCat().getNom_categorie());}
                 sujController.setData2(c);
-                
                 if (column == 3) {
                     column = 0;
-
                 }
                 ++row;
                 gridpane.add(pane, column, row);
                 GridPane.setMargin(pane, new Insets(20));
             } catch (IOException ex) {
-                Logger.getLogger(CategorieListGridPaneFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex);
             }
-        });
+        }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        loadData();
-    }    
+        try {
+            loadData();
+        } catch (SQLException ex) {
+            Logger.getLogger(PostsSauvegardésFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     @FXML
     private void AjoutSujetBtn(ActionEvent event) {
     }
-    
+
 }

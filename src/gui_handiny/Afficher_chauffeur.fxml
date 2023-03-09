@@ -13,10 +13,10 @@
    <children>
       <ImageView fitHeight="558.0" fitWidth="1029.4" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/background.png" />
+            <Image url="@../images/back.png" />
          </image>
       </ImageView>
-      <TableView fx:id="Reclamation" layoutX="19.0" layoutY="90.0" prefHeight="393.0" prefWidth="806.0">
+      <TableView fx:id="Reclamation" layoutX="131.0" layoutY="82.0" prefHeight="393.0" prefWidth="806.0">
          <columns>
             <TableColumn fx:id="cin" prefWidth="154.39999389648438" text="CIN" />
             <TableColumn fx:id="nom" prefWidth="179.20001220703125" text="Nom" />
@@ -24,13 +24,12 @@
             <TableColumn fx:id="statut" prefWidth="255.2000732421875" text="Statut Disponibilite" />
          </columns>
       </TableView>
-      <Label layoutX="328.0" layoutY="56.0" prefHeight="34.0" prefWidth="206.0" text="Affichage Chauffeur" textFill="#52a9df">
+      <Label layoutX="411.0" layoutY="32.0" prefHeight="34.0" prefWidth="206.0" text="Affichage Chauffeur" textFill="#52a9df">
          <font>
             <Font name="System Bold" size="21.0" />
          </font>
       </Label>
-      <Button fx:id="excel" layoutX="213.0" layoutY="492.0" mnemonicParsing="false" onAction="#excelbutton" prefHeight="34.0" prefWidth="136.0" text="Télecharger" textAlignment="CENTER" textOverrun="LEADING_WORD_ELLIPSIS" />
-      <Button fx:id="stat_bt" layoutX="363.0" layoutY="492.0" mnemonicParsing="false" onAction="#statitistiquebutton" prefHeight="34.0" prefWidth="136.0" text="statistique" />
-      <Button layoutX="556.0" layoutY="492.0" mnemonicParsing="false" onAction="#p" prefHeight="34.0" prefWidth="136.0" text="PDF" />
+      <Button fx:id="excel" layoutX="385.0" layoutY="492.0" mnemonicParsing="false" onAction="#excelbutton" prefHeight="34.0" prefWidth="136.0" text="Télecharger" textAlignment="CENTER" textOverrun="LEADING_WORD_ELLIPSIS" />
+      <Button layoutX="646.0" layoutY="492.0" mnemonicParsing="false" onAction="#p" prefHeight="34.0" prefWidth="136.0" text="PDF" />
    </children>
 </AnchorPane>

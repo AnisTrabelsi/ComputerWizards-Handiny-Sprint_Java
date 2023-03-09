@@ -56,6 +56,11 @@ public class MesPostesFXMLController implements Initializable {
     @FXML
     private Button Sauvegardes;
     Utilisateur u = Utilisateur.getCurrent_user();
+
+    ScrollPane scrollPane = new ScrollPane();
+    @FXML
+    private ScrollPane scrollpane;
+
     /**
      * Initializes the controller class.
      */
@@ -115,21 +120,14 @@ public class MesPostesFXMLController implements Initializable {
 
     @FXML
     private void PostsSauvegardes(ActionEvent event) throws IOException {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui_handiny/PostsSauvegardésFXML.fxml"));
-            AnchorPane pane = fxmlLoader.load();
-            ScrollPane scrollPane = new ScrollPane();
-            scrollPane.setContent(pane);
-            scrollPane.setFitToWidth(true);
-            scrollPane.setFitToHeight(true);
-            anchorpane.getChildren().setAll(scrollPane);
-        } catch (IOException ex) {
-            System.out.println(ex.getStackTrace());
-        }
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui_handiny/PostsSauvegardésFXML.fxml"));
+        AnchorPane pane = loader.load();
+        scrollPane.setContent(pane);
         
-//        Parent root = FXMLLoader.load(getClass().getResource("/gui_handiny/PostsSauvegardésFXML.fxml"));
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui_handiny/PostsSauvegardésFXML.fxml"));
+//        Parent root = loader.load();
 //        Scene scene = new Scene(root);
-//        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        Stage stage = new Stage();
 //        stage.setScene(scene);
 //        stage.show();
 

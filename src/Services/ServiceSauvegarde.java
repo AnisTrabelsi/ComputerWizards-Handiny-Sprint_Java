@@ -66,7 +66,7 @@ public class ServiceSauvegarde implements IService<PostsSauvegardés> {
         ArrayList<PostsSauvegardés> listsauv = new ArrayList<>();
         ServiceSujet ss = new ServiceSujet();
         ServiceUtilisateur su = new ServiceUtilisateur();
-        String req = "select * from `PostsSauvegardés`;";
+        String req = "select * from `postssauvegardés`;";
 
         ResultSet res = ste.executeQuery(req);
 
@@ -84,15 +84,14 @@ public class ServiceSauvegarde implements IService<PostsSauvegardés> {
         ArrayList<PostsSauvegardés> listsauv = new ArrayList<>();
         ServiceSujet ss = new ServiceSujet();
         ServiceUtilisateur su = new ServiceUtilisateur();
+        System.out.println(u.getId_utilisateur());
         String req = "SELECT * FROM `postssauvegardés` WHERE `id_utilisateur` = ? ;";
         PreparedStatement preparedStatement = con.prepareStatement(req);
         preparedStatement.setInt(1, u.getId_utilisateur());
         ResultSet res = preparedStatement.executeQuery();
         while (res.next()) {
-            PostsSauvegardés ps = new PostsSauvegardés();
-            ps.setSujet(ss.findById(res.getInt("id_sujet")));
-            ps.setUser(su.findById(res.getInt("id_utilisateur")));
-            System.out.println(ps.toString());
+            PostsSauvegardés ps = new PostsSauvegardés(u, ss.findById(res.getInt("id_sujet")));
+            System.out.println("hahahah" + ps.toString());
             listsauv.add(ps);
         }
 
@@ -252,6 +251,23 @@ public class ServiceSauvegarde implements IService<PostsSauvegardés> {
     @Override
     public int rechercherid_parrrcin(String id) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public boolean verifierExistenceSauvegarde(PostsSauvegardés p) throws SQLException {
+        boolean existe = false;
+
+        String req = "SELECT * FROM postssauvegardés WHERE id_utilisateur = ? AND id_sujet = ?";
+        PreparedStatement ps = con.prepareStatement(req);
+        ps.setInt(1, p.getUser().getId_utilisateur());
+        ps.setInt(2, p.getSujet().getId_sujet());
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            existe = true;
+            System.out.println(rs);
+        }
+
+        return existe;
     }
 
     @Override

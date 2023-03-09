@@ -4,13 +4,21 @@
  */
 package controllers;
 
+import Entite.Utilisateur;
 import Entite.Voiture;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
+import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -56,20 +64,21 @@ public class EditVoituresController implements Initializable {
     @FXML
     private TextField idCarburant;
     @FXML
-    private TextArea idDesc;
+    private TextField idDesc;
     @FXML
     private TextField idPrixLocation;
     @FXML
     private Button idImage;
-    @FXML
-    private ImageView imageV;
     private FileChooser filechooser;
     private File file;
     private Stage stage;
     String img;
     int carId;
-    @FXML
     private TextField urlImg;
+    @FXML
+    private ImageView imgg;
+    @FXML
+    private TextField URLImage;
 
     /**
      * Initializes the controller class.
@@ -90,10 +99,9 @@ public class EditVoituresController implements Initializable {
             idDesc.setText(v.getDescription());
             Double  prix=v.getPrix_location();
             idPrixLocation.setText(prix.toString());
+            URLImage.setText(v.getImage_voiture());
             
-            String path=v.getImage_voiture();
-            urlImg.setText(path);
-            System.out.println(path);
+            
            // Image img1=new Image(getClass().getResourceAsStream(path));
             
           //  imageV.setImage(img1);
@@ -109,10 +117,6 @@ public class EditVoituresController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
       
-            // TODO
-            filechooser=new FileChooser();
-            
-            filechooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter[]{new FileChooser.ExtensionFilter("Image Files", new String[]{"*.png", "*.jpg", "*.jpeg", "*.gif", "*.bmp"}), new FileChooser.ExtensionFilter("JPG", new String[]{"*.jpg"}), new FileChooser.ExtensionFilter("JPEG", new String[]{"*.jpeg"}), new FileChooser.ExtensionFilter("BMP", new String[]{"*.bmp"}), new FileChooser.ExtensionFilter("PNG", new String[]{"*.png"}), new FileChooser.ExtensionFilter("GIF", new String[]{"*.gif"})});
             
            
           
@@ -121,34 +125,201 @@ public class EditVoituresController implements Initializable {
        
     }   
 
+   /* private void éditer(ActionEvent event) {
+       
+    }*/
+
+   
+
     @FXML
-    private void éditer(ActionEvent event) {
-        try {
+    private void loadImage(ActionEvent event) throws FileNotFoundException, IOException {
+         /*file = filechooser.showOpenDialog(stage);
+        if (file != null) {
+            String s = file.getName();
+            img="../images/"+s;  
+           //img=s;
+
+//            System.out.println(img);
+            
+        }*/
+          Random rand = new Random();
+        int x = rand.nextInt(1000);
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Upload File Path");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif", "*.jpeg"));
+        File file = fileChooser.showOpenDialog(null);
+       
+        //String DBPath = "C:\\\\xampp\\\\htdocs\\\\Version-Integre\\\\public\\\\uploads\\\\" + x + ".jpg";
+        String DBPath = "" + x + ".jpg";
+
+      
+
+        if (file != null) {
+            FileInputStream Fsource = new FileInputStream(file.getAbsolutePath());
+            FileOutputStream Fdestination = new FileOutputStream(DBPath);
+            BufferedInputStream bin = new BufferedInputStream(Fsource);
+            BufferedOutputStream bou = new BufferedOutputStream(Fdestination);
+            System.out.println(file.getAbsoluteFile());
+            String path = file.getAbsolutePath();
+            
+            URLImage.setText(DBPath);
+          Image img = new Image(file.toURI().toString());
+            
+            imgg.setImage(img);
+            int b = 0;
+            while (b != -1) {
+                b = bin.read();
+                bou.write(b);
+            }
+            bin.close();
+            bou.close();
+
+        } else {
+            System.out.println("error");
+
+        }
+    }
+    
+
+  
+     
+   public void setObList(ObservableList ObList) {
+       this.ObList = ObList;
+    }
+
+    @FXML
+    private void vider(ActionEvent event) {
+         
+    idImmatriculation.clear();
+    idMarque.clear();
+    idModele.clear();
+    idDate.setValue(null);
+    idKilometrage.clear();
+    idCarburant.clear();
+    idDesc.clear();
+    idPrixLocation.clear();
+    idBoiteV.clear();
+    URLImage.clear();
+    imgg.setImage(null);
+    }
+
+    @FXML
+    private void edit(ActionEvent event) {
+         try {
              
           
-            //System.out.println(v);
-            String immat= idImmatriculation.getText();
-            System.out.println(immat);
-            String marque= idMarque.getText();
-            System.out.println(marque);
-            String modele= idModele.getText();
-            System.out.println(modele);
-            LocalDate date=idDate.getValue();
-            System.out.println(date);
-            String boite= idBoiteV.getText();
-            System.out.println(boite);
-            String kilometrage=idKilometrage.getText();
-            System.out.println(kilometrage);
-            String carburant=idCarburant.getText();
-            String desc= idDesc.getText();
-            System.out.println(desc);
-            Double prixLocation=Double.parseDouble(idPrixLocation.getText());
-            // Vérification des saisies
+        String immat=idImmatriculation.getText();
+        String marque=idMarque.getText();
+        String modele=idModele.getText();
+        LocalDate date=idDate.getValue();
+        String kilometrage=idKilometrage.getText();
+        String carburant=idCarburant.getText();
+        String desc=idDesc.getText();
+        String prixLocationStr=idPrixLocation.getText();
+        String BoiteVitesse= idBoiteV.getText();
+        Double prixLocation;
+        String i = URLImage.getText();
+            
+           
+        
+           
+           
+    /*conditions de saisies pour l'immatriculation */    
+    if (immat.isEmpty()){
+    idImmatriculation.setStyle("-fx-border-color:red ; -fx-border-width:2px");
+    new animatefx.animation.Shake(idImmatriculation).play();
+    //Génération d'une alerte
+    }
+     else {
+    idImmatriculation.setStyle("");}
+    
+    
+    /* conditions de saisies pour la marque */ 
+     if (marque.isEmpty()){
+    idMarque.setStyle("-fx-border-color:red ; -fx-border-width:2px");
+    new animatefx.animation.Shake(idMarque).play();
+    }
+     else {
+    idMarque.setStyle("");}
+     
+  /* conditions de saisies pour le modèle */ 
+     if (modele.isEmpty()){
+    idModele.setStyle("-fx-border-color:red ; -fx-border-width:2px");
+    new animatefx.animation.Shake(idModele).play();
+    }
+     else {
+    idModele.setStyle("");}
+     
+     /* conditions de saisies pour la date de validation technique */ 
+     if (date == null){
+    idDate.setStyle("-fx-border-color:red ; -fx-border-width:2px");
+    new animatefx.animation.Shake(idDate).play();
+    }
+     else {
+    idDate.setStyle("");}
+     
+      /* conditions de saisies pour le kilométrage */ 
+     if (kilometrage.isEmpty()){
+    idKilometrage.setStyle("-fx-border-color:red ; -fx-border-width:2px");
+    new animatefx.animation.Shake(idKilometrage).play();
+    }
+     else {
+   idKilometrage.setStyle("");}
+     
+       /* conditions de saisies pour le carburant */ 
+     if (carburant.isEmpty()){
+    idCarburant.setStyle("-fx-border-color:red ; -fx-border-width:2px");
+    new animatefx.animation.Shake(idCarburant).play();
+    }
+     else {
+   idCarburant.setStyle("");}
+     
+         /* conditions de saisies pour la description */ 
+     if (desc.isEmpty()){
+    idDesc.setStyle("-fx-border-color:red ; -fx-border-width:2px");
+    new animatefx.animation.Shake(idDesc).play();
+    }
+     else {
+   idDesc.setStyle("");}
+     
+     
+         /* conditions de saisies pour le prix de location */ 
+     if (prixLocationStr.isEmpty()){
+    idPrixLocation.setStyle("-fx-border-color:red ; -fx-border-width:2px");
+    new animatefx.animation.Shake(idPrixLocation).play();
+    }
+     else {
+   idPrixLocation.setStyle("");}
+     
+         /* conditions de saisies pour le boite de vitesse*/ 
+     if (idBoiteV.getText().isEmpty()){
+    idBoiteV.setStyle("-fx-border-color:red ; -fx-border-width:2px");
+    new animatefx.animation.Shake(idBoiteV).play();
+    }
+     else {
+   idBoiteV.setStyle("");}
+     
+      if (i.isEmpty()) {
+          idImage.setStyle("-fx-border-color:red ; -fx-border-width:2px");
+          new animatefx.animation.Shake(idImage).play();   idImage.setStyle("");
+    } else {
+             idImage.setStyle("");
         
         
+    }
+   
+  
 
-        if (!immat.matches("^[a-zA-Z0-9]+$") || !marque.matches("^[a-zA-Z]+$")
-                || !modele.matches("^[a-zA-Z0-9]+$") || !boite.matches("^[a-zA-Z]+$")
+    
+        
+    if (immat.isEmpty() || marque.isEmpty() || modele.isEmpty() || date == null || idBoiteV.getText().isEmpty()||
+        kilometrage.isEmpty() || carburant.isEmpty() || desc.isEmpty() || prixLocationStr.isEmpty()||URLImage.getText().isEmpty()) {
+        
+        return;
+    }
+   /* if (!immat.matches("^[a-zA-Z0-9]+$") || !marque.matches("^[a-zA-Z]+$")
+                || !modele.matches("^[a-zA-Z0-9]+$")
                 || !kilometrage.matches("^[0-9]+$") || !carburant.matches("^[a-zA-Z]+$")
                 || !desc.matches("^[a-zA-Z0-9\\s]+$")) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -156,29 +327,67 @@ public class EditVoituresController implements Initializable {
             alert.setContentText("Certains champs contiennent des caractères spéciaux.");
             alert.showAndWait();
             return;
-        }
+        }*/
+     
 
-        if (prixLocation <= 0) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erreur de saisie");
-            alert.setContentText("Le prix de location doit être supérieur à zéro.");
-            alert.showAndWait();
-            return;
-        }
+    // Vérification de la date : elle doit être inférieure ou égale à la date d'aujourd'hui !
+    
+    LocalDate today = LocalDate.now();
+    if (date.isAfter(today)) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setHeaderText("Date invalide");
+        alert.setContentText("La date saisie doit être inférieure ou égale à la date d'aujourd'hui !");
+        alert.showAndWait();
+        idDate.setStyle("-fx-border-color:red ; -fx-border-width:2px");
+        new animatefx.animation.Shake(idDate).play();
+        return;
+    }
+    
+   
+    
+    // Vérifier si le champ Prix Location est un nombre valide
+    
+     try {
+        Double kilometrage_double = Double.parseDouble(kilometrage);
+    } catch (NumberFormatException e) {
+        idKilometrage.setStyle("-fx-border-color:red ; -fx-border-width:2px");
+        new animatefx.animation.Shake(idKilometrage).play();
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setHeaderText("Prix Location invalide");
+        alert.setContentText("Veuillez entrer un nombre valide pour le kilométrage");
+        alert.showAndWait();
+        
+        return;
+    }
+    try {
+        prixLocation = Double.parseDouble(prixLocationStr);
+    } catch (NumberFormatException e) {
+        idPrixLocation.setStyle("-fx-border-color:red ; -fx-border-width:2px");
+        new animatefx.animation.Shake(idPrixLocation).play();
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setHeaderText("Prix Location invalide");
+        alert.setContentText("Veuillez entrer un nombre valide pour le Prix Location");
+        alert.showAndWait();
+        
+        return;
+    }
+     // Vérifier si le champ Kilométrage est un nombre valide
+    
+    
+     
+        
 
-        if (date.isAfter(LocalDate.now())) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erreur de saisie");
-            alert.setContentText("La date de validation technique doit être antérieure ou égale à aujourd'hui.");
-            alert.showAndWait();
-            return;
-        }
+        
 
-            Voiture v= new Voiture(getIDVoiture(),immat,marque,modele,boite,kilometrage,carburant,img,desc,prixLocation,java.sql.Date.valueOf(date));
+         
+           Voiture v= new Voiture(immat,marque,modele,BoiteVitesse,kilometrage,carburant,URLImage.getText(),desc,prixLocation,java.sql.Date.valueOf(date));
             System.out.println(v);
             ServiceVoiture sv=new ServiceVoiture();
             
-           
+          
             if (sv.update(v)) {
                 Alert alert=new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Information");
@@ -202,26 +411,7 @@ public class EditVoituresController implements Initializable {
         }
     }
 
-   
-
-    @FXML
-    private void loadImage(ActionEvent event) {
-         file = filechooser.showOpenDialog(stage);
-        if (file != null) {
-            String s = file.getName();
-            img="../images/"+s;  
-           //img=s;
-
-//            System.out.println(img);
-            
-        }
-    }
-
-  
-     
-    void setObList(ObservableList ObList) {
-       this.ObList = ObList;
-    }
+    
 
    
     

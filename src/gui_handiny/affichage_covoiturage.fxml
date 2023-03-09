@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.Blend?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -14,24 +13,13 @@
 
 <AnchorPane id="AnchorPane" prefHeight="530.0" prefWidth="848.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Affichage_covoiturageController">
    <children>
-      <ImageView fitHeight="531.0" fitWidth="896.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="558.0" fitWidth="1029.4" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/back_1.png" />
          </image>
       </ImageView>
       <Button fx:id="button" layoutX="638.0" layoutY="480.0" mnemonicParsing="false" onAction="#trier" prefHeight="39.0" prefWidth="157.0" stylesheets="@list.css" text="trier par Prix" />
       <Text layoutX="607.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-      <Button layoutX="25.0" layoutY="13.0" mnemonicParsing="false" onAction="#gomodif" prefHeight="45.0" prefWidth="151.0" style="-fx-background-color: #24d31e;" stylesheets="@list.css" text="Modification covoiturage">
-         <effect>
-            <Blend />
-         </effect>
-         <font>
-            <Font name="System Bold Italic" size="11.0" />
-         </font></Button>
-      <Button layoutX="184.0" layoutY="13.0" mnemonicParsing="false" onAction="#goajout" prefHeight="45.0" prefWidth="151.0" style="-fx-background-color: #24d31e;" stylesheets="@list.css" text="Ajout Covoiturage">
-         <font>
-            <Font name="System Bold Italic" size="12.0" />
-         </font></Button>
       <Button layoutX="504.0" layoutY="478.0" mnemonicParsing="false" onAction="#actualiser" prefHeight="39.0" prefWidth="118.0" stylesheets="@list.css" text="Actualiser" />
       <ScrollPane layoutX="53.0" layoutY="149.0" prefHeight="306.0" prefWidth="753.0">
          <content>

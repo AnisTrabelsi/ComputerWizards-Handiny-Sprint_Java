@@ -76,7 +76,7 @@ public class InsertVoituresController implements Initializable {
     @FXML
     private TextField idCarburant;
     @FXML
-    private TextArea idDesc;
+    private TextField idDesc;
     @FXML
     private TextField idPrixLocation;
     @FXML
@@ -99,7 +99,7 @@ public class InsertVoituresController implements Initializable {
         
         //filechooser.getExtensionFilters().addAll(new ExtensionFilter[]{new ExtensionFilter("Image Files", new String[]{"*.png", "*.jpg", "*.jpeg", "*.gif", "*.bmp"}), new ExtensionFilter("JPG", new String[]{"*.jpg"}), new ExtensionFilter("JPEG", new String[]{"*.jpeg"}), new ExtensionFilter("BMP", new String[]{"*.bmp"}), new ExtensionFilter("PNG", new String[]{"*.png"}), new ExtensionFilter("GIF", new String[]{"*.gif"})});
     }
-
+/*
     private boolean checkFields() {
     // Vérifier que chaque champ ne contient pas de caractères spéciaux
     Pattern pattern = Pattern.compile("[^a-zA-Z0-9 ]");
@@ -142,12 +142,11 @@ public class InsertVoituresController implements Initializable {
     }
     
     return true;
-}   
+} */  
     @FXML
     private void insert(ActionEvent event) {
        //gridpane
         String immat=idImmatriculation.getText();
-        
         String marque=idMarque.getText();
         String modele=idModele.getText();
         LocalDate date=idDate.getValue();
@@ -234,28 +233,22 @@ public class InsertVoituresController implements Initializable {
      else {
    idBoiteV.setStyle("");}
      
-    /*  if (file != null) {
-        idImage.setStyle("");
+      if (i.isEmpty()) {
+          idImage.setStyle("-fx-border-color:red ; -fx-border-width:2px");
+          new animatefx.animation.Shake(idImage).play();   idImage.setStyle("");
     } else {
+             idImage.setStyle("");
         
-        idImage.setStyle("-fx-border-color:red ; -fx-border-width:2px");
-        new animatefx.animation.Shake(idImage).play();
-    }*/
+        
+    }
    
   
 
     
         
-    /*if (immat.isEmpty() || marque.isEmpty() || modele.isEmpty() || date == null || 
-        kilometrage.isEmpty() || carburant.isEmpty() || desc.isEmpty() || idPrixLocation.isEmpty()||img.isEmpty()) {
-        Alert alert = new Alert(AlertType.ERROR);
-    alert.setTitle("Erreur");
-    alert.setHeaderText(null);
-    alert.setContentText("Veuillez remplir tous les champs");
-    DialogPane dialogPane = alert.getDialogPane();
-    // Ajouter le style CSS inline
-    dialogPane.setStyle("-fx-background-color: #F8D7DA; -fx-border-color: #F5C6CB; -fx-border-width: 2px;");
-    alert.showAndWait();
+    if (immat.isEmpty() || marque.isEmpty() || modele.isEmpty() || date == null || idBoiteV.getValue()==null||
+        kilometrage.isEmpty() || carburant.isEmpty() || desc.isEmpty() || prixLocationStr.isEmpty()||URLImage.getText().isEmpty()) {
+        
         return;
     }
    /* if (!immat.matches("^[a-zA-Z0-9]+$") || !marque.matches("^[a-zA-Z]+$")
@@ -420,8 +413,9 @@ public class InsertVoituresController implements Initializable {
     idCarburant.clear();
     idDesc.clear();
     idPrixLocation.clear();
-    
     idBoiteV.setValue(null);
+    URLImage.clear();
+    imgg.setImage(null);
     }
 
     void initData(Voiture car) {
@@ -439,7 +433,7 @@ public class InsertVoituresController implements Initializable {
 }
 
 
-    void setObList(ObservableList ObList) {
+    public void setObList(ObservableList ObList) {
        this.ObList = ObList;
     }
 

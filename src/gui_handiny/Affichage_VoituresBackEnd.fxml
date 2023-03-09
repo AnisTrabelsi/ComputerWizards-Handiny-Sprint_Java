@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="703.0" prefWidth="1113.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Affichage_VoituresBackEndController">
+   <children>
+      <Pane layoutX="161.0" layoutY="502.0" prefHeight="46.0" prefWidth="200.0" />
+      <Pane layoutX="22.0" layoutY="87.0" prefHeight="542.0" prefWidth="1058.0" style="-fx-background-color: #f2f2f2;">
+         <children>
+            <Button layoutX="662.0" layoutY="17.0" mnemonicParsing="false" onAction="#exporter" prefHeight="26.0" prefWidth="104.0" style="-fx-background-color: #124559;" text="Télécharger" textFill="WHITE" />
+            <ImageView fitHeight="32.0" fitWidth="61.0" layoutX="621.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/excel.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="384.0" layoutY="17.0" mnemonicParsing="false" onAction="#supprimer" prefHeight="26.0" prefWidth="171.0" style="-fx-background-color: #124559;" text="supprimer une voiture" textFill="WHITE" />
+            <Button layoutX="173.0" layoutY="17.0" mnemonicParsing="false" onAction="#updateVoiture" style="-fx-background-color: #124559;" text="mettre à jour une voiture" textFill="WHITE" />
+            <Button layoutX="4.0" layoutY="17.0" mnemonicParsing="false" onAction="#ajouterVoitures" style="-fx-background-color: #124559;" text="Ajouter une voiture" textFill="WHITE" />
+            <HBox layoutX="42.0" layoutY="72.0" prefHeight="100.0" prefWidth="783.0">
+               <children>
+                  <Pane prefHeight="100.0" prefWidth="117.0" style="-fx-background-color: #44ae64;">
+                     <children>
+                        <Text fill="WHITE" layoutX="14.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Marque" wrappingWidth="103.73672485351562">
+                           <font>
+                              <Font name="System Bold Italic" size="18.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #44ae64;">
+                     <children>
+                        <Text fill="WHITE" layoutX="14.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modèle" wrappingWidth="103.73672485351562">
+                           <font>
+                              <Font name="System Bold Italic" size="18.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="100.0" prefWidth="118.0" style="-fx-background-color: #44ae64;">
+                     <children>
+                        <Text fill="WHITE" layoutX="14.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" wrappingWidth="103.73672485351562">
+                           <font>
+                              <Font name="System Bold Italic" size="18.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="100.0" prefWidth="129.0" style="-fx-background-color: #44ae64;">
+                     <children>
+                        <Text fill="WHITE" layoutX="14.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Boite de vitesse" textAlignment="CENTER" wrappingWidth="103.73672485351562">
+                           <font>
+                              <Font name="System Bold Italic" size="18.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="100.0" prefWidth="114.0" style="-fx-background-color: #44ae64;">
+                     <children>
+                        <Text fill="WHITE" layoutX="17.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prix de location" textAlignment="CENTER" wrappingWidth="103.73672485351562">
+                           <font>
+                              <Font name="System Bold Italic" size="18.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="100.0" prefWidth="226.0" style="-fx-background-color: #44ae64;">
+                     <children>
+                        <Text fill="WHITE" layoutX="6.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date de validation technique" textAlignment="CENTER" wrappingWidth="192.55078125">
+                           <font>
+                              <Font name="System Bold Italic" size="18.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+               </children>
+            </HBox>
+            <ListView fx:id="listv" layoutX="42.0" layoutY="172.0" prefHeight="310.0" prefWidth="783.0" />
+         </children>
+      </Pane>
+      <TextField fx:id="searchBar" alignment="CENTER" layoutX="844.0" layoutY="99.0" prefHeight="34.0" prefWidth="171.0" promptText="recherche" style="-fx-background-radius: 50px; -fx-border-color: #001A23; -fx-border-radius: 50px; -fx-border-width: 0.5px;">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <ImageView fitHeight="34.0" fitWidth="37.0" layoutX="844.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/rech.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="887.0" layoutY="277.0" mnemonicParsing="false" onAction="#filtreParMarque" style="-fx-background-color: #44ae79;" text="Tri par marque" />
+      <Button layoutX="887.0" layoutY="317.0" mnemonicParsing="false" onAction="#filtreParModele" style="-fx-background-color: #44ae79;" text="Tri par modèle" />
+      <Button layoutX="887.0" layoutY="357.0" mnemonicParsing="false" onAction="#filtreParPrix" style="-fx-background-color: #44ae79;" text="Tri par prix de location" />
+      <ImageView fitHeight="24.0" fitWidth="26.0" layoutX="857.0" layoutY="281.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/filtreVert.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="857.0" layoutY="319.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/filtreVert.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="26.0" fitWidth="34.0" layoutX="859.0" layoutY="357.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/filtreVert.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

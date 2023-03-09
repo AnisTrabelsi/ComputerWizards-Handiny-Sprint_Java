@@ -36,6 +36,7 @@ public class Modifier_profil_userController implements Initializable {
     
     ServiceUtilisateur su = new ServiceUtilisateur ();
     ServiceAuthentification sa = new ServiceAuthentification();
+    Utilisateur u = Utilisateur.getCurrent_user();
   
 
     @Override
@@ -45,14 +46,14 @@ public class Modifier_profil_userController implements Initializable {
 
     @FXML
     private void update(ActionEvent event) throws SQLException {
-       Utilisateur user = su.findById(31) ;
+       Utilisateur user = su.findById(u.getId_utilisateur()) ;
 
         String login_new =login.getText();
         String email_new =email.getText();
         String adresse_new = adresse.getText();
         String telph_new =numero_telph.getText();
         //Utilisateur user ;
-        user= new Utilisateur(31,email_new,telph_new,login_new,adresse_new);
+        user= new Utilisateur(user.getId_utilisateur(),email_new,telph_new,login_new,adresse_new);
         su.update(user);
         System.out.println(user);
       

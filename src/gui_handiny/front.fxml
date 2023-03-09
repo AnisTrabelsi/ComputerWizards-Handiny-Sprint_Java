@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -25,8 +26,23 @@
                   <Font name="Arial Rounded MT Bold" size="48.0" />
                </font>
             </Text>
-            <Button layoutX="877.0" layoutY="25.0" mnemonicParsing="false" onAction="#logout" stylesheets="@list.css" text="Logout" />
-            <Button layoutX="762.0" layoutY="25.0" mnemonicParsing="false" onAction="#Forum" style="-fx-background-color: #104d62;" stylesheets="@list.css" text="Forum" />
+            <Button layoutX="819.0" layoutY="23.0" mnemonicParsing="false" onAction="#logout" stylesheets="@list.css" text="Logout" />
+            <Button layoutX="731.0" layoutY="25.0" mnemonicParsing="false" onAction="#Forum" style="-fx-background-color: #104d62;" stylesheets="@list.css" text="Forum" />
+            <Button layoutX="34.0" layoutY="17.0" mnemonicParsing="false" onAction="#tousLesVoit" prefHeight="35.0" prefWidth="184.0" style="-fx-background-radius: 30;" text="Découvrir nos voitures !" textFill="#104d62">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <MenuBar layoutX="936.0" layoutY="24.0" prefWidth="78.0">
+              <menus>
+                <Menu mnemonicParsing="false">
+                  <items>
+                    <MenuItem mnemonicParsing="false" onAction="#Modifier_profil" text="Modifier mon profil" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+            <Label fx:id="nom_actuel" layoutX="952.0" layoutY="27.0" prefHeight="17.0" prefWidth="49.0" />
          </children>
       </Pane>
       <MenuBar layoutY="80.0" prefHeight="35.0" prefWidth="1186.0" stylesheets="@front_main.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-164.0">
@@ -78,11 +94,7 @@
                   <MenuItem mnemonicParsing="false" onAction="#update_reclam" text="Mettre a jour une reclamation" />
                </items>
             </Menu>
-            <Menu mnemonicParsing="false" onAction="#accueil" text="Reclamation">
-               <items>
-                  <MenuItem mnemonicParsing="false" onAction="#modifier_profil" text="Ajouter reclamation" />
-               </items>
-            </Menu>
+            
          </menus>
       </MenuBar>
       <AnchorPane id="mesVoitures" fx:id="mesDons" layoutX="-5.0" layoutY="106.0" prefHeight="535.0" prefWidth="973.0" stylesheets="@front_main.css" AnchorPane.bottomAnchor="-3.0" AnchorPane.leftAnchor="-5.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="106.0" />

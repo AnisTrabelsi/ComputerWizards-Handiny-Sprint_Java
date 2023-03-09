@@ -6,6 +6,7 @@
 package Controllers;
 
 import Entite.Reclamation;
+import Entite.Utilisateur;
 import Services.ServiceReclamation;
 import java.net.URL;
 import java.sql.SQLException;
@@ -52,7 +53,7 @@ public class updatereclamationController_1 implements Initializable {
     private Label description1;
     @FXML
     private Button delete_reclamation1;
-    
+    Utilisateur user= Utilisateur.getCurrent_user();
     Reclamation r;
 
     ServiceReclamation sr = new ServiceReclamation();
@@ -63,7 +64,7 @@ public class updatereclamationController_1 implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         try {
-            int id_utilisateur = 3;
+            int id_utilisateur = user.getId_utilisateur();
             reclamationList = sr.findById_Utilisateur(id_utilisateur);
            // System.out.println(reclamationList);
 
@@ -129,15 +130,7 @@ public class updatereclamationController_1 implements Initializable {
     }
 
     
-////         String description_new =description2.getText();
-////         Reclamation selectedReclamation = mes_reclams.getValue();
-////         selectedReclamation.setDescription(description_new);
-////        sr.update(selectedReclamation);
-////        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-////        alert.setHeaderText(null);
-////        alert.setContentText("Votre reclamation a été mise a jour");
-////        alert.showAndWait();
-////    }
+
 ////    
         @FXML
     private void delete_reclamation(ActionEvent event) throws SQLException {

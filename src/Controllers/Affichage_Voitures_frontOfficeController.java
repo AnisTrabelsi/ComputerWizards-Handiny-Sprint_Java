@@ -6,15 +6,19 @@
 package controllers;
 
 import Entite.Favoris_voitures;
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+
 
 import Entite.Note_voitures;
 import Entite.Utilisateur;
 import Entite.Voiture;
+import com.jfoenix.controls.JFXToggleNode;
 import controllers.AffichageDetailVoitureController;
 import controllers.Affichage_Voitures_frontOfficeController;
 import controllers.InsertLocationController;
+import de.jensd.fx.glyphs.GlyphIcon;
+import de.jensd.fx.glyphs.GlyphsBuilder;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -170,7 +174,7 @@ private void trierParModele() throws SQLException {
     for (Voiture voiture : voitures) {
         // création de la vue de la voiture 
         System.out.println(voiture.getImage_voiture());
-        String path = "C:\\xampp\\htdocs\\3a8-Computer-wizards-Handiny-integration\\" + voiture.getImage_voiture();
+        String path = "C:\\xampp4\\htdocs\\Handiny\\" + voiture.getImage_voiture();
         System.out.println(path);
         File file = new File(path);
        // Image img1=new Image(getClass().getResourceAsStream(path));
@@ -178,8 +182,8 @@ private void trierParModele() throws SQLException {
         ImageView i;
             i = new ImageView(new Image(file.toURI().toString()));
          
-        i.setFitWidth(150);
-        i.setFitHeight(150);
+        i.setFitWidth(170);
+        i.setFitHeight(170);
        
         // création des boutons "Réserver" et "Voir détails"
         Button reserverBtn = new Button("Réserver");
@@ -237,12 +241,39 @@ rating.setOnMouseClicked(event -> {
 
         vbox.getChildren().add(rating);
         // création du bouton avec l'icône "heart"
-Button favorisBtn = new Button();
-/*FontAwesomeIconView heartIcon = new FontAwesomeIconView(FontAwesomeIcon.HEART);
-heartIcon.setSize("2em"); // taille de l'icône
-heartIcon.setStyleClass("heart-icon"); // classe CSS personnalisée*/
-//favorisBtn.setGraphic(heartIcon);
+Button favorisBtn = new Button("Ajouter au favoris");
+favorisBtn.setStyle("-fx-background-color: red; -fx-text-fill: white; -fx-background-radius: 50");
 
+/*
+FontAwesomeIconView heartIcon;
+        heartIcon = new FontAwesomeIconView(FontAwesomeIcon.Heart);
+heartIcon.setSize("2em"); // taille de l'icône
+heartIcon.setStyleClass("heart-icon"); // classe CSS personnalisée
+favorisBtn.setGraphic(heartIcon);
+*/
+
+
+
+
+// Créer l'icône de suppression
+       Button removeFavButton = new Button("Annuler");
+       removeFavButton.setStyle("-fx-background-color: gray; -fx-text-fill: white; -fx-background-radius: 50;");
+
+/*FontAwesomeIconView removeIcon = new FontAwesomeIconView(FontAwesomeIcon.HEART);
+removeIcon.setSize("2em"); // taille de l'icône
+removeIcon.setStyle("-fx-fill: gray;"); // couleur de l'icône
+removeFavButton.setGraphic(removeIcon);
+//removeFavButton.setStyle("-fx-background-color: transparent;"); // fond du bouton transparent*/
+HBox hbox3 = new HBox();
+HBox hbox4 = new HBox();
+
+
+hbox3.getChildren().addAll(favorisBtn);
+
+
+
+
+hbox4.getChildren().addAll(removeFavButton );
 // ajout du gestionnaire d'événements pour le bouton "Favoris"
 favorisBtn.setOnAction(new EventHandler<ActionEvent>() {
     @Override
@@ -253,21 +284,66 @@ favorisBtn.setOnAction(new EventHandler<ActionEvent>() {
         ServiceFavorisVoitures serviceFavoris = new ServiceFavorisVoitures();
         Favoris_voitures f= new Favoris_voitures(u,voiture);
         try {
-            serviceFavoris.ajouter(f);
-             Alert alert=new Alert(Alert.AlertType.INFORMATION);
+            // Check if the record already exists in the "notes_voitures" table
+            if (!serviceFavoris.existe(id_utilisateur, id_voiture)) {
+                // Insert the new record if it doesn't exist
+                serviceFavoris.ajouter(f);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Information");
                 alert.setHeaderText("");
                 alert.setContentText("Votre voiture a été ajoutée aux favoris ! ");
                 alert.showAndWait();
-            
+            } else {
+                // Show an error message if the record already exists
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erreur");
+                alert.setHeaderText("");
+                alert.setContentText("La voiture est déjà dans vos favoris !");
+                alert.showAndWait();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Affichage_Voitures_frontOfficeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+});
+removeFavButton.setOnAction(new EventHandler<ActionEvent>() {
+    @Override
+    public void handle(ActionEvent event) {
+        Utilisateur u = Utilisateur.getCurrent_user();
+        int id_utilisateur = u.getId_utilisateur();
+        int id_voiture = voiture.getId_voiture();
+        ServiceFavorisVoitures serviceFavoris = new ServiceFavorisVoitures();
+        Favoris_voitures f = new Favoris_voitures(u, voiture);
+        try {
+            // Check if the record exists in the "favoris_voitures" table
+            if (serviceFavoris.existe(id_utilisateur, id_voiture)) {
+                // Delete the record if it exists
+                serviceFavoris.supprime(f);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information");
+                alert.setHeaderText("");
+                alert.setContentText("Votre voiture a été supprimée des favoris ! ");
+                alert.showAndWait();
+            } else {
+                // Show an error message if the record doesn't exist
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erreur");
+                alert.setHeaderText("");
+                alert.setContentText("La voiture n'est pas dans vos favoris !");
+                alert.showAndWait();
+            }
         } catch (SQLException ex) {
             Logger.getLogger(Affichage_Voitures_frontOfficeController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 });
 
+
+
 // ajout du bouton à la vue de la voiture
-vbox.getChildren().add(favorisBtn);
+vbox.getChildren().add(hbox3 );
+vbox.getChildren().add(hbox4);
+
 
 
         // ajout du HBox à la grille

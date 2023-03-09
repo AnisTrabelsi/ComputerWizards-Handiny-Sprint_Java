@@ -113,7 +113,17 @@ public class AuthentificationController implements Initializable {
     }
 
     @FXML
-    private void recupererMotDePasse(ActionEvent event) {
+    private void recupererMotDePasse(ActionEvent event) throws IOException {
+        
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui_handiny/forgot_mdp.fxml"));
+        Parent root = loader.load();
+        ForgotMdpController fc = loader.getController();
+        authentification.getScene().setRoot(root);
+
     }
 
 }
+
+    
+
