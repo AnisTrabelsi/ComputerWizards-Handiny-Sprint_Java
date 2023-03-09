@@ -24,21 +24,21 @@ public class Test {
          
         ///////////////////////////////////// CHAUFFEUR /////////////////////////////////////////////////////////
         
-        Chauffeur c1 = new Chauffeur(18, "881144", "AAAA", "AABBB", "OUI");
+        Chauffeur c1 = new Chauffeur(11, "881144", "AAAA", "AABBB", "OUI");
         ServiceChauffeur SC = new ServiceChauffeur();
-       // SC.ajouter(c1);
+        SC.ajouter(c1);
         //SC.modifier(c1);
         //SC.supprimer(c1);
-       // System.out.println(SC.recuperer(c1));
+        System.out.println(SC.recuperer(c1));
         
         ///////////////////////////////////// Reservation CHAUFFEUR /////////////////////////////////////////////////////////
        
-        Reservation_Chauffeur E1 = new Reservation_Chauffeur(11,6,"TU",Date.valueOf(localDate));
+         Reservation_Chauffeur E1 = new Reservation_Chauffeur(12, 3,"TUNIS",Date.valueOf(localDate));
            Reservation_Chauffeur E3 = new Reservation_Chauffeur(2,11,2,"jerba",Date.valueOf(localDate));
         ServiceReservation_Chauffeur ES = new ServiceReservation_Chauffeur();
         ES.ajouter(E1);
-        //ES.modifier(E3);
-      //  ES.supprimer(E3);
+        ES.modifier(E3);
+        //ES.supprimer(E3);
        System.out.println(ES.recuperer(E1));
         
         

@@ -6,12 +6,15 @@
 package GUI;
 
 import entities.Chauffeur;
-import entities.Reservation_Chauffeur;
 import entities.utilisateur;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -82,15 +85,49 @@ public class Ajout_chauffeurController implements Initializable {
      @FXML
     private void dd(ActionEvent event) throws IOException {
         Parent root;
-        root = FXMLLoader.load(getClass().getResource("Ajout_reservationchauffeur.fxml"));
+        root = FXMLLoader.load(getClass().getResource("Ajout_chauffeur_admin.fxml"));
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
     }
+    
+    /*
+    public boolean containsBadWords(String text) throws Exception {
+    String url = "https://api.example.com/badwords?text=" + text;
+    URL obj = new URL(url);
+    HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+
+    con.setRequestMethod("GET");
+
+    int responseCode = con.getResponseCode();
+    if (responseCode == HttpURLConnection.HTTP_OK) {         StringBuffer response;
+        try ( // success
+                BufferedReader in = new BufferedReader(new InputStreamReader(
+                        con.getInputStream()))) {
+            String inputLine;
+            response = new StringBuffer();
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+        }
+
+        return Boolean.parseBoolean(response.toString());
+    } else {
+        throw new Exception("Bad words detection API call failed with response code: " + responseCode);
+    }
+}  */
+    public boolean containsBadWords(String text) throws Exception {
+    ArrayList<String> badWords = new ArrayList<>();
+    badWords.add("bad");
+    badWords.add("sad");
+    badWords.add("no");
+
+    return badWords.stream().anyMatch((badWord) -> (text.toLowerCase().contains(badWord)));
+}
 
     @FXML
-    private void ajouterch(ActionEvent event) {
+    private void ajouterch(ActionEvent event) throws Exception {
         
      //   utilisateur u = new utilisateur(1, "kbikjb", "kbikjb", "kbikjb", "kbikjb", "kbikjb", "kbikjb", "kbikjb", new Date(2020, 15, 01), "kbikjb", 2086, "kbikjb", "kbikjb");
 
@@ -102,9 +139,14 @@ public class Ajout_chauffeurController implements Initializable {
   String ttdispo = dispo.getText();
         ServiceChauffeur ser = new ServiceChauffeur();
         
-        
-        
-        if (ttcin.isEmpty() || ttnom.isEmpty() || ttdispo.isEmpty() ) {
+     if (containsBadWords(nom.getText())) {
+   Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Baad Wooord");
+            alert.showAndWait();
+     
+     }
+      
+       else if (ttcin.isEmpty() || ttnom.isEmpty() || ttdispo.isEmpty() ) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("il y a des attributs vides");
             alert.showAndWait();
@@ -112,10 +154,14 @@ public class Ajout_chauffeurController implements Initializable {
                 
                 
                 else{
-          Reservation_Chauffeur c;
-            c = new Reservation_Chauffeur(ttcin,ttnom,ttadresse,ttdispo );
-            ser.ajouter(c);
-            JOptionPane.showMessageDialog(null, "chauffeur ajouté");
+          Chauffeur c;
+            c = new Chauffeur(ttcin,ttnom,ttadresse,ttdispo );
+            try {
+                ser.ajouter(c);
+                JOptionPane.showMessageDialog(null, "chauffeur ajouté");
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
                
             vider();
             JOptionPane.showMessageDialog(null, "chauffeur ajouté");

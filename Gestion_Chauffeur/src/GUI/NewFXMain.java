@@ -30,11 +30,15 @@ public class NewFXMain extends Application {
     public void start(Stage primaryStage) {
         
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("Ajout_chauffeur.fxml"));
+           Parent root = FXMLLoader.load(getClass().getResource("Afficher_chauffeur.fxml"));
+          // Parent root = FXMLLoader.load(getClass().getResource("Ajout_chauffeur.fxml"));
             Scene scene = new Scene(root);    
             primaryStage.setTitle("Handiny");
             primaryStage.setScene(scene);
-           
+            //  Image icon = new Image("logo.png");
+
+        // Ajouter l'icône au Primary Stage
+       // primaryStage.getIcons().add(icon);
         
             primaryStage.show();
             

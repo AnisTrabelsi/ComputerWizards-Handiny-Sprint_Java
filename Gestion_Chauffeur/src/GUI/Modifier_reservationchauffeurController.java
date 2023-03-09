@@ -5,7 +5,7 @@
  */
 package GUI;
 
-import entities.Chauffeur;
+import entities.Reservation_Chauffeur;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -23,44 +23,32 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
-import services.ServiceChauffeur;
+import services.ServiceReservation_Chauffeur;
 
 /**
  * FXML Controller class
  *
  * @author Mehdi
  */
-public class Modifier_chauffeurController implements Initializable {
+public class Modifier_reservationchauffeurController implements Initializable {
 
    @FXML
-    private TableView<Chauffeur> Reclamation;
+    private TableView<Reservation_Chauffeur> Reclamation;
     @FXML
-    private TableColumn<Chauffeur, String> cin;
+    private TableColumn<Reservation_Chauffeur, String> cin1;
     @FXML
-    private TableColumn<Chauffeur, String> nom;
+    private TableColumn<Reservation_Chauffeur, String> nom1;
     @FXML
-    private TableColumn<Chauffeur, String> adresse;
+    private TableColumn<Reservation_Chauffeur, String> adresse;
     @FXML
-    private TableColumn<Chauffeur, String> statut;
+    private TableColumn<Reservation_Chauffeur, String> dispo;
     
-    @FXML
-    private TextField cin1;
-    @FXML
-    private TextField nom1;
-    @FXML
-    private TextField adresse1;
-    @FXML
-    private TextField dispo;
-    @FXML
-    private Button rapport;
-
+   
     /**
      * Initializes the controller class.
      */
@@ -69,7 +57,7 @@ public class Modifier_chauffeurController implements Initializable {
        try {
            refresh();
        } catch (SQLException ex) {
-           Logger.getLogger(Modifier_chauffeurController.class.getName()).log(Level.SEVERE, null, ex);
+           Logger.getLogger(Modifier_reservationchauffeurController.class.getName()).log(Level.SEVERE, null, ex);
        }
     }    
 
@@ -107,40 +95,43 @@ public class Modifier_chauffeurController implements Initializable {
     @FXML
     private void modifier(ActionEvent event) throws SQLException {
        
-        ServiceChauffeur sv = new ServiceChauffeur();
+        ServiceReservation_Chauffeur sv = new ServiceReservation_Chauffeur();
         
 
          String tcin = cin1.getText();
  String tnom = nom1.getText();
-  String tadresse = adresse1.getText();
+  String tadresse = adresse.getText();
   String tdispo = dispo.getText();
-  int id=Reclamation.getSelectionModel().getSelectedItem().getId_chauffeur();
-    Chauffeur c=new Chauffeur(id,tcin,tnom,tadresse,tdispo );
+  int id=Reclamation.getSelectionModel().getSelectedItem().getId_reservation_chauffeur ();
+    Reservation_Chauffeur c;
+       c = new Reservation_Chauffeur(id ,tcin,tnom,tadresse,tdispo );
          
          sv.modifier(c);
         
-           JOptionPane.showMessageDialog(null, "chauffeur modifie");
+           JOptionPane.showMessageDialog(null, "Reservation modifie");
             refresh();
               vider();
     }
     
     
       public void refresh() throws SQLException {
-     List<Chauffeur> l = new ArrayList<Chauffeur>();
-        ServiceChauffeur ser = new ServiceChauffeur();
+     List<Reservation_Chauffeur> l = new ArrayList<>();
+        ServiceReservation_Chauffeur ser;
+       ser = new ServiceReservation_Chauffeur();
        
         try {
             l = ser.readAll();
         } catch (SQLException ex) {
             Logger.getLogger(Afficher_chauffeurController.class.getName()).log(Level.SEVERE, null, ex);
         }
-            ObservableList<Chauffeur> olc = FXCollections.observableArrayList(l);
+            ObservableList<Reservation_Chauffeur> olc;
+       olc = FXCollections.observableArrayList(l);
            
             
-            cin.setCellValueFactory(new PropertyValueFactory<>("CIN"));
-            nom.setCellValueFactory(new PropertyValueFactory<>("Nom"));
-            adresse.setCellValueFactory(new PropertyValueFactory<>("Adresse"));
-            statut.setCellValueFactory(new PropertyValueFactory<>("Statut_disponibilite"));
+            cin1.setCellValueFactory(new PropertyValueFactory<>("id_chauffeur "));
+            nom1.setCellValueFactory(new PropertyValueFactory<>("duree_service"));
+            adresse.setCellValueFactory(new PropertyValueFactory<>("date_prise_en_charge"));
+            dispo.setCellValueFactory(new PropertyValueFactory<>("description_demande"));
           
      
        
@@ -150,10 +141,10 @@ public class Modifier_chauffeurController implements Initializable {
 
     @FXML
     private void selectionner(ActionEvent event) {
-       cin1.setText( Reclamation.getSelectionModel().getSelectedItem().getCIN());
-       nom1.setText( Reclamation.getSelectionModel().getSelectedItem().getNom());
-        adresse1.setText( Reclamation.getSelectionModel().getSelectedItem().getAdresse());
-         dispo.setText( Reclamation.getSelectionModel().getSelectedItem().getStatut_disponibilite());
+       cin1.setText(""+ Reclamation.getSelectionModel().getSelectedItem().getId_chauffeur());
+       nom1.setText( ""+Reclamation.getSelectionModel().getSelectedItem().getDuree_service());
+        adresse.setText(""+ Reclamation.getSelectionModel().getSelectedItem().getDate_prise_en_charge());
+         dispo.setText( Reclamation.getSelectionModel().getSelectedItem().getDescription_demande());
     }
     
       private void vider() {
@@ -162,20 +153,9 @@ public class Modifier_chauffeurController implements Initializable {
         cin1.setText(null);
         nom1.setText(null);
     
-        adresse1.setText(null);
+        adresse.setText(null);
         dispo.setText(null);
 
-    }
-
-    @FXML
-     private void rapportonaction(ActionEvent event) throws IOException {
-        
-         Parent root = FXMLLoader.load(getClass().getResource("rapportservice.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
-        
     }
     
 }

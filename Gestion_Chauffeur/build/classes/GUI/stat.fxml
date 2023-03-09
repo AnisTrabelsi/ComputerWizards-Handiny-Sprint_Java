@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" fx:id="statpane" prefHeight="487.0" prefWidth="682.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="GUI.StatController">
+   <children>
+      <BarChart fx:id="barchart" layoutX="-1.0" prefHeight="487.0" prefWidth="682.0" title="statistique des disponibilité">
+        <xAxis>
+          <CategoryAxis label="disponibilité" prefHeight="34.0" prefWidth="595.0" side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis label="occurrence" side="LEFT" />
+        </yAxis>
+      </BarChart>
+   </children>
+</AnchorPane>

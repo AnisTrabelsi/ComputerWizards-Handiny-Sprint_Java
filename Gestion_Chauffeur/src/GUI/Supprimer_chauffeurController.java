@@ -23,7 +23,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -50,10 +49,12 @@ public class Supprimer_chauffeurController implements Initializable {
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         List<Chauffeur> l = new ArrayList<Chauffeur>();
+         List<Chauffeur> l = new ArrayList<>();
         ServiceChauffeur ser = new ServiceChauffeur();
        
         try {
@@ -63,10 +64,10 @@ public class Supprimer_chauffeurController implements Initializable {
         }
             ObservableList<Chauffeur> olc = FXCollections.observableArrayList(l);
            
-            cin.setCellValueFactory(new PropertyValueFactory<Chauffeur, String>("CIN"));
-            nom.setCellValueFactory(new PropertyValueFactory<Chauffeur, String>("Nom"));
-            adresse.setCellValueFactory(new PropertyValueFactory<Chauffeur, String>("Adresse"));
-            statut.setCellValueFactory(new PropertyValueFactory<Chauffeur, String>("Statut_disponibilite"));
+            cin.setCellValueFactory(new PropertyValueFactory<>("CIN"));
+            nom.setCellValueFactory(new PropertyValueFactory<>("Nom"));
+            adresse.setCellValueFactory(new PropertyValueFactory<>("Adresse"));
+            statut.setCellValueFactory(new PropertyValueFactory<>("Statut_disponibilite"));
           
      
        
@@ -100,14 +101,8 @@ public class Supprimer_chauffeurController implements Initializable {
         stage.show();
     }
 
-     @FXML
-    private void dd(ActionEvent event) throws IOException {
-        Parent root;
-        root = FXMLLoader.load(getClass().getResource("Ajout_reservationchauffeur.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+    @FXML
+    private void dd(ActionEvent event) {
     }
 
     @FXML
@@ -136,7 +131,7 @@ public class Supprimer_chauffeurController implements Initializable {
     }
    
       public void refresh() throws SQLException {
-        List<Chauffeur> l = new ArrayList<Chauffeur>();
+        List<Chauffeur> l = new ArrayList<>();
         ServiceChauffeur ser = new ServiceChauffeur();
        
         try {
@@ -146,20 +141,14 @@ public class Supprimer_chauffeurController implements Initializable {
         }
             ObservableList<Chauffeur> olc = FXCollections.observableArrayList(l);
            
-            cin.setCellValueFactory(new PropertyValueFactory<Chauffeur, String>("CIN"));
-            nom.setCellValueFactory(new PropertyValueFactory<Chauffeur, String>("Nom"));
-            adresse.setCellValueFactory(new PropertyValueFactory<Chauffeur, String>("Adresse"));
-            statut.setCellValueFactory(new PropertyValueFactory<Chauffeur, String>("Statut_disponibilite"));
+            cin.setCellValueFactory(new PropertyValueFactory<>("CIN"));
+            nom.setCellValueFactory(new PropertyValueFactory<>("Nom"));
+            adresse.setCellValueFactory(new PropertyValueFactory<>("Adresse"));
+            statut.setCellValueFactory(new PropertyValueFactory<>("Statut_disponibilite"));
           
      
        
           Reclamation.setItems(olc);
     }
 
-    @FXML
-    private void SupprimerVoyage(ActionEvent event) {
-    
-      
-  
-    
-}}
+}

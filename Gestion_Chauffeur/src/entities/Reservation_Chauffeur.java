@@ -6,6 +6,7 @@
 package entities;
 
 import java.sql.Date;
+import javafx.scene.control.TextField;
 
 /**
  *
@@ -29,13 +30,13 @@ public class Reservation_Chauffeur {
         this.description_demande = description_demande;
         this.chauffeur =chauffeur ;
     }
-     public Reservation_Chauffeur( int duree_service, Date date_prise_en_charge, String description_demande,int id_chauffeur,Chauffeur chauffeur) {
+     public Reservation_Chauffeur( int id_chauffeur,int duree_service, Date date_prise_en_charge, String description_demande) {
         
         this.id_chauffeur = id_chauffeur;
         this.duree_service= duree_service;
         this.date_prise_en_charge = date_prise_en_charge;
         this.description_demande = description_demande;
-        this.chauffeur =chauffeur ;
+        
     }
 
     public Reservation_Chauffeur(int id_chauffeur, int duree_service, String description_demande, Date date_prise_en_charge) {
@@ -53,14 +54,12 @@ public class Reservation_Chauffeur {
         this.date_prise_en_charge = date_prise_en_charge;
     }
 
-
-    public Reservation_Chauffeur(int i, double d) {
+    public Reservation_Chauffeur(int id, String tcin, String tnom, String tadresse, String tdispo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public Reservation_Chauffeur(String ttcin, String ttnom, String ttadresse, String ttdispo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+
+
      
 /*
     public Reservation_Chauffeur(String ttcin, String ttnom, String ttadresse, String ttdispo) {
@@ -109,6 +108,8 @@ public class Reservation_Chauffeur {
     public String toString() {
         return "ReservationChauffeur{" + "id_reservation_chauffeur=" + id_reservation_chauffeur + ", id_chauffeur=" + id_chauffeur + ", duree_service=" + duree_service + ", date_prise_en_charge=" + date_prise_en_charge + ", description_demande=" + description_demande + "\n" + '}';
     }
+
+   
 
     
     

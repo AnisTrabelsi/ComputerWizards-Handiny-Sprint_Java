@@ -43,6 +43,7 @@
       <Button layoutX="93.0" layoutY="442.0" mnemonicParsing="false" onAction="#modifier" prefHeight="34.0" prefWidth="162.0" stylesheets="@../../../../../Downloads/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi%20(1)/3a8-Computer-wizards-Handiny-Gestion_don_Anis_Trabelsi/src/GUI/admin.css" text="modifier" />
       <TextField fx:id="dispo" layoutX="112.0" layoutY="364.0" prefHeight="42.0" prefWidth="174.0" />
       <Label layoutX="18.0" layoutY="376.0" text="Disponibilite :" />
-      <Button layoutX="533.0" layoutY="406.0" mnemonicParsing="false" onAction="#selectionner" text="selectionneer" />
+      <Button layoutX="533.0" layoutY="476.0" mnemonicParsing="false" onAction="#selectionner" text="selectionneer" />
+      <Button fx:id="rapport" layoutX="549.0" layoutY="416.0" mnemonicParsing="false" onAction="#rapportonaction" style="-fx-background-color: #add8e6;" text="rapport" />
    </children>
 </AnchorPane>

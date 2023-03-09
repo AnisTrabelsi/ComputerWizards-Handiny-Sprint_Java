@@ -8,9 +8,11 @@ import entities.Reservation_Chauffeur;
 
 import entities.utilisateur;
 import java.io.IOException;
+import static java.lang.Integer.parseInt;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,11 +22,12 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
-import static jdk.nashorn.internal.runtime.Debug.id;
 import services.ServiceChauffeur;
+import services.ServiceReservation_Chauffeur;
 
 /**                                   
  * FXML Controller class         /////////////////////////////////////////////////////            
@@ -33,20 +36,20 @@ import services.ServiceChauffeur;
  */
 public class Ajout_reservationchauffeurController implements Initializable {
 
-    
     private TextField id;
     @FXML
-    private TextField ds;
-    @FXML
-    private TextField dc;
-    @FXML
-    private TextField dd;
-    @FXML
     private TextField cin;
+    @FXML
+    private TextField nom;
+    @FXML
+    private DatePicker adresse;
+    @FXML
+    private TextField dispo;
 
     /**
      * Initializes the controller class.
      * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -85,21 +88,21 @@ public class Ajout_reservationchauffeurController implements Initializable {
     }
 
     @FXML
-    private void ajouterch(ActionEvent event) {
+    private void ajouterch(ActionEvent event) throws SQLException {
         
      //   utilisateur u = new utilisateur(1, "kbikjb", "kbikjb", "kbikjb", "kbikjb", "kbikjb", "kbikjb", "kbikjb", new Date(2020, 15, 01), "kbikjb", 2086, "kbikjb", "kbikjb");
 
      
         
-        String rid = id.getText();
- String rds = ds.getText();
-  String rdc = dc.getText();
-  String rdd = dd.getText();
-        ServiceChauffeur ser = new ServiceChauffeur();
+        String ttcin = cin.getText();
+ String ttnom = nom.getText();
+  LocalDate ttadresse = adresse.getValue();
+  String ttdispo = dispo.getText();
+        ServiceReservation_Chauffeur ser = new ServiceReservation_Chauffeur();
         
         
         
-        if (rid.isEmpty() || rds.isEmpty() || rdd.isEmpty() ) {
+        if (ttcin.isEmpty() || ttnom.isEmpty() || ttdispo.isEmpty() ) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("il y a des attributs vides");
             alert.showAndWait();
@@ -108,7 +111,7 @@ public class Ajout_reservationchauffeurController implements Initializable {
                 
                 else{
           Reservation_Chauffeur c;
-                 c = new Reservation_Chauffeur(rid,rds,rdc,rdd );
+                 c = new Reservation_Chauffeur(parseInt(ttcin),parseInt(ttnom),ttdispo,java.sql.Date.valueOf(ttadresse) );
             ser.ajouter(c);
             JOptionPane.showMessageDialog(null, "Reservation chauffeur ajouté");
                
@@ -122,12 +125,12 @@ public class Ajout_reservationchauffeurController implements Initializable {
      private void vider() {
 
         id.setText(null);
-        ds.setText(null);
+        cin.setText(null);
 
-        dc.setText(null);
+        nom.setText(null);
       
-        dd.setText(null);
-        
+        adresse.setValue(null);
+        dispo.setText(null);
 
     }
     

@@ -20,6 +20,6 @@ public interface IServices <C> {
      public void modifier(C c) throws SQLException;
      public void supprimer(int id) throws SQLException;
      public List<C> recuperer(C c) throws SQLException;
-       public List<Chauffeur> readAll() throws SQLException;
+       public List<C> readAll() throws SQLException;
     
 }

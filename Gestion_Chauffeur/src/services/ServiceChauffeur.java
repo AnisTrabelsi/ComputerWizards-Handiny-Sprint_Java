@@ -49,9 +49,12 @@ public class ServiceChauffeur implements IServices <Chauffeur> {
        
         }
     
-    
-    
-
+    /**
+     *
+     * @param c
+     * @throws SQLException
+     */
+    @Override
     public void modifier(Chauffeur c) throws SQLException {
          String req = " UPDATE chauffeur SET CIN = ? , Nom = ? , Adresse = ? , Statut_disponibilite = ?  where id_chauffeur = ?  ";
             PreparedStatement ps = con.prepareStatement(req);
@@ -64,6 +67,7 @@ public class ServiceChauffeur implements IServices <Chauffeur> {
         ps.executeUpdate();
     }
 
+       @Override
     public void supprimer(int id) throws SQLException {
          String req = " DELETE FROM Chauffeur where id_chauffeur =  " +id ;
        
@@ -122,11 +126,28 @@ public class ServiceChauffeur implements IServices <Chauffeur> {
         return listper;
     }
 
-    public void ajouter(Reservation_Chauffeur c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+  public int countChauffeursByType(String selectedServiceType) {
+    int count = 0;
+    try {
+        String req = "SELECT COUNT(*) AS count FROM Chauffeur WHERE Adresse = ?";
+        PreparedStatement ps;
+        ps = con.prepareStatement(req);
+        ps.setString(1, selectedServiceType);
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            count = rs.getInt("count");
+        }
+    } catch (SQLException ex) {
+    }
+    return count;
+}
+
     }
 
+
+
+
        
-}
+
 
 
