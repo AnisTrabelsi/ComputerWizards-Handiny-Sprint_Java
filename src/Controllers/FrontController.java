@@ -216,7 +216,7 @@ public class FrontController implements Initializable {
 
     @FXML
     private void tousLesVoit(ActionEvent event) throws IOException {
-       AnchorPane pane = FXMLLoader.load(getClass().getResource("/gui_handiny/Affichage_Voitures_frontOffice"));
+       AnchorPane pane = FXMLLoader.load(getClass().getResource("/gui_handiny/Affichage_Voitures_frontOffice.fxml"));
            mesDons.getChildren().setAll(pane);  
     }
 

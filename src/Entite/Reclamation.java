@@ -172,7 +172,7 @@ private Utilisateur user;
 
     @Override
     public String toString() {
-        return  type_reclamation+ id_reclamation ;
+        return  type_reclamation;
     }
 
 

@@ -68,8 +68,6 @@ public class Afficher_chauffeurController implements Initializable {
     
     
     
-    @FXML
-    private Button stat_bt;
 
    
     
@@ -98,7 +96,6 @@ public class Afficher_chauffeurController implements Initializable {
    
     
    
-    @FXML
     private void suppr(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("supprimer_chauffeur.fxml"));
         Scene scene = new Scene(root);
@@ -107,7 +104,6 @@ public class Afficher_chauffeurController implements Initializable {
         stage.show();
     }
 
-    @FXML
     private void md(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("Modifier_chauffeur.fxml"));
         Scene scene = new Scene(root);
@@ -115,7 +111,6 @@ public class Afficher_chauffeurController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-     @FXML
     private void aj(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("Ajout_chauffeur.fxml"));
         Scene scene = new Scene(root);
@@ -124,9 +119,6 @@ public class Afficher_chauffeurController implements Initializable {
         stage.show();
     }
 
-    @FXML
-    private void dd(ActionEvent event) {
-    }
 
     private void afficher(ActionEvent event) throws IOException {
        Parent root = FXMLLoader.load(getClass().getResource("Afficher_chauffeur.fxml"));
@@ -177,7 +169,6 @@ private void excelbutton(ActionEvent event) {
 }
 
   
-    @FXML
      private void statitistiquebutton(ActionEvent event) throws IOException {
        Parent root;
         root = FXMLLoader.load(getClass().getResource("stat.fxml"));
@@ -226,7 +217,18 @@ System.out.println(ex);
 }
     
         
-        
+       
+@FXML
+    private void trier(ActionEvent event) throws SQLException {
+    Reclamation.getItems().clear();
+    List<Chauffeur> l = new ArrayList<Chauffeur>();
+    ServiceChauffeur ser = new ServiceChauffeur();
+    l = ser.trierChauffeurParNom();
+    ObservableList<Chauffeur> olc = FXCollections.observableArrayList(l);
+    Reclamation.setItems(olc);
+    }
+    
+    
     }
     
 

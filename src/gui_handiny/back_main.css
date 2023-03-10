@@ -1,10 +1,10 @@
 .menu-bar {
   -fx-background-color: #5185f4;
-  -fx-padding: 7 30;
+  -fx-padding: 7 10;
 }
 
 .menu {
-  -fx-font-size: 14px;
+  -fx-font-size: 11px;
   -fx-text-fill: #fdf7f7;
   -fx-font-weight: bold;
   -fx-padding: 0 0;

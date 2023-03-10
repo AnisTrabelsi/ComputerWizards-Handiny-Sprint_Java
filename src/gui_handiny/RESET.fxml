@@ -10,7 +10,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #104D62;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ResetController">
    <children>
-      <Button fx:id="modifier" layoutX="226.0" layoutY="323.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#resetpass" prefHeight="48.0" prefWidth="167.0" style="-fx-background-color: #4FAC6E; -fx-border-color: white; -fx-border-radius: 5px;" text="Enregistrer" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="modifier" layoutX="214.0" layoutY="317.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#resetpass" prefHeight="48.0" prefWidth="167.0" style="-fx-background-color: #4FAC6E; -fx-border-color: white; -fx-border-radius: 30;" text="Enregistrer" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="Berlin Sans FB Demi Bold" size="20.0" />
          </font>
@@ -25,8 +25,8 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <PasswordField fx:id="nv_pass" layoutX="137.0" layoutY="163.0" prefHeight="36.0" prefWidth="344.0" promptText="new password..." />
-      <PasswordField fx:id="conv_pass" layoutX="137.0" layoutY="224.0" prefHeight="36.0" prefWidth="344.0" promptText="confirm new password..." />
+      <PasswordField fx:id="nv_pass" layoutX="137.0" layoutY="163.0" prefHeight="36.0" prefWidth="344.0" promptText="Nouveau mot de passe" />
+      <PasswordField fx:id="conv_pass" layoutX="137.0" layoutY="224.0" prefHeight="36.0" prefWidth="344.0" promptText="Convirmez le nouveau mot de passe " />
       <Label alignment="CENTER" layoutX="86.0" layoutY="117.0" prefHeight="32.0" prefWidth="429.0" text="Saisissez un nouveau mot de passe" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="Berlin Sans FB" size="22.0" />

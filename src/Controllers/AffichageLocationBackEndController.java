@@ -52,7 +52,7 @@ public class AffichageLocationBackEndController implements Initializable {
         try {
             ServiceReservation_Voiture sv= new ServiceReservation_Voiture();
              Utilisateur u=Utilisateur.getCurrent_user();
-            List<Reservation_voiture> locations= sv.readAll_Of_user(u.getId_utilisateur());
+            List<Reservation_voiture> locations= sv.readAll();
             System.out.println(locations);
             ObservableList ObList = FXCollections.observableList(locations);
             listv.setItems(ObList);

@@ -31,5 +31,6 @@
       </Label>
       <Button fx:id="excel" layoutX="385.0" layoutY="492.0" mnemonicParsing="false" onAction="#excelbutton" prefHeight="34.0" prefWidth="136.0" text="Télecharger" textAlignment="CENTER" textOverrun="LEADING_WORD_ELLIPSIS" />
       <Button layoutX="646.0" layoutY="492.0" mnemonicParsing="false" onAction="#p" prefHeight="34.0" prefWidth="136.0" text="PDF" />
+      <Button layoutX="185.0" layoutY="492.0" mnemonicParsing="false" onAction="#trier" prefHeight="34.0" prefWidth="125.0" text="trier par nom" />
    </children>
 </AnchorPane>

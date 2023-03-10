@@ -57,7 +57,7 @@
       <TextField fx:id="tfdestination" layoutX="177.0" layoutY="194.0" />
       <TextField fx:id="tfprix" layoutX="177.0" layoutY="232.0" />
       <TextField fx:id="tfnbr" layoutX="177.0" layoutY="270.0" />
-      <ImageView fitHeight="179.0" fitWidth="473.0" layoutX="364.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="179.0" fitWidth="473.0" layoutX="423.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/covo.jpg" />
          </image>
@@ -87,5 +87,10 @@
             <Font name="Calibri Bold Italic" size="16.0" />
          </font>
       </Button>
+      <ImageView fitHeight="54.0" fitWidth="55.0" layoutX="83.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/voiture%20cov(1).png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

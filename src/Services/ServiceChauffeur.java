@@ -143,6 +143,28 @@ public class ServiceChauffeur implements Services.IService<Chauffeur> {
     }
     return count;
 }
+  
+  
+  public List<Chauffeur>trierChauffeurParNom() throws SQLException {
+           List<Chauffeur> list = new ArrayList<>();
+        try {
+            String req = "Select * from chauffeur order by Nom ";
+            
+            ResultSet rs = cnx.executeQuery(req);
+            while (rs.next()) {
+             Chauffeur p = new Chauffeur(rs.getString("CIN"),rs.getString("Adresse"),rs.getString("Statut_disponibilite"),rs.getString("Nom"));
+               
+               list.add(p);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return list;
+    }
+  
+  
+  
 
     @Override
     public void ajouter_don(Chauffeur t) throws SQLException {

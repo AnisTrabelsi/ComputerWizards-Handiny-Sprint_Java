@@ -12,7 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
+//import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -21,7 +21,9 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class ForgotMdpController implements Initializable {
-     Utilisateur u = new Utilisateur();
+
+    Utilisateur u = new Utilisateur();
+   
 
     Stage Stage2;
     @FXML
@@ -32,9 +34,13 @@ public class ForgotMdpController implements Initializable {
     private Button Reset;
     @FXML
     private Label labelemail;
-  //  Utilisateur current_user;
-   // Utilisateur user = new Utilisateur ();
+    //  Utilisateur current_user;
+    // Utilisateur user = new Utilisateur ();
     ServiceUtilisateur us = new ServiceUtilisateur();
+    //static Utilisateur user ;
+  public static int id ;
+
+   
 
     /**
      * Initializes the controller class.
@@ -49,28 +55,24 @@ public class ForgotMdpController implements Initializable {
     }
 
     @FXML
-    private void sendcode(ActionEvent event) throws SQLException {
-      //user=  us.findById(3);
+    private int sendcode(ActionEvent event) throws SQLException {
+          String email = email_entred.getText();
+
         email_entred.setStyle("-fx-border-color:WHITE");
         if (us.verifierEmailBd(email_entred.getText())) {
-            String e =email_entred.getText();
+            String e = email_entred.getText();
             code_entred.setDisable(false);
             Reset.setDisable(false);
             labelemail.setText("");
             labelemail.setText("un code a été envoyé a votre Email, retapez-le");
             labelemail.setTextFill(Color.BLUE);
             String code = us.getAlphaNumericString(8);
-           
             u.setTargetid(ServiceUtilisateur.getIdByEmail(e));
             u.setCode(code);
             System.out.println(code);
-           
-     //Utilisateur currentUser = Utilisateur.getCurrent_user();
 
+            //Utilisateur currentUser = Utilisateur.getCurrent_user();
             if (u != null) {
-             
-                String email = email_entred.getText();
-
                 us.updateCode(u.getCode(), u.getTargetid());
                 System.out.println(u.getCode());
                 ///String cn = "Saissisez ce code pour réinitialiser votre mot de passe : " + Utilisateur.getCurrent_user().getCode();
@@ -78,19 +80,23 @@ public class ForgotMdpController implements Initializable {
                 String sb = "Mot de passe oublié";
                 SendMail.sendMail(email, sb, cn);
             } else {
+               
                 email_entred.setStyle("-fx-border-color:RED");
-        labelemail.setText("email inexistant");
-        labelemail.setTextFill(Color.RED);
+                labelemail.setText("email inexistant");
+                labelemail.setTextFill(Color.RED);
             }
-                    //user = us.findById(user.getTargetid());
+           
 
         }
+      id   = ServiceUtilisateur.getIdByEmail(email);
+        return id ;
     }
 
     @FXML
     private void Reset_onclick(ActionEvent event) throws SQLException {
 
-        System.out.println(u);
+        System.out.println(id);
+       
         if (u.getCode().equals(code_entred.getText())) {
             try {
                 Parent root = FXMLLoader.load(getClass().getResource("/gui_handiny/RESET.fxml"));

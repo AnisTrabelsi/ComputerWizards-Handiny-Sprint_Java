@@ -152,7 +152,7 @@ public class InscriptionController implements Initializable {
     }
 
     @FXML
-    private void ajouter_utilisateur(ActionEvent event) throws SQLException, IOException, NoSuchPaddingException, InvalidKeyException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, InvalidAlgorithmParameterException, AddressException, MessagingException {
+    private void ajouter_utilisateur(ActionEvent event) throws SQLException, IOException, NoSuchPaddingException, InvalidKeyException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, InvalidAlgorithmParameterException, AddressException, MessagingException, Exception {
         String nom = nom_inscri.getText();
         //***********************Controle de saisie nom
         if (!isValidNom(nom)) {
@@ -236,7 +236,7 @@ public class InscriptionController implements Initializable {
 //        String region = region_inscri.getValue();
         String adresse = adresse_inscri.getText();
         String mot_de_passe = mdp_inscri.getText();
-        String mdp_chiffré = encryptor.encryptString(mot_de_passe);
+        String mdp_chiffré = AESEncryptor.encrypt(mot_de_passe);
 //        //MessageDigest md = MessageDigest.getInstance("SHA-256");
         System.out.println(mdp_chiffré);
 

@@ -170,7 +170,7 @@ public class Modifier_chauffeurController implements Initializable {
     @FXML
      private void rapportonaction(ActionEvent event) throws IOException {
         
-         Parent root = FXMLLoader.load(getClass().getResource("rapportservice.fxml"));
+         Parent root = FXMLLoader.load(getClass().getResource("/gui_handiny/rapportservice.fxml"));
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);

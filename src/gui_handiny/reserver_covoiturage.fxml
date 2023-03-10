@@ -19,7 +19,7 @@
             <Image url="@../images/background.png" />
          </image>
       </ImageView>
-      <Button fx:id="button" layoutX="730.0" layoutY="472.0" mnemonicParsing="false" onAction="#trier" prefHeight="17.0" prefWidth="95.0" style="-fx-background-color: #70e43a;" stylesheets="@list.css" text="trier par Prix" textFill="WHITE">
+      <Button fx:id="button" layoutX="730.0" layoutY="472.0" mnemonicParsing="false" onAction="#trier" prefHeight="29.0" prefWidth="150.0" style="-fx-background-color: #70e43a;" stylesheets="@list.css" text="trier par Prix" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font>
@@ -27,20 +27,13 @@
             <Blend />
          </effect></Button>
       <Text layoutX="607.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-      <Button layoutX="21.0" layoutY="480.0" mnemonicParsing="false" onAction="#goreserv" prefHeight="35.0" prefWidth="134.0" style="-fx-background-color: green; -fx-background-radius: 50;" stylesheets="@list.css" text="Mes reservation" textFill="WHITE">
-         <effect>
-            <Blend />
-         </effect>
-         <font>
-            <Font name="System Bold Italic" size="13.0" />
-         </font></Button>
       <Button layoutX="607.0" layoutY="472.0" mnemonicParsing="false" onAction="#Actualiser" prefHeight="25.0" prefWidth="114.0" style="-fx-background-color: #70e43a;" stylesheets="@list.css" text="Actualiser" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font></Button>
       <ScrollPane layoutX="53.0" layoutY="149.0" prefHeight="306.0" prefWidth="753.0">
          <content>
-            <VBox fx:id="vb" prefHeight="290.0" prefWidth="746.0" style="-fx-background-color: #67e860;">
+            <VBox fx:id="vb" prefHeight="290.0" prefWidth="746.0" style="-fx-background-color: #41AF64;">
                <effect>
                   <Blend />
                </effect></VBox>

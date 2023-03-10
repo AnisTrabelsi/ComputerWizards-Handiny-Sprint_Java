@@ -26,6 +26,7 @@ import javafx.stage.Stage;
 //import org.mindrot.jbcrypt.BCrypt;
 import Services.ServiceUtilisateur;
 import java.sql.SQLException;
+import org.controlsfx.control.Notifications;
 
 /**
  *
@@ -42,6 +43,7 @@ public class ResetController implements Initializable {
     Stage app_stage;
     @FXML
     private Label labelmdp;
+    //  ForgotMdpController fr= new ForgotMdpController();
 
     /**
      * Initializes the controller class.
@@ -77,22 +79,27 @@ public class ResetController implements Initializable {
 
     @FXML
     private void resetpass(ActionEvent event) throws SQLException, Exception {
-        Utilisateur u = Utilisateur.getCurrent_user();
+        // Utilisateur u = Utilisateur.getCurrent_user();
         if (!nv_pass.getText().isEmpty() && !conv_pass.getText().isEmpty()) {
             if (test()) {
+                System.out.println(ForgotMdpController.id);
+                int ii = ForgotMdpController.id;
                 if (nv_pass.getText().equals(conv_pass.getText())) {
-                    ServiceUtilisateur sr = new ServiceUtilisateur();
-                Utilisateur user = sr.findById(u.getTargetid());
+                    ServiceUtilisateur su = new ServiceUtilisateur();
+                    Utilisateur user = su.findById(ii);
                     System.out.println(user);
                     String nv_passwd = nv_pass.getText();
                     String crypted = AESEncryptor.encrypt(nv_passwd);
                     user.setMot_de_passe(crypted);
-                    sr.mettreAJourMotDePasse(user);
+                    su.mettreAJourMotDePasse(user);
 
+                    Notifications.create()
+                            .title("Succès")
+                            .text("Votre mot de passe a été modifié.")
+                            .showInformation();
                     Parent loader;
                     try {
                         loader = FXMLLoader.load(getClass().getResource("/gui_handiny/Authentification.fxml"));
-                        //Creates a Parent called loader and assign it as ScReen2.FXML
                         loader.setOnMousePressed(pressEvent -> {
                             loader.setOnMouseDragged(dragEvent -> {
                                 app_stage.setX(dragEvent.getScreenX() - pressEvent.getSceneX());
@@ -100,13 +107,13 @@ public class ResetController implements Initializable {
                             });
                         });
 
-                        Scene scene = new Scene(loader); 
+                        Scene scene = new Scene(loader);
 
-                        app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow(); 
+                        app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
                         app_stage.setScene(scene);
 
-                        app_stage.show(); 
+                        app_stage.show();
                     } catch (IOException ex) {
                     }
                 } else {

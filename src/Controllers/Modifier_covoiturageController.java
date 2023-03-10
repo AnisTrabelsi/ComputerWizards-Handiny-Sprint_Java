@@ -250,6 +250,20 @@ tfdate.setValue(null) ;
 
     private void Actualiser() {
         vb.getChildren().clear();
+          tfprix.textProperty().addListener((observable, oldValue, newValue) -> {
+        if (!newValue.matches("\\d*")) { // Only allow digits
+            tfprix.setText(newValue.replaceAll("[^\\d]", "")); // Remove non-digits
+        }
+    });   
+    
+    tfnbr.textProperty().addListener((observable, oldValue, newValue) -> {
+        if (!newValue.matches("\\d*")) { // Only allow digits
+            tfnbr.setText(newValue.replaceAll("[^\\d]", "")); // Remove non-digits
+        }
+    });
+        
+        
+      vb.getChildren().clear();
         List<Covoiturage> l = new ArrayList<Covoiturage>();
         ServiceCovoiturage ser = new ServiceCovoiturage();
         try {
@@ -273,7 +287,7 @@ Label label4 = new Label(String.valueOf(d.getPrix()));
           
             Label label5 = new Label(d.getDate_covoiturage().toString());
                hbox.setStyle("  -fx-background-color: #BDECB6;  -fx-padding:17;  -fx-spacing:17 -fx-border-color: black -fx-border-width: 2px;    -fx-border-style: solid; ");
-            label2.setStyle("-fx-font-size: 16px; -fx-text-fill: black; -fx-border-color: gray; -fx-border-width: 0 1 0 0; -fx-border-style: solid;-fx-padding: 0 10 0 0;");
+            label2.setStyle("-fx-font-size: 10px; -fx-text-fill: black; -fx-border-color: gray; -fx-border-width: 0 1 0 0; -fx-border-style: solid;-fx-padding: 0 10 0 0;");
             label1.setStyle("-fx-font-size: 17px; -fx-text-fill: black; -fx-font-weight: bold;-fx-wrap-text: true; -fx-alignment: center;-fx-alignment: center; -fx-border-color: gray; -fx-border-width: 0 1 0 0; -fx-border-style: solid;-fx-padding: 0 10 0 0;");
                         label3.setStyle("-fx-font-size: 17px; -fx-text-fill: black; -fx-font-weight: bold;-fx-wrap-text: true; -fx-alignment: center;-fx-alignment: center; -fx-border-color: gray; -fx-border-width: 0 1 0 0; -fx-border-style: solid;-fx-padding: 0 10 0 0;");
             label5.setStyle("-fx-font-size: 17px; -fx-text-fill: black; -fx-font-weight: bold;-fx-wrap-text: true; -fx-alignment: center;-fx-alignment: center; -fx-border-color: gray; -fx-border-width: 0 1 0 0; -fx-border-style: solid;-fx-padding: 0 10 0 0;");
@@ -281,7 +295,7 @@ Label label4 = new Label(String.valueOf(d.getPrix()));
             label2.setStyle("-fx-font-size: 17px; -fx-text-fill: black; -fx-font-weight: bold;-fx-wrap-text: true; -fx-alignment: center;-fx-alignment: center; -fx-border-color: gray; -fx-border-width: 0 1 0 0; -fx-border-style: solid;-fx-padding: 0 10 0 0;");
             label4.setStyle("-fx-font-size: 17px; -fx-text-fill: black; -fx-font-weight: bold;-fx-wrap-text: true;-fx-alignment: center;-fx-alignment: center; -fx-border-color: gray; -fx-border-width: 0 1 0 0; -fx-border-style: solid;-fx-padding: 0 10 0 0;");
                       Button button = new Button("modifier !");
-                                     button.setStyle("-fx-background-color: #3f51b5; -fx-text-fill: white; -fx-font-weight: bold;-fx-font-size: 10px; ");
+                                     button.setStyle("-fx-background-color: #87CEEB; -fx-text-fill: white; -fx-font-weight: bold;-fx-font-size: 12px; ");
 
   button.setOnAction(event -> {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -291,9 +305,9 @@ Label label4 = new Label(String.valueOf(d.getPrix()));
                  b = d.getId_utilisateur();
 
    tfdepart.setText(d.getDepart());
+    tfdate.setValue(d.getDate_covoiturage().toLocalDate());
 
     tfdestination.setText(d.getDestination());
-    tfdate.setValue(d.getDate_covoiturage().toLocalDate());
 tfprix.setText(String.valueOf(d.getPrix()));
 tfnbr.setText(String.valueOf(d.getNbrplace()));
 
@@ -301,7 +315,7 @@ tfnbr.setText(String.valueOf(d.getNbrplace()));
   
   
     Button button2 = new Button("Supprimer !");
-                                     button2.setStyle("-fx-background-color: #3f51b5; -fx-text-fill: white; -fx-font-weight: bold;-fx-font-size: 10px; ");
+                                     button2.setStyle("-fx-background-color: red; -fx-text-fill: white; -fx-font-weight: bold;-fx-font-size: 12px; ");
 
 button2.setOnAction(event -> {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -329,6 +343,7 @@ try {
             vb.getChildren().add(hbox);
         }
                vb.setStyle("fx-spacing: 10; fx-padding: 10; fx-alignment: center;");
+
 
 
     } 

@@ -10,16 +10,16 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Admin_affichage_user">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="521.0" prefWidth="938.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Admin_affichage_user">
    <children>
-      <AnchorPane id="AnchorPane" layoutX="10.0" layoutY="10.0" prefHeight="652.0" prefWidth="1000.0">
+      <AnchorPane id="AnchorPane" layoutX="4.0" layoutY="-28.0" prefHeight="558.0" prefWidth="1000.0">
          <children>
-            <ImageView fitHeight="615.0" fitWidth="1009.0" layoutX="-31.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="523.0" fitWidth="1029.0" layoutX="-31.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/327680433_1635361913582223_6273958701339860656_n.png" />
+                  <Image url="@../images/back.png" />
                </image>
             </ImageView>
-            <ListView fx:id="listu" layoutX="32.0" layoutY="123.0" prefHeight="408.0" prefWidth="447.0" style="-fx-background-radius: 30;" />
+            <ListView fx:id="listu" layoutX="32.0" layoutY="127.0" prefHeight="335.0" prefWidth="447.0" style="-fx-background-radius: 30;" />
             <HBox layoutX="38.0" layoutY="83.0" prefHeight="42.0" prefWidth="436.0" style="-fx-background-color: #104D62; -fx-background-radius: 30;">
                <children>
                   <Pane prefHeight="42.0" prefWidth="233.0" style="-fx-border-radius: 30; -fx-border-insets: 12;">
@@ -42,7 +42,7 @@
                   </Pane>
                </children>
             </HBox>
-            <Button fx:id="affichage" layoutX="121.0" layoutY="535.0" mnemonicParsing="false" onAction="#affichage" prefHeight="50.0" prefWidth="211.0" style="-fx-background-color: #4FAC6E; -fx-background-radius: 30;" text="Plus de detail" textFill="WHITE">
+            <Button fx:id="affichage" layoutX="128.0" layoutY="467.0" mnemonicParsing="false" onAction="#affichage" prefHeight="50.0" prefWidth="211.0" style="-fx-background-color: #4FAC6E; -fx-background-radius: 30;" text="Plus de detail" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -139,7 +139,7 @@
             <Label fx:id="adresse_vue_admin" layoutX="569.0" layoutY="164.0" prefHeight="31.0" prefWidth="151.0" />
             <Label fx:id="region" layoutX="569.0" layoutY="316.0" prefHeight="36.0" prefWidth="151.0" />
             <Label fx:id="role_vue_admin" layoutX="663.0" layoutY="475.0" prefHeight="26.0" prefWidth="151.0" />
-            <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="135.0" layoutY="545.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="141.0" layoutY="482.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/magnifying-glass.png" />
                </image>

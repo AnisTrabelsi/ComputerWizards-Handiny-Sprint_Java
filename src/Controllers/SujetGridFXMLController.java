@@ -78,17 +78,6 @@ public class SujetGridFXMLController implements Initializable {
         etat.setText(suj.getEtat());
     }
 
-//    public void setData2(Sujet suj) {
-//        sujet1 = null;
-//        sujet1 = suj;
-//
-//        System.out.println(suj.getContenu_sujet() + suj.getCat().getNom_categorie());
-//        contenu_sujet.setText(suj.getContenu_sujet());
-//        category.setText(suj.getCat().getNom_categorie());
-//        nb_comments.setText(String.valueOf(suj.getNb_commentaires()));
-//        etat.setText(suj.getEtat());
-//    }
-
     public void setData2(PostsSauvegardés c) {
         sujet1 = null;
         sujet1 = c.getSujet();

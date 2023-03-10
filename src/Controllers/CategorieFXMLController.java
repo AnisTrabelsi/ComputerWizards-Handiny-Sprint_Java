@@ -94,7 +94,7 @@ public class CategorieFXMLController implements Initializable {
     private void returnlistcategories(MouseEvent event) {
         returnlistcategoriesBtn.setOnAction((ActionEvent e) -> {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui_handiny/CategorieListGridPaneFXML.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui_handiny/ForumSideBarFXML.fxml"));
                 Parent root = loader.load();
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
